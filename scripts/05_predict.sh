@@ -135,16 +135,40 @@ fetch_af2_weights() {
     csc_gate_disk 3700 "the AlphaFold2 parameters" || return 4
     echo "[${STAGE}] fetching the AlphaFold2 parameters, about 3.5 GB"
     mkdir -p "${AF2_DIR}/params"
-    # The tool streams the archive and extracts it without keeping the archive,
-    # so the peak is the extracted set rather than archive plus contents. It is
-    # invoked here rather than left to the first prediction so that the
-    # download is timed and recorded separately from inference.
-    csc_run "fetch_af2_weights" "$(csc_env_bin "$CONDA_ENV_COLABFOLD" python)" -m colabfold.download \
+    # The download function is called with an explicit model type and directory
+    # rather than through the module's own entry point. That entry point, given
+    # no arguments, fetches the multimer parameters as well as these and puts
+    # both in a default cache directory of its own choosing. On this machine
+    # that meant 3.8 GB of weights for a model this benchmark does not run,
+    # written inside the virtual disk where deleting them does not give the
+    # space back. It got 1.6 GB in before it was stopped.
+    csc_run "fetch_af2_weights" "$(csc_env_bin "$CONDA_ENV_COLABFOLD" python)" -c \
+        "from pathlib import Path; from colabfold.download import download_alphafold_params; download_alphafold_params('${AF2_MODEL_TYPE}', Path('${AF2_DIR}'))" \
         || { echo "[error] the parameter download failed" >&2; return 4; }
     local f
     for f in "${AF2_DIR}"/params/*ptm*.npz; do
         record_weight_file alphafold2_ptm "$f" "one of five parameter sets for this model type"
     done
+    # The archive holds ten parameter sets: five for this model type and five
+    # for the original release, which this benchmark never loads. They are
+    # extracted together and the unused half is 1.8 GB. Deleting it leaves the
+    # success marker in place, so nothing re-fetches, and the five that remain
+    # are the ones every arm here reads.
+    local removed=0 bytes=0
+    for f in "${AF2_DIR}"/params/params_model_*.npz; do
+        case "$f" in *_ptm.npz) continue ;; esac
+        [[ -f "$f" ]] || continue
+        bytes=$(( bytes + $(stat -c %s "$f") ))
+        rm -f "$f"
+        removed=$(( removed + 1 ))
+    done
+    if (( removed > 0 )); then
+        echo "[${STAGE}] removed ${removed} parameter sets this benchmark does not use, $(( bytes / 1048576 )) MB"
+        printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\n' alphafold2_ptm "params_model_1..5.npz" "$bytes" "" \
+            "deleted by 05_predict.sh" \
+            "the archive also carries five parameter sets for the original model type, which no arm here runs" \
+            "$(date -Iseconds)" >> "$WEIGHTS_TSV"
+    fi
     # The licence file inside the archive, recorded because it does not agree
     # with the statement in the model's current repository and the README says
     # so rather than choosing one of them.
