@@ -36,3 +36,4 @@ boltz2_weights	https	https://huggingface.co/boltz-community/boltz-2	boltz2_conf.
 stage1_pipeline	git	https://github.com/Qasim-Hussain-Code/vina_gnina_pose_benchmark_pipeline	d329fbe0c08e4b36ed89f8ce077febc606350254	none	MIT	2026-09-25
 openstructure	conda	bioconda::openstructure	version recorded per run; compound library date recorded from the package	none	LGPL-3.0-or-later	2026-09-25
 usalign	conda	bioconda::usalign	version recorded per run	none	permissive custom notice, see LICENSE	2026-09-25
+rotarama_data	github_raw	https://github.com/rlabduke/rotarama_data	master at fetch time, recorded per run	recorded_locally	CC-BY-4.0, attribution to the Richardson laboratory and contributors	2026-09-25

@@ -60,8 +60,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lib_csc as L  # noqa: E402
 
 GEOMETRY_COLUMNS = [
-    "target_id", "arm", "model", "status", "reason", "n_residues",
-    "bad_bonds", "bad_angles", "clashes",
+    "target_id", "arm", "model", "status", "reason", "n_residues", "tolerance_used",
+    "bad_bonds", "bad_angles", "bad_bonds_strict", "bad_angles_strict", "clashes",
     "ca_chirality_errors", "cis_nonpro", "cis_pro", "twisted_peptides",
     "rama_outliers", "rama_allowed", "rama_favoured", "rama_scored",
     "rama_outlier_fraction", "passes_all", "failed_checks", "recorded",
@@ -307,7 +307,11 @@ def main() -> int:
     ap.add_argument("--arm", default="")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--tolerance", type=float, default=4.0,
-                    help="bond and angle tolerance in standard deviations")
+                    help="the strict bond and angle tolerance, in standard deviations, "
+                         "reported alongside but not used for the verdict")
+    ap.add_argument("--lenient-tolerance", type=float, default=12.0,
+                    help="the tolerance the verdict uses; the scoring engine's own "
+                         "default, and the one its local score filters on")
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
 
@@ -377,13 +381,34 @@ def main() -> int:
                             "rama_favoured": favoured, "rama_scored": scored,
                             "rama_outlier_fraction": L.fmt(outliers / scored, 4) if scored else ""})
 
+            # Two tolerances, because one number here is not interpretable.
+            #
+            # The strict one is the four standard deviations the established
+            # validation tools use. The lenient one is the scoring engine's own
+            # default, which is what its stereochemistry filter applies before
+            # computing an all-atom local score, so it is the tolerance that
+            # actually affects a number reported elsewhere in this repository.
+            #
+            # The reason both are kept: at four standard deviations the
+            # deposited experimental structures used as the copied-template
+            # floor fail too, with between five and a hundred and sixty-nine
+            # bad bonds each. A pass rate that reads zero for real crystal
+            # structures is measuring the threshold rather than the models, so
+            # the verdict below is taken at the lenient tolerance and the
+            # strict counts are reported beside it.
             stereo, why = ost_stereochemistry(ost_bin, model, args.tolerance)
             if stereo:
-                row.update({"bad_bonds": stereo.get("bad_bonds"),
-                            "bad_angles": stereo.get("bad_angles"),
+                row.update({"bad_bonds_strict": stereo.get("bad_bonds"),
+                            "bad_angles_strict": stereo.get("bad_angles"),
                             "clashes": stereo.get("clashes")})
             elif why:
                 row["reason"] = f"stereochemistry check unavailable: {why}"
+            lenient, why2 = ost_stereochemistry(ost_bin, model, args.lenient_tolerance)
+            if lenient:
+                row.update({"bad_bonds": lenient.get("bad_bonds"),
+                            "bad_angles": lenient.get("bad_angles")})
+            elif why2 and not row.get("reason"):
+                row["reason"] = f"stereochemistry check unavailable: {why2}"
 
         # Every check has to pass. A structure with one inverted alpha carbon
         # is not a structure of a protein, whatever its confidence says.
@@ -397,6 +422,7 @@ def main() -> int:
             value = row.get(key)
             if isinstance(value, int) and value > 0:
                 failed.append(f"{label}: {value}")
+        row["tolerance_used"] = args.lenient_tolerance
         row["failed_checks"] = "; ".join(failed)
         row["passes_all"] = int(not failed) if row["status"] == "ok" else ""
         rows.append(row)
@@ -407,8 +433,9 @@ def main() -> int:
     by_arm: dict[str, list] = {}
     for r in rows:
         by_arm.setdefault(r["arm"], []).append(r)
-    print(f"[07_validate_geometry] {len(rows)} structures checked at "
-          f"{args.tolerance} standard deviations")
+    print(f"[07_validate_geometry] {len(rows)} structures checked; the verdict uses "
+          f"{args.lenient_tolerance} standard deviations, and {args.tolerance} is "
+          f"reported beside it")
     for arm, rs in sorted(by_arm.items()):
         ok = [r for r in rs if r["passes_all"] == 1]
         print(f"  {arm}: {len(ok)}/{len(rs)} pass every check")
