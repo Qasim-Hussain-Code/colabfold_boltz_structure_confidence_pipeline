@@ -324,7 +324,7 @@ if (( CALIBRATE == 1 )) && [[ ! -s "$CAL_OUT" ]]; then
     printf 'target_id\tsequence_length\tpeak_rss_mb\telapsed_s\tarm\trecorded\n' > "$CAL_OUT"
 fi
 
-N_OK=0; N_SKIP=0; N_REFUSED=0; N_FAIL=0
+N_OK=0; N_SKIP=0; N_REFUSED=0; N_FAIL=0; N_NO_MSA=0
 for target in "${TARGET_LIST[@]}"; do
     [[ -n "$target" ]] || continue
     len="$(seq_len_of "$target")"
@@ -384,8 +384,13 @@ for target in "${TARGET_LIST[@]}"; do
                     ;;
             esac
             if [[ "$ARM" != "af2_nomsa" && ! -s "$input" ]]; then
-                echo "  ${tag}: no alignment at ${input}; run 04_run_msa.sh first"
-                N_FAIL=$(( N_FAIL + 1 ))
+                # Not a failure. The alignment stage is serial and slow, so an
+                # arm can usefully be started while it is still running: the
+                # targets whose alignments have arrived are predicted now and
+                # the rest are picked up by a later run. The stage is left
+                # unmarked at the end so that later run happens.
+                echo "  ${tag}: no alignment yet; leaving it for a later run"
+                N_NO_MSA=$(( N_NO_MSA + 1 ))
                 continue
             fi
             csc_run "predict_${tag}" "$PREDICT_BIN" \
@@ -437,8 +442,8 @@ for target in "${TARGET_LIST[@]}"; do
 done
 
 delete_weights
-csc_stage_end "arm=${ARM} ok=${N_OK} skipped=${N_SKIP} refused=${N_REFUSED} failed=${N_FAIL}"
-echo "[${STAGE}] ${N_OK} predicted, ${N_SKIP} already present, ${N_REFUSED} refused for memory, ${N_FAIL} failed"
+csc_stage_end "arm=${ARM} ok=${N_OK} skipped=${N_SKIP} refused=${N_REFUSED} failed=${N_FAIL} awaiting_alignment=${N_NO_MSA}"
+echo "[${STAGE}] ${N_OK} predicted, ${N_SKIP} already present, ${N_REFUSED} refused for memory, ${N_FAIL} failed, ${N_NO_MSA} awaiting an alignment"
 (( CALIBRATE == 1 )) && { echo "[${STAGE}] wrote ${CAL_OUT}"; exit 0; }
 # A run that covered only part of the set must not mark the stage finished.
 # A single-target test did exactly that here, and the full run that followed
@@ -446,6 +451,10 @@ echo "[${STAGE}] ${N_OK} predicted, ${N_SKIP} already present, ${N_REFUSED} refu
 if (( LIMIT > 0 )) || [[ -n "$TARGETS" ]]; then
     echo "[${STAGE}] this run covered part of the set, so the stage is not marked"
     echo "           as finished. Re-run without --limit or --targets to complete it."
+elif (( N_NO_MSA > 0 )); then
+    echo "[${STAGE}] ${N_NO_MSA} targets are still waiting for an alignment, so the"
+    echo "           stage is not marked as finished. Re-run it once 04_run_msa.sh"
+    echo "           has caught up and those targets will be predicted."
 else
     csc_mark_done "$STAGE"
 fi
