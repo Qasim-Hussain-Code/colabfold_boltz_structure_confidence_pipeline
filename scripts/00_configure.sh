@@ -437,20 +437,48 @@ N_TARGETS=${MAX_TARGETS:-0}
 #                   05_predict.sh leaves an empty file in its place, which the
 #                   downloader accepts, and records that it did.
 MB_WEIGHTS_AF2=3551
+MB_WEIGHTS_AF2_RESTING=1776
 MB_WEIGHTS_BOLTZ=6100
+MB_WEIGHTS_BOLTZ_RESTING=4200
 MB_WEIGHTS_PEAK=0
-case ",${MODELS}," in *,alphafold2_ptm,*) (( MB_WEIGHTS_AF2   > MB_WEIGHTS_PEAK )) && MB_WEIGHTS_PEAK=$MB_WEIGHTS_AF2 ;; esac
-case ",${MODELS}," in *,boltz2,*)         (( MB_WEIGHTS_BOLTZ > MB_WEIGHTS_PEAK )) && MB_WEIGHTS_PEAK=$MB_WEIGHTS_BOLTZ ;; esac
+MB_WEIGHTS_RESTING=0
+case ",${MODELS}," in *,alphafold2_ptm,*)
+    (( MB_WEIGHTS_AF2 > MB_WEIGHTS_PEAK )) && MB_WEIGHTS_PEAK=$MB_WEIGHTS_AF2
+    (( MB_WEIGHTS_AF2_RESTING > MB_WEIGHTS_RESTING )) && MB_WEIGHTS_RESTING=$MB_WEIGHTS_AF2_RESTING ;;
+esac
+case ",${MODELS}," in *,boltz2,*)
+    (( MB_WEIGHTS_BOLTZ > MB_WEIGHTS_PEAK )) && MB_WEIGHTS_PEAK=$MB_WEIGHTS_BOLTZ
+    (( MB_WEIGHTS_BOLTZ_RESTING > MB_WEIGHTS_RESTING )) && MB_WEIGHTS_RESTING=$MB_WEIGHTS_BOLTZ_RESTING ;;
+esac
 # Per target, in the data directory rather than the cache: the alignment the
 # server returns, one prediction per arm, the confidence arrays, the reference
 # structure, and the scores. Alignments dominate and are capped and compressed.
 MB_PER_TARGET=9
+# What is on disk before any prediction runs: one reference structure per
+# target and one alignment per target.
+MB_PER_TARGET_INPUTS=4
 # The stage 1 clone, its prepared receptors for the docking subset, and the
 # reference structures those need.
 MB_STAGE1=400
-PROJ_CACHE_MB=$(( MB_WEIGHTS_PEAK ))
 PROJ_DATA_MB=$(( N_TARGETS * MB_PER_TARGET + MB_STAGE1 ))
-PROJ_DISK_MB=$(( PROJ_CACHE_MB + PROJ_DATA_MB ))
+PROJ_INPUTS_MB=$(( N_TARGETS * MB_PER_TARGET_INPUTS ))
+# Two moments compete for the high-water mark, and adding them together would
+# describe a moment that never happens.
+#
+# The first is the weight download: the archive is extracted in full before the
+# unused half is deleted, and at that moment the only data on disk is the
+# inputs, because no prediction has run yet.
+#
+# The second is the end of the run: every prediction and every score is on
+# disk, but the weights have been trimmed to what the model actually loads.
+#
+# The gate takes the larger. An earlier version summed the extraction peak and
+# the final data total, which overstated the requirement by about a gigabyte
+# and refused a run that fits.
+PEAK_A=$(( MB_WEIGHTS_PEAK + PROJ_INPUTS_MB ))
+PEAK_B=$(( MB_WEIGHTS_RESTING + PROJ_DATA_MB ))
+PROJ_DISK_MB=$PEAK_A
+(( PEAK_B > PROJ_DISK_MB )) && PROJ_DISK_MB=$PEAK_B
 PROJ_DISK_GB=$(awk -v m="$PROJ_DISK_MB" 'BEGIN { printf "%.1f", m/1024 }')
 
 # Wall clock. One prediction per target per arm per model, at the median length
@@ -477,7 +505,7 @@ PROJ_HOURS=$(( PROJ_SEC / 3600 ))
 echo "  arms requested           : ${N_ARMS} (${ARMS})"
 echo "  models requested         : ${N_MODELS} (${MODELS})"
 echo "  targets assumed          : ${N_TARGETS}"
-echo "  projected disk           : ${PROJ_DISK_GB} GB = ${PROJ_CACHE_MB} MB of weights (one set at a time) plus ${PROJ_DATA_MB} MB of data"
+echo "  projected disk           : ${PROJ_DISK_GB} GB, the larger of ${PEAK_A} MB while the weights extract and ${PEAK_B} MB when every result is written"
 echo "  projected wall clock     : ${PROJ_HOURS} h at ${SEC_ONE} s per prediction of a ${MEDIAN_LEN}-residue target, over ${N_PREDICT_ARMS} arms that run inference"
 echo
 
