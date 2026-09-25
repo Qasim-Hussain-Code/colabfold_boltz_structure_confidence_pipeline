@@ -1,0 +1,6 @@
+key	value	recorded
+server	https://api.colabfold.com	2026-09-25T21:53:51+08:00
+queue_at_start	{"queued":46}	2026-09-25T21:53:51+08:00
+query_date	2026-09-25	2026-09-25T21:53:51+08:00
+msa_mode	mmseqs2_uniref_env	2026-09-25T21:53:51+08:00
+policy	serial queries from one address, 5 s apart, as the server's instructions ask	2026-09-25T21:53:51+08:00
