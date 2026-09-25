@@ -142,9 +142,15 @@ fetch_af2_weights() {
     # that meant 3.8 GB of weights for a model this benchmark does not run,
     # written inside the virtual disk where deleting them does not give the
     # space back. It got 1.6 GB in before it was stopped.
+    # The downloader draws a progress bar on standard error, one line per
+    # update, which writes tens of thousands of lines into a log that is meant
+    # to be read afterwards. The bar is suppressed where the library honours
+    # the setting and does no harm where it does not.
+    export TQDM_DISABLE=1
     csc_run "fetch_af2_weights" "$(csc_env_bin "$CONDA_ENV_COLABFOLD" python)" -c \
         "from pathlib import Path; from colabfold.download import download_alphafold_params; download_alphafold_params('${AF2_MODEL_TYPE}', Path('${AF2_DIR}'))" \
-        || { echo "[error] the parameter download failed" >&2; return 4; }
+        || { unset TQDM_DISABLE; echo "[error] the parameter download failed" >&2; return 4; }
+    unset TQDM_DISABLE
     local f
     for f in "${AF2_DIR}"/params/*ptm*.npz; do
         record_weight_file alphafold2_ptm "$f" "one of five parameter sets for this model type"
