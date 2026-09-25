@@ -440,4 +440,12 @@ delete_weights
 csc_stage_end "arm=${ARM} ok=${N_OK} skipped=${N_SKIP} refused=${N_REFUSED} failed=${N_FAIL}"
 echo "[${STAGE}] ${N_OK} predicted, ${N_SKIP} already present, ${N_REFUSED} refused for memory, ${N_FAIL} failed"
 (( CALIBRATE == 1 )) && { echo "[${STAGE}] wrote ${CAL_OUT}"; exit 0; }
-csc_mark_done "$STAGE"
+# A run that covered only part of the set must not mark the stage finished.
+# A single-target test did exactly that here, and the full run that followed
+# skipped the arm and reported success without predicting anything.
+if (( LIMIT > 0 )) || [[ -n "$TARGETS" ]]; then
+    echo "[${STAGE}] this run covered part of the set, so the stage is not marked"
+    echo "           as finished. Re-run without --limit or --targets to complete it."
+else
+    csc_mark_done "$STAGE"
+fi
