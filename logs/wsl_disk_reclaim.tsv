@@ -1,0 +1,9 @@
+step	action	c_drive_free_gb_after	vhdx_gb_after	wsl_root_used_gb_after	measured_by	recorded
+0	state found before any work on this stage	1.53	71.05	63	Get-PSDrive C; Get-Item ext4.vhdx; df -h / inside WSL	2026-09-25
+1	state immediately before cleanup (C: had fallen further while inspecting)	0.03	71.05	63	Get-PSDrive C	2026-09-25
+2	deleted WSLg remote-desktop trace logs (Temp\DiagOutputDir\RdClientAutoTrace\*.etl) and temp browser profiles older than 24 h	2.19	71.05	63	Get-PSDrive C	2026-09-25
+3	inside WSL: journalctl --vacuum-size=50M (760.4 MB), apt-get clean, removed pip and Playwright caches	2.19	71.05	61	df -h / inside WSL	2026-09-25
+4	wsl --manage --set-sparse true refused: sparse VHD disabled by WSL 2.7.10 for potential data corruption; not forced	2.24	71.05	61	wsl.exe output	2026-09-25
+5	fstrim -av (944.5 GiB trimmed), wsl --shutdown, diskpart attach readonly / compact vdisk / detach (elevated)	8.38	63.92	61	diskpart log; Get-Item ext4.vhdx	2026-09-25
+6	removed stage 1 GNINA binary (sha256 3340c1f4... matched stage 1 versions.tsv) and its CUDA-only env vgb_gnina; conda clean removed 3.86 GB	8.38	63.92	56	df -h / inside WSL; conda clean output	2026-09-25
+7	second fstrim (950.4 GiB trimmed) and diskpart compact vdisk	13.62	58.16	56	diskpart log; Get-PSDrive C	2026-09-25
