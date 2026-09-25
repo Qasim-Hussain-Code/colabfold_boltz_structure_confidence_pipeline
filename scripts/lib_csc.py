@@ -183,6 +183,12 @@ def read_json_gz(path: str | Path):
         return json.load(fh)
 
 
+def gzip_open_text(path, mode="rt"):
+    """gzip.open with a text mode, so a caller can treat plain and compressed
+    alignments the same way."""
+    return gzip.open(path, mode)
+
+
 def gzip_file(src: str | Path, dst: str | Path) -> None:
     """Deterministic gzip of a text file (the a3m alignments)."""
     dst = Path(dst)

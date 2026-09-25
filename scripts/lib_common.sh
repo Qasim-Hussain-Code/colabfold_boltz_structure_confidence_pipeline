@@ -263,6 +263,17 @@ csc_skip_if_done() {  # csc_skip_if_done <stage> <force 0|1>
     return 1
 }
 
+# csc_record_exclusion <target> <stage> <arm> <reason> [detail]
+# One row per dropped target, in the same table and the same column order the
+# Python stages write. Silent exclusions are how benchmark numbers get
+# inflated, so every refusal lands here whichever language refused it.
+csc_record_exclusion() {
+    local f="${RESULTS_DIR}/excluded.tsv"
+    mkdir -p "$RESULTS_DIR"
+    [[ -s "$f" ]] || printf 'target_id\tstage\tarm\treason\tdetail\trecorded\n' > "$f"
+    printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$1" "$2" "$3" "$4" "${5:-}" "$(date -Iseconds)" >> "$f"
+}
+
 # ---- misc -------------------------------------------------------------------
 csc_need() {
     command -v "$1" >/dev/null 2>&1 || { echo "[error] ${1} not found on PATH" >&2; return 3; }
