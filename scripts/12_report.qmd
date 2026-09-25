@@ -1,0 +1,264 @@
+---
+title: "What a structure prediction confidence score is worth"
+subtitle: "The full analysis, read from the tables in results/"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-summary: "show the code that produced this"
+    embed-resources: true
+    theme: cosmo
+    fig-width: 8
+    fig-height: 4.5
+    df-print: kable
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{python}
+#| label: setup
+#| code-fold: true
+import os
+import sys
+from pathlib import Path
+
+import pandas as pd
+
+# This report reads only files in results/ and figures/. It recomputes nothing,
+# so a number here and the same number in the README come from one file.
+#
+# project.conf is located by walking up from the working directory rather than
+# taken as a parameter, because the renderer works from the document's own
+# directory in some versions and from the project root in others, and a report
+# that cannot find its own config depending on how it was invoked is not
+# reproducible. CSC_CONFIG overrides.
+candidates = []
+if os.environ.get("CSC_CONFIG"):
+    candidates.append(Path(os.environ["CSC_CONFIG"]))
+here = Path.cwd().resolve()
+candidates += [here / "project.conf"] + [p / "project.conf" for p in here.parents]
+conf_file = next((c for c in candidates if c.is_file()), None)
+if conf_file is None:
+    raise SystemExit("project.conf not found; run scripts/00_configure.sh first")
+
+sys.path.insert(0, str((conf_file.parent / "scripts").resolve()))
+import lib_csc as L
+
+conf = L.load_conf(conf_file)
+RESULTS = Path(conf["RESULTS_DIR"])
+FIGURES = Path(conf["FIGURES_DIR"])
+LOGS = Path(conf["LOG_DIR"])
+PLDDT_HIGH = L.conf_float(conf, "PLDDT_HIGH", 90.0)
+LDDT_TRUST = L.conf_float(conf, "LDDT_TRUST", 0.7)
+
+
+def load(rel, root=RESULTS):
+    p = Path(root) / rel
+    if not p.is_file():
+        return None
+    try:
+        df = pd.read_csv(p, sep="\t")
+    except Exception:
+        return None
+    return df if len(df) else None
+
+
+def show(df, msg="This table has not been produced yet."):
+    if df is None:
+        print(msg)
+        return None
+    return df
+```
+
+## What this measures
+
+Two questions, and the second is the one that decides whether the first
+matters.
+
+How well does a confidence value predict the accuracy it claims to predict.
+The confidence head of a structure prediction model is trained to predict the
+model's own local distance difference score against the true structure, on a
+scale of 0 to 100. It does not predict deviation after superposition, it does
+not predict whether the fold is right, and it says nothing at all about how two
+confidently predicted pieces sit relative to each other. So it is compared here
+against the quantity it was trained on, computed the way that quantity is
+defined, and the comparison is shown as a scatter rather than summarised as a
+correlation.
+
+And whether a confident structure is a physically possible one. A previous
+stage of this work found that a docked pose can sit within 1.4 Angstrom of the
+experimental one and still be chemically impossible, because nothing in a
+docking score enforces chemistry. The same question is asked here of predicted
+backbones and side chains, and the only figure called success is the one that
+requires both accuracy and validity.
+
+## The machine, measured rather than assumed
+
+```{python}
+#| label: environment
+curve = load("environment/memory_curve.tsv")
+show(curve, "The calibration has not run yet.")
+```
+
+```{python}
+#| label: versions
+versions = load("environment/versions.tsv")
+show(versions, "The environment has not been recorded yet.")
+```
+
+Every timing in this report is a processor timing. The accelerator probe is
+recorded in `results/environment/accelerator.tsv` and what it found is in the
+table above.
+
+## The held-out set, and what a date filter is worth
+
+```{python}
+#| label: holdout
+summary = load("holdout_set_summary.tsv")
+show(summary, "The set has not been built yet.")
+```
+
+A date filter selects entries the models cannot have been trained on. It does
+not select proteins they have never seen. Most newly released structures are
+new determinations of something already in the archive, and the identity bands
+in the table above are how much of that there is in this set. Those targets are
+kept and flagged rather than removed: a target with a close pre-cutoff relative
+is exactly the case worth measuring, and dropping it would remove the evidence
+instead of reporting it.
+
+## Calibration
+
+```{python}
+#| label: calibration
+calib = load("calibration.tsv")
+show(calib, "The analysis has not run yet.")
+```
+
+```{python}
+#| label: calibration-figure
+#| code-fold: true
+from IPython.display import Image, display
+
+for name in ("fig1_calibration_scatter.png", "fig2_calibration_curve.png"):
+    p = FIGURES / name
+    if p.is_file():
+        display(Image(filename=str(p)))
+```
+
+```{python}
+#| label: bins
+show(load("calibration_bins.tsv"), "No binned calibration yet.")
+```
+
+## Where to stop trusting a confident region
+
+```{python}
+#| label: threshold
+show(load("threshold_sweep.tsv"), "No threshold sweep yet.")
+```
+
+```{python}
+#| label: threshold-figure
+#| code-fold: true
+p = FIGURES / "fig3_threshold_sweep.png"
+if p.is_file():
+    display(Image(filename=str(p)))
+```
+
+The sweep is the answer rather than any single value in it. A threshold read
+off this table is arbitrary unless the sweep shows a knee, and the README says
+which it is.
+
+## Accuracy and physical validity per arm
+
+```{python}
+#| label: arms
+show(load("arm_comparison.tsv"), "No arm comparison yet.")
+```
+
+```{python}
+#| label: arm-figures
+#| code-fold: true
+for name in ("fig4_arm_accuracy.png", "fig5_geometry_pass.png",
+             "fig6_accuracy_and_validity.png"):
+    p = FIGURES / name
+    if p.is_file():
+        display(Image(filename=str(p)))
+```
+
+```{python}
+#| label: geometry
+show(load("geometry_checks.tsv"), "No geometry checks yet.")
+```
+
+## Docking into a predicted receptor
+
+```{python}
+#| label: docking
+show(load("docking_handoff.tsv"), "The docking handoff has not run yet.")
+```
+
+```{python}
+#| label: alignment
+show(load("docking_alignment.tsv"), "No receptors have been prepared yet.")
+```
+
+The predicted and experimental receptors were docked with the same code, the
+same protocol and the same ligands, and the previous stage of this work ran
+that docking unmodified. The published figure from that stage is quoted in the
+README as context rather than as the comparator, because it was measured on a
+different set.
+
+## Run to run
+
+```{python}
+#| label: seeds
+show(load("seed_variance.tsv"), "The seed experiment has not run yet.")
+```
+
+## Cost
+
+```{python}
+#| label: timing
+show(load("timing.tsv"), "No timing table yet.")
+```
+
+```{python}
+#| label: stage-resources
+show(load("summary.tsv", root=LOGS), "No per-stage resource table yet.")
+```
+
+## The application arm
+
+```{python}
+#| label: pedv
+for name in ("domain_definition.tsv", "deposited_pairs.tsv",
+             "prediction_pairs.tsv", "prediction_confidence.tsv"):
+    df = load(Path("pedv") / name)
+    if df is not None:
+        print(name)
+        display(df)
+```
+
+The domain boundary above was derived from the deposited coordinates by
+contact density, not taken from a published range. The displacement columns
+report where a prediction places that domain against each deposited
+arrangement, after fitting on the body alone. Resemblance to one arrangement is
+not evidence that the others are wrong, and nothing here adjudicates between
+the experiments.
+
+## Everything that was excluded
+
+```{python}
+#| label: excluded
+excl = load("excluded.tsv")
+if excl is not None:
+    print(f"{len(excl)} exclusions in total")
+    display(excl.groupby(["stage", "reason"]).size().reset_index(name="n")
+            if {"stage", "reason"}.issubset(excl.columns) else excl)
+else:
+    print("Nothing has been excluded yet.")
+```
