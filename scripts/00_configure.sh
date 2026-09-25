@@ -243,10 +243,24 @@ project_sec() {     # project_sec <length>
         'BEGIN { printf "%d", b + q * (L/1000.0)^2 }'
 }
 # The longest sequence whose projected peak fits the memory budget.
+#
+# Two ways this can fail to give an answer, and both are reported rather than
+# papered over. If the base term alone exceeds the budget, nothing fits and the
+# answer is zero. If the fitted quadratic term is zero or negative, the
+# measurements did not resolve any growth with length over the range measured,
+# so the data cannot say where the ceiling is; extrapolating a flat or
+# downward line to find where it crosses the budget would produce a number with
+# no evidence behind it. In that case the ceiling falls back to the longest
+# target actually measured, which is the longest length known to work here.
 max_len_for_budget() {
     local budget_mb=$(( RAM_GB * 1024 ))
     awk -v b="$MEM_BASE_MB" -v q="$MEM_QUAD_MB_PER_KRES2" -v m="$budget_mb" \
-        'BEGIN { if (m <= b || q <= 0) { print 0; exit } printf "%d", 1000 * sqrt((m - b) / q) }'
+        -v fallback="${CURVE_MAX_MEASURED_LEN:-0}" \
+        'BEGIN {
+            if (m <= b) { print 0; exit }
+            if (q <= 0) { print fallback; exit }
+            printf "%d", 1000 * sqrt((m - b) / q)
+        }'
 }
 
 # -----------------------------------------------------------------------------
@@ -318,7 +332,17 @@ if (( CALIBRATE == 1 )); then
             }' "$CAL_OUT"
     )
     [[ "$MEM_BASE_MB" == "NA" ]] && { echo "[error] calibration produced fewer than two usable points" >&2; exit 5; }
+    CURVE_MAX_MEASURED_LEN="$(awk -F'\t' 'NR>1 && $2+0 > m {m = $2+0} END {printf "%d", m}' "$CAL_OUT")"
     CURVE_SOURCE="measured on this machine, ${N_CAL} points, largest residual ${MAX_RESID_MB} MB, ${CAL_OUT}"
+    if (( MEM_QUAD_MB_PER_KRES2 <= 0 )); then
+        echo "[00_configure] the measured peak memory did not grow with length over the"
+        echo "               range measured, so the fit gives no ceiling. Peak memory here"
+        echo "               is dominated by the parameters and the runtime rather than by"
+        echo "               the sequence. The ceiling falls back to ${CURVE_MAX_MEASURED_LEN}"
+        echo "               residues, the longest target measured, and project.conf records"
+        echo "               that it came from the measurement rather than from the fit."
+        CURVE_SOURCE="${CURVE_SOURCE}; the quadratic term was not positive, so the ceiling is the longest measured target rather than an extrapolation"
+    fi
     echo "[00_configure] fitted peak_rss_mb = ${MEM_BASE_MB} + ${MEM_QUAD_MB_PER_KRES2} * (L/1000)^2"
     echo "[00_configure] fitted seconds     = ${SEC_BASE} + ${SEC_QUAD_PER_KRES2} * (L/1000)^2"
     echo "[00_configure] largest memory residual over the ${N_CAL} measured points: ${MAX_RESID_MB} MB"
