@@ -1,0 +1,5 @@
+environment	elapsed_s	host_drive_mb	wsl_used_mb	note	recorded
+csc_analysis	19	97	222	conda solve; 100 of 125 packages were already in the local package cache, so almost all of this environment is hard links to files another environment had already fetched	2026-09-25T19:12:00+08:00
+csc_ost	87	2518	2897	conda solve; the 64-bit Linux build of OpenStructure is not headless, so it pulls Qt, mesa and OpenMM, and OpenMM pulls CUDA libraries this machine cannot use	2026-09-25T19:14:00+08:00
+csc_colabfold/pip	302	514	NA	colabfold 1.6.3 with the alphafold extra, jax and jaxlib pinned to 0.10.2, which is what the project's own lock file resolves for this Python version	2026-09-25T19:22:00+08:00
+csc_boltz/pip	117	1762	NA	the CPU-only torch wheel first at 450 MB, then boltz at commit b1ebfc46 at 1312 MB; installing boltz first would have pulled the default torch build and several gigabytes of CUDA libraries	2026-09-25T19:29:00+08:00

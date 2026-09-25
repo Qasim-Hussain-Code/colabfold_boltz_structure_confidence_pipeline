@@ -1,0 +1,43 @@
+tool	version	source	detail	recorded
+python	3.12.14	conda/csc_analysis	h5f976f7_3_cpython	2026-09-25T19:39:07+08:00
+gemmi	0.7.5	conda/csc_analysis	py312h27102bb_0	2026-09-25T19:39:07+08:00
+biopython	1.88	conda/csc_analysis	py312h5cc1888_1	2026-09-25T19:39:07+08:00
+numpy	2.5.3	conda/csc_analysis	py312he827f4e_0	2026-09-25T19:39:07+08:00
+scipy	1.18.1	conda/csc_analysis	py312h106c528_1	2026-09-25T19:39:07+08:00
+pandas	3.0.6	conda/csc_analysis	np2py312h91ec553_0	2026-09-25T19:39:07+08:00
+matplotlib-base	3.11.2	conda/csc_analysis	py312hfe9aac7_1	2026-09-25T19:39:07+08:00
+seaborn	0.13.2	conda/csc_analysis	hd8ed1ab_3	2026-09-25T19:39:07+08:00
+statsmodels	0.15.0	conda/csc_analysis	np2py312h32d774f_2	2026-09-25T19:39:07+08:00
+requests	2.34.2	conda/csc_analysis	pyhcf101f3_0	2026-09-25T19:39:07+08:00
+quarto	1.9.38	conda/csc_analysis	hd55b112_0	2026-09-25T19:39:07+08:00
+shellcheck	0.11.0	conda/csc_analysis	ha770c72_1	2026-09-25T19:39:07+08:00
+python	3.12.14	conda/csc_ost	h5f976f7_3_cpython	2026-09-25T19:39:08+08:00
+openstructure	2.12.0	conda/csc_ost	py312heaa34e3_0	2026-09-25T19:39:08+08:00
+usalign	20241201	conda/csc_ost	h503566f_0	2026-09-25T19:39:08+08:00
+numpy	2.5.3	conda/csc_ost	py312he827f4e_0	2026-09-25T19:39:08+08:00
+colabfold	1.6.3	pip/csc_colabfold		2026-09-25T19:39:09+08:00
+alphafold-colabfold	2.3.20	pip/csc_colabfold		2026-09-25T19:39:09+08:00
+jax	0.10.2	pip/csc_colabfold		2026-09-25T19:39:09+08:00
+jaxlib	0.10.2	pip/csc_colabfold		2026-09-25T19:39:09+08:00
+numpy	2.5.3	pip/csc_colabfold		2026-09-25T19:39:09+08:00
+biopython	1.85	pip/csc_colabfold		2026-09-25T19:39:09+08:00
+dm-haiku	0.0.17	pip/csc_colabfold		2026-09-25T19:39:09+08:00
+colabfold-binaries	0.1.0	pip/csc_colabfold		2026-09-25T19:39:09+08:00
+colabfold-legacy-kernels	0.2.0	pip/csc_colabfold		2026-09-25T19:39:09+08:00
+absl-py	1.4.0	pip/csc_colabfold		2026-09-25T19:39:09+08:00
+boltz	2.2.1	pip/csc_boltz		2026-09-25T19:39:09+08:00
+torch	2.14.0+cpu	pip/csc_boltz		2026-09-25T19:39:09+08:00
+numpy	1.26.4	pip/csc_boltz		2026-09-25T19:39:09+08:00
+pytorch-lightning	2.5.0	pip/csc_boltz		2026-09-25T19:39:09+08:00
+rdkit	2026.3.6	pip/csc_boltz		2026-09-25T19:39:09+08:00
+fairscale	0.4.13	pip/csc_boltz		2026-09-25T19:39:09+08:00
+torchmetrics	1.9.0	pip/csc_boltz		2026-09-25T19:39:09+08:00
+boltz_commit	b1ebfc46ecf57f5414e0d1a6f9027bbb122c53bc	git	development branch; the release of this version runs the diffusion module in reduced precision on CPU	2026-09-25T19:39:09+08:00
+boltz_cpu_precision_fix	present	source	autocast disabled for the active device in boltz2.py	2026-09-25T19:39:09+08:00
+boltz_trunk_precision	precision=32 if model == "boltz1" else "bf16-mixed",	source	the merged fix covers the diffusion and affinity modules, not the trunk	2026-09-25T19:39:09+08:00
+ost_compound_lib	2026-08-16	openstructure	built with OpenStructure 2.12.0	2026-09-25T19:39:09+08:00
+conda	26.7.2	base	conda	2026-09-25T19:39:10+08:00
+kernel	6.18.33.2-microsoft-standard-WSL2	host	Linux x86_64	2026-09-25T19:39:10+08:00
+glibc	2.43	host	wheel compatibility floor	2026-09-25T19:39:10+08:00
+cpu_flags	avx2	host	the prebuilt template search binaries require avx2	2026-09-25T19:39:10+08:00
+gpu	none	00_configure.sh	every timing in this repository is a CPU timing	2026-09-25T19:39:10+08:00

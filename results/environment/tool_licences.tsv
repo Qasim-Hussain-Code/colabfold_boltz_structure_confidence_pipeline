@@ -1,0 +1,30 @@
+package	version	licence	environment	checked
+biopython	1.88	LicenseRef-Biopython	csc_analysis	2026-09-25
+gemmi	0.7.5	MPL-2.0	csc_analysis	2026-09-25
+matplotlib-base	3.11.2	PSF-2.0	csc_analysis	2026-09-25
+numpy	2.5.3	BSD-3-Clause	csc_analysis	2026-09-25
+pandas	3.0.6	BSD-3-Clause	csc_analysis	2026-09-25
+python	3.12.14	Python-2.0	csc_analysis	2026-09-25
+quarto	1.9.38	MIT	csc_analysis	2026-09-25
+requests	2.34.2	Apache-2.0	csc_analysis	2026-09-25
+scipy	1.18.1	BSD-3-Clause	csc_analysis	2026-09-25
+seaborn	0.13.2	BSD-3-Clause	csc_analysis	2026-09-25
+shellcheck	0.11.0	GPL-3.0-only	csc_analysis	2026-09-25
+statsmodels	0.15.0	BSD-3-Clause	csc_analysis	2026-09-25
+numpy	2.5.3	BSD-3-Clause	csc_ost	2026-09-25
+openstructure	2.12.0	LGPL-3.0-or-later	csc_ost	2026-09-25
+python	3.12.14	Python-2.0	csc_ost	2026-09-25
+scipy	1.18.1	BSD-3-Clause	csc_ost	2026-09-25
+usalign	20241201	UNKNOWN	csc_ost	2026-09-25
+colabfold-binaries	0.1.0	GPL-3.0-or-later	csc_colabfold	2026-09-25
+colabfold	1.6.3	MIT, but separate licenses for the trained weights	csc_colabfold	2026-09-25
+numpy	2.5.3	BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0	csc_colabfold	2026-09-25
+jaxlib	0.10.2	Apache-2.0	csc_colabfold	2026-09-25
+alphafold-colabfold	2.3.20	Apache License, Version 2.0	csc_colabfold	2026-09-25
+jax	0.10.2	Apache-2.0	csc_colabfold	2026-09-25
+dm-haiku	0.0.17	Apache 2.0	csc_colabfold	2026-09-25
+rdkit	2026.3.6	BSD-3-Clause	csc_boltz	2026-09-25
+boltz	2.2.1	NA	csc_boltz	2026-09-25
+pytorch-lightning	2.5.0	Apache-2.0	csc_boltz	2026-09-25
+numpy	1.26.4	BSD License	csc_boltz	2026-09-25
+torch	2.14.0+cpu	Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSD-2-Clau	csc_boltz	2026-09-25

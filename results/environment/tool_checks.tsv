@@ -1,0 +1,6 @@
+tool	environment	status	detail	recorded
+colabfold_batch	csc_colabfold	ok	AlphaFold2 inference	2026-09-25T19:38:55+08:00
+boltz	csc_boltz	ok	Boltz-2 inference	2026-09-25T19:39:02+08:00
+ost	csc_ost	ok	lDDT, TM-score, stereochemistry	2026-09-25T19:39:03+08:00
+USalign	csc_ost	ok	TM-score	2026-09-25T19:39:03+08:00
+TMscore	csc_ost	ok	GDT-TS and GDT-HA	2026-09-25T19:39:03+08:00
