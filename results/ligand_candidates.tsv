@@ -1,0 +1,530 @@
+target_id	pdb_id	comp_id	label_asym_id	auth_asym_id	formula_weight	heavy_atoms	rscc	rsr	completeness	is_subject_of_investigation	covalent	status	reason	recorded
+10AF_1	10AF	CL	E	A	35.453	1	0.974	0.077	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10AF_1	10AF	CL	F	A	35.453	1	0.944	0.095	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.944 below 0.95	2026-09-25T21:50:35+08:00
+10AF_1	10AF	CL	G	A	35.453	1	0.955	0.096	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10AF_1	10AF	SO4	B	A	96.063	5	0.945	0.082	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.945 below 0.95	2026-09-25T21:50:35+08:00
+10AF_1	10AF	SO4	C	A	96.063	5	0.781	0.171	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.781 below 0.95	2026-09-25T21:50:35+08:00
+10AF_1	10AF	SO4	D	A	96.063	5	0.949	0.076	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.949 below 0.95	2026-09-25T21:50:35+08:00
+10CX_1	10CX	2PE	B	A	414.488	28	0.661	0.216	1.0	Y	0	rejected	RSCC 0.661 below 0.95; RSR 0.216 above 0.2	2026-09-25T21:50:35+08:00
+10CX_1	10CX	2PE	C	A	414.488	28	0.709	0.213	1.0	Y	0	rejected	RSCC 0.709 below 0.95; RSR 0.213 above 0.2	2026-09-25T21:50:35+08:00
+10DA_1	10DA	EDO	F	A	62.068	4	0.866	0.119	1.0	Y	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; RSCC 0.866 below 0.95	2026-09-25T21:50:35+08:00
+10DA_1	10DA	NA	E	A	22.99	1	0.997	0.015	1.0	Y	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:35+08:00
+10DA_1	10DA	NA	G	B	22.99	1	0.998	0.019	1.0	Y	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:35+08:00
+10DA_1	10DA	NA	I	D	22.99	1	0.996	0.048	1.0	Y	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:35+08:00
+10DA_1	10DA	PGE	H	B	150.173	10	0.921	0.098	0.7	Y	0	rejected	RSCC 0.921 below 0.95; modelled completeness 0.7	2026-09-25T21:50:35+08:00
+10DA_1	10DA	PGE	J	D	150.173	10	0.752	0.175	0.6	Y	0	rejected	RSCC 0.752 below 0.95; modelled completeness 0.6	2026-09-25T21:50:35+08:00
+10FS_1	10FS	GOL	G	A	92.094	6	0.871	0.144	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.871 below 0.95	2026-09-25T21:50:35+08:00
+10FS_1	10FS	GOL	F	A	92.094	6	0.774	0.142	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.774 below 0.95	2026-09-25T21:50:35+08:00
+10FS_1	10FS	GOL	E	A	92.094	6	0.776	0.163	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.776 below 0.95	2026-09-25T21:50:35+08:00
+10FS_1	10FS	GOL	D	A	92.094	6	0.806	0.156	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.806 below 0.95	2026-09-25T21:50:35+08:00
+10FS_1	10FS	GOL	C	A	92.094	6	0.873	0.137	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.873 below 0.95	2026-09-25T21:50:35+08:00
+10FS_1	10FS	GOL	B	A	92.094	6	0.632	0.208	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.632 below 0.95; RSR 0.208 above 0.2	2026-09-25T21:50:35+08:00
+10FS_1	10FS	PEG	I	A	106.12	7	0.805	0.183	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.805 below 0.95	2026-09-25T21:50:35+08:00
+10FS_1	10FS	PEG	H	A	106.12	7	0.826	0.166	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.826 below 0.95	2026-09-25T21:50:35+08:00
+10JX_1	10JX	CL	F	A	35.453	1	0.936	0.225	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.936 below 0.95; RSR 0.225 above 0.2	2026-09-25T21:50:35+08:00
+10JX_1	10JX	EDO	J	A	62.068	4	0.874	0.156	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.874 below 0.95	2026-09-25T21:50:35+08:00
+10JX_1	10JX	EDO	I	A	62.068	4	0.775	0.166	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.775 below 0.95	2026-09-25T21:50:35+08:00
+10JX_1	10JX	EDO	H	A	62.068	4	0.885	0.139	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.885 below 0.95	2026-09-25T21:50:35+08:00
+10JX_1	10JX	FMT	N	B	46.025	3	0.957	0.091	1.0	N	0	rejected	formula weight 46.025 outside 100 to 900; 3 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10JX_1	10JX	HEM	L	B	616.487	43	0.988	0.063	1.0	Y	0	ok		2026-09-25T21:50:35+08:00
+10JX_1	10JX	HEM	C	A	616.487	43	0.974	0.096	1.0	Y	0	ok		2026-09-25T21:50:35+08:00
+10JX_1	10JX	IMD	M	B	69.085	5	0.946	0.081	1.0	N	0	rejected	formula weight 69.085 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.946 below 0.95	2026-09-25T21:50:35+08:00
+10JX_1	10JX	IMD	D	A	69.085	5	0.862	0.317	1.0	N	0	rejected	formula weight 69.085 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.862 below 0.95; RSR 0.317 above 0.2	2026-09-25T21:50:35+08:00
+10JX_1	10JX	MG	K	A	24.305	1	0.913	0.43	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.913 below 0.95; RSR 0.43 above 0.2	2026-09-25T21:50:35+08:00
+10JX_1	10JX	PG4	G	A	194.226	13	0.824	0.19	1.0	N	0	rejected	not flagged as the subject of investigation; RSCC 0.824 below 0.95	2026-09-25T21:50:35+08:00
+10JX_1	10JX	PO4	E	A	94.971	5	0.838	0.144	1.0	N	0	rejected	formula weight 94.971 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.838 below 0.95	2026-09-25T21:50:35+08:00
+10JX_1	10JX	POL	P	B	60.095	4	0.909	0.155	1.0	N	0	rejected	formula weight 60.095 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.909 below 0.95	2026-09-25T21:50:35+08:00
+10JX_1	10JX	POL	O	B	60.095	4	0.829	0.212	1.0	N	0	rejected	formula weight 60.095 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.829 below 0.95; RSR 0.212 above 0.2	2026-09-25T21:50:35+08:00
+10UT_1	10UT	CA	H	B	40.078	1	0.996	0.075	1.0	N	0	rejected	formula weight 40.078 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UT_1	10UT	CA	G	B	40.078	1	0.993	0.076	1.0	N	0	rejected	formula weight 40.078 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UT_1	10UT	CA	F	B	40.078	1	0.993	0.086	1.0	N	0	rejected	formula weight 40.078 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UT_1	10UT	CA	D	A	40.078	1	0.993	0.099	1.0	N	0	rejected	formula weight 40.078 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UT_1	10UT	GOL	E	B	92.094	6	0.988	0.043	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UT_1	10UT	GOL	C	A	92.094	6	0.982	0.047	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	GOL	T	D	92.094	6	0.982	0.053	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	GOL	P	C	92.094	6	0.937	0.112	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.937 below 0.95	2026-09-25T21:50:35+08:00
+10UW_1	10UW	GOL	O	C	92.094	6	0.985	0.062	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	GOL	J	B	92.094	6	0.976	0.059	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	GOL	E	A	92.094	6	0.979	0.069	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	MG	AA	D	24.305	1	0.971	0.049	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	MG	G	A	24.305	1	0.994	0.036	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	MG	H	A	24.305	1	0.984	0.209	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSR 0.209 above 0.2	2026-09-25T21:50:35+08:00
+10UW_1	10UW	MG	I	A	24.305	1	0.977	0.064	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	MG	M	B	24.305	1	0.998	0.01	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	MG	N	B	24.305	1	0.993	0.127	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	MG	S	C	24.305	1	0.977	0.043	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	MG	X	D	24.305	1	0.997	0.015	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	MG	Y	D	24.305	1	0.993	0.072	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	MG	Z	D	24.305	1	0.987	0.066	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	SO4	W	D	96.063	5	0.986	0.06	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	SO4	V	D	96.063	5	0.973	0.058	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	SO4	U	D	96.063	5	0.99	0.034	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	SO4	R	C	96.063	5	0.987	0.059	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	SO4	Q	C	96.063	5	0.996	0.027	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	SO4	L	B	96.063	5	0.986	0.052	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	SO4	K	B	96.063	5	0.987	0.039	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UW_1	10UW	SO4	F	A	96.063	5	0.977	0.074	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UX_1	10UX	GOL	E	A	92.094	6	0.948	0.095	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.948 below 0.95	2026-09-25T21:50:35+08:00
+10UX_1	10UX	GOL	J	B	92.094	6	0.923	0.106	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.923 below 0.95	2026-09-25T21:50:35+08:00
+10UX_1	10UX	K	F	A	39.098	1	0.998	0.021	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UX_1	10UX	K	G	A	39.098	1	0.989	0.067	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UX_1	10UX	K	H	A	39.098	1	0.956	0.151	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UX_1	10UX	K	I	A	39.098	1	0.985	0.089	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UX_1	10UX	K	K	B	39.098	1	0.999	0.01	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UX_1	10UX	K	L	B	39.098	1	0.983	0.057	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UX_1	10UX	K	M	B	39.098	1	0.977	0.097	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UX_1	10UX	K	N	B	39.098	1	0.958	0.135	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UX_1	10UX	K	P	C	39.098	1	0.971	0.084	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UX_1	10UX	K	Q	D	39.098	1	0.987	0.074	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10UX_1	10UX	P4K	O	C	662.804	45	0.852	0.146	0.8222	N	0	rejected	not flagged as the subject of investigation; RSCC 0.852 below 0.95; modelled completeness 0.8222	2026-09-25T21:50:35+08:00
+10XE_1	10XE	K	I	B	39.098	1	0.97	0.072	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10XE_1	10XE	K	H	B	39.098	1	0.995	0.027	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10XE_1	10XE	K	G	B	39.098	1	0.999	0.02	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+10XE_1	10XE	PO4	F	A	94.971	5	0.813	0.148	1.0	N	0	rejected	formula weight 94.971 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.813 below 0.95	2026-09-25T21:50:35+08:00
+10XE_1	10XE	PO4	E	A	94.971	5	0.5	0.194	1.0	N	0	rejected	formula weight 94.971 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.5 below 0.95	2026-09-25T21:50:35+08:00
+10XE_1	10XE	PO4	D	A	94.971	5	0.614	0.169	1.0	N	0	rejected	formula weight 94.971 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.614 below 0.95	2026-09-25T21:50:35+08:00
+10XE_1	10XE	PO4	C	A	94.971	5	0.967	0.079	1.0	N	0	rejected	formula weight 94.971 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+11CH_1	11CH	A1DEZ	B	A	943.009	68	0.743	0.192	1.0	Y	1	rejected	formula weight 943.009 outside 100 to 900; covalently bound to the protein; RSCC 0.743 below 0.95	2026-09-25T21:50:35+08:00
+11CH_1	11CH	NA	I	A	22.99	1	0.064	0.462	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.064 below 0.95; RSR 0.462 above 0.2	2026-09-25T21:50:35+08:00
+11CH_1	11CH	NA	H	A	22.99	1	-0.022	0.461	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC -0.022 below 0.95; RSR 0.461 above 0.2	2026-09-25T21:50:35+08:00
+11CH_1	11CH	NA	F	A	22.99	1	-0.027	0.656	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC -0.027 below 0.95; RSR 0.656 above 0.2	2026-09-25T21:50:35+08:00
+11CH_1	11CH	NA	E	A	22.99	1	0.522	0.378	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.522 below 0.95; RSR 0.378 above 0.2	2026-09-25T21:50:35+08:00
+11CH_1	11CH	NA	D	A	22.99	1	0.982	0.048	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+11CH_1	11CH	NA	C	A	22.99	1	0.962	0.055	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+11CH_1	11CH	SCN	G	A	58.082	3	0.899	0.127	1.0	N	0	rejected	formula weight 58.082 outside 100 to 900; 3 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.899 below 0.95	2026-09-25T21:50:35+08:00
+11OW_1	11OW	BU1	E	A	90.121	6	0.767	0.164	1.0	N	0	rejected	formula weight 90.121 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.767 below 0.95	2026-09-25T21:50:35+08:00
+11OW_1	11OW	CL	C	A	35.453	1	0.998	0.047	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+11OW_1	11OW	CL	D	A	35.453	1	0.991	0.15	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+11OW_1	11OW	CL	G	B	35.453	1	0.882	0.189	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.882 below 0.95	2026-09-25T21:50:35+08:00
+11OW_1	11OW	PG6	F	A	266.331	18	0.642	0.259	0.8889	N	0	rejected	not flagged as the subject of investigation; RSCC 0.642 below 0.95; RSR 0.259 above 0.2; modelled completeness 0.8889	2026-09-25T21:50:35+08:00
+12IS_1	12IS	CL	D	A	35.453	1	0.82	0.142	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.82 below 0.95	2026-09-25T21:50:35+08:00
+12IS_1	12IS	PEG	B	A	106.12	7	0.789	0.182	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.789 below 0.95	2026-09-25T21:50:35+08:00
+12IS_1	12IS	ZN	C	A	65.409	1	0.973	0.134	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:35+08:00
+12XX_1	12XX	A1DD0	C	A	549.653	37	0.536	0.304	1.0	Y	0	rejected	RSCC 0.536 below 0.95; RSR 0.304 above 0.2	2026-09-25T21:50:35+08:00
+12XX_1	12XX	A1DD0	D	B	549.653	37	0.805	0.316	1.0	Y	0	rejected	RSCC 0.805 below 0.95; RSR 0.316 above 0.2	2026-09-25T21:50:35+08:00
+13TX_1	13TX	D10	D	A	142.282	10	0.878	0.18	1.0	N	0	rejected	not flagged as the subject of investigation; RSCC 0.878 below 0.95	2026-09-25T21:50:35+08:00
+13TX_1	13TX	DMS	C	A	78.133	4	0.671	0.307	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.671 below 0.95; RSR 0.307 above 0.2	2026-09-25T21:50:35+08:00
+13TX_1	13TX	NUK	E	B	184.235	11	0.768	0.179	1.0	Y	0	rejected	RSCC 0.768 below 0.95	2026-09-25T21:50:35+08:00
+21EJ_1	21EJ	CU	E	B	63.546	1	0.995	0.041	1.0	N	0	rejected	formula weight 63.546 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+21EJ_1	21EJ	CU	D	B	63.546	1	0.999	0.013	1.0	N	0	rejected	formula weight 63.546 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+21EJ_1	21EJ	CU	C	A	63.546	1	0.999	0.013	1.0	N	0	rejected	formula weight 63.546 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+21EJ_1	21EJ	MES	F	B	195.237	12	0.789	0.177	1.0	N	0	rejected	not flagged as the subject of investigation; RSCC 0.789 below 0.95	2026-09-25T21:50:35+08:00
+21LR_1	21LR	CD	I	A	112.411	1	0.855	0.127	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.855 below 0.95	2026-09-25T21:50:35+08:00
+21LR_1	21LR	CD	H	A	112.411	1	0.964	0.036	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+21LR_1	21LR	CD	G	A	112.411	1	0.923	0.069	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.923 below 0.95	2026-09-25T21:50:35+08:00
+21LR_1	21LR	CD	F	A	112.411	1	0.951	0.068	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+21LR_1	21LR	CD	E	A	112.411	1	0.91	0.089	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.91 below 0.95	2026-09-25T21:50:35+08:00
+21LR_1	21LR	CD	D	A	112.411	1	0.879	0.076	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.879 below 0.95	2026-09-25T21:50:35+08:00
+21LR_1	21LR	CL	C	A	35.453	1	0.821	0.169	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.821 below 0.95	2026-09-25T21:50:35+08:00
+21LR_1	21LR	EDO	K	A	62.068	4	0.817	0.159	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.817 below 0.95	2026-09-25T21:50:35+08:00
+21LR_1	21LR	EDO	J	A	62.068	4	0.93	0.088	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.93 below 0.95	2026-09-25T21:50:35+08:00
+21LR_1	21LR	SO4	B	A	96.063	5	0.963	0.083	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:35+08:00
+22LX_1	22LX	ACT	E	A	59.044	4	0.705	0.23	1.0	N	0	rejected	formula weight 59.044 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.705 below 0.95; RSR 0.23 above 0.2	2026-09-25T21:50:36+08:00
+22LX_1	22LX	NA	F	A	22.99	1	0.969	0.191	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+22LX_1	22LX	SO4	D	A	96.063	5	0.927	0.14	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.927 below 0.95	2026-09-25T21:50:36+08:00
+22LX_1	22LX	SO4	C	A	96.063	5	0.913	0.108	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.913 below 0.95	2026-09-25T21:50:36+08:00
+22LX_1	22LX	SO4	B	A	96.063	5	0.958	0.09	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+24MP_1	24MP	EOH	C	A	46.068	3	0.897	0.117	1.0	N	0	rejected	formula weight 46.068 outside 100 to 900; 3 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.897 below 0.95	2026-09-25T21:50:36+08:00
+24MP_1	24MP	EOH	D	A	46.068	3	0.859	0.166	1.0	N	0	rejected	formula weight 46.068 outside 100 to 900; 3 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.859 below 0.95	2026-09-25T21:50:36+08:00
+24MP_1	24MP	EOH	E	A	46.068	3	0.904	0.15	1.0	N	0	rejected	formula weight 46.068 outside 100 to 900; 3 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.904 below 0.95	2026-09-25T21:50:36+08:00
+24MP_1	24MP	EOH	F	A	46.068	3	0.84	0.147	1.0	N	0	rejected	formula weight 46.068 outside 100 to 900; 3 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.84 below 0.95	2026-09-25T21:50:36+08:00
+24MP_1	24MP	EOH	G	A	46.068	3	0.905	0.134	1.0	N	0	rejected	formula weight 46.068 outside 100 to 900; 3 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.905 below 0.95	2026-09-25T21:50:36+08:00
+24MP_1	24MP	POL	H	B	60.095	4	0.717	0.208	1.0	N	0	rejected	formula weight 60.095 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.717 below 0.95; RSR 0.208 above 0.2	2026-09-25T21:50:36+08:00
+26RW_1	26RW	A1MG3	B	A	452.475	33	0.769	0.154	1.0	Y	0	rejected	RSCC 0.769 below 0.95	2026-09-25T21:50:36+08:00
+26RW_1	26RW	A1MG3	C	A	452.475	33	0.629	0.18	1.0	Y	0	rejected	RSCC 0.629 below 0.95	2026-09-25T21:50:36+08:00
+27AA_1	27AA	EDO	G	B	62.068	4	0.813	0.147	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.813 below 0.95	2026-09-25T21:50:36+08:00
+27AA_1	27AA	GOL	H	C	92.094	6	0.886	0.114	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.886 below 0.95	2026-09-25T21:50:36+08:00
+27AA_1	27AA	GOL	K	D	92.094	6	0.879	0.119	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.879 below 0.95	2026-09-25T21:50:36+08:00
+27AA_1	27AA	GOL	I	C	92.094	6	0.821	0.146	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.821 below 0.95	2026-09-25T21:50:36+08:00
+27AA_1	27AA	KNA	F	A	158.238	11	0.65	0.275	1.0	Y	0	rejected	RSCC 0.65 below 0.95; RSR 0.275 above 0.2	2026-09-25T21:50:36+08:00
+27AA_1	27AA	TLA	J	C	150.087	10	0.914	0.086	1.0	N	0	rejected	not flagged as the subject of investigation; RSCC 0.914 below 0.95	2026-09-25T21:50:36+08:00
+27AA_1	27AA	TLA	E	A	150.087	10	0.801	0.124	1.0	N	0	rejected	not flagged as the subject of investigation; RSCC 0.801 below 0.95	2026-09-25T21:50:36+08:00
+27JK_1	27JK	CA	B	A	40.078	1	0.946	0.096	1.0	Y	0	rejected	formula weight 40.078 outside 100 to 900; 1 heavy atoms, below 10; RSCC 0.946 below 0.95	2026-09-25T21:50:36+08:00
+27WO_1	27WO	ZN	J	A	65.409	1	0.88	0.121	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.88 below 0.95	2026-09-25T21:50:36+08:00
+27WO_1	27WO	ZN	I	A	65.409	1	0.825	0.121	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.825 below 0.95	2026-09-25T21:50:36+08:00
+27WO_1	27WO	ZN	H	A	65.409	1	0.978	0.032	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+27WO_1	27WO	ZN	G	A	65.409	1	0.966	0.129	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+27WO_1	27WO	ZN	F	A	65.409	1	0.984	0.036	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+27WO_1	27WO	ZN	E	A	65.409	1	0.999	0.007	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+27WO_1	27WO	ZN	D	A	65.409	1	0.893	0.144	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.893 below 0.95	2026-09-25T21:50:36+08:00
+27WO_1	27WO	ZN	C	A	65.409	1	0.908	0.111	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.908 below 0.95	2026-09-25T21:50:36+08:00
+27WO_1	27WO	ZN	B	A	65.409	1	0.916	0.09	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.916 below 0.95	2026-09-25T21:50:36+08:00
+29LI_1	29LI	P6G	B	A	282.331	19	0.778	0.143	1.0	Y	0	rejected	RSCC 0.778 below 0.95	2026-09-25T21:50:36+08:00
+29LW_1	29LW	9O9	C	A	455.356	31	0.981	0.045	1.0	Y	0	ok		2026-09-25T21:50:36+08:00
+29LW_1	29LW	9O9	G	B	455.356	31	0.983	0.045	1.0	Y	0	ok		2026-09-25T21:50:36+08:00
+29LW_1	29LW	GOL	F	A	92.094	6	0.822	0.183	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.822 below 0.95	2026-09-25T21:50:36+08:00
+29LW_1	29LW	GOL	H	B	92.094	6	0.808	0.166	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.808 below 0.95	2026-09-25T21:50:36+08:00
+29LW_1	29LW	GOL	I	B	92.094	6	0.917	0.103	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.917 below 0.95	2026-09-25T21:50:36+08:00
+29LW_1	29LW	GOL	J	B	92.094	6	0.884	0.109	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.884 below 0.95	2026-09-25T21:50:36+08:00
+29LW_1	29LW	GOL	E	A	92.094	6	0.833	0.155	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.833 below 0.95	2026-09-25T21:50:36+08:00
+29LW_1	29LW	GOL	D	A	92.094	6	0.843	0.157	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.843 below 0.95	2026-09-25T21:50:36+08:00
+30JI_1	30JI	A1J6V	B	A	396.503	28	0.972	0.056	1.0	Y	0	ok		2026-09-25T21:50:36+08:00
+30JI_1	30JI	EOH	I	A	46.068	3	0.723	0.178	1.0	N	0	rejected	formula weight 46.068 outside 100 to 900; 3 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.723 below 0.95	2026-09-25T21:50:36+08:00
+30JI_1	30JI	EOH	K	A	46.068	3	0.545	0.262	1.0	N	0	rejected	formula weight 46.068 outside 100 to 900; 3 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.545 below 0.95; RSR 0.262 above 0.2	2026-09-25T21:50:36+08:00
+30JI_1	30JI	EOH	J	A	46.068	3	0.813	0.134	1.0	N	0	rejected	formula weight 46.068 outside 100 to 900; 3 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.813 below 0.95	2026-09-25T21:50:36+08:00
+30JI_1	30JI	EOH	D	A	46.068	3	0.829	0.121	1.0	N	0	rejected	formula weight 46.068 outside 100 to 900; 3 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.829 below 0.95	2026-09-25T21:50:36+08:00
+30JI_1	30JI	GOL	C	A	92.094	6	0.888	0.097	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.888 below 0.95	2026-09-25T21:50:36+08:00
+30JI_1	30JI	GOL	E	A	92.094	6	0.898	0.089	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.898 below 0.95	2026-09-25T21:50:36+08:00
+30JI_1	30JI	GOL	F	A	92.094	6	0.869	0.124	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.869 below 0.95	2026-09-25T21:50:36+08:00
+30JI_1	30JI	GOL	G	A	92.094	6	0.929	0.099	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.929 below 0.95	2026-09-25T21:50:36+08:00
+30JI_1	30JI	GOL	H	A	92.094	6	0.757	0.136	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.757 below 0.95	2026-09-25T21:50:36+08:00
+31KJ_1	31KJ	SO4	C	A	96.063	5	0.938	0.096	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.938 below 0.95	2026-09-25T21:50:36+08:00
+31KJ_1	31KJ	SO4	E	B	96.063	5	0.793	0.163	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.793 below 0.95	2026-09-25T21:50:36+08:00
+31KJ_1	31KJ	SO4	D	B	96.063	5	0.983	0.066	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+32JG_1	32JG	FLC	D	B	189.1	13	0.832	0.13	1.0	N	0	rejected	not flagged as the subject of investigation; RSCC 0.832 below 0.95	2026-09-25T21:50:36+08:00
+32JG_1	32JG	GOL	C	A	92.094	6	0.622	0.185	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.622 below 0.95	2026-09-25T21:50:36+08:00
+32OA_1	32OA	DMS	B	A	78.133	4	0.995	0.045	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+32OA_1	32OA	DMS	C	A	78.133	4	1.0	0.026	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+32OA_1	32OA	DMS	D	A	78.133	4	0.957	0.119	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+32QT_1	32QT	EDO	B	A	62.068	4	0.968	0.057	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+32QT_1	32QT	EDO	E	A	62.068	4	0.931	0.088	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.931 below 0.95	2026-09-25T21:50:36+08:00
+32QT_1	32QT	EDO	G	A	62.068	4	0.911	0.1	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.911 below 0.95	2026-09-25T21:50:36+08:00
+32QT_1	32QT	EDO	H	A	62.068	4	0.846	0.14	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.846 below 0.95	2026-09-25T21:50:36+08:00
+32QT_1	32QT	EDO	F	A	62.068	4	0.86	0.113	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.86 below 0.95	2026-09-25T21:50:36+08:00
+32QT_1	32QT	EDO	D	A	62.068	4	0.952	0.08	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+32QT_1	32QT	EDO	C	A	62.068	4	0.907	0.113	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.907 below 0.95	2026-09-25T21:50:36+08:00
+35TM_1	35TM	AR6	D	B	559.316	36	0.965	0.061	1.0	Y	0	ok		2026-09-25T21:50:36+08:00
+35TM_1	35TM	AR6	C	A	559.316	36	0.966	0.061	1.0	Y	0	ok		2026-09-25T21:50:36+08:00
+36IQ_1	36IQ	DM2	C	A	543.519	39	0.956	0.071	1.0	Y	0	ok		2026-09-25T21:50:36+08:00
+36IQ_1	36IQ	DM2	D	B	543.519	39	0.941	0.085	1.0	Y	0	rejected	RSCC 0.941 below 0.95	2026-09-25T21:50:36+08:00
+36IW_1	36IW	CL	B	A	35.453	1	0.975	0.12	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+36IW_1	36IW	CL	C	A	35.453	1	0.889	0.32	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.889 below 0.95; RSR 0.32 above 0.2	2026-09-25T21:50:36+08:00
+36IW_1	36IW	CL	D	A	35.453	1	0.996	0.017	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+36MB_1	36MB	PRO	F	A	115.13	8	0.884	0.126	1.0	N	0	rejected	8 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.884 below 0.95	2026-09-25T21:50:36+08:00
+36MB_1	36MB	SO4	G	D	96.063	5	0.833	0.125	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.833 below 0.95	2026-09-25T21:50:36+08:00
+36MB_1	36MB	SO4	E	A	96.063	5	0.924	0.076	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.924 below 0.95	2026-09-25T21:50:36+08:00
+37JY_1	37JY	A1AEP	G	B	635.372	42	0.978	0.053	1.0	Y	0	ok		2026-09-25T21:50:36+08:00
+37JY_1	37JY	A1AEP	H	D	635.372	42	0.976	0.054	1.0	Y	0	ok		2026-09-25T21:50:36+08:00
+37JY_1	37JY	A1AEP	I	E	635.372	42	0.96	0.075	1.0	Y	0	ok		2026-09-25T21:50:36+08:00
+38LI_1	38LI	GOL	E	B	92.094	6	0.787	0.156	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.787 below 0.95	2026-09-25T21:50:36+08:00
+38LI_1	38LI	IMD	F	C	69.085	5	0.762	0.167	1.0	N	0	rejected	formula weight 69.085 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.762 below 0.95	2026-09-25T21:50:36+08:00
+38LI_1	38LI	MLI	D	A	102.046	7	0.886	0.096	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.886 below 0.95	2026-09-25T21:50:36+08:00
+44ID_1	44ID	BHF	D	B	272.297	21	0.97	0.048	1.0	Y	0	ok		2026-09-25T21:50:36+08:00
+44ID_1	44ID	BHF	C	A	272.297	21	0.967	0.049	1.0	Y	0	ok		2026-09-25T21:50:36+08:00
+7H47_1	7H47	DMS	D	A	78.133	4	0.899	0.139	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.899 below 0.95	2026-09-25T21:50:36+08:00
+7H47_1	7H47	DMS	E	A	78.133	4	0.947	0.111	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.947 below 0.95	2026-09-25T21:50:36+08:00
+7H47_1	7H47	DMS	G	A	78.133	4	0.875	0.146	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.875 below 0.95	2026-09-25T21:50:36+08:00
+7H47_1	7H47	DMS	H	A	78.133	4	0.954	0.119	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+7H47_1	7H47	DMS	I	A	78.133	4	0.84	0.2	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.84 below 0.95	2026-09-25T21:50:36+08:00
+7H47_1	7H47	DMS	F	A	78.133	4	0.776	0.208	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.776 below 0.95; RSR 0.208 above 0.2	2026-09-25T21:50:36+08:00
+7H47_1	7H47	SO4	J	A	96.063	5	0.696	0.221	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.696 below 0.95; RSR 0.221 above 0.2	2026-09-25T21:50:36+08:00
+7H47_1	7H47	Z5C	B	A	156.139	11	0.766	0.178	1.0	Y	0	rejected	RSCC 0.766 below 0.95	2026-09-25T21:50:36+08:00
+7H47_1	7H47	ZN	C	A	65.409	1	0.997	0.021	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:36+08:00
+7HI9_1	7HI9	NA	B	A	22.99	1	0.4	0.304	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.4 below 0.95; RSR 0.304 above 0.2	2026-09-25T21:50:37+08:00
+8JNB_1	8JNB	USX	B	B	368.383	27	0.922	0.096	1.0	Y	1	rejected	covalently bound to the protein; RSCC 0.922 below 0.95	2026-09-25T21:50:37+08:00
+8JQU_1	8JQU	EDO	B	A	62.068	4	0.857	0.148	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.857 below 0.95	2026-09-25T21:50:37+08:00
+8JQU_1	8JQU	GNP	C	A	522.196	32	0.989	0.034	1.0	Y	0	ok		2026-09-25T21:50:37+08:00
+8JQU_1	8JQU	MG	D	A	24.305	1	0.994	0.018	1.0	Y	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:37+08:00
+8JUC_1	8JUC	EDO	C	A	62.068	4	0.85	0.171	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.85 below 0.95	2026-09-25T21:50:37+08:00
+8JUC_1	8JUC	EDO	D	A	62.068	4	0.83	0.198	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.83 below 0.95	2026-09-25T21:50:37+08:00
+8JUC_1	8JUC	V23	B	A	217.148	15	0.86	0.213	1.0	Y	0	rejected	RSCC 0.86 below 0.95; RSR 0.213 above 0.2	2026-09-25T21:50:37+08:00
+8JWD_1	8JWD	EDO	B	A	62.068	4	0.886	0.132	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.886 below 0.95	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	EDO	P	C	62.068	4	0.798	0.216	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.798 below 0.95; RSR 0.216 above 0.2	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	EDO	O	C	62.068	4	0.812	0.252	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.812 below 0.95; RSR 0.252 above 0.2	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	EDO	K	B	62.068	4	0.861	0.183	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.861 below 0.95	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	EDO	G	A	62.068	4	0.838	0.188	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.838 below 0.95	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	ZN	N	C	65.409	1	0.993	0.015	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	ZN	M	C	65.409	1	0.964	0.04	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	ZN	L	C	65.409	1	0.988	0.03	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	ZN	J	B	65.409	1	0.994	0.016	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	ZN	I	B	65.409	1	0.979	0.033	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	ZN	H	B	65.409	1	0.986	0.029	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	ZN	F	A	65.409	1	0.988	0.021	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	ZN	E	A	65.409	1	0.993	0.017	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:37+08:00
+8JWS_1	8JWS	ZN	D	A	65.409	1	0.996	0.02	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:37+08:00
+8JYI_1	8JYI	MN	C	A	54.938	1	0.94	0.087	1.0	Y	0	rejected	formula weight 54.938 outside 100 to 900; 1 heavy atoms, below 10; RSCC 0.94 below 0.95	2026-09-25T21:50:37+08:00
+8JYI_1	8JYI	MN	B	A	54.938	1	0.994	0.026	1.0	Y	0	rejected	formula weight 54.938 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:37+08:00
+8JYI_1	8JYI	V9O	D	A	495.392	36	0.388	0.27	1.0	Y	0	rejected	RSCC 0.388 below 0.95; RSR 0.27 above 0.2	2026-09-25T21:50:37+08:00
+8JYI_1	8JYI	ZN	F	A	65.409	1	0.988	0.035	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:37+08:00
+8JYI_1	8JYI	ZN	E	A	65.409	1	0.982	0.032	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:37+08:00
+8JZA_1	8JZA	ACT	B	A	59.044	4	0.967	0.075	1.0	N	0	rejected	formula weight 59.044 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:37+08:00
+8JZA_1	8JZA	ACT	C	A	59.044	4	0.906	0.145	1.0	N	0	rejected	formula weight 59.044 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.906 below 0.95	2026-09-25T21:50:37+08:00
+8JZA_1	8JZA	ACT	D	A	59.044	4	0.948	0.071	1.0	N	0	rejected	formula weight 59.044 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.948 below 0.95	2026-09-25T21:50:37+08:00
+8JZA_1	8JZA	K	E	A	39.098	1	0.999	0.02	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	Z	F	96.063	5	0.977	0.133	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	Y	F	96.063	5	0.901	0.097	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.901 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	X	E	96.063	5	0.905	0.103	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.905 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	W	E	96.063	5	0.911	0.101	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.911 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	V	D	96.063	5	0.649	0.158	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.649 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	U	D	96.063	5	0.948	0.086	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.948 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	T	C	96.063	5	0.979	0.092	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	S	C	96.063	5	0.913	0.095	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.913 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	R	C	96.063	5	0.904	0.096	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.904 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	Q	B	96.063	5	0.974	0.09	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	P	B	96.063	5	0.979	0.102	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	O	B	96.063	5	0.92	0.078	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.92 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	N	B	96.063	5	0.896	0.089	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.896 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	M	A	96.063	5	0.976	0.125	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	L	A	96.063	5	0.941	0.111	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.941 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	K	A	96.063	5	0.888	0.111	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.888 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	IA	J	96.063	5	0.932	0.085	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.932 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	HA	J	96.063	5	0.803	0.117	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.803 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	GA	I	96.063	5	0.815	0.118	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.815 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	FA	I	96.063	5	0.934	0.087	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.934 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	EA	H	96.063	5	0.857	0.128	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.857 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	DA	H	96.063	5	0.832	0.12	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.832 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	CA	G	96.063	5	0.937	0.101	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.937 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	BA	G	96.063	5	0.888	0.104	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.888 below 0.95	2026-09-25T21:50:37+08:00
+8K6G_1	8K6G	SO4	AA	F	96.063	5	0.939	0.081	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.939 below 0.95	2026-09-25T21:50:37+08:00
+8K84_1	8K84	PEG	C	A	106.12	7	0.828	0.113	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.828 below 0.95	2026-09-25T21:50:37+08:00
+8K9N_1	8K9N	CU	B	A	63.546	1	0.999	0.029	1.0	Y	0	rejected	formula weight 63.546 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:37+08:00
+8K9N_1	8K9N	SO4	C	A	96.063	5	0.89	0.133	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.89 below 0.95	2026-09-25T21:50:37+08:00
+8KBM_1	8KBM	C2E	C	A	690.411	46	0.95	0.077	1.0	Y	0	ok		2026-09-25T21:50:37+08:00
+8KBM_1	8KBM	C2E	D	B	690.411	46	0.955	0.069	1.0	Y	0	ok		2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	GOL	U	F	92.094	6	0.831	0.138	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.831 below 0.95	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	IPA	R	E	60.095	4	0.917	0.147	1.0	N	0	rejected	formula weight 60.095 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.917 below 0.95	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	IPA	Q	E	60.095	4	0.906	0.195	1.0	N	0	rejected	formula weight 60.095 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.906 below 0.95	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	IPA	O	D	60.095	4	0.942	0.141	1.0	N	0	rejected	formula weight 60.095 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.942 below 0.95	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	IPA	M	C	60.095	4	0.837	0.242	1.0	N	0	rejected	formula weight 60.095 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.837 below 0.95; RSR 0.242 above 0.2	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	IPA	K	B	60.095	4	0.809	0.207	1.0	N	0	rejected	formula weight 60.095 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.809 below 0.95; RSR 0.207 above 0.2	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	IPA	I	A	60.095	4	0.948	0.156	1.0	N	0	rejected	formula weight 60.095 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.948 below 0.95	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	IPA	H	A	60.095	4	0.936	0.119	1.0	N	0	rejected	formula weight 60.095 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.936 below 0.95	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	VX0	T	F	407.39	29	0.863	0.141	1.0	Y	0	rejected	RSCC 0.863 below 0.95	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	VX0	S	E	407.39	29	0.913	0.109	1.0	Y	0	rejected	RSCC 0.913 below 0.95	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	VX0	P	D	407.39	29	0.913	0.107	1.0	Y	0	rejected	RSCC 0.913 below 0.95	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	VX0	N	C	407.39	29	0.898	0.115	1.0	Y	0	rejected	RSCC 0.898 below 0.95	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	VX0	L	B	407.39	29	0.924	0.094	1.0	Y	0	rejected	RSCC 0.924 below 0.95	2026-09-25T21:50:37+08:00
+8KHU_1	8KHU	VX0	J	A	407.39	29	0.883	0.134	1.0	Y	0	rejected	RSCC 0.883 below 0.95	2026-09-25T21:50:37+08:00
+8PAQ_1	8PAQ	CA	C	A	40.078	1	0.973	0.094	1.0	N	0	rejected	formula weight 40.078 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PAQ_1	8PAQ	EDO	F	A	62.068	4	0.826	0.157	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.826 below 0.95	2026-09-25T21:50:38+08:00
+8PAQ_1	8PAQ	IMD	D	A	69.085	5	0.873	0.166	1.0	N	0	rejected	formula weight 69.085 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.873 below 0.95	2026-09-25T21:50:38+08:00
+8PAQ_1	8PAQ	IMD	E	A	69.085	5	0.832	0.17	1.0	N	0	rejected	formula weight 69.085 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.832 below 0.95	2026-09-25T21:50:38+08:00
+8PAQ_1	8PAQ	IMD	G	B	69.085	5	0.86	0.157	1.0	N	0	rejected	formula weight 69.085 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.86 below 0.95	2026-09-25T21:50:38+08:00
+8PAQ_1	8PAQ	IMD	H	B	69.085	5	0.807	0.187	1.0	N	0	rejected	formula weight 69.085 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.807 below 0.95	2026-09-25T21:50:38+08:00
+8PHN_1	8PHN	MG	B	A	24.305	1	0.978	0.046	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PHN_1	8PHN	SO4	C	A	96.063	5	0.975	0.095	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PHX_1	8PHX	MG	H	D	24.305	1	0.975	0.038	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PHX_1	8PHX	MG	G	C	24.305	1	0.99	0.037	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PHX_1	8PHX	MG	F	B	24.305	1	0.985	0.03	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PHX_1	8PHX	MG	E	A	24.305	1	0.981	0.032	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PJ7_1	8PJ7	DMS	F	A	78.133	4	0.712	0.229	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.712 below 0.95; RSR 0.229 above 0.2	2026-09-25T21:50:38+08:00
+8PJ7_1	8PJ7	EDO	I	A	62.068	4	0.738	0.17	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.738 below 0.95	2026-09-25T21:50:38+08:00
+8PJ7_1	8PJ7	EDO	H	A	62.068	4	0.86	0.137	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.86 below 0.95	2026-09-25T21:50:38+08:00
+8PJ7_1	8PJ7	EDO	G	A	62.068	4	0.728	0.221	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.728 below 0.95; RSR 0.221 above 0.2	2026-09-25T21:50:38+08:00
+8PJ7_1	8PJ7	EDO	E	A	62.068	4	0.837	0.138	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.837 below 0.95	2026-09-25T21:50:38+08:00
+8PJ7_1	8PJ7	EDO	D	A	62.068	4	0.881	0.129	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.881 below 0.95	2026-09-25T21:50:38+08:00
+8PJ7_1	8PJ7	EDO	C	A	62.068	4	0.951	0.081	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PJ7_1	8PJ7	PO4	J	A	94.971	5	0.738	0.154	1.0	N	0	rejected	formula weight 94.971 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.738 below 0.95	2026-09-25T21:50:38+08:00
+8PJ7_1	8PJ7	ZJ9	B	A	391.42	29	0.943	0.082	1.0	Y	0	rejected	RSCC 0.943 below 0.95	2026-09-25T21:50:38+08:00
+8PKR_1	8PKR	GOL	C	B	92.094	6	0.995	0.027	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8POR_1	8POR	EDO	D	A	62.068	4	0.905	0.169	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.905 below 0.95	2026-09-25T21:50:38+08:00
+8POR_1	8POR	EYT	C	A	740.265	46	0.992	0.036	1.0	Y	0	ok		2026-09-25T21:50:38+08:00
+8POR_1	8POR	PE4	E	A	354.436	24	0.948	0.094	0.9167	N	0	rejected	not flagged as the subject of investigation; RSCC 0.948 below 0.95; modelled completeness 0.9167	2026-09-25T21:50:38+08:00
+8POR_1	8POR	SO4	B	A	96.063	5	0.861	0.096	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.861 below 0.95	2026-09-25T21:50:38+08:00
+8PQM_1	8PQM	NA	B	A	22.99	1	0.839	0.173	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.839 below 0.95	2026-09-25T21:50:38+08:00
+8PQM_1	8PQM	NA	C	A	22.99	1	0.857	0.149	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.857 below 0.95	2026-09-25T21:50:38+08:00
+8PQR_1	8PQR	DIH	H	C	265.288	19	0.873	0.116	1.0	Y	0	rejected	RSCC 0.873 below 0.95	2026-09-25T21:50:38+08:00
+8PQR_1	8PQR	DIH	G	D	265.288	19	0.843	0.143	1.0	Y	0	rejected	RSCC 0.843 below 0.95	2026-09-25T21:50:38+08:00
+8PQR_1	8PQR	DIH	F	A	265.288	19	0.884	0.124	1.0	Y	0	rejected	RSCC 0.884 below 0.95	2026-09-25T21:50:38+08:00
+8PQR_1	8PQR	DIH	E	B	265.288	19	0.862	0.147	1.0	Y	0	rejected	RSCC 0.862 below 0.95	2026-09-25T21:50:38+08:00
+8PRR_1	8PRR	CO	C	A	58.933	1	0.922	0.093	1.0	Y	0	rejected	formula weight 58.933 outside 100 to 900; 1 heavy atoms, below 10; RSCC 0.922 below 0.95	2026-09-25T21:50:38+08:00
+8PRR_1	8PRR	CO	B	A	58.933	1	0.854	0.107	1.0	Y	0	rejected	formula weight 58.933 outside 100 to 900; 1 heavy atoms, below 10; RSCC 0.854 below 0.95	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	X	B	112.411	1	0.908	0.081	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.908 below 0.95	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	W	B	112.411	1	0.98	0.095	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	V	B	112.411	1	0.983	0.039	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	U	B	112.411	1	0.935	0.078	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.935 below 0.95	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	T	B	112.411	1	0.916	0.099	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.916 below 0.95	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	S	B	112.411	1	0.966	0.058	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	R	B	112.411	1	0.983	0.035	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	Q	B	112.411	1	0.996	0.016	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	P	B	112.411	1	0.989	0.027	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	O	B	112.411	1	0.997	0.018	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	N	B	112.411	1	0.997	0.016	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	M	A	112.411	1	0.777	0.138	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.777 below 0.95	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	L	A	112.411	1	0.893	0.09	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.893 below 0.95	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	K	A	112.411	1	0.674	0.119	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.674 below 0.95	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	J	A	112.411	1	0.974	0.053	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	I	A	112.411	1	0.989	0.027	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	H	A	112.411	1	0.962	0.066	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	G	A	112.411	1	0.997	0.028	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	F	A	112.411	1	0.991	0.028	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	E	A	112.411	1	0.985	0.031	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	D	A	112.411	1	0.998	0.015	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PVZ_1	8PVZ	CD	C	A	112.411	1	0.993	0.023	1.0	N	0	rejected	1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PWC_1	8PWC	G7I	D	A	591.46	41	0.995	0.028	1.0	Y	0	ok		2026-09-25T21:50:38+08:00
+8PWC_1	8PWC	G7I	F	C	591.46	41	0.985	0.045	1.0	Y	0	ok		2026-09-25T21:50:38+08:00
+8PWC_1	8PWC	G7I	E	B	591.46	41	0.995	0.031	1.0	Y	0	ok		2026-09-25T21:50:38+08:00
+8PYV_1	8PYV	48T	D	A	501.552	35	0.991	0.04	0.6	Y	0	rejected	modelled completeness 0.6	2026-09-25T21:50:38+08:00
+8PYV_1	8PYV	PLM	C	A	256.424	18	0.987	0.071	0.4444	Y	0	rejected	modelled completeness 0.4444	2026-09-25T21:50:38+08:00
+8PYV_1	8PYV	PLM	B	A	256.424	18	0.977	0.096	0.7778	Y	0	rejected	modelled completeness 0.7778	2026-09-25T21:50:38+08:00
+8PYW_1	8PYW	GOL	G	A	92.094	6	0.956	0.062	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PYW_1	8PYW	GOL	I	B	92.094	6	0.967	0.057	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8PYW_1	8PYW	GOL	L	D	92.094	6	0.917	0.12	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.917 below 0.95	2026-09-25T21:50:38+08:00
+8PYW_1	8PYW	IF9	H	A	475.284	29	0.896	0.105	1.0	Y	0	rejected	RSCC 0.896 below 0.95	2026-09-25T21:50:38+08:00
+8PYW_1	8PYW	IF9	J	B	475.284	29	0.926	0.086	1.0	Y	0	rejected	RSCC 0.926 below 0.95	2026-09-25T21:50:38+08:00
+8PYW_1	8PYW	IF9	K	C	475.284	29	0.949	0.071	1.0	Y	0	rejected	RSCC 0.949 below 0.95	2026-09-25T21:50:38+08:00
+8PYW_1	8PYW	IF9	M	D	475.284	29	0.866	0.116	1.0	Y	0	rejected	RSCC 0.866 below 0.95	2026-09-25T21:50:38+08:00
+8PYW_1	8PYW	IF9	N	E	475.284	29	0.848	0.12	1.0	Y	0	rejected	RSCC 0.848 below 0.95	2026-09-25T21:50:38+08:00
+8PYW_1	8PYW	IF9	O	F	475.284	29	0.878	0.111	1.0	Y	0	rejected	RSCC 0.878 below 0.95	2026-09-25T21:50:38+08:00
+8PZO_1	8PZO	NA	F	B	22.99	1	0.911	0.074	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.911 below 0.95	2026-09-25T21:50:38+08:00
+8PZO_1	8PZO	NA	E	B	22.99	1	0.896	0.091	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.896 below 0.95	2026-09-25T21:50:38+08:00
+8PZO_1	8PZO	NA	D	A	22.99	1	0.872	0.097	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.872 below 0.95	2026-09-25T21:50:38+08:00
+8PZO_1	8PZO	NA	C	A	22.99	1	0.872	0.117	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.872 below 0.95	2026-09-25T21:50:38+08:00
+8Q0S_1	8Q0S	ACT	E	AAA	59.044	4	0.651	0.187	1.0	N	0	rejected	formula weight 59.044 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.651 below 0.95	2026-09-25T21:50:38+08:00
+8Q0S_1	8Q0S	ACT	C	AAA	59.044	4	0.815	0.139	1.0	N	0	rejected	formula weight 59.044 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.815 below 0.95	2026-09-25T21:50:38+08:00
+8Q0S_1	8Q0S	GOL	F	AAA	92.094	6	0.765	0.142	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.765 below 0.95	2026-09-25T21:50:38+08:00
+8Q0S_1	8Q0S	GOL	D	AAA	92.094	6	0.886	0.115	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.886 below 0.95	2026-09-25T21:50:38+08:00
+8Q0S_1	8Q0S	NA	G	AAA	22.99	1	0.837	0.124	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.837 below 0.95	2026-09-25T21:50:38+08:00
+8Q1V_1	8Q1V	CL	C	A	35.453	1	0.984	0.104	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8Q1V_1	8Q1V	CL	D	A	35.453	1	0.992	0.083	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8Q1V_1	8Q1V	CL	E	A	35.453	1	0.986	0.063	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8Q1V_1	8Q1V	HEC	B	A	620.519	43	0.986	0.066	1.0	Y	1	rejected	covalently bound to the protein	2026-09-25T21:50:38+08:00
+8Q1W_1	8Q1W	CL	J	C	35.453	1	0.986	0.026	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8Q1W_1	8Q1W	CL	E	A	35.453	1	0.968	0.055	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8Q1W_1	8Q1W	HEC	I	C	620.519	43	0.951	0.1	1.0	Y	1	rejected	covalently bound to the protein	2026-09-25T21:50:38+08:00
+8Q1W_1	8Q1W	HEC	G	B	620.519	43	0.953	0.092	1.0	Y	1	rejected	covalently bound to the protein	2026-09-25T21:50:38+08:00
+8Q1W_1	8Q1W	HEC	D	A	620.519	43	0.957	0.099	1.0	Y	1	rejected	covalently bound to the protein	2026-09-25T21:50:38+08:00
+8Q1W_1	8Q1W	NA	K	C	22.99	1	0.979	0.032	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8Q1W_1	8Q1W	NA	H	B	22.99	1	0.927	0.063	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.927 below 0.95	2026-09-25T21:50:38+08:00
+8Q1W_1	8Q1W	NA	F	A	22.99	1	0.971	0.036	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8Q53_1	8Q53	CL	K	A	35.453	1	0.976	0.07	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8Q53_1	8Q53	EDO	J	A	62.068	4	0.621	0.234	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.621 below 0.95; RSR 0.234 above 0.2	2026-09-25T21:50:38+08:00
+8Q53_1	8Q53	EDO	I	A	62.068	4	0.86	0.159	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.86 below 0.95	2026-09-25T21:50:38+08:00
+8Q53_1	8Q53	EDO	H	A	62.068	4	0.85	0.138	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.85 below 0.95	2026-09-25T21:50:38+08:00
+8Q53_1	8Q53	EDO	G	A	62.068	4	0.779	0.193	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.779 below 0.95	2026-09-25T21:50:38+08:00
+8Q53_1	8Q53	EDO	F	A	62.068	4	0.952	0.088	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:38+08:00
+8Q53_1	8Q53	EDO	E	A	62.068	4	0.821	0.146	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.821 below 0.95	2026-09-25T21:50:38+08:00
+8Q53_1	8Q53	EDO	D	A	62.068	4	0.928	0.12	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.928 below 0.95	2026-09-25T21:50:38+08:00
+8Q53_1	8Q53	EDO	C	A	62.068	4	0.787	0.169	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.787 below 0.95	2026-09-25T21:50:38+08:00
+8Q53_1	8Q53	EDO	B	A	62.068	4	0.892	0.149	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.892 below 0.95	2026-09-25T21:50:38+08:00
+8Q5F_1	8Q5F	FMN	D	B	456.344	31	0.944	0.07	1.0	Y	1	rejected	covalently bound to the protein; RSCC 0.944 below 0.95	2026-09-25T21:50:39+08:00
+8Q5F_1	8Q5F	FMN	C	A	456.344	31	0.974	0.052	1.0	Y	1	rejected	covalently bound to the protein	2026-09-25T21:50:39+08:00
+8Q6M_1	8Q6M	ACT	C	A	59.044	4	0.831	0.105	1.0	N	0	rejected	formula weight 59.044 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.831 below 0.95	2026-09-25T21:50:39+08:00
+8Q6M_1	8Q6M	CU	I	B	63.546	1	0.968	0.124	1.0	Y	0	rejected	formula weight 63.546 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:39+08:00
+8Q6M_1	8Q6M	CU	E	A	63.546	1	0.959	0.092	1.0	Y	0	rejected	formula weight 63.546 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:39+08:00
+8Q6M_1	8Q6M	SO4	J	B	96.063	5	0.853	0.125	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.853 below 0.95	2026-09-25T21:50:39+08:00
+8Q6M_1	8Q6M	SO4	G	A	96.063	5	0.908	0.099	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.908 below 0.95	2026-09-25T21:50:39+08:00
+8Q6M_1	8Q6M	SO4	F	A	96.063	5	0.866	0.116	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.866 below 0.95	2026-09-25T21:50:39+08:00
+8Q6M_1	8Q6M	ZN	H	B	65.409	1	0.989	0.028	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:39+08:00
+8Q6M_1	8Q6M	ZN	D	A	65.409	1	0.993	0.021	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:39+08:00
+8Q6U_1	8Q6U	EDO	I	B	62.068	4	0.851	0.143	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.851 below 0.95	2026-09-25T21:50:39+08:00
+8Q6U_1	8Q6U	EDO	H	B	62.068	4	0.932	0.098	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.932 below 0.95	2026-09-25T21:50:39+08:00
+8Q6U_1	8Q6U	EDO	G	B	62.068	4	0.861	0.092	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.861 below 0.95	2026-09-25T21:50:39+08:00
+8Q6U_1	8Q6U	EDO	E	A	62.068	4	0.824	0.141	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.824 below 0.95	2026-09-25T21:50:39+08:00
+8Q6U_1	8Q6U	EDO	D	A	62.068	4	0.943	0.098	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.943 below 0.95	2026-09-25T21:50:39+08:00
+8Q6U_1	8Q6U	EDO	C	A	62.068	4	0.85	0.134	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.85 below 0.95	2026-09-25T21:50:39+08:00
+8Q6U_1	8Q6U	ZN	J	B	65.409	1	0.996	0.012	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8Q6U_1	8Q6U	ZN	F	A	65.409	1	0.995	0.017	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8Q78_1	8Q78	MPD	J	C	118.174	8	0.991	0.037	1.0	Y	0	rejected	8 heavy atoms, below 10	2026-09-25T21:50:39+08:00
+8Q78_1	8Q78	MPD	L	F	118.174	8	0.985	0.043	1.0	Y	0	rejected	8 heavy atoms, below 10	2026-09-25T21:50:39+08:00
+8Q78_1	8Q78	MPD	K	E	118.174	8	0.983	0.059	1.0	Y	0	rejected	8 heavy atoms, below 10	2026-09-25T21:50:39+08:00
+8Q78_1	8Q78	MPD	I	A	118.174	8	0.972	0.066	1.0	Y	0	rejected	8 heavy atoms, below 10	2026-09-25T21:50:39+08:00
+8QAZ_1	8QAZ	NO3	C	A	62.005	4	0.773	0.195	1.0	N	0	rejected	formula weight 62.005 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.773 below 0.95	2026-09-25T21:50:39+08:00
+8QAZ_1	8QAZ	QA5	B	A	333.452	23	0.906	0.116	1.0	Y	0	rejected	RSCC 0.906 below 0.95	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	CL	S	F	35.453	1	0.999	0.014	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	CL	P	E	35.453	1	0.996	0.014	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	CL	N	D	35.453	1	0.998	0.015	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	CL	L	C	35.453	1	0.999	0.02	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	CL	I	B	35.453	1	0.998	0.011	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	CL	G	A	35.453	1	0.999	0.009	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	K	Q	E	39.098	1	0.987	0.068	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	K	J	B	39.098	1	0.985	0.063	1.0	N	0	rejected	formula weight 39.098 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	PEG	T	F	106.12	7	0.978	0.066	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	PEG	R	E	106.12	7	0.962	0.081	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	PEG	O	D	106.12	7	0.991	0.03	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	PEG	M	C	106.12	7	0.968	0.07	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	PEG	K	B	106.12	7	0.972	0.074	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QB1_1	8QB1	PEG	H	A	106.12	7	0.994	0.031	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QFU_1	8QFU	EPE	E	A	238.305	15	0.876	0.112	1.0	N	0	rejected	not flagged as the subject of investigation; RSCC 0.876 below 0.95	2026-09-25T21:50:39+08:00
+8QFU_1	8QFU	EPE	F	B	238.305	15	0.922	0.135	1.0	N	0	rejected	not flagged as the subject of investigation; RSCC 0.922 below 0.95	2026-09-25T21:50:39+08:00
+8QFU_1	8QFU	EPE	G	C	238.305	15	0.881	0.167	1.0	N	0	rejected	not flagged as the subject of investigation; RSCC 0.881 below 0.95	2026-09-25T21:50:39+08:00
+8QFU_1	8QFU	EPE	H	D	238.305	15	0.886	0.131	1.0	N	0	rejected	not flagged as the subject of investigation; RSCC 0.886 below 0.95	2026-09-25T21:50:39+08:00
+8QH6_1	8QH6	CL	F	B	35.453	1	0.985	0.092	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QH6_1	8QH6	CL	G	B	35.453	1	0.961	0.158	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QH6_1	8QH6	MG	D	B	24.305	1	0.967	0.105	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QH6_1	8QH6	MG	E	B	24.305	1	0.953	0.113	1.0	N	0	rejected	formula weight 24.305 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QH6_1	8QH6	V9U	C	A	180.591	12	0.893	0.11	1.0	Y	0	rejected	RSCC 0.893 below 0.95	2026-09-25T21:50:39+08:00
+8QIY_1	8QIY	VCC	E	B	271.195	19	0.614	0.217	1.0	Y	0	rejected	RSCC 0.614 below 0.95; RSR 0.217 above 0.2	2026-09-25T21:50:39+08:00
+8QIY_1	8QIY	VCC	D	A	271.195	19	0.691	0.215	1.0	Y	0	rejected	RSCC 0.691 below 0.95; RSR 0.215 above 0.2	2026-09-25T21:50:39+08:00
+8QJ6_1	8QJ6	HEC	C	A	620.519	43	0.971	0.069	1.0	Y	1	rejected	covalently bound to the protein	2026-09-25T21:50:39+08:00
+8QJ6_1	8QJ6	NA	B	A	22.99	1	0.979	0.051	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8QKY_1	8QKY	GOL	D	A	92.094	6	0.947	0.088	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.947 below 0.95	2026-09-25T21:50:39+08:00
+8QX5_1	8QX5	45D	D	B	564.84	42	0.955	0.062	1.0	Y	0	ok		2026-09-25T21:50:39+08:00
+8QX5_1	8QX5	45D	C	A	564.84	42	0.889	0.115	1.0	Y	0	rejected	RSCC 0.889 below 0.95	2026-09-25T21:50:39+08:00
+8R28_1	8R28	SO4	B	A	96.063	5	0.915	0.091	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.915 below 0.95	2026-09-25T21:50:39+08:00
+8R2C_1	8R2C	PEG	G	A	106.12	7	0.865	0.116	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.865 below 0.95	2026-09-25T21:50:39+08:00
+8R2C_1	8R2C	PEG	H	A	106.12	7	0.884	0.117	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.884 below 0.95	2026-09-25T21:50:39+08:00
+8R2C_1	8R2C	PEG	I	A	106.12	7	0.87	0.122	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.87 below 0.95	2026-09-25T21:50:39+08:00
+8R2C_1	8R2C	SO4	B	A	96.063	5	0.931	0.093	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.931 below 0.95	2026-09-25T21:50:39+08:00
+8R2C_1	8R2C	SO4	C	A	96.063	5	0.62	0.17	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.62 below 0.95	2026-09-25T21:50:39+08:00
+8R2C_1	8R2C	SO4	D	A	96.063	5	0.981	0.051	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8R2C_1	8R2C	SO4	E	A	96.063	5	0.877	0.11	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.877 below 0.95	2026-09-25T21:50:39+08:00
+8R2C_1	8R2C	SO4	F	A	96.063	5	0.971	0.078	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:39+08:00
+8R3F_1	8R3F	XS8	D	B	167.18	12	0.897	0.106	1.0	Y	0	rejected	RSCC 0.897 below 0.95	2026-09-25T21:50:39+08:00
+8R3F_1	8R3F	XS8	C	A	167.18	12	0.926	0.091	1.0	Y	0	rejected	RSCC 0.926 below 0.95	2026-09-25T21:50:39+08:00
+8R5K_1	8R5K	Y6Z	B	A	675.849	48	0.913	0.113	1.0	Y	0	rejected	RSCC 0.913 below 0.95	2026-09-25T21:50:39+08:00
+8R5N_1	8R5N	ATP	D	B	507.181	31	0.992	0.029	1.0	Y	0	ok		2026-09-25T21:50:40+08:00
+8R5N_1	8R5N	ATP	C	A	507.181	31	0.994	0.025	1.0	Y	0	ok		2026-09-25T21:50:40+08:00
+8R8A_1	8R8A	CD	C	A	112.411	1	0.996	0.179	1.0	Y	0	rejected	1 heavy atoms, below 10	2026-09-25T21:50:40+08:00
+8R8A_1	8R8A	CD	D	A	112.411	1	0.997	0.119	1.0	Y	0	rejected	1 heavy atoms, below 10	2026-09-25T21:50:40+08:00
+8R8A_1	8R8A	CD	E	A	112.411	1	0.997	0.31	1.0	Y	0	rejected	1 heavy atoms, below 10; RSR 0.31 above 0.2	2026-09-25T21:50:40+08:00
+8RCY_1	8RCY	A1H0Q	D	A	364.785	24	0.964	0.057	1.0	Y	0	ok		2026-09-25T21:50:40+08:00
+8RCY_1	8RCY	CA	B	A	40.078	1	0.996	0.028	1.0	N	0	rejected	formula weight 40.078 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RCY_1	8RCY	CL	C	A	35.453	1	0.985	0.037	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RD7_1	8RD7	ACT	F	B	59.044	4	0.871	0.161	1.0	N	0	rejected	formula weight 59.044 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.871 below 0.95	2026-09-25T21:50:40+08:00
+8RD7_1	8RD7	AR6	K	D	559.316	36	0.978	0.066	1.0	Y	0	ok		2026-09-25T21:50:40+08:00
+8RD7_1	8RD7	CL	E	A	35.453	1	0.999	0.009	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RD7_1	8RD7	CL	G	B	35.453	1	0.998	0.019	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RD7_1	8RD7	CL	I	C	35.453	1	0.999	0.013	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RD7_1	8RD7	CL	L	D	35.453	1	0.992	0.075	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RD7_1	8RD7	CL	H	B	35.453	1	1.0	0.043	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RD7_1	8RD7	GOL	J	C	92.094	6	0.849	0.154	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.849 below 0.95	2026-09-25T21:50:40+08:00
+8RDD_1	8RDD	ACY	C	B	60.052	4	0.579	0.272	1.0	N	0	rejected	formula weight 60.052 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.579 below 0.95; RSR 0.272 above 0.2	2026-09-25T21:50:40+08:00
+8RDD_1	8RDD	ACY	D	B	60.052	4	0.805	0.251	1.0	N	0	rejected	formula weight 60.052 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.805 below 0.95; RSR 0.251 above 0.2	2026-09-25T21:50:40+08:00
+8RDD_1	8RDD	GOL	B	B	92.094	6	0.81	0.187	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.81 below 0.95	2026-09-25T21:50:40+08:00
+8RF6_1	8RF6	A1H0K	B	A	276.097	11	0.912	0.263	1.0	Y	0	rejected	RSCC 0.912 below 0.95; RSR 0.263 above 0.2	2026-09-25T21:50:40+08:00
+8RHO_1	8RHO	EDO	L	B	62.068	4	0.79	0.122	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.79 below 0.95	2026-09-25T21:50:40+08:00
+8RHO_1	8RHO	EDO	K	B	62.068	4	0.79	0.209	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.79 below 0.95; RSR 0.209 above 0.2	2026-09-25T21:50:40+08:00
+8RHO_1	8RHO	EDO	H	A	62.068	4	0.84	0.145	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.84 below 0.95	2026-09-25T21:50:40+08:00
+8RHO_1	8RHO	EDO	F	A	62.068	4	0.914	0.109	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.914 below 0.95	2026-09-25T21:50:40+08:00
+8RHO_1	8RHO	EDO	D	A	62.068	4	0.864	0.147	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.864 below 0.95	2026-09-25T21:50:40+08:00
+8RHO_1	8RHO	FES	J	B	175.82	4	0.962	0.063	1.0	Y	0	rejected	4 heavy atoms, below 10	2026-09-25T21:50:40+08:00
+8RHO_1	8RHO	FES	C	A	175.82	4	0.997	0.028	1.0	Y	0	rejected	4 heavy atoms, below 10	2026-09-25T21:50:40+08:00
+8RHO_1	8RHO	P6G	E	A	282.331	19	0.922	0.104	1.0	N	0	rejected	not flagged as the subject of investigation; RSCC 0.922 below 0.95	2026-09-25T21:50:40+08:00
+8RHO_1	8RHO	PEG	I	A	106.12	7	0.861	0.15	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.861 below 0.95	2026-09-25T21:50:40+08:00
+8RHO_1	8RHO	PEG	G	A	106.12	7	0.891	0.113	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.891 below 0.95	2026-09-25T21:50:40+08:00
+8RHR_1	8RHR	BB4	C	A	269.095	15	0.927	0.129	1.0	Y	0	rejected	RSCC 0.927 below 0.95	2026-09-25T21:50:40+08:00
+8RHR_1	8RHR	DMS	E	A	78.133	4	0.872	0.201	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.872 below 0.95; RSR 0.201 above 0.2	2026-09-25T21:50:40+08:00
+8RHR_1	8RHR	DMS	F	A	78.133	4	0.798	0.161	1.0	N	0	rejected	formula weight 78.133 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.798 below 0.95	2026-09-25T21:50:40+08:00
+8RHR_1	8RHR	GOL	D	A	92.094	6	0.772	0.165	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.772 below 0.95	2026-09-25T21:50:40+08:00
+8RHR_1	8RHR	ZN	B	A	65.409	1	0.996	0.023	1.0	Y	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:40+08:00
+8RIJ_1	8RIJ	A1H07	G	A	358.327	26	0.886	0.111	1.0	Y	0	rejected	RSCC 0.886 below 0.95	2026-09-25T21:50:40+08:00
+8RIJ_1	8RIJ	CA	F	A	40.078	1	0.988	0.025	1.0	N	0	rejected	formula weight 40.078 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RIJ_1	8RIJ	CA	E	A	40.078	1	0.987	0.03	1.0	N	0	rejected	formula weight 40.078 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RIJ_1	8RIJ	CA	D	A	40.078	1	0.989	0.032	1.0	N	0	rejected	formula weight 40.078 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RIJ_1	8RIJ	CL	I	A	35.453	1	0.991	0.052	1.0	N	0	rejected	formula weight 35.453 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RIJ_1	8RIJ	PEG	H	A	106.12	7	0.86	0.146	1.0	N	0	rejected	7 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.86 below 0.95	2026-09-25T21:50:40+08:00
+8RIJ_1	8RIJ	ZN	C	A	65.409	1	0.993	0.018	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RIJ_1	8RIJ	ZN	B	A	65.409	1	0.994	0.018	1.0	N	0	rejected	formula weight 65.409 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RKP_1	8RKP	ASC	D	A	176.124	12	0.787	0.169	1.0	Y	0	rejected	RSCC 0.787 below 0.95	2026-09-25T21:50:40+08:00
+8RKP_1	8RKP	ASC	E	A	176.124	12	0.756	0.189	1.0	Y	0	rejected	RSCC 0.756 below 0.95	2026-09-25T21:50:40+08:00
+8RKP_1	8RKP	ASC	C	A	176.124	12	0.762	0.21	1.0	Y	0	rejected	RSCC 0.762 below 0.95; RSR 0.21 above 0.2	2026-09-25T21:50:40+08:00
+8RKP_1	8RKP	HEC	F	A	620.519	43	0.984	0.061	1.0	Y	1	rejected	covalently bound to the protein	2026-09-25T21:50:40+08:00
+8RKP_1	8RKP	NO	B	A	30.006	2	0.935	0.101	1.0	Y	0	rejected	formula weight 30.006 outside 100 to 900; 2 heavy atoms, below 10; RSCC 0.935 below 0.95	2026-09-25T21:50:40+08:00
+8RRY_1	8RRY	CIT	H	B	192.124	13	0.827	0.144	1.0	Y	0	rejected	RSCC 0.827 below 0.95	2026-09-25T21:50:40+08:00
+8RRY_1	8RRY	CIT	E	A	192.124	13	0.748	0.135	1.0	Y	0	rejected	RSCC 0.748 below 0.95	2026-09-25T21:50:40+08:00
+8RRY_1	8RRY	CU	F	B	63.546	1	0.99	0.03	1.0	Y	0	rejected	formula weight 63.546 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:40+08:00
+8RRY_1	8RRY	CU	C	A	63.546	1	0.993	0.04	1.0	Y	0	rejected	formula weight 63.546 outside 100 to 900; 1 heavy atoms, below 10	2026-09-25T21:50:40+08:00
+8RRY_1	8RRY	GOL	G	B	92.094	6	0.957	0.069	1.0	Y	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10	2026-09-25T21:50:40+08:00
+8RRY_1	8RRY	GOL	D	A	92.094	6	0.947	0.071	1.0	Y	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; RSCC 0.947 below 0.95	2026-09-25T21:50:40+08:00
+8RU1_1	8RU1	GOL	O	D	92.094	6	0.692	0.218	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.692 below 0.95; RSR 0.218 above 0.2	2026-09-25T21:50:40+08:00
+8RU1_1	8RU1	GOL	N	D	92.094	6	0.874	0.157	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.874 below 0.95	2026-09-25T21:50:40+08:00
+8RU1_1	8RU1	GOL	L	C	92.094	6	0.826	0.169	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.826 below 0.95	2026-09-25T21:50:40+08:00
+8RU1_1	8RU1	GOL	J	B	92.094	6	0.815	0.197	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.815 below 0.95	2026-09-25T21:50:40+08:00
+8RU1_1	8RU1	GOL	E	A	92.094	6	0.895	0.138	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.895 below 0.95	2026-09-25T21:50:40+08:00
+8RU1_1	8RU1	NA	P	D	22.99	1	0.888	0.1	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.888 below 0.95	2026-09-25T21:50:40+08:00
+8RU1_1	8RU1	NA	M	C	22.99	1	0.943	0.09	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.943 below 0.95	2026-09-25T21:50:40+08:00
+8RU1_1	8RU1	NA	K	B	22.99	1	0.996	0.113	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RU1_1	8RU1	NA	I	A	22.99	1	0.968	0.119	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RU1_1	8RU1	NA	H	A	22.99	1	0.978	0.079	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RU1_1	8RU1	NA	G	A	22.99	1	0.991	0.152	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8RU1_1	8RU1	NA	F	A	22.99	1	0.781	0.176	1.0	N	0	rejected	formula weight 22.99 outside 100 to 900; 1 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.781 below 0.95	2026-09-25T21:50:40+08:00
+8RU5_1	8RU5	EDO	C	A	62.068	4	0.823	0.16	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.823 below 0.95	2026-09-25T21:50:40+08:00
+8RU5_1	8RU5	EDO	B	A	62.068	4	0.913	0.097	1.0	N	0	rejected	formula weight 62.068 outside 100 to 900; 4 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.913 below 0.95	2026-09-25T21:50:40+08:00
+8RYS_1	8RYS	SO4	B	A	96.063	5	0.863	0.265	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.863 below 0.95; RSR 0.265 above 0.2	2026-09-25T21:50:40+08:00
+8S48_1	8S48	4AQ	C	B	253.342	19	0.793	0.173	1.0	Y	0	rejected	RSCC 0.793 below 0.95	2026-09-25T21:50:40+08:00
+8S7A_1	8S7A	GOL	C	A	92.094	6	0.832	0.159	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.832 below 0.95	2026-09-25T21:50:40+08:00
+8S7A_1	8S7A	SO4	B	A	96.063	5	0.966	0.059	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation	2026-09-25T21:50:40+08:00
+8T4C_1	8T4C	GOL	D	B	92.094	6	0.791	0.185	1.0	N	0	rejected	formula weight 92.094 outside 100 to 900; 6 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.791 below 0.95	2026-09-25T21:50:40+08:00
+8T4C_1	8T4C	SO4	C	B	96.063	5	0.868	0.158	1.0	N	0	rejected	formula weight 96.063 outside 100 to 900; 5 heavy atoms, below 10; not flagged as the subject of investigation; RSCC 0.868 below 0.95	2026-09-25T21:50:40+08:00
+8T5A_1	8T5A	WBV	B	A	495.013	35	0.947	0.085	1.0	Y	0	rejected	RSCC 0.947 below 0.95	2026-09-25T21:50:40+08:00

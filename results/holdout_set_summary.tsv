@@ -1,0 +1,25 @@
+key	value	note
+per_model_cutoffs	alphafold2_ptm=2018-04-30; boltz2=2023-06-01	read from config/model_cutoffs.tsv with the source of each
+common_cutoff	2023-06-01	the latest per-model cutoff, so one set is out of training for every model
+earliest_cutoff	2018-04-30	a per-model set for the older model could have started here instead
+entities_passing_filters	7189	before clustering
+clusters_at_identity	1391	at 30 per cent identity, one representative each
+candidates_examined	320	cluster representatives whose records were fetched; the rest of the pool was not examined
+release_date_only_clusters	1682	what the same filter admits when the deposition-date condition is removed
+release_date_only_extra	291	entries a release-date split would have admitted that were deposited before the cutoff
+targets_after_sequence_checks	313	before the memory ceiling and the time budget
+excluded_for_length	0	longer than 300 residues, which this machine cannot hold
+excluded_for_time	163	beyond what the wall-clock budget allows; the set was cut, not the arms
+targets_final	150	the set every arm is run on
+identity_none	30	no pre-cutoff relative found by sequence search
+identity_under_30	3	a pre-cutoff relative below 30 per cent identity
+identity_30_to_70	38	30 to 70 per cent
+identity_70_to_95	12	70 to 95 per cent
+identity_95_to_100	67	95 per cent or better, which is the same protein by any practical reading
+identity_exactly_100	56	an identical sequence was already in the archive before the cutoff
+docking_subset	15	targets with a ligand passing every quality filter
+ligand_instances_considered	529	before the ligand filters
+search_schema_version	1.59.0	the RCSB search schema this set was built against
+query_date	2026-09-25	clusters are recomputed weekly, so this date matters
+api_requests	102	requests made; the rest came from the local cache
+api_cached	847	requests served from the local cache
