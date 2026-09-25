@@ -1,0 +1,4 @@
+target_id	sequence_length	peak_rss_mb	elapsed_s	arm	recorded
+10UV_1	140	3007	166.94	af2_nomsa	2026-09-25T20:05:05+08:00
+10AF_1	179	2864	257.86	af2_nomsa	2026-09-25T20:09:23+08:00
+10QV_1	294	3347	730.54	af2_nomsa	2026-09-25T20:21:34+08:00

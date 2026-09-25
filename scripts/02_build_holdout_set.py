@@ -466,6 +466,9 @@ def main() -> int:
     ap.add_argument("--config", required=True, type=Path)
     ap.add_argument("--limit", type=int, default=0,
                     help="stop after this many candidate entities (smoke test)")
+    ap.add_argument("--max-candidates", type=int, default=0,
+                    help="examine at most this many candidates in the first pass; "
+                         "0 examines every cluster representative the filters return")
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
 
@@ -520,13 +523,26 @@ def main() -> int:
           f"in {n_groups} clusters at {L.conf_int(conf, 'SET_CLUSTER_IDENTITY', 30)} per cent identity")
     if args.limit:
         hits = hits[:args.limit]
+    if args.max_candidates and len(hits) > args.max_candidates:
+        # Examining every representative costs two archive requests each. When
+        # the set wanted is far smaller than the pool, a bounded prefix of the
+        # pool is examined instead, and the summary records both counts so a
+        # reader knows the set was drawn from a prefix rather than from the
+        # whole pool.
+        print(f"[02_build_holdout_set] examining the first {args.max_candidates} "
+              f"of {len(hits)} cluster representatives")
+        hits = hits[:args.max_candidates]
 
     # How many a release-date-only filter would have admitted. The difference is
     # the leak, and it is a number rather than a warning.
     rel = client.post(SEARCH_URL, release_only_query(conf, common_cutoff), tag="release_only")
     n_release_only = (rel or {}).get("group_by_count", 0)
 
-    # --- per target ----------------------------------------------------------
+    # --- pass one: what each candidate is ------------------------------------
+    # Only the two cheap record fetches here. The leakage proxies cost a
+    # sequence search each, and running one per candidate would mean more than
+    # a thousand searches against a public service to build a set of a
+    # hundred. They are run in pass three, on the targets actually chosen.
     rows, excluded = [], []
     for i, ident in enumerate(hits, 1):
         pdb_id, _, entity_id = ident.partition("_")
@@ -545,25 +561,18 @@ def main() -> int:
         if odd:
             excluded.append((ident, f"sequence contains non-standard letters: {''.join(sorted(odd))}"))
             continue
-
-        pre_members = ""
-        if rec["cluster_id_30"]:
-            n_pre = cluster_has_pre_cutoff(client, rec["cluster_id_30"], common_cutoff)
-            pre_members = "" if n_pre is None else n_pre
-        best_id, best_identity, _ = closest_pre_cutoff(client, rec["sequence"], common_cutoff)
-
         rec.update({
             "target_id": ident,
             "cluster_size_30": "",
-            "pre_cutoff_cluster_members": pre_members,
-            "closest_pre_cutoff_identity": "" if best_identity is None else L.fmt(best_identity, 4),
-            "closest_pre_cutoff_entry": best_id or "",
+            "pre_cutoff_cluster_members": "",
+            "closest_pre_cutoff_identity": "",
+            "closest_pre_cutoff_entry": "",
             "release_only_would_admit": "",
             "recorded": L.now_iso(),
         })
         rows.append(rec)
-        if i % 10 == 0 or i == len(hits):
-            print(f"  {i}/{len(hits)} entities examined, {len(rows)} kept, "
+        if i % 50 == 0 or i == len(hits):
+            print(f"  {i}/{len(hits)} candidates examined, {len(rows)} usable, "
                   f"{client.n_requests} requests, {client.n_cached} from cache", flush=True)
 
     # --- the memory ceiling --------------------------------------------------
@@ -600,6 +609,27 @@ def main() -> int:
             excluded.append((r["target_id"],
                              f"beyond the {limit} targets the wall-clock budget allows; "
                              f"the set was cut by length, keeping the shortest"))
+
+    # --- pass three: the leakage proxies, on the chosen set ------------------
+    # A date filter says the models cannot have been trained on these entries.
+    # It does not say they have never seen these proteins, because most newly
+    # released structures are new determinations of something already in the
+    # archive. These two queries measure how much of that there is. Neither
+    # removes a target: a target with a close pre-cutoff relative is exactly
+    # the case worth measuring, and dropping it would remove the evidence.
+    print(f"[02_build_holdout_set] checking {len(rows)} chosen targets against the "
+          f"archive as it stood before {common_cutoff}")
+    for i, rec in enumerate(rows, 1):
+        if rec["cluster_id_30"]:
+            n_pre = cluster_has_pre_cutoff(client, rec["cluster_id_30"], common_cutoff)
+            rec["pre_cutoff_cluster_members"] = "" if n_pre is None else n_pre
+        best_id, best_identity, _ = closest_pre_cutoff(client, rec["sequence"], common_cutoff)
+        rec["closest_pre_cutoff_identity"] = ("" if best_identity is None
+                                              else L.fmt(best_identity, 4))
+        rec["closest_pre_cutoff_entry"] = best_id or ""
+        if i % 25 == 0 or i == len(rows):
+            print(f"  {i}/{len(rows)} checked, {client.n_requests} requests, "
+                  f"{client.n_cached} from cache", flush=True)
 
     rows.sort(key=lambda r: r["target_id"])
     L.write_tsv(out_targets, TARGET_COLUMNS, rows)
@@ -656,6 +686,8 @@ def main() -> int:
         ("entities_passing_filters", total_before_grouping, "before clustering"),
         ("clusters_at_identity", n_groups,
          f"at {L.conf_int(conf, 'SET_CLUSTER_IDENTITY', 30)} per cent identity, one representative each"),
+        ("candidates_examined", len(hits),
+         "cluster representatives whose records were fetched; the rest of the pool was not examined"),
         ("release_date_only_clusters", n_release_only,
          "what the same filter admits when the deposition-date condition is removed"),
         ("release_date_only_extra", max(0, int(n_release_only) - int(n_groups)),

@@ -185,7 +185,9 @@ fetch_boltz_weights() {
         echo "[${STAGE}] Boltz-2 weights already in the cache"
         return 0
     fi
-    csc_gate_disk 4400 "the Boltz-2 weights" || return 4
+    # The peak is the moment the molecule archive and its extracted contents
+    # are both on disk, which is larger than what is left afterwards.
+    csc_gate_disk 6100 "the Boltz-2 weights" || return 4
     # The affinity checkpoint is fetched by the tool whenever the file is
     # absent, whether or not affinity is requested, and nothing here requests
     # it. The check is for existence alone, so an empty placeholder skips a two
@@ -269,7 +271,6 @@ if (( CALIBRATE == 1 )); then
     mapfile -t TARGET_LIST < <(
         pick_targets | awk '{a[NR]=$0} END {print a[1]; print a[int((NR+1)/2)]; print a[NR]}'
     )
-    printf 'target_id\tsequence_length\tpeak_rss_mb\telapsed_s\tarm\trecorded\n' > "$CAL_OUT"
     echo "[${STAGE}] calibrating on ${TARGET_LIST[*]}"
 fi
 
@@ -301,6 +302,15 @@ case "$MODEL" in
     alphafold2_ptm) fetch_af2_weights || exit 4 ;;
     boltz2)         fetch_boltz_weights || exit 4 ;;
 esac
+
+# The calibration table is started only once the weights are in hand. An
+# earlier version wrote its header before the disk gate ran, so a refusal for
+# want of four hundred megabytes destroyed a set of measurements that had cost
+# half an hour to take. They were recovered from the per-command log, which is
+# the other reason that log exists, and the header moved here.
+if (( CALIBRATE == 1 )) && [[ ! -s "$CAL_OUT" ]]; then
+    printf 'target_id\tsequence_length\tpeak_rss_mb\telapsed_s\tarm\trecorded\n' > "$CAL_OUT"
+fi
 
 N_OK=0; N_SKIP=0; N_REFUSED=0; N_FAIL=0
 for target in "${TARGET_LIST[@]}"; do

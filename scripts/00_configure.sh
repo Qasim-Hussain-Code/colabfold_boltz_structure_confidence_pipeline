@@ -55,6 +55,15 @@
 #                       each gets and double the memory. The MSA stage is
 #                       serial whatever this says, for a different reason given
 #                       in 04_run_msa.sh.
+#      --host-reserve MB
+#                       megabytes held back on the Windows drive for the WSL
+#                       swap file, which lives there and grows under memory
+#                       pressure. The default of 3072 is deliberately cautious.
+#                       On this machine a 24 minute prediction run peaked at
+#                       3,347 MB of resident memory against 7,939 MB visible
+#                       and used no swap at all, so a smaller reserve is
+#                       defensible here; it is a flag rather than a new default
+#                       because that measurement is about this machine.
 #      --hours N        wall-clock budget for the whole run. The script
 #                       projects the total from the measured curve and refuses
 #                       without --yes if the projection exceeds it.
@@ -62,8 +71,12 @@
 #      --models LIST    comma-separated subset of alphafold2_ptm,boltz2
 #      --max-targets N  cap on the held-out set size (0 means the set size the
 #                       filters produce)
-#      --calibrate      second pass: measure the memory and time curve on this
-#                       machine and rewrite the ceiling. Needs 01_install.sh.
+#      --calibrate      second pass: fit the memory and time curve from the
+#                       measurements in results/environment/memory_curve.tsv,
+#                       taking them first if that table is empty. Needs
+#                       01_install.sh to have run.
+#      --recalibrate    the same, but take the measurements again even when a
+#                       table is already there.
 #      --yes, -y        accept every default and proceed past the time gate
 #      -h, --help       this text
 # =============================================================================
@@ -79,7 +92,8 @@ cleanup() { rm -f "$CONF_TMP"; }
 trap cleanup EXIT INT TERM
 
 THREADS=""; RAM_GB=""; DISK_GB=""; JOBS=""; CACHE_DIR=""; DATA_DIR=""
-HOURS=""; ASSUME_YES=0; CALIBRATE=0; MAX_TARGETS=""
+HOURS=""; ASSUME_YES=0; CALIBRATE=0; MAX_TARGETS=""; RECALIBRATE=0
+HOST_RESERVE_OVERRIDE=""
 DEFAULT_ARMS="af2_msa_notmpl,af2_msa_tmpl,af2_nomsa,boltz2_msa,null_template,null_unrelated"
 DEFAULT_MODELS="alphafold2_ptm,boltz2"
 ARMS="$DEFAULT_ARMS"
@@ -94,15 +108,26 @@ while [[ $# -gt 0 ]]; do
         --cache-dir)   CACHE_DIR="$2"; shift 2 ;;
         --data-dir)    DATA_DIR="$2"; shift 2 ;;
         --hours)       HOURS="$2"; shift 2 ;;
+        --host-reserve) HOST_RESERVE_OVERRIDE="$2"; shift 2 ;;
         --arms)        ARMS="$2"; shift 2 ;;
         --models)      MODELS="$2"; shift 2 ;;
         --max-targets) MAX_TARGETS="$2"; shift 2 ;;
         --calibrate)   CALIBRATE=1; shift ;;
+        --recalibrate) CALIBRATE=1; RECALIBRATE=1; shift ;;
         --yes|-y)      ASSUME_YES=1; shift ;;
         -h|--help)     sed -n '2,74p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         *) echo "[error] unknown option: $1" >&2; exit 1 ;;
     esac
 done
+
+# What the caller actually asked for, captured before any default is filled in.
+# A calibration pass re-reads project.conf for everything the caller did not
+# name, and it can only tell the two apart here: once the prompts below have
+# run, every variable looks as though it was given.
+CLI_THREADS="$THREADS"; CLI_RAM="$RAM_GB"; CLI_DISK="$DISK_GB"; CLI_JOBS="$JOBS"
+CLI_HOURS="$HOURS"; CLI_ARMS="$ARMS"; CLI_MODELS="$MODELS"
+CLI_RESERVE="$HOST_RESERVE_OVERRIDE"
+CLI_MAX_TARGETS="$MAX_TARGETS"; CLI_DATA="$DATA_DIR"; CLI_CACHE="$CACHE_DIR"
 
 # -----------------------------------------------------------------------------
 # 1. Measure the machine.
@@ -163,7 +188,7 @@ HOST_FREE_MB=""
 # Held back for the WSL swap file, which lives on the same Windows drive and
 # grows under memory pressure. A prediction that pushes the machine into swap
 # while the drive is full takes the whole virtual machine down with it.
-HOST_RESERVE_MB=3072
+HOST_RESERVE_MB="${HOST_RESERVE_OVERRIDE:-3072}"
 if is_wsl && [[ -d "$HOST_MOUNT" ]]; then
     HOST_FREE_GB="$(detect_free_gb "$HOST_MOUNT")"
     HOST_FREE_MB="$(detect_free_mb "$HOST_MOUNT")"
@@ -273,9 +298,6 @@ if (( CALIBRATE == 1 )); then
     # variable, so the command-line values are put aside first and restored
     # afterwards; without that, a calibration pass would silently reset a
     # budget the operator had just changed.
-    CLI_THREADS="$THREADS"; CLI_RAM="$RAM_GB"; CLI_DISK="$DISK_GB"; CLI_JOBS="$JOBS"
-    CLI_HOURS="$HOURS"; CLI_ARMS="$ARMS"; CLI_MODELS="$MODELS"; CLI_MAX_TARGETS="$MAX_TARGETS"
-    CLI_DATA="$DATA_DIR"; CLI_CACHE="$CACHE_DIR"
     # shellcheck source=/dev/null
     source "$CONF"
     HOURS="${TIME_BUDGET_HOURS:-72}"
@@ -284,6 +306,7 @@ if (( CALIBRATE == 1 )); then
     [[ -n "$CLI_DISK"        ]] && DISK_GB="$CLI_DISK"
     [[ -n "$CLI_JOBS"        ]] && JOBS="$CLI_JOBS"
     [[ -n "$CLI_HOURS"       ]] && HOURS="$CLI_HOURS"
+    [[ -n "$CLI_RESERVE"     ]] && HOST_RESERVE_MB="$CLI_RESERVE"
     [[ -n "$CLI_MAX_TARGETS" ]] && MAX_TARGETS="$CLI_MAX_TARGETS"
     [[ -n "$CLI_DATA"        ]] && DATA_DIR="$CLI_DATA"
     [[ -n "$CLI_CACHE"       ]] && CACHE_DIR="$CLI_CACHE"
@@ -301,7 +324,16 @@ if (( CALIBRATE == 1 )); then
     csc_conda_init
     CAL_OUT="${RESULTS_DIR}/environment/memory_curve.tsv"
     mkdir -p "$(dirname "$CAL_OUT")"
-    if ! bash "${SCRIPT_DIR}/05_predict.sh" --calibrate --out "$CAL_OUT"; then
+    # Measuring is expensive and the measurement does not go stale: it is a
+    # property of this machine and these models. An existing table is used as
+    # it stands, and --recalibrate is how to take the measurement again after
+    # the hardware or the model changes.
+    CAL_POINTS=0
+    [[ -s "$CAL_OUT" ]] && CAL_POINTS="$(awk -F'\t' 'NR>1 && $3 ~ /^[0-9.]+$/ {n++} END {print n+0}' "$CAL_OUT")"
+    if (( CAL_POINTS >= 2 )) && (( RECALIBRATE == 0 )); then
+        echo "[00_configure] using the ${CAL_POINTS} measurements already in ${CAL_OUT}"
+        echo "               (--recalibrate to measure again)"
+    elif ! bash "${SCRIPT_DIR}/05_predict.sh" --calibrate --out "$CAL_OUT"; then
         echo "[error] calibration run failed; project.conf keeps its provisional curve" >&2
         exit 5
     fi
@@ -313,9 +345,10 @@ if (( CALIBRATE == 1 )); then
     # arithmetic dressed up as evidence.
     read -r MEM_BASE_MB MEM_QUAD_MB_PER_KRES2 SEC_BASE SEC_QUAD_PER_KRES2 N_CAL MAX_RESID_MB < <(
         awk -F'\t' 'NR>1 && $3 ~ /^[0-9.]+$/ {
+                n++
                 x[n] = ($2/1000.0)^2; y[n] = $3; t[n] = $4
                 sx += x[n]; sy += y[n]; sxx += x[n]*x[n]; sxy += x[n]*y[n]
-                st += t[n]; sxt += x[n]*t[n]; n++
+                st += t[n]; sxt += x[n]*t[n]
             }
             END {
                 if (n < 2) { print "NA NA NA NA", n, "NA"; exit }
@@ -324,7 +357,7 @@ if (( CALIBRATE == 1 )); then
                 b = (n*sxy - sx*sy) / d; a = (sy - b*sx) / n
                 bt = (n*sxt - sx*st) / d; at = (st - bt*sx) / n
                 worst = 0
-                for (i = 0; i < n; i++) {
+                for (i = 1; i <= n; i++) {
                     r = y[i] - (a + b*x[i]); if (r < 0) r = -r
                     if (r > worst) worst = r
                 }
@@ -387,19 +420,24 @@ N_TARGETS=${MAX_TARGETS:-0}
 # 01_install.sh records what actually landed, and if the two disagree the
 # recorded figure is the one the README quotes.
 #
-#   alphafold2_ptm  one parameter tar of 3,722,752,000 bytes. ColabFold streams
-#                   it rather than saving it, and extracts ten parameter files,
-#                   of which the five this arm uses are about half. The peak is
-#                   therefore the extracted set rather than tar plus contents.
-#   boltz2          a structure checkpoint of 2,286,561,469 bytes, an affinity
-#                   checkpoint of 2,062,139,170 that is fetched whether or not
-#                   affinity is asked for, a molecule archive of 1,855,662,080,
-#                   and that archive's extracted contents, which the code keeps
-#                   alongside it. No affinity is predicted here, so the
-#                   affinity checkpoint is pure cost; 01_install.sh tests
-#                   whether it can be skipped and records the answer.
+#   alphafold2_ptm  one parameter tar of 3,722,752,000 bytes. The archive is
+#                   streamed rather than saved, and ten parameter files are
+#                   extracted from it, of which this benchmark loads five. The
+#                   peak is the moment all ten are on disk, measured here at
+#                   3,551 MB; 05_predict.sh then deletes the five it will never
+#                   load, which measured 1,775 MB, so the resting cost is half
+#                   the peak.
+#   boltz2          a structure checkpoint of 2,286,561,469 bytes, a molecule
+#                   archive of 1,855,662,080, and that archive's extracted
+#                   contents, which the downloader keeps alongside it. The peak
+#                   is the moment the archive and its contents are both
+#                   present. An affinity checkpoint of 2,062,139,170 is fetched
+#                   by the downloader whenever the file is absent, whether or
+#                   not affinity is asked for, and nothing here asks for it;
+#                   05_predict.sh leaves an empty file in its place, which the
+#                   downloader accepts, and records that it did.
 MB_WEIGHTS_AF2=3551
-MB_WEIGHTS_BOLTZ=8100
+MB_WEIGHTS_BOLTZ=6100
 MB_WEIGHTS_PEAK=0
 case ",${MODELS}," in *,alphafold2_ptm,*) (( MB_WEIGHTS_AF2   > MB_WEIGHTS_PEAK )) && MB_WEIGHTS_PEAK=$MB_WEIGHTS_AF2 ;; esac
 case ",${MODELS}," in *,boltz2,*)         (( MB_WEIGHTS_BOLTZ > MB_WEIGHTS_PEAK )) && MB_WEIGHTS_PEAK=$MB_WEIGHTS_BOLTZ ;; esac
@@ -421,14 +459,26 @@ PROJ_DISK_GB=$(awk -v m="$PROJ_DISK_MB" 'BEGIN { printf "%.1f", m/1024 }')
 # assumption is printed next to it.
 MEDIAN_LEN=190
 SEC_ONE="$(project_sec "$MEDIAN_LEN")"
-PROJ_SEC=$(( N_TARGETS * SEC_ONE * N_ARMS ))
+# Only the arms that run inference cost wall clock. The two null floors copy a
+# structure that already exists, which costs seconds for the whole set, so
+# counting them here would have inflated the projection by two thirds and cut
+# the set to a third of what the budget allows.
+N_PREDICT_ARMS=0
+for a in $(tr ',' ' ' <<<"$ARMS"); do
+    case "$a" in
+        null_template|null_unrelated) ;;
+        *) N_PREDICT_ARMS=$(( N_PREDICT_ARMS + 1 )) ;;
+    esac
+done
+(( N_PREDICT_ARMS < 1 )) && N_PREDICT_ARMS=1
+PROJ_SEC=$(( N_TARGETS * SEC_ONE * N_PREDICT_ARMS ))
 PROJ_HOURS=$(( PROJ_SEC / 3600 ))
 
 echo "  arms requested           : ${N_ARMS} (${ARMS})"
 echo "  models requested         : ${N_MODELS} (${MODELS})"
 echo "  targets assumed          : ${N_TARGETS}"
 echo "  projected disk           : ${PROJ_DISK_GB} GB = ${PROJ_CACHE_MB} MB of weights (one set at a time) plus ${PROJ_DATA_MB} MB of data"
-echo "  projected wall clock     : ${PROJ_HOURS} h at ${SEC_ONE} s per prediction of a ${MEDIAN_LEN}-residue target"
+echo "  projected wall clock     : ${PROJ_HOURS} h at ${SEC_ONE} s per prediction of a ${MEDIAN_LEN}-residue target, over ${N_PREDICT_ARMS} arms that run inference"
 echo
 
 # The comparisons are in megabytes. Rounding each side to whole gigabytes first
@@ -464,7 +514,7 @@ if (( PROJ_HOURS > HOURS )); then
         exit 4
     fi
 fi
-TARGET_BUDGET=$(( HOURS * 3600 / (SEC_ONE * N_ARMS) ))
+TARGET_BUDGET=$(( HOURS * 3600 / (SEC_ONE * N_PREDICT_ARMS) ))
 (( TARGET_BUDGET < 1 )) && TARGET_BUDGET=1
 
 # -----------------------------------------------------------------------------
