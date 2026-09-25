@@ -183,6 +183,14 @@ def read_json_gz(path: str | Path):
         return json.load(fh)
 
 
+def gunzip_to(src: str | Path, dst: str | Path) -> None:
+    """Decompress a file to a given path, for tools that will not read gzip."""
+    dst = Path(dst)
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    with gzip.open(src, "rb") as fin, open(dst, "wb") as fout:
+        shutil.copyfileobj(fin, fout)
+
+
 def gzip_open_text(path, mode="rt"):
     """gzip.open with a text mode, so a caller can treat plain and compressed
     alignments the same way."""
