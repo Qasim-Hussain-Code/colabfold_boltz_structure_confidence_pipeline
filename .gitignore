@@ -1,0 +1,101 @@
+# Structures, alignments and predictions as the tools write them. Everything
+# under data/ is either downloaded by a script in scripts/ or written by one,
+# so none of it is tracked. data/README.md says what belongs there. On the
+# machine this was developed on, data/ is not used at all: --data-dir points at
+# the Linux filesystem and --cache-dir at the Windows one, for reasons given in
+# data/README.md.
+data/*
+!data/README.md
+
+# Model weights. AlphaFold2 parameters arrive as a tar of .npz files and Boltz-2
+# as .ckpt files plus a tar of molecule definitions. Each set is gigabytes, is
+# fetched into --cache-dir outside this tree, and is deleted before the next
+# set is fetched. These rules exist so that a cache pointed at the wrong place
+# cannot be staged.
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.npz
+*.tar
+*.tar.gz
+params/
+weights/
+.boltz/
+colabfold_params/
+
+# Structure downloads and raw prediction output. mmCIF and PDB files are
+# re-fetchable from the accessions in config/ or regenerable from the tracked
+# alignments, and there are thousands of them.
+*.cif
+*.cif.gz
+*.pdb
+*.pdb.gz
+*.ent
+*.ent.gz
+*.bcif
+*.mmtf
+*.mmtf.gz
+predictions/
+colabfold_out/
+boltz_results_*/
+
+# The one exception to the rule above. Stage 3 of this roadmap has to choose
+# between docking into the predicted PEDV spike and docking into 6U7K, and it
+# needs the prediction itself to do that, so the handful of final PEDV models
+# are tracked, compressed. Each is well under a megabyte.
+!results/pedv/models/*.cif.gz
+
+# Alignments. The uncompressed a3m files the MSA server returns are ignored;
+# the gzipped copies in results/msa/ are tracked, because they are the only
+# artefact that makes a prediction reproducible once the server's databases
+# have moved on. The per-target confidence JSON (pLDDT and PAE) in
+# results/confidence/ is tracked for the same reason and is not matched here.
+*.a3m
+*.m8
+
+# Conda environment directories and package archives, if one is ever created
+# inside the repository rather than under the conda root.
+envs/
+.conda/
+conda-env/
+.pixi/
+*.conda
+*.tar.bz2
+
+# project.conf is written by scripts/00_configure.sh for one machine: thread
+# count, memory ceiling, the measured sequence-length limit, absolute paths.
+# Every clone regenerates its own.
+project.conf
+project.conf.tmp.*
+
+# Per-stage logs. The timing and resource tables next to them are tracked,
+# because the README quotes numbers out of them.
+logs/*.log
+logs/*.done
+logs/tmp/
+
+# Quarto and Jupyter build artefacts. The rendered report is kept.
+*.html
+!results/report/*.html
+*_files/
+.quarto/
+.ipynb_checkpoints/
+*.ipynb
+*.knit.md
+*.utf8.md
+
+# Python noise
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
