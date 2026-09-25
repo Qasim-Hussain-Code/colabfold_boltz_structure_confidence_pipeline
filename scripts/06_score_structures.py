@@ -56,7 +56,7 @@ SCORE_COLUMNS = [
     "lddt_ca", "lddt_all_atom", "tm_score", "gdt_ts", "gdt_ha", "rmsd_ca",
     "pocket_lddt_ca", "pocket_rmsd_all_atom", "pocket_radius", "pocket_n_residues",
     "mean_plddt", "ptm", "model_clashes", "model_bad_bonds", "model_bad_angles",
-    "ost_version", "recorded",
+    "inconsistent_residues", "ost_version", "recorded",
 ]
 
 RESIDUE_COLUMNS = [
@@ -79,7 +79,8 @@ def run(cmd: list[str], timeout: int = 3600):
 # OpenStructure
 # ---------------------------------------------------------------------------
 def compare_structures(ost_bin: str, model: Path, reference: Path, out_json: Path,
-                       inclusion_radius: float) -> tuple[bool, dict, str]:
+                       inclusion_radius: float,
+                       map_seqid_thresh: float) -> tuple[bool, dict, str]:
     """One call, every score this stage takes from OpenStructure.
 
     --bb-lddt and --bb-local-lddt give the C-alpha-only score, which is the one
@@ -91,16 +92,33 @@ def compare_structures(ost_bin: str, model: Path, reference: Path, out_json: Pat
     The residue-number alignment option is deliberately not used. A prediction
     is numbered from one and a deposited model is numbered however the
     depositors chose, so aligning by number would pair unrelated residues. The
-    default sequence alignment is what makes the two comparable, and the
-    consistency check is on so that a mismatch fails loudly instead of scoring
-    something meaningless.
+    default sequence alignment is what makes the two comparable.
+
+    The consistency check is deliberately not used either, and that is a
+    change from how this was first written. Turning it on makes any residue
+    difference between model and reference fatal, which is right for a
+    prediction of the same sequence and wrong for the copied-template floor,
+    where the copy is a different protein by construction. With the check on,
+    every template floor failed with a residue mismatch and scored nothing,
+    which would have removed the only honest comparator from the results. The
+    mismatches are counted and reported per structure instead.
+
+    The chain-mapping identity threshold is lowered from its own default of 70
+    per cent and recorded in the configuration. That default exists to stop a
+    model chain being compared against an unrelated reference chain, which is
+    sensible when the two are meant to be the same protein. The copied-template
+    floor is deliberately not the same protein: at the default, every template
+    below 70 per cent identity was left unmapped and scored zero. A floor that
+    reads zero because nothing was compared is not a floor, it is a missing
+    measurement dressed as one. With the threshold lowered, every arm is scored
+    by one rule and the unrelated floor is measured rather than refused.
     """
     cmd = [ost_bin, "compare-structures",
            "-m", str(model), "-r", str(reference), "-o", str(out_json),
            "--lddt", "--local-lddt", "--bb-lddt", "--bb-local-lddt",
            "--tm-score", "--rigid-scores",
            "--lddt-inclusion-radius", str(inclusion_radius),
-           "--enforce-consistency"]
+           "--chem-map-seqid-thresh", str(map_seqid_thresh)]
     ok, _out, err = run(cmd)
     if not out_json.is_file():
         return False, {}, f"no output written: {err[:200]}"
@@ -206,6 +224,7 @@ def main() -> int:
     results_dir = Path(conf["RESULTS_DIR"])
     data_dir = Path(conf["DATA_DIR"])
     radius = L.conf_float(conf, "LDDT_INCLUSION_RADIUS", 15.0)
+    map_seqid_thresh = L.conf_float(conf, "CHEM_MAP_SEQID_THRESH", 20.0)
 
     root = Path(conf["CONDA_SH"]).parent.parent.parent
     ost_bin = str(root / "envs" / conf.get("CONDA_ENV_OST", "csc_ost") / "bin" / "ost")
@@ -263,7 +282,8 @@ def main() -> int:
             L.gunzip_to(model_gz, model)
             L.gunzip_to(ref_gz, reference)
             out_json = tmp / "compare.json"
-            ok, data, why = compare_structures(ost_bin, model, reference, out_json, radius)
+            ok, data, why = compare_structures(ost_bin, model, reference, out_json, radius,
+                                               map_seqid_thresh)
             ost_version = data.get("ost_version", ost_version)
             if not ok:
                 row.update({"status": "failed", "reason": why})
@@ -279,6 +299,7 @@ def main() -> int:
                 "model_bad_bonds": len(data.get("model_bad_bonds") or []),
                 "model_bad_angles": len(data.get("model_bad_angles") or []),
                 "ost_version": data.get("ost_version", ""),
+                "inconsistent_residues": len(data.get("inconsistent_residues") or []),
             })
             gdt = data.get("oligo_gdtts")
             if gdt is not None:
