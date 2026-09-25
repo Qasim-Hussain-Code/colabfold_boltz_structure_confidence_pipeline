@@ -133,5 +133,34 @@ else
     echo "[${STAGE}] no docking subset yet; ligands not fetched"
 fi
 
-csc_stage_end "structures=${N_OK} ligands=${L_OK} failed=$(( N_FAIL + L_FAIL ))"
+# --- reference data for the geometry checks ----------------------------------
+# The Ramachandran contour grids the validation step scores against. They are
+# fetched rather than redistributed here: the repository they come from is
+# licensed for sharing with attribution, and fetching keeps this repository
+# free of a copy that would age.
+#
+# Attribution, as that licence requires, is recorded in config/sources.tsv and
+# repeated in the LICENSE file of this repository.
+RAMA_DIR="${DATA_DIR}/reference_data/rotarama"
+RAMA_BASE="https://raw.githubusercontent.com/rlabduke/rotarama_data/master"
+mkdir -p "$RAMA_DIR"
+R_OK=0; R_FAIL=0
+for f in rama8000-general-noGPIVpreP.data rama8000-gly-sym.data rama8000-cispro.data          rama8000-transpro.data rama8000-prepro-noGP.data rama8000-ileval-nopreP.data          LICENSE; do
+    dest="${RAMA_DIR}/${f}"
+    if [[ -s "$dest" && $FORCE -eq 0 ]]; then R_OK=$(( R_OK + 1 )); continue; fi
+    if fetch_to "${RAMA_BASE}/${f}" "$dest"; then
+        record "rotarama" reference_data "$dest" "rlabduke/rotarama_data" ok             "Ramachandran contour grid, CC BY 4.0"
+        R_OK=$(( R_OK + 1 ))
+    else
+        rm -f "$dest"
+        record "rotarama" reference_data "$dest" "rlabduke/rotarama_data" failed "download failed"
+        R_FAIL=$(( R_FAIL + 1 ))
+    fi
+done
+echo "[${STAGE}] Ramachandran grids: ${R_OK} present, ${R_FAIL} failed"
+if (( R_FAIL > 0 )); then
+    echo "[${STAGE}] the geometry stage will leave its Ramachandran counts blank"
+fi
+
+csc_stage_end "structures=${N_OK} ligands=${L_OK} rama=${R_OK} failed=$(( N_FAIL + L_FAIL + R_FAIL ))"
 csc_mark_done "$STAGE"
