@@ -1,0 +1,2 @@
+arm	n_targets	lddt_ca_median	lddt_ca_q1	lddt_ca_q3	tm_score_median	n_geometry_checked	n_passing_geometry	fraction_passing_geometry	n_accurate_and_valid	fraction_accurate_and_valid	accuracy_line	recorded
+af2_nomsa	63	0.23	0.1475	0.4345	0.294	0	0		0	0.0	0.7	2026-09-26T00:04:08+08:00
