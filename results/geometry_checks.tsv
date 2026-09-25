@@ -1,0 +1,5 @@
+target_id	arm	model	status	reason	n_residues	tolerance_used	bad_bonds	bad_angles	bad_bonds_strict	bad_angles_strict	clashes	ca_chirality_errors	cis_nonpro	cis_pro	twisted_peptides	rama_outliers	rama_allowed	rama_favoured	rama_scored	rama_outlier_fraction	passes_all	failed_checks	recorded
+10AF_1	null_template	none	ok		388	12.0	0	0	5	3	0	0	0	0	0	0	4	164	168	0.0	1		2026-09-25T22:45:26+08:00
+10AF_1	null_unrelated	none	ok		506	12.0	1	0	169	30	0	0	0	0	0	1	6	263	270	0.0037	0	bond lengths: 1; Ramachandran outliers: 1	2026-09-25T22:45:27+08:00
+10CX_1	null_unrelated	none	ok		332	12.0	0	0	11	5	0	0	0	2	0	0	5	201	206	0.0	1		2026-09-25T22:45:29+08:00
+10DA_1	null_template	none	ok		243	12.0	0	0	11	5	0	0	0	1	0	0	1	121	122	0.0	1		2026-09-25T22:45:30+08:00

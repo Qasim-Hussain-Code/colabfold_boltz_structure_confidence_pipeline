@@ -1,0 +1,4 @@
+arm	n	seconds_median	seconds_p90	seconds_max	peak_rss_mb_median	peak_rss_mb_p90	peak_rss_mb_max	residues_median	total_hours	recorded
+af2_nomsa	63	101.8	140.9	160.8	2663.5	2768.3	2907.2	105.0	1.83	2026-09-26T00:04:08+08:00
+null_template	120							140.0		2026-09-26T00:04:08+08:00
+null_unrelated	150							137.0		2026-09-26T00:04:08+08:00

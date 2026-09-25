@@ -175,8 +175,12 @@ def fig_calibration_scatter(results: Path, figures: Path, conf: dict) -> str | N
             ax.set_xlabel("confidence, on the score's own scale")
     for j in range(len(arms), nrows * ncols):
         axes[j // ncols][j % ncols].axis("off")
-    fig.suptitle("Confidence against the accuracy it predicts", x=0.01, ha="left",
-                 fontsize=11, color=INK)
+    # tight_layout first, then the figure title above the panels. Setting the
+    # title before the layout pass puts it on top of the first panel's own
+    # title when there is only one panel.
+    fig.tight_layout()
+    fig.suptitle("Confidence against the accuracy it predicts", x=0.005, y=1.005,
+                 ha="left", va="bottom", fontsize=11.5, color=INK)
     out = figures / "fig1_calibration_scatter.png"
     fig.savefig(out)
     plt.close(fig)
