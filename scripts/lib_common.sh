@@ -89,6 +89,25 @@ csc_env_bin() {
     echo ""; return 1
 }
 
+# csc_require_bin <env_name> <binary>
+# The same, but refuses rather than returning an empty string.
+#
+# The empty string is the dangerous case. Passed as the command to run, it
+# produces a bare "command not found" and a status of 127, with nothing in the
+# log to say which tool was missing or where it was looked for. That happened
+# here once, on a run where the filesystem holding the environments was under
+# heavy write pressure, and cost an arm that had already paid for its weights.
+csc_require_bin() {
+    local p; p="$(csc_env_bin "$1" "$2" || true)"
+    if [[ -z "$p" ]]; then
+        echo "[error] ${2} not found in the conda environment '${1}'." >&2
+        echo "        Looked in $(csc_env_prefix "$1")/bin. Run scripts/01_install.sh," >&2
+        echo "        or check that CONDA_SH in project.conf points at the right conda." >&2
+        return 3
+    fi
+    echo "$p"
+}
+
 # ---- 3. measurement ---------------------------------------------------------
 # Peak RSS comes from GNU time's %M, in kilobytes. The shell builtin `time`
 # cannot report memory, so a missing /usr/bin/time is reported as NA rather
