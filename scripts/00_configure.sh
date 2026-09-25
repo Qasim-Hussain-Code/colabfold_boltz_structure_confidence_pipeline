@@ -561,6 +561,10 @@ AF2_MODEL_TYPE=alphafold2_ptm
 # numbers used.
 AF2_NUM_RECYCLE=3
 AF2_RANK=plddt
+# Which databases the alignment stage asks the server for. The default pairs
+# the reference clusters with the environmental set, which is what the tool
+# runs by default and what its published numbers were obtained with.
+MSA_MODE=mmseqs2_uniref_env
 # Boltz-2 sampling. The defaults its own documentation states, recorded here
 # because a results table that does not say which sampling produced it is not
 # reproducible.
