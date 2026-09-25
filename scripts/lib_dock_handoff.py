@@ -1,0 +1,341 @@
+#!/usr/bin/env python3
+"""Prepare receptors for the docking pipeline, and collect what it returns.
+
+Called by scripts/09_dock_into_predictions.sh. Two jobs, and the first is the
+one that decides whether the comparison means anything.
+
+Putting the prediction in the right frame
+-----------------------------------------
+The docking pipeline measures pose accuracy in place, without superposing, and
+centres its search box on the reference ligand's own coordinates. That is the
+right way to measure a pose. It also means the receptor has to be in the same
+frame as that ligand. A predicted structure is not: it comes out wherever the
+model put it.
+
+So every predicted receptor is superposed onto its experimental structure
+before it is handed over. The correspondence is exact rather than guessed:
+the prediction was made from the deposited sequence, so residue i of the
+prediction is position i of that sequence, and the deposited model records the
+same position for each of its residues. Matching on that gives a residue pair
+list with no alignment step and no chance of an off-by-one shift. Residues the
+experiment did not resolve simply have no partner.
+
+The superposition is the standard least-squares fit on the matched alpha
+carbons, and its deviation is recorded per target. A large deviation is not a
+reason to drop the target; it is the measurement this stage exists to make, and
+it is what the docking result should be read against.
+
+What the crystal arm is for
+---------------------------
+The same ligand docked into the experimental receptor of the same target, with
+the same protocol. Without it the predicted number cannot be read: this set is
+not the set the docking pipeline published on, so its published figure is not a
+fair comparator for these targets. This one is.
+"""
+
+from __future__ import annotations
+
+import argparse
+import math
+import shutil
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import lib_csc as L  # noqa: E402
+
+MANIFEST_COLUMNS = ["dataset", "complex_id", "pdb_id", "ccd_id", "protein_pdb",
+                    "ligand_sdf", "ligands_sdf", "start_conf_sdf"]
+
+ALIGN_COLUMNS = ["target_id", "arm", "status", "reason", "n_matched_ca",
+                 "superposition_rmsd_ca", "n_model_residues", "n_reference_residues",
+                 "recorded"]
+
+HANDOFF_COLUMNS = ["arm", "method", "n_attempted", "n_scored", "n_assessed",
+                   "n_rmsd_within_2a", "rate_rmsd_within_2a",
+                   "n_success", "rate_success", "ci_low", "ci_high",
+                   "median_top1_rmsd", "note", "recorded"]
+
+
+def kabsch(mob, ref):
+    """Rotation and translation putting mob onto ref, least squares.
+
+    Returns (rotation, centre of mob, centre of ref, deviation after fitting).
+    """
+    import numpy as np
+
+    mob = np.asarray(mob, dtype=float)
+    ref = np.asarray(ref, dtype=float)
+    cm, cr = mob.mean(axis=0), ref.mean(axis=0)
+    p, q = mob - cm, ref - cr
+    h = p.T @ q
+    u, _s, vt = np.linalg.svd(h)
+    d = np.sign(np.linalg.det(vt.T @ u.T))
+    rot = vt.T @ np.diag([1.0, 1.0, d]) @ u.T
+    fitted = (rot @ p.T).T
+    rmsd = float(np.sqrt(((fitted - q) ** 2).sum(axis=1).mean()))
+    return rot, cm, cr, rmsd
+
+
+def polymer_residues(structure, chain_name: str | None = None):
+    """Residues of the first protein chain, keyed by position in the deposited
+    sequence. Waters and other non-polymer components are left out."""
+    out = {}
+    if not len(structure):
+        return out
+    for chain in structure[0]:
+        if chain_name and chain.name != chain_name:
+            continue
+        poly = chain.get_polymer()
+        if len(poly) == 0:
+            continue
+        for res in poly:
+            if res.label_seq is None:
+                continue
+            ca = res.find_atom("CA", "*")
+            if ca is not None:
+                out[int(res.label_seq)] = (res, (ca.pos.x, ca.pos.y, ca.pos.z))
+        if out:
+            break
+    return out
+
+
+def write_receptor_pdb(structure, path: Path) -> int:
+    """Write a receptor the docking pipeline can read.
+
+    That pipeline reads fixed-column records and cannot carry a chain
+    identifier longer than one character, so the chain is renamed. It strips
+    waters and additives itself; nothing is removed here beyond what is needed
+    to make a well formed file, so the two arms are cleaned by the same code.
+    """
+    import gemmi
+
+    st = structure.clone()
+    st.setup_entities()
+    st.remove_alternative_conformations()
+    st.remove_hydrogens()
+    st.remove_waters()
+    for model in st:
+        for chain in model:
+            if len(chain.name) > 1:
+                chain.name = chain.name[0]
+    n = sum(1 for model in st for chain in model for _res in chain)
+    st.write_pdb(str(path))
+    return n
+
+
+def prepare(conf: dict, arm: str, stage1_conf: dict, limit: int) -> int:
+    import gemmi
+
+    config_dir = Path(conf["CONFIG_DIR"])
+    data_dir = Path(conf["DATA_DIR"])
+    results_dir = Path(conf["RESULTS_DIR"])
+    s1_config = Path(stage1_conf["CONFIG_DIR"])
+    s1_config.mkdir(parents=True, exist_ok=True)
+
+    subset = L.read_tsv(config_dir / "docking_subset.tsv")
+    if limit:
+        subset = subset[:limit]
+    targets = {t["target_id"]: t for t in L.read_tsv(config_dir / "targets.tsv")}
+    predictions = {}
+    pred_path = results_dir / "predictions.tsv"
+    if pred_path.is_file():
+        for p in L.read_tsv(pred_path):
+            if p.get("status") == "ok" and p.get("arm") == conf.get("DOCK_SOURCE_ARM",
+                                                                    "af2_msa_notmpl"):
+                predictions[p["target_id"]] = p
+
+    out_dir = data_dir / "docking" / arm
+    out_dir.mkdir(parents=True, exist_ok=True)
+    rows, align_rows = [], []
+
+    for item in subset:
+        tid = item["target_id"]
+        target = targets.get(tid)
+        if target is None:
+            continue
+        ref_gz = data_dir / "reference" / f"{tid}.cif.gz"
+        lig = data_dir / "reference_ligands" / f"{tid}__{item['comp_id']}.sdf"
+        align = {"target_id": tid, "arm": arm, "status": "ok", "reason": "",
+                 "recorded": L.now_iso()}
+        if not ref_gz.is_file() or not lig.is_file():
+            align.update({"status": "failed",
+                          "reason": "the reference structure or its ligand is missing"})
+            align_rows.append(align)
+            continue
+
+        ref_cif = out_dir / f"{tid}_reference.cif"
+        L.gunzip_to(ref_gz, ref_cif)
+        ref_st = gemmi.read_structure(str(ref_cif))
+        ref_st.setup_entities()
+        ref_res = polymer_residues(ref_st)
+        receptor = out_dir / f"{tid}.pdb"
+
+        if arm == "crystal":
+            n = write_receptor_pdb(ref_st, receptor)
+            align.update({"n_matched_ca": "", "superposition_rmsd_ca": "",
+                          "n_model_residues": n, "n_reference_residues": len(ref_res)})
+        else:
+            pred = predictions.get(tid)
+            if pred is None or not pred.get("structure_file"):
+                align.update({"status": "failed",
+                              "reason": "no prediction for this target in the chosen arm"})
+                align_rows.append(align)
+                ref_cif.unlink(missing_ok=True)
+                continue
+            model_gz = data_dir / pred["structure_file"]
+            if not model_gz.is_file():
+                align.update({"status": "failed", "reason": "the predicted structure is missing"})
+                align_rows.append(align)
+                ref_cif.unlink(missing_ok=True)
+                continue
+            suffix = "".join(model_gz.suffixes[:-1]) or ".pdb"
+            model_path = out_dir / f"{tid}_model{suffix}"
+            L.gunzip_to(model_gz, model_path)
+            model_st = gemmi.read_structure(str(model_path))
+            model_st.setup_entities()
+            mod_res = polymer_residues(model_st)
+
+            pairs = [(mod_res[i][1], ref_res[i][1]) for i in sorted(mod_res)
+                     if i in ref_res]
+            if len(pairs) < 4:
+                align.update({"status": "failed",
+                              "reason": f"only {len(pairs)} alpha carbons matched the reference"})
+                align_rows.append(align)
+                model_path.unlink(missing_ok=True)
+                ref_cif.unlink(missing_ok=True)
+                continue
+            rot, cm, cr, rmsd = kabsch([p[0] for p in pairs], [p[1] for p in pairs])
+            import numpy as np
+            for model in model_st:
+                for chain in model:
+                    for res in chain:
+                        for atom in res:
+                            v = np.array([atom.pos.x, atom.pos.y, atom.pos.z]) - cm
+                            v = rot @ v + cr
+                            atom.pos = gemmi.Position(float(v[0]), float(v[1]), float(v[2]))
+            n = write_receptor_pdb(model_st, receptor)
+            align.update({"n_matched_ca": len(pairs),
+                          "superposition_rmsd_ca": L.fmt(rmsd, 3),
+                          "n_model_residues": n, "n_reference_residues": len(ref_res)})
+            model_path.unlink(missing_ok=True)
+
+        ref_cif.unlink(missing_ok=True)
+        align_rows.append(align)
+        if align["status"] != "ok":
+            continue
+        rows.append({
+            "dataset": arm,
+            "complex_id": tid,
+            "pdb_id": item["pdb_id"],
+            "ccd_id": item["comp_id"],
+            "protein_pdb": str(receptor),
+            "ligand_sdf": str(lig),
+            "ligands_sdf": "",
+            "start_conf_sdf": "",
+        })
+
+    L.write_tsv(s1_config / f"dataset_{arm}.tsv", MANIFEST_COLUMNS, rows)
+    L.append_tsv(results_dir / "docking_alignment.tsv", ALIGN_COLUMNS, align_rows)
+    ok = [a for a in align_rows if a["status"] == "ok"]
+    print(f"[handoff] {len(rows)} receptors written for the {arm} arm, "
+          f"{len(align_rows) - len(ok)} could not be prepared")
+    if arm == "predicted":
+        vals = [float(a["superposition_rmsd_ca"]) for a in ok
+                if a.get("superposition_rmsd_ca") not in ("", None)]
+        if vals:
+            q = L.quantiles(vals)
+            print(f"[handoff] superposition deviation onto the experimental structure: "
+                  f"median {q[1]:.2f} Angstrom, range {min(vals):.2f} to {max(vals):.2f}")
+    return 0
+
+
+def collect(conf: dict, arm: str, stage1_conf: dict) -> int:
+    """Read the docking pipeline's own per-run table and compute the rates.
+
+    The rates are computed the way that pipeline computes them, from the same
+    columns, so the numbers here and its own published numbers mean the same
+    thing. One difference is recorded rather than silently absorbed: its
+    denominator counts runs that produced a pose, so runs that failed outright
+    are not in it. Both denominators are reported.
+    """
+    results_dir = Path(conf["RESULTS_DIR"])
+    s1_results = Path(stage1_conf["RESULTS_DIR"])
+    scored = s1_results / "scored" / "run_scores.tsv"
+    if not scored.is_file():
+        L.eprint(f"[error] {scored} not found; the docking stage wrote no scores")
+        return 1
+    runs = [r for r in L.read_tsv(scored) if r.get("dataset") == arm]
+    if not runs:
+        L.eprint(f"[error] no rows for dataset {arm} in the docking pipeline's table")
+        return 1
+
+    # Everything the pipeline attempted, including runs that produced no pose.
+    attempted: dict[tuple, int] = {}
+    run_dir = s1_results / "runs"
+    if run_dir.is_dir():
+        for tsv in run_dir.glob(f"*_{arm}.tsv"):
+            for r in L.read_tsv(tsv):
+                if r.get("dataset") != arm:
+                    continue
+                key = (r.get("arm", ""), r.get("method", ""))
+                attempted[key] = attempted.get(key, 0) + 1
+
+    rows = []
+    groups: dict[tuple, list] = {}
+    for r in runs:
+        groups.setdefault((r.get("arm", ""), r.get("method", "")), []).append(r)
+    for (dock_arm, method), rs in sorted(groups.items()):
+        def numeric(rec, key):
+            try:
+                return float(rec.get(key, ""))
+            except (TypeError, ValueError):
+                return None
+        scored_rows = [r for r in rs if numeric(r, "top1_rmsd") is not None]
+        assessed = [r for r in scored_rows if r.get("top1_pb_valid") not in ("", None)]
+        within = [r for r in scored_rows if numeric(r, "top1_rmsd") <= 2.0]
+        success = [r for r in assessed if r.get("top1_success_2a") == "1"]
+        n_scored = len(scored_rows)
+        n_assessed = len(assessed)
+        lo, hi = L.wilson(len(success), n_assessed) if n_assessed else (float("nan"),) * 2
+        med = L.quantiles([numeric(r, "top1_rmsd") for r in scored_rows])[1] \
+            if scored_rows else None
+        rows.append({
+            "arm": f"{arm}/{dock_arm}", "method": method,
+            "n_attempted": attempted.get((dock_arm, method), len(rs)),
+            "n_scored": n_scored, "n_assessed": n_assessed,
+            "n_rmsd_within_2a": len(within),
+            "rate_rmsd_within_2a": L.fmt(len(within) / n_scored if n_scored else None, 4),
+            "n_success": len(success),
+            "rate_success": L.fmt(len(success) / n_assessed if n_assessed else None, 4),
+            "ci_low": L.fmt(lo, 4), "ci_high": L.fmt(hi, 4),
+            "median_top1_rmsd": L.fmt(med, 3),
+            "note": "success requires the pose within 2 Angstrom and every physical check passed",
+            "recorded": L.now_iso(),
+        })
+    L.append_tsv(results_dir / "docking_handoff.tsv", HANDOFF_COLUMNS, rows)
+    for r in rows:
+        print(f"[handoff] {r['arm']} {r['method']}: {r['n_success']}/{r['n_assessed']} "
+              f"success ({r['rate_success']}), median top-1 RMSD {r['median_top1_rmsd']}")
+    return 0
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--config", required=True, type=Path)
+    ap.add_argument("--stage1-config", required=True, type=Path)
+    ap.add_argument("--arm", required=True, choices=["predicted", "crystal"])
+    ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--collect", action="store_true")
+    args = ap.parse_args()
+
+    conf = L.load_conf(args.config)
+    stage1_conf = L.load_conf(args.stage1_config)
+    if args.collect:
+        return collect(conf, args.arm, stage1_conf)
+    return prepare(conf, args.arm, stage1_conf, args.limit)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
