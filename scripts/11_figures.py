@@ -448,6 +448,49 @@ def fig_memory_curve(results: Path, figures: Path, conf: dict) -> str | None:
     return out.name
 
 
+def fig_pocket(results: Path, figures: Path, conf: dict) -> str | None:
+    """Global accuracy against pocket accuracy, one point per target and arm.
+
+    The question is whether a prediction that scores well over the whole chain
+    can be trusted where a ligand would sit. Points above the diagonal are
+    targets whose pocket is better than the chain as a whole; points below are
+    the ones that would mislead anyone reading only the global number.
+    """
+    rows = table(results, "pocket_scores.tsv")
+    if not rows:
+        return None
+    primary = L.conf_float(conf, "POCKET_RADIUS", 5.0)
+    pts: dict[str, list] = {}
+    for r in rows:
+        if abs(num(r.get("radius")) or -1 - primary) > 1e-6 and                 str(r.get("radius")) != f"{primary}":
+            continue
+        g, pk = num(r.get("global_lddt_ca")), num(r.get("pocket_lddt_ca"))
+        if g is None or pk is None:
+            continue
+        pts.setdefault(r["arm"], []).append((g, pk))
+    if not pts:
+        return None
+    fig, ax = plt.subplots(figsize=(5.8, 5.4))
+    ax.plot([0, 1], [0, 1], color=MUTED, lw=1.0, ls=(0, (4, 3)), zorder=1,
+            label="pocket as good as the chain")
+    for arm in [a for a in ARM_ORDER if a in pts] +                [a for a in sorted(pts) if a not in ARM_ORDER]:
+        xs = [p[0] for p in pts[arm]]
+        ys = [p[1] for p in pts[arm]]
+        ax.scatter(xs, ys, s=34, color=arm_colour(arm), alpha=0.85, linewidths=0.6,
+                   edgecolors=SURFACE, label=label_of(arm), zorder=2)
+    ax.set_xlabel("lDDT-CA over the whole chain")
+    ax.set_ylabel(f"lDDT-CA over residues within {primary:g} Angstrom of the ligand")
+    ax.set_title("Global accuracy is not pocket accuracy", loc="left", color=INK)
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    tidy(ax, "both")
+    ax.legend(frameon=False, fontsize=8, loc="lower right")
+    out = figures / "fig10_pocket_vs_global.png"
+    fig.savefig(out)
+    plt.close(fig)
+    return out.name
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -470,6 +513,7 @@ def main() -> int:
         ("timing", lambda: fig_timing(results, figures)),
         ("seed variance", lambda: fig_seed_variance(results, figures)),
         ("memory curve", lambda: fig_memory_curve(results, figures, conf)),
+        ("pocket against global", lambda: fig_pocket(results, figures, conf)),
     ]:
         try:
             out = fn()

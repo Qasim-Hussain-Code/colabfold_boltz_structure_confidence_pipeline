@@ -198,6 +198,11 @@ if should_run 05_predict; then
 fi
 
 if should_run 06_score_structures; then
+    # The two floors first. They are copied structures rather than
+    # predictions, so they cost a download each and no inference, and the
+    # scoring stage treats them exactly as it treats a prediction.
+    banner "06a_build_null_floors"
+    "$PY" "${SCRIPTS}/06a_build_null_floors.py" --config "${ROOT}/project.conf"         "${FORCE_FLAG[@]}" "${LIMIT_FLAG[@]}" ||         echo "[run_all] the floors failed; continuing without them"
     banner "06_score_structures"
     "$PY" "${SCRIPTS}/06_score_structures.py" --config "${ROOT}/project.conf" \
         ${ARM:+--arm "$ARM"} "${FORCE_FLAG[@]}"

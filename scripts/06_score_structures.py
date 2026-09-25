@@ -171,6 +171,139 @@ def usalign_scores(usalign_bin: str, tmscore_bin: str, model: Path, reference: P
     return out
 
 
+
+# ---------------------------------------------------------------------------
+# The pocket
+# ---------------------------------------------------------------------------
+def pocket_residues(reference: Path, ligand_sdf: Path, radius: float):
+    """Sequence positions of every reference residue near the ligand.
+
+    A prediction can be excellent over the whole chain and useless for docking,
+    because the residues that decide a docking result are a few dozen side
+    chains lining one cavity. Those residues are identified here from the
+    experimental structure and the ligand as deposited, so the selection owes
+    nothing to the prediction being judged.
+
+    The radius is arbitrary. It is taken from the configuration, several values
+    are computed, and the README says it is arbitrary rather than implying that
+    5 Angstrom is a property of pockets.
+    """
+    import gemmi
+    import numpy as np
+
+    lig = []
+    for line in ligand_sdf.read_text(errors="replace").splitlines():
+        parts = line.split()
+        # An SDF atom line starts with three coordinates and an element symbol.
+        if len(parts) >= 4:
+            try:
+                x, y, z = float(parts[0]), float(parts[1]), float(parts[2])
+            except ValueError:
+                continue
+            if parts[3].isalpha() and parts[3] != "H":
+                lig.append((x, y, z))
+    if not lig:
+        return {}, 0
+    lig_arr = np.array(lig)
+
+    st = gemmi.read_structure(str(reference))
+    st.setup_entities()
+    st.remove_ligands_and_waters()
+    near = {}
+    if not len(st):
+        return {}, len(lig)
+    for chain in st[0]:
+        poly = chain.get_polymer()
+        if len(poly) == 0:
+            continue
+        for res in poly:
+            if res.label_seq is None:
+                continue
+            for atom in res:
+                if atom.element == gemmi.Element("H"):
+                    continue
+                d = np.linalg.norm(lig_arr - np.array([atom.pos.x, atom.pos.y, atom.pos.z]),
+                                   axis=1).min()
+                if d <= radius:
+                    near.setdefault(int(res.label_seq), chain.name)
+                    break
+        if near:
+            break
+    return near, len(lig)
+
+
+def pocket_scores(local_lddt: dict, bb_local_lddt: dict, positions: dict):
+    """Average the per-residue scores over the pocket.
+
+    OpenStructure has already computed a score for every residue; restricting
+    to the pocket is a selection rather than a second calculation, so the
+    pocket number and the global number are the same quantity over different
+    residues and can be compared directly.
+    """
+    def mean_over(table):
+        vals = []
+        for key, value in (table or {}).items():
+            bits = key.split(".")
+            if len(bits) < 2 or not bits[1].isdigit():
+                continue
+            if int(bits[1]) in positions and value is not None:
+                vals.append(float(value))
+        return (sum(vals) / len(vals)) if vals else None, len(vals)
+
+    all_atom, n_all = mean_over(local_lddt)
+    ca_only, n_ca = mean_over(bb_local_lddt)
+    return ca_only, all_atom, max(n_all, n_ca)
+
+
+def pocket_rmsd(model: Path, reference: Path, positions: dict):
+    """All-atom deviation over the pocket, after fitting on the pocket.
+
+    Fitting on the pocket rather than on the whole chain is the point: a model
+    whose domains are slightly rotated relative to each other can have a poor
+    global fit and an excellent pocket, and it is the pocket that decides
+    whether a ligand can be placed. This follows the published comparison this
+    work is measured against, which aligned on the pocket residues and then
+    reported the deviation over their heavy atoms.
+    """
+    import gemmi
+    import numpy as np
+
+    def heavy_atoms(path):
+        st = gemmi.read_structure(str(path))
+        st.setup_entities()
+        st.remove_ligands_and_waters()
+        out = {}
+        if not len(st):
+            return out
+        for chain in st[0]:
+            poly = chain.get_polymer()
+            if len(poly) == 0:
+                continue
+            for res in poly:
+                if res.label_seq is None or int(res.label_seq) not in positions:
+                    continue
+                for atom in res:
+                    if atom.element == gemmi.Element("H"):
+                        continue
+                    out[(int(res.label_seq), atom.name)] = (atom.pos.x, atom.pos.y, atom.pos.z)
+            if out:
+                break
+        return out
+
+    a, b = heavy_atoms(model), heavy_atoms(reference)
+    shared = sorted(set(a) & set(b))
+    if len(shared) < 8:
+        return None, len(shared)
+    m = np.array([a[k] for k in shared])
+    r = np.array([b[k] for k in shared])
+    cm, cr = m.mean(axis=0), r.mean(axis=0)
+    h = (m - cm).T @ (r - cr)
+    u, _s, vt = np.linalg.svd(h)
+    d = np.sign(np.linalg.det(vt.T @ u.T))
+    rot = vt.T @ np.diag([1.0, 1.0, d]) @ u.T
+    fitted = (rot @ (m - cm).T).T
+    return float(np.sqrt(((fitted - (r - cr)) ** 2).sum(axis=1).mean())), len(shared)
+
 # ---------------------------------------------------------------------------
 def residue_key_parts(key: str):
     """OpenStructure keys per-residue values as chain.resnum.inscode."""
@@ -251,7 +384,15 @@ def main() -> int:
         return 1
 
     targets = {t["target_id"]: t for t in L.read_tsv(config_dir / "targets.tsv")}
-    rows, residue_rows = [], []
+    # Only the targets with a usable ligand have a pocket to measure. The rest
+    # get blank pocket columns rather than a zero, because no pocket is not the
+    # same as a badly predicted one.
+    subset_path = config_dir / "docking_subset.tsv"
+    subset = {r["target_id"]: r for r in L.read_tsv(subset_path)} \
+        if subset_path.is_file() else {}
+    radii = [float(x) for x in (conf.get("POCKET_RADII") or "5.0").split()]
+    primary_radius = L.conf_float(conf, "POCKET_RADIUS", 5.0)
+    rows, residue_rows, pocket_rows = [], [], []
     ost_version = ""
 
     for i, pred in enumerate(preds, 1):
@@ -311,6 +452,34 @@ def main() -> int:
 
             local = data.get("bb_local_lddt") or {}
             row["n_residues_compared"] = sum(1 for v in local.values() if v is not None)
+
+            item = subset.get(tid)
+            if item:
+                lig = data_dir / "reference_ligands" / f"{tid}__{item['comp_id']}.sdf"
+                if lig.is_file():
+                    for radius_value in radii:
+                        near, n_lig_atoms = pocket_residues(reference, lig, radius_value)
+                        if not near:
+                            continue
+                        ca_only, all_atom, n_scored = pocket_scores(
+                            data.get("local_lddt"), local, near)
+                        rmsd_value, n_atoms = pocket_rmsd(model, reference, near)
+                        pocket_rows.append({
+                            "target_id": tid, "arm": arm, "radius": radius_value,
+                            "n_pocket_residues": len(near),
+                            "n_residues_scored": n_scored,
+                            "n_ligand_heavy_atoms": n_lig_atoms,
+                            "pocket_lddt_ca": L.fmt(ca_only, 4),
+                            "pocket_lddt_all_atom": L.fmt(all_atom, 4),
+                            "pocket_rmsd_all_atom": L.fmt(rmsd_value, 3),
+                            "n_atoms_compared": n_atoms,
+                            "global_lddt_ca": L.fmt(data.get("bb_lddt"), 4),
+                            "recorded": L.now_iso(),
+                        })
+                        if abs(radius_value - primary_radius) < 1e-6:
+                            row["pocket_lddt_ca"] = L.fmt(ca_only, 4)
+                            row["pocket_rmsd_all_atom"] = L.fmt(rmsd_value, 3)
+                            row["pocket_n_residues"] = len(near)
             conf_path = results_dir / pred.get("confidence_file", "")
             if conf_path.is_file():
                 residue_rows.extend(
@@ -322,9 +491,16 @@ def main() -> int:
 
     L.write_tsv(out_scores, SCORE_COLUMNS, rows)
     L.write_tsv(results_dir / "residue_scores.tsv", RESIDUE_COLUMNS, residue_rows)
+    if pocket_rows:
+        L.write_tsv(results_dir / "pocket_scores.tsv",
+                    ["target_id", "arm", "radius", "n_pocket_residues",
+                     "n_residues_scored", "n_ligand_heavy_atoms", "pocket_lddt_ca",
+                     "pocket_lddt_all_atom", "pocket_rmsd_all_atom",
+                     "n_atoms_compared", "global_lddt_ca", "recorded"], pocket_rows)
     ok_rows = [r for r in rows if r["status"] == "ok"]
     print(f"[06_score_structures] {len(ok_rows)} of {len(rows)} scored, "
-          f"{len(residue_rows)} residue rows, OpenStructure {ost_version}")
+          f"{len(residue_rows)} residue rows, {len(pocket_rows)} pocket rows, "
+          f"OpenStructure {ost_version}")
     if ok_rows:
         vals = sorted(float(r["lddt_ca"]) for r in ok_rows if r.get("lddt_ca") not in ("", None))
         if vals:
