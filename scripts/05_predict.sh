@@ -101,8 +101,14 @@ STAGE="05_predict_${ARM}"
 (( CALIBRATE == 1 )) && STAGE="05_predict_calibrate"
 (( CALIBRATE == 0 )) && { csc_skip_if_done "$STAGE" "$FORCE" && exit 0; }
 
-PY_ANALYSIS="$(csc_env_bin "$CONDA_ENV_ANALYSIS" python)"
-[[ -n "$PY_ANALYSIS" ]] || { echo "[error] ${CONDA_ENV_ANALYSIS} not installed; run 01_install.sh" >&2; exit 3; }
+PY_ANALYSIS="$(csc_require_bin "$CONDA_ENV_ANALYSIS" python)" || exit 3
+# The inference tool is resolved once, here, rather than inside the loop. A
+# lookup that fails inside the loop produces a bare status of 127 on the first
+# target, which says nothing about what was missing or where it was sought.
+case "$SOURCE" in
+    colabfold) PREDICT_BIN="$(csc_require_bin "$CONDA_ENV_COLABFOLD" colabfold_batch)" || exit 3 ;;
+    boltz2)    PREDICT_BIN="$(csc_require_bin "$CONDA_ENV_BOLTZ" boltz)" || exit 3 ;;
+esac
 MANIFEST="${CONFIG_DIR}/targets.tsv"
 [[ -s "$MANIFEST" ]] || { echo "[error] ${MANIFEST} missing; run 02_build_holdout_set.py" >&2; exit 3; }
 
@@ -382,7 +388,7 @@ for target in "${TARGET_LIST[@]}"; do
                 N_FAIL=$(( N_FAIL + 1 ))
                 continue
             fi
-            csc_run "predict_${tag}" "$(csc_env_bin "$CONDA_ENV_COLABFOLD" colabfold_batch)" \
+            csc_run "predict_${tag}" "$PREDICT_BIN" \
                 "${cf_args[@]}" "$input" "$out_dir" || rc=$?
         else
             input="${out_dir}/${target}.yaml"
@@ -391,7 +397,7 @@ for target in "${TARGET_LIST[@]}"; do
             "$PY_ANALYSIS" "${SCRIPT_DIR}/lib_predict.py" prepare \
                 --config "${REPO_DIR}/project.conf" --target "$target" \
                 --format yaml --msa "$msa_arg" --out "$input"
-            csc_run "predict_${tag}" "$(csc_env_bin "$CONDA_ENV_BOLTZ" boltz)" predict \
+            csc_run "predict_${tag}" "$PREDICT_BIN" predict \
                 "$input" --out_dir "$out_dir" --cache "$BOLTZ_DIR" \
                 --accelerator cpu --seed "$seed" \
                 --recycling_steps "$BOLTZ_RECYCLING_STEPS" \
