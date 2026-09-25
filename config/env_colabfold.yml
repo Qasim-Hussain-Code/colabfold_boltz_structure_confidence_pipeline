@@ -1,0 +1,26 @@
+# AlphaFold2 inference through ColabFold, on CPU, with the remote MSA server.
+#
+# conda gives this environment nothing but a python interpreter. ColabFold
+# itself comes from PyPI, because the bioconda package is several releases
+# behind, still requires TensorFlow, and pins JAX below a version that the
+# current ColabFold will not run with. 01_install.sh does the pip step and
+# records the versions that landed.
+#
+# Python 3.12 rather than 3.13. ColabFold's own README uses 3.13, but its
+# continuous integration tests 3.10, 3.11 and 3.12, and an inference
+# environment is the wrong place to be the first person to try a combination.
+# Python 3.10 is ruled out from the other side: it caps JAX at an old version.
+#
+# The pip step installs colabfold with the alphafold extra, which brings JAX,
+# the AlphaFold fork ColabFold maintains, and prebuilt hhsearch and kalign
+# binaries for the templates arm. Plain pip install of jax gives the CPU build,
+# which is what this machine can use. The openmm extra is deliberately left
+# out: it exists for Amber relaxation, relaxation is not part of this
+# benchmark, and the confidence values are read from unrelaxed models either
+# way.
+name: csc_colabfold
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip

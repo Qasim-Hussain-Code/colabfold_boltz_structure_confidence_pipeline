@@ -1,0 +1,28 @@
+# Boltz-2 inference on CPU.
+#
+# As with ColabFold, conda provides only the interpreter and pip does the rest,
+# for a reason specific to this package: Boltz requires torch but does not pin
+# it, so a plain pip install on Linux pulls the default PyPI torch, which
+# depends on the CUDA toolkit, cuDNN, NCCL and Triton. That is several
+# gigabytes of GPU libraries on a machine with no GPU. 01_install.sh installs
+# the CPU-only torch wheel from PyTorch's own CPU index first, then Boltz on
+# top of it, and records both.
+#
+# Python 3.12 because Boltz declares support for 3.10 up to but not including
+# 3.13.
+#
+# The [cuda] extra is never used. Since version 2.2.0 the NVIDIA kernels are
+# optional, and on a machine without a suitable device Boltz turns them off by
+# itself.
+#
+# The version installed is not the released one, and that is a deliberate
+# choice recorded in the README. The current release runs part of the model in
+# reduced precision on CPU, which has been reported to produce distorted
+# geometry, and the fix exists only in the development branch. 01_install.sh
+# pins that commit and records it, because the version string does not change.
+name: csc_boltz
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip

@@ -1,0 +1,34 @@
+# Scoring. OpenStructure computes lDDT, TM-score and the rigid-body scores,
+# and provides the stereochemistry checks; US-align provides TM-score and
+# GDT-TS from an independent implementation.
+#
+# This environment is separate from the analysis environment for a practical
+# reason rather than a principled one: the bioconda OpenStructure build for
+# 64-bit Linux is not headless, so it pulls in Qt, PyQt, mesa and OpenMM. None
+# of that is used here, and none of it belongs next to the numpy and pandas the
+# analysis depends on. Only the aarch64 build is headless, which is no help on
+# this machine.
+#
+# OpenStructure is pinned at or above 2.11.1 because 2.10.0 through 2.11.0
+# carried a scoring defect: with an mmCIF reference, residues were aligned by
+# number even when that was not asked for, which silently changes every lDDT
+# computed against a deposited structure.
+#
+# The compound library is not built here. Building one means downloading the
+# chemical component dictionary, which is larger than everything else in this
+# environment put together; the bioconda package already carries one, and
+# 01_install.sh records the date of the snapshot it contains so the README can
+# state which dictionary the scores were computed against.
+#
+# usalign gives both the USalign and the TMscore binaries. TM-score comes from
+# USalign, GDT-TS from TMscore, and the two are reported separately because
+# they are different implementations that search superpositions differently.
+name: csc_ost
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.12
+  - openstructure>=2.11.1
+  - usalign
+  - numpy

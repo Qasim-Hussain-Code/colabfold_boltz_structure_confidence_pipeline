@@ -1,0 +1,20 @@
+# Training cutoffs, read from each model's own publication or repository
+# rather than from a secondary source. 02_build_holdout_set.py reads this file
+# and takes the latest cutoff as the common one, so that a single held-out set
+# is out of training for every model compared. Changing a date here changes the
+# set, which is the point: the dates are evidence, not constants in a script.
+#
+# date_basis is the column that decides whether the filter is sound. A model
+# that selected its training examples by deposition date is not protected by a
+# release-date filter, because a structure released in 2024 may have been
+# deposited in 2021 and held. Both dates are recorded per target and the
+# stricter one is used, so this column says what each model claims rather than
+# what the filter does.
+#
+# leakage_note carries what the date cannot cover. Both models were trained on
+# predicted structures as well as deposited ones, and a target whose sequence
+# or a close homologue appeared in that predicted data is not unseen in any
+# useful sense, whatever its deposition date. No filter here can exclude that.
+model	cutoff_date	date_basis	stated_in	quote	leakage_note	checked
+alphafold2_ptm	2018-04-30	release	Jumper et al. 2021, Nature 596:583-589, Methods, Training regimen	To train, we use structures from the PDB with a maximum release date of 30 April 2018	75 per cent of training examples were the model's own predictions of 355,993 Uniclust30 v2018_08 sequences, so sequence-level exposure is not excluded by a structure date	2026-09-25
+boltz2	2023-06-01	release	Boltz-2 technical report, bioRxiv 2025.06.14.659707, Data section and Appendix A.1.1	PDB structures released before 2023-06-01	distillation used about five million AlphaFold Database monomers and further self-distillation sets, so the same caveat applies more strongly	2026-09-25

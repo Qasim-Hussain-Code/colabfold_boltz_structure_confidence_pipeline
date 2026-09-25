@@ -1,0 +1,35 @@
+# The environment that orchestrates everything and does the analysis. It never
+# runs a structure prediction and never scores a structure: those live in
+# csc_colabfold, csc_boltz and csc_ost, because their pins are incompatible
+# with each other and with this one.
+#
+# Why python is pinned to a minor version and nothing else is. Stage 1 pinned
+# nothing and recorded what the solver chose, which caught a silent downgrade
+# that would otherwise have invalidated a comparison. The same approach is used
+# here: solve against conda-forge on the day, record the result in
+# results/environment/versions.tsv, and commit the solved environment as
+# config/env_analysis.lock.yml so the run can be reproduced exactly.
+#
+# gemmi rather than Biopython for mmCIF. Biopython's MMCIFParser drops the
+# entity records and the assembly, and it cannot write mmCIF at all; gemmi
+# reads and writes both formats, keeps the author and label numbering
+# separately, and is what the structure stages need to align a prediction
+# numbered from 1 against a deposited model numbered from anything. Biopython
+# is still here because the sequence handling is better.
+name: csc_analysis
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - gemmi
+  - biopython
+  - requests
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib-base
+  - seaborn
+  - statsmodels
+  - quarto
+  - shellcheck
+  - pip

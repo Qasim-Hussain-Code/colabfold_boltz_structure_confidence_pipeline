@@ -1,0 +1,38 @@
+# Every external source this pipeline reads, with the identifier it is pinned
+# to. The fetching scripts read this file rather than holding URLs, so changing
+# a source is a config change and shows up in a diff.
+#
+# checksum_source says who publishes the checksum being verified. "publisher"
+# means the value is fetched from the publisher at run time and compared;
+# "recorded_locally" means upstream publishes none and the stage records what
+# it received instead of pretending to verify it. Nothing here is self-attested
+# as a checksum baked into a script.
+#
+# A note on the two weight rows, because the licence question is the awkward
+# part of this stage.
+#
+# ColabFold's own code is MIT. The AlphaFold2 parameters it downloads are a
+# separate work under a separate licence, and which licence applies is not as
+# simple as quoting the current README. The parameter file ColabFold fetches
+# for this model type is the July 2021 archive, and that archive carries an
+# embedded licence file whose text is the non-commercial, share-alike variant.
+# The model's own repository now states that the parameters are licensed for
+# any use with attribution, and its release notes describe that as a
+# relicensing with no change to the parameters themselves. Both facts are
+# recorded, the README states both, and 05_predict.sh writes the licence file
+# it actually found inside the archive into results/environment/ so a reader
+# can check rather than take either statement on trust.
+source_id	kind	locator	pinned_to	checksum_source	licence	checked
+rcsb_search_api	rest_api	https://search.rcsb.org/rcsbsearch/v2/query	no version pin available; schema version recorded per run	none	CC0-1.0	2026-09-25
+rcsb_data_api	rest_api	https://data.rcsb.org/rest/v1	no version pin available	none	CC0-1.0	2026-09-25
+rcsb_graphql_api	rest_api	https://data.rcsb.org/graphql	no version pin available	none	CC0-1.0	2026-09-25
+rcsb_model_server	rest_api	https://models.rcsb.org/v1	version reported in the response header, recorded per run	none	CC0-1.0	2026-09-25
+rcsb_files	https	https://files.rcsb.org/download	mmCIF per accession, downloaded once	recorded_locally	CC0-1.0	2026-09-25
+colabfold_msa_server	rest_api	https://api.colabfold.com	databases versioned independently of this code; queue depth and query date recorded per target	none	server terms, see README	2026-09-25
+colabfold_pypi	pypi	colabfold[alphafold]	1.6.3	publisher	MIT for the code, separate licence for the weights	2026-09-25
+alphafold2_params	https	https://storage.googleapis.com/alphafold/alphafold_params_2021-07-14.tar	3722752000 bytes as served, verified on download	publisher	embedded licence file recorded at fetch time; the model's repository states attribution-only terms for the parameters	2026-09-25
+boltz_repo	git	https://github.com/jwohlwend/boltz	b1ebfc46ecf57f5414e0d1a6f9027bbb122c53bc	none	MIT, stated in the repository to cover code and weights	2026-09-25
+boltz2_weights	https	https://huggingface.co/boltz-community/boltz-2	boltz2_conf.ckpt and mols.tar, sizes verified on download	publisher	MIT	2026-09-25
+stage1_pipeline	git	https://github.com/Qasim-Hussain-Code/vina_gnina_pose_benchmark_pipeline	d329fbe0c08e4b36ed89f8ce077febc606350254	none	MIT	2026-09-25
+openstructure	conda	bioconda::openstructure	version recorded per run; compound library date recorded from the package	none	LGPL-3.0-or-later	2026-09-25
+usalign	conda	bioconda::usalign	version recorded per run	none	permissive custom notice, see LICENSE	2026-09-25
