@@ -395,3 +395,5 @@ target_id	stage	arm	reason	detail	recorded
 8PEH_1	02_build_holdout_set		beyond the 150 targets the wall-clock budget allows; the set was cut by length, keeping the shortest		2026-09-25T21:50:44+08:00
 8QPJ_1	02_build_holdout_set		beyond the 150 targets the wall-clock budget allows; the set was cut by length, keeping the shortest		2026-09-25T21:50:44+08:00
 8S4J_1	02_build_holdout_set		beyond the 150 targets the wall-clock budget allows; the set was cut by length, keeping the shortest		2026-09-25T21:50:44+08:00
+10AF_1	06_score_structures	null_template	"comparison reported failure: RuntimeError: Inconsistent residues observed: A.13.-A.9. A.174.-A.170.
+"		2026-09-25T22:18:30+08:00

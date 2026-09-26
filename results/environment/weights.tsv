@@ -1,0 +1,13 @@
+model	file	bytes	sha256	source	note	recorded
+alphafold2_ptm	params_model_1_ptm.npz	373103340	5e564f79af5bcd54ccef6e2a6bb0ff01015d01650ebc41d4575e35f0de9ecc84	fetched by 05_predict.sh	one of five parameter sets for this model type	2026-09-25T20:01:57+08:00
+alphafold2_ptm	params_model_2_ptm.npz	373103340	23645d9a82c4af2ed54cd48a7b3c1c2575dc6aa9fe931adb4d7203ca5f0dc398	fetched by 05_predict.sh	one of five parameter sets for this model type	2026-09-25T20:02:01+08:00
+alphafold2_ptm	params_model_3_ptm.npz	371746284	b53a724294cdd46a45d530b306bced8e429ffee74a4f9a2a897551b30966c415	fetched by 05_predict.sh	one of five parameter sets for this model type	2026-09-25T20:02:06+08:00
+alphafold2_ptm	params_model_4_ptm.npz	371746284	07d0e285ad1406ce3d91a2f6633a8ce9ee99155a53d24ee7783f8fd1e89f5d3a	fetched by 05_predict.sh	one of five parameter sets for this model type	2026-09-25T20:02:11+08:00
+alphafold2_ptm	params_model_5_ptm.npz	371746284	2f8d0bd193e7d6e837958ba92acdc3f02b23b61bf841fa043fc076ee0e1996a5	fetched by 05_predict.sh	one of five parameter sets for this model type	2026-09-25T20:02:17+08:00
+alphafold2_ptm	params_model_1..5.npz	1861276642		deleted by 05_predict.sh	the archive also carries five parameter sets for the original model type, which no arm here runs	2026-09-25T20:02:17+08:00
+alphafold2_ptm	params_model_1_ptm.npz	373103340	5e564f79af5bcd54ccef6e2a6bb0ff01015d01650ebc41d4575e35f0de9ecc84	fetched by 05_predict.sh	one of five parameter sets for this model type	2026-09-25T22:03:52+08:00
+alphafold2_ptm	params_model_2_ptm.npz	373103340	23645d9a82c4af2ed54cd48a7b3c1c2575dc6aa9fe931adb4d7203ca5f0dc398	fetched by 05_predict.sh	one of five parameter sets for this model type	2026-09-25T22:03:56+08:00
+alphafold2_ptm	params_model_3_ptm.npz	371746284	b53a724294cdd46a45d530b306bced8e429ffee74a4f9a2a897551b30966c415	fetched by 05_predict.sh	one of five parameter sets for this model type	2026-09-25T22:04:01+08:00
+alphafold2_ptm	params_model_4_ptm.npz	371746284	07d0e285ad1406ce3d91a2f6633a8ce9ee99155a53d24ee7783f8fd1e89f5d3a	fetched by 05_predict.sh	one of five parameter sets for this model type	2026-09-25T22:04:06+08:00
+alphafold2_ptm	params_model_5_ptm.npz	371746284	2f8d0bd193e7d6e837958ba92acdc3f02b23b61bf841fa043fc076ee0e1996a5	fetched by 05_predict.sh	one of five parameter sets for this model type	2026-09-25T22:04:27+08:00
+alphafold2_ptm	params_model_1..5.npz	1861276642		deleted by 05_predict.sh	the archive also carries five parameter sets for the original model type, which no arm here runs	2026-09-25T22:04:28+08:00

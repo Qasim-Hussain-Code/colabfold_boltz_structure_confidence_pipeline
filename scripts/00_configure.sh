@@ -475,10 +475,40 @@ PROJ_INPUTS_MB=$(( N_TARGETS * MB_PER_TARGET_INPUTS ))
 # The gate takes the larger. An earlier version summed the extraction peak and
 # the final data total, which overstated the requirement by about a gigabyte
 # and refused a run that fits.
-PEAK_A=$(( MB_WEIGHTS_PEAK + PROJ_INPUTS_MB ))
+# Weights already in the cache do not have to be fetched again, so the
+# extraction moment has already passed for them. Counting it anyway makes the
+# gate refuse a run that is resuming, which is the common case after anything
+# interrupts a long set of arms.
+# How much is already in the cache decides whether the extraction moment is
+# still ahead. Once the weights are trimmed and resting, that moment has
+# passed and will not come again for this model.
+MB_CACHED=0
+if [[ -d "$CACHE_DIR" ]]; then
+    MB_CACHED="$(du -sm "$CACHE_DIR" 2>/dev/null | awk '{print $1}')"
+    [[ "$MB_CACHED" =~ ^[0-9]+$ ]] || MB_CACHED=0
+fi
+if (( MB_CACHED >= MB_WEIGHTS_RESTING )); then
+    PEAK_A=0
+else
+    PEAK_A=$(( MB_WEIGHTS_PEAK + PROJ_INPUTS_MB ))
+fi
 PEAK_B=$(( MB_WEIGHTS_RESTING + PROJ_DATA_MB ))
-PROJ_DISK_MB=$PEAK_A
-(( PEAK_B > PROJ_DISK_MB )) && PROJ_DISK_MB=$PEAK_B
+PROJ_TOTAL_MB=$PEAK_A
+(( PEAK_B > PROJ_TOTAL_MB )) && PROJ_TOTAL_MB=$PEAK_B
+
+# What is already on disk is already reflected in the free space measured
+# above, so the gate asks how much MORE is needed rather than what a run from
+# nothing would occupy. Without this a resumed run is refused for space it is
+# not going to ask for: after one set of arms the weights and every input are
+# already present, and the remaining predictions are tens of kilobytes each.
+MB_PRESENT=0
+for d in "$CACHE_DIR" "$DATA_DIR"; do
+    [[ -d "$d" ]] || continue
+    n="$(du -sm "$d" 2>/dev/null | awk '{print $1}')"
+    [[ "$n" =~ ^[0-9]+$ ]] && MB_PRESENT=$(( MB_PRESENT + n ))
+done
+PROJ_DISK_MB=$(( PROJ_TOTAL_MB - MB_PRESENT ))
+(( PROJ_DISK_MB < 0 )) && PROJ_DISK_MB=0
 PROJ_DISK_GB=$(awk -v m="$PROJ_DISK_MB" 'BEGIN { printf "%.1f", m/1024 }')
 
 # Wall clock. One prediction per target per arm per model, at the median length
@@ -505,7 +535,9 @@ PROJ_HOURS=$(( PROJ_SEC / 3600 ))
 echo "  arms requested           : ${N_ARMS} (${ARMS})"
 echo "  models requested         : ${N_MODELS} (${MODELS})"
 echo "  targets assumed          : ${N_TARGETS}"
-echo "  projected disk           : ${PROJ_DISK_GB} GB, the larger of ${PEAK_A} MB while the weights extract and ${PEAK_B} MB when every result is written"
+echo "  projected disk           : ${PROJ_TOTAL_MB} MB in total, the larger of ${PEAK_A} MB while the weights"
+echo "                             extract (0 once they are cached) and ${PEAK_B} MB when every result is written"
+echo "  already on disk          : ${MB_PRESENT} MB, so ${PROJ_DISK_GB} GB more is needed"
 echo "  projected wall clock     : ${PROJ_HOURS} h at ${SEC_ONE} s per prediction of a ${MEDIAN_LEN}-residue target, over ${N_PREDICT_ARMS} arms that run inference"
 echo
 
@@ -513,8 +545,8 @@ echo
 # loses up to a gigabyte on a budget of ten, which on this machine is the
 # difference between a run that fits and a refusal.
 BUDGET_MB=$(( DISK_GB * 1024 ))
-if (( PROJ_DISK_MB > BUDGET_MB )); then
-    echo "[error] the requested arms project to ${PROJ_DISK_MB} MB and the budget is ${BUDGET_MB} MB." >&2
+if (( PROJ_TOTAL_MB > BUDGET_MB )); then
+    echo "[error] the requested arms project to ${PROJ_TOTAL_MB} MB in total and the budget is ${BUDGET_MB} MB." >&2
     printf '        Shortfall %.1f GB. Raise --disk, point --cache-dir at a larger\n' \
         "$(awk -v a="$(( PROJ_DISK_MB - BUDGET_MB ))" 'BEGIN{print a/1024}')" >&2
     echo "        filesystem, or drop a model. Refusing to write a project.conf that" >&2
@@ -715,6 +747,12 @@ PLDDT_HIGH=90
 LDDT_TRUST=0.7
 # Calibration binning, named because expected calibration error depends on it.
 CALIBRATION_BINS=10
+
+# ---- the application arm ---------------------------------------------------
+# Deposited entries of the same protein whose arrangements that arm measures
+# against. They are listed here rather than in the script so that changing the
+# comparison set is a configuration change and shows up in a diff.
+PEDV_ENTRIES=6U7K,6VV5,7W6M,7W73,7Y6S,7Y6T
 
 # ---- paths ----------------------------------------------------------------
 REPO_DIR="${REPO_DIR}"

@@ -1,0 +1,5 @@
+stage	label	elapsed_s	peak_rss_kb	exit_status	recorded
+05_predict_calibrate	fetch_af2_weights	271.40	35588	0	2026-09-25T20:01:51+08:00
+05_predict_calibrate	predict_10UV_1	166.94	3079508	0	2026-09-25T20:05:05+08:00
+05_predict_calibrate	predict_10AF_1	257.86	2932784	0	2026-09-25T20:09:23+08:00
+05_predict_calibrate	predict_10QV_1	730.54	3427400	0	2026-09-25T20:21:34+08:00
