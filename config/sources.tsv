@@ -33,7 +33,7 @@ colabfold_pypi	pypi	colabfold[alphafold]	1.6.3	publisher	MIT for the code, separ
 alphafold2_params	https	https://storage.googleapis.com/alphafold/alphafold_params_2021-07-14.tar	3722752000 bytes as served, verified on download	publisher	embedded licence file recorded at fetch time; the model's repository states attribution-only terms for the parameters	2026-09-25
 boltz_repo	git	https://github.com/jwohlwend/boltz	b1ebfc46ecf57f5414e0d1a6f9027bbb122c53bc	none	MIT, stated in the repository to cover code and weights	2026-09-25
 boltz2_weights	https	https://huggingface.co/boltz-community/boltz-2	boltz2_conf.ckpt and mols.tar, sizes verified on download	publisher	MIT	2026-09-25
-stage1_pipeline	git	https://github.com/Qasim-Hussain-Code/vina_gnina_pose_benchmark_pipeline	d329fbe0c08e4b36ed89f8ce077febc606350254	none	MIT	2026-09-25
+stage1_pipeline	git	https://github.com/Qasim-Hussain-Code/vina_gnina_pose_benchmark_pipeline	313851a0941f70da32f190efb66790a0c8cbb74a	none	MIT	2026-09-26
 openstructure	conda	bioconda::openstructure	version recorded per run; compound library date recorded from the package	none	LGPL-3.0-or-later	2026-09-25
 usalign	conda	bioconda::usalign	version recorded per run	none	permissive custom notice, see LICENSE	2026-09-25
 rotarama_data	github_raw	https://github.com/rlabduke/rotarama_data	master at fetch time, recorded per run	recorded_locally	CC-BY-4.0, attribution to the Richardson laboratory and contributors	2026-09-25
