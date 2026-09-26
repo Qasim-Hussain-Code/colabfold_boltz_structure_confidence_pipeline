@@ -319,8 +319,11 @@ def prepare(conf: dict, arm: str, stage1_conf: dict, limit: int) -> int:
     # Replaced, not appended. Both tables are rewritten every time an arm is
     # rerun, and appending left three generations of rows in them with
     # nothing to say which was current.
+    # Keyed on the arm alone, so a rerun that covers fewer targets does not
+    # leave the ones it dropped behind. The subset shrank from fifteen to
+    # thirteen and the two that went stayed in this table.
     L.replace_rows(results_dir / "docking_alignment.tsv", ALIGN_COLUMNS,
-                   ("target_id", "arm"), align_rows)
+                   ("arm",), align_rows)
     ok = [a for a in align_rows if a["status"] == "ok"]
     print(f"[handoff] {len(rows)} receptors written for the {arm} arm, "
           f"{len(align_rows) - len(ok)} could not be prepared")
@@ -380,7 +383,11 @@ def collect(conf: dict, arm: str, stage1_conf: dict) -> int:
             for r in L.read_tsv(tsv):
                 if r.get("dataset") != arm or r.get("status") == "ok":
                     continue
-                tid = r.get("complex_id") or ""
+                # That pipeline names this column "key". Reading it as
+                # complex_id gave an empty string every time, so the block
+                # below never recorded anything and the two targets that
+                # cannot be docked stayed invisible.
+                tid = r.get("key") or r.get("complex_id") or ""
                 why = (r.get("reason") or "").strip()
                 if tid and why and tid not in failures:
                     failures[tid] = why[:180]

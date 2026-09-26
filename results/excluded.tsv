@@ -432,3 +432,11 @@ target_id	stage	arm	reason	detail	recorded
 8QX5_1	03a_choose_ligand_instances		every copy of its ligand sits on chain B, and none of those is the chain the prediction is of (A) or a copy of it		2026-09-26T17:07:25+08:00
 8RD7_1	03a_choose_ligand_instances		every copy of its ligand sits on chain D, and none of those is the chain the prediction is of (A) or a copy of it		2026-09-26T17:07:25+08:00
 35TM_1	05_predict	af2_msa_tmpl	no rank 1 score file was written		2026-09-26T17:20:22+08:00
+10JX_1	09_dock_into_predictions	predicted	the docking pipeline could not produce a pose	prepared ligand missing	2026-09-26T19:30:21+08:00
+37JY_1	09_dock_into_predictions	predicted	the docking pipeline could not produce a pose	vinardo: ATOM      9  C   UNL     1      -2.101  -0.961  -0.827  1.00  0.00    +0.180 CG0	2026-09-26T19:30:21+08:00
+8KBM_1	09_dock_into_predictions	predicted	the docking pipeline could not produce a pose	vinardo: ATOM      9  C   UNL     1      -2.275   1.319   2.309  1.00  0.00    +0.180 CG0	2026-09-26T19:30:21+08:00
+8POR_1	09_dock_into_predictions	predicted	the docking pipeline could not produce a pose	vina:  > ATOM      3  B   UNL     1      -1.040  -0.874   2.330  1.00  0.00    +0.414 B	2026-09-26T19:30:21+08:00
+10JX_1	09_dock_into_predictions	crystal	the docking pipeline could not produce a pose	prepared ligand missing	2026-09-26T19:30:21+08:00
+37JY_1	09_dock_into_predictions	crystal	the docking pipeline could not produce a pose	vinardo: ATOM      9  C   UNL     1      -2.101  -0.961  -0.827  1.00  0.00    +0.180 CG0	2026-09-26T19:30:21+08:00
+8KBM_1	09_dock_into_predictions	crystal	the docking pipeline could not produce a pose	vinardo: ATOM      9  C   UNL     1      -2.275   1.319   2.309  1.00  0.00    +0.180 CG0	2026-09-26T19:30:21+08:00
+8POR_1	09_dock_into_predictions	crystal	the docking pipeline could not produce a pose	vina:  > ATOM      3  B   UNL     1      -1.040  -0.874   2.330  1.00  0.00    +0.414 B	2026-09-26T19:30:21+08:00
