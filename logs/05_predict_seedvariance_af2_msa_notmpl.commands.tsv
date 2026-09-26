@@ -1,0 +1,6 @@
+stage	label	elapsed_s	peak_rss_kb	exit_status	recorded
+05_predict_seedvariance_af2_msa_notmpl	predict_27WO_1__seed20260925	755.90	3167428	0	2026-09-26T20:13:07+08:00
+05_predict_seedvariance_af2_msa_notmpl	predict_27WO_1__seed20260926	749.13	3652140	0	2026-09-26T20:25:37+08:00
+05_predict_seedvariance_af2_msa_notmpl	predict_27WO_1__seed20260927	906.01	3513268	0	2026-09-26T20:40:43+08:00
+05_predict_seedvariance_af2_msa_notmpl	predict_27WO_1__seed20260928	1246.48	3341620	0	2026-09-26T21:01:30+08:00
+05_predict_seedvariance_af2_msa_notmpl	predict_27WO_1__seed20260929	1480.24	3311252	0	2026-09-26T21:26:16+08:00
