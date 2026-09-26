@@ -95,12 +95,26 @@ def polymer_residues(structure, chain_name: str | None = None):
         poly = chain.get_polymer()
         if len(poly) == 0:
             continue
-        for res in poly:
-            if res.label_seq is None:
-                continue
+        # A deposited entry carries label_seq, the position in the sequence the
+        # entry was built from. A prediction written as PDB carries none: the
+        # format has no such field, so every label_seq reads as absent and
+        # keying on it returned an empty set for every predicted receptor and
+        # matched zero alpha carbons against the reference.
+        #
+        # The fallback is the position along the chain, which is the same
+        # quantity for a prediction. The model was given the deposited sequence
+        # and returns one residue per position of it in order, so residue i of
+        # the prediction is position i of that sequence, which is what the
+        # reference records as label_seq i. That is the correspondence this
+        # module's header describes; it was simply never available through the
+        # field it was being read from.
+        residues = list(poly)
+        has_label = all(r.label_seq is not None for r in residues)
+        for index, res in enumerate(residues, start=1):
+            key = int(res.label_seq) if has_label else index
             ca = res.find_atom("CA", "*")
             if ca is not None:
-                out[int(res.label_seq)] = (res, (ca.pos.x, ca.pos.y, ca.pos.z))
+                out[key] = (res, (ca.pos.x, ca.pos.y, ca.pos.z))
         if out:
             picked = chain.name
             break
