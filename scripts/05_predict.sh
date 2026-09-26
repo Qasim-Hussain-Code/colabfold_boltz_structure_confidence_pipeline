@@ -423,7 +423,7 @@ for target in "${TARGET_LIST[@]}"; do
         [[ -n "$collect_dir" ]] || collect_dir="$out_dir"
         if ! "$PY_ANALYSIS" "${SCRIPT_DIR}/lib_predict.py" collect \
                 --config "${REPO_DIR}/project.conf" --target "$target" --arm "$ARM" \
-                --model "$MODEL" --seed "$seed" --source "$SOURCE" \
+                --model "$MODEL" --seed "$seed" --source "$SOURCE" --tag "$tag" \
                 --out-dir "$collect_dir" --elapsed "${elapsed:-}" \
                 --peak-rss-kb "${peak_kb:-}" --msa-file "$msa_file" \
                 --n-models "$N_MODELS"; then
