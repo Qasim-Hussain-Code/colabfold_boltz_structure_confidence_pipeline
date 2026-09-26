@@ -366,7 +366,9 @@ def fig_accuracy_and_validity(results: Path, figures: Path) -> str | None:
     ax.invert_yaxis()
     ax.set_xlim(0, max(valid + both + [0.1]) * 1.2)
     ax.set_xlabel("fraction of targets")
-    ax.set_title("Only the darker bar is called success", loc="left", color=INK)
+    # The two bars are named in the legend. Calling one of them "the darker
+    # bar" told a reader to compare shades of two different hues.
+    ax.set_title("Accurate, physically valid, and both", loc="left", color=INK)
     tidy(ax, "x")
     ax.legend(frameon=False, fontsize=8, loc="lower right")
     out = figures / "fig6_accuracy_and_validity.png"
