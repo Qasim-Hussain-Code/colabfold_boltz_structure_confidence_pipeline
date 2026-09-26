@@ -361,6 +361,34 @@ def collect(conf: dict, arm: str, stage1_conf: dict) -> int:
                 key = (r.get("arm", ""), r.get("method", ""))
                 attempted[key] = attempted.get(key, 0) + 1
 
+    # Which targets dropped, and why, rather than only how many.
+    #
+    # The counts below say 15 attempted and 13 scored. A reader cannot tell
+    # from that whether two targets failed for a reason that matters or the
+    # pipeline lost them. Both reasons here are real ligand chemistry and
+    # belong in the record: an iron-bearing heme that the charge model has no
+    # parameters for, and a boron-bearing ligand the docking program has no
+    # atom type for. Neither is a fault in this repository and neither should
+    # be invisible.
+    failures: dict[str, str] = {}
+    if run_dir.is_dir():
+        for tsv in sorted(run_dir.glob(f"*_{arm}.tsv")):
+            for r in L.read_tsv(tsv):
+                if r.get("dataset") != arm or r.get("status") == "ok":
+                    continue
+                tid = r.get("complex_id") or ""
+                why = (r.get("reason") or "").strip()
+                if tid and why and tid not in failures:
+                    failures[tid] = why[:180]
+    if failures:
+        L.clear_exclusions(results_dir, "09_dock_into_predictions", arm=arm)
+        for tid, why in sorted(failures.items()):
+            L.record_exclusion(results_dir, tid, "09_dock_into_predictions",
+                               "the docking pipeline could not produce a pose",
+                               detail=why, arm=arm)
+        print(f"[handoff] {len(failures)} targets could not be docked; each is in "
+              f"excluded.tsv with the reason the pipeline gave")
+
     rows = []
     groups: dict[tuple, list] = {}
     for r in runs:
