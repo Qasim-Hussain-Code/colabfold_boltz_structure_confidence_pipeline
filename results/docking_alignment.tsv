@@ -1,0 +1,21 @@
+target_id	arm	status	reason	n_matched_ca	superposition_rmsd_ca	n_model_residues	n_reference_residues	recorded
+10JX_1	crystal	ok				296	139	2026-09-26T08:50:51+08:00
+29LW_1	crystal	ok				276	134	2026-09-26T08:50:51+08:00
+10JX_1	crystal	ok				296	139	2026-09-26T08:55:33+08:00
+29LW_1	crystal	ok				276	134	2026-09-26T08:55:33+08:00
+30JI_1	crystal	ok				183	173	2026-09-26T08:55:33+08:00
+10JX_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:12+08:00
+29LW_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:12+08:00
+30JI_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:12+08:00
+35TM_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:12+08:00
+36IQ_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:13+08:00
+37JY_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:13+08:00
+44ID_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:13+08:00
+8JQU_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:13+08:00
+8KBM_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:13+08:00
+8POR_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:13+08:00
+8PWC_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:13+08:00
+8QX5_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:13+08:00
+8R5N_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:13+08:00
+8RCY_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:13+08:00
+8RD7_1	predicted	failed	only 0 alpha carbons matched the reference								2026-09-26T14:56:13+08:00
