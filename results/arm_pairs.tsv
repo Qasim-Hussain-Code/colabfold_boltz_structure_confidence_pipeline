@@ -1,0 +1,7 @@
+arm_a	arm_b	n_shared_targets	median_lddt_ca_a	median_lddt_ca_b	median_paired_difference	ci_low	ci_high	n_targets_b_higher	note	recorded
+af2_msa_notmpl	af2_nomsa	30	0.925	0.4425	-0.476	-0.546	-0.3105	0	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-26T15:36:00+08:00
+af2_msa_notmpl	null_template	19	0.922	0.8	-0.105	-0.185	-0.023	2	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-26T15:36:00+08:00
+af2_msa_notmpl	null_unrelated	30	0.925	0.0195	-0.8895	-0.906	-0.8375	0	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-26T15:36:00+08:00
+af2_nomsa	null_template	119	0.363	0.87	0.437	0.368	0.509	93	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-26T15:36:00+08:00
+af2_nomsa	null_unrelated	149	0.378	0.018	-0.337	-0.37	-0.307	1	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-26T15:36:00+08:00
+null_template	null_unrelated	120	0.872	0.018	-0.779	-0.8175	-0.7365	9	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-26T15:36:00+08:00
