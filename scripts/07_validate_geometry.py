@@ -59,12 +59,17 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lib_csc as L  # noqa: E402
 
+# The arms whose coordinates came out of an experiment rather than a model.
+# They are what says whether a threshold is one reality meets.
+DEPOSITED_ARMS = ("null_template", "null_unrelated")
+
 GEOMETRY_COLUMNS = [
     "target_id", "arm", "model", "status", "reason", "n_residues", "tolerance_used",
     "bad_bonds", "bad_angles", "bad_bonds_strict", "bad_angles_strict", "clashes",
     "ca_chirality_errors", "cis_nonpro", "cis_pro", "twisted_peptides",
     "rama_outliers", "rama_allowed", "rama_favoured", "rama_scored",
-    "rama_outlier_fraction", "passes_all", "failed_checks", "recorded",
+    "rama_outlier_fraction", "passes_all", "failed_checks",
+    "within_deposited_range", "over_threshold_checks", "recorded",
 ]
 
 # Geometry, in the units the structures are written in.
@@ -446,16 +451,66 @@ def main() -> int:
     keep = [r for r in prior if (r.get("target_id"), r.get("arm")) not in redone]
     if keep:
         print(f"[07_validate_geometry] carrying forward {len(keep)} rows checked earlier")
-    L.write_tsv(out_path, GEOMETRY_COLUMNS, keep + rows)
+    every = keep + rows
+
+    # A second verdict, against what experiment actually delivers.
+    #
+    # passes_all demands none of anything. Run against the two floor arms,
+    # which are deposited coordinates and not predictions at all, it passes
+    # under a third of them. A standard that most crystal structures fail is
+    # not a standard for physical validity; it is a standard for perfection,
+    # and comparing a prediction against it says nothing about whether the
+    # prediction is the kind of object a structure is.
+    #
+    # So the thresholds come from the deposited structures in this same set:
+    # for each check, the 95th percentile of what they show. A prediction
+    # within all of them is within the range experiment spans. The thresholds
+    # are written to results/geometry_thresholds.tsv, and the pass rate of the
+    # deposited arms is printed beside the predictions so a reader can see the
+    # standard is one reality meets. Both verdicts stay in the table.
+    deposited = [r for r in every
+                 if r.get("arm") in DEPOSITED_ARMS and r.get("status") == "ok"]
+    checks = ["bad_bonds", "bad_angles", "clashes", "ca_chirality_errors",
+              "cis_nonpro", "twisted_peptides", "rama_outliers"]
+    thresholds: dict[str, int] = {}
+    for c in checks:
+        vals = sorted(int(r[c]) for r in deposited
+                      if str(r.get(c, "")).lstrip("-").isdigit())
+        thresholds[c] = vals[min(len(vals) - 1, int(0.95 * len(vals)))] if vals else 0
+    for r in every:
+        if r.get("status") != "ok":
+            r["within_deposited_range"] = ""
+            continue
+        over = [c for c in checks
+                if str(r.get(c, "")).lstrip("-").isdigit()
+                and int(r[c]) > thresholds[c]]
+        r["within_deposited_range"] = int(not over)
+        r["over_threshold_checks"] = "; ".join(over)
+
+    L.write_tsv(out_path, GEOMETRY_COLUMNS, every)
+    if deposited:
+        L.write_tsv(results_dir / "geometry_thresholds.tsv",
+                    ["check", "threshold", "basis", "n_deposited", "recorded"],
+                    [{"check": c, "threshold": thresholds[c],
+                      "basis": "95th percentile over the deposited structures in "
+                               "this set, which are the two floor arms",
+                      "n_deposited": len(deposited), "recorded": L.now_iso()}
+                     for c in checks])
+
     by_arm: dict[str, list] = {}
-    for r in rows:
+    for r in every:
         by_arm.setdefault(r["arm"], []).append(r)
     print(f"[07_validate_geometry] {len(rows)} structures checked; the verdict uses "
           f"{args.lenient_tolerance} standard deviations, and {args.tolerance} is "
           f"reported beside it")
+    print(f"[07_validate_geometry] thresholds from {len(deposited)} deposited "
+          f"structures: " + ", ".join(f"{c} {thresholds[c]}" for c in checks))
     for arm, rs in sorted(by_arm.items()):
-        ok = [r for r in rs if r["passes_all"] == 1]
-        print(f"  {arm}: {len(ok)}/{len(rs)} pass every check")
+        n_ok = sum(1 for r in rs if str(r.get("passes_all")) == "1")
+        n_in = sum(1 for r in rs if str(r.get("within_deposited_range")) == "1")
+        tag = " (deposited)" if arm in DEPOSITED_ARMS else ""
+        print(f"  {arm}{tag}: {n_ok}/{len(rs)} with none of anything, "
+              f"{n_in}/{len(rs)} within the range deposited structures span")
     return 0
 
 

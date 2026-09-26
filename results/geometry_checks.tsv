@@ -1,5 +1,451 @@
-target_id	arm	model	status	reason	n_residues	tolerance_used	bad_bonds	bad_angles	bad_bonds_strict	bad_angles_strict	clashes	ca_chirality_errors	cis_nonpro	cis_pro	twisted_peptides	rama_outliers	rama_allowed	rama_favoured	rama_scored	rama_outlier_fraction	passes_all	failed_checks	recorded
-10AF_1	null_template	none	ok		388	12.0	0	0	5	3	0	0	0	0	0	0	4	164	168	0.0	1		2026-09-25T22:45:26+08:00
-10AF_1	null_unrelated	none	ok		506	12.0	1	0	169	30	0	0	0	0	0	1	6	263	270	0.0037	0	bond lengths: 1; Ramachandran outliers: 1	2026-09-25T22:45:27+08:00
-10CX_1	null_unrelated	none	ok		332	12.0	0	0	11	5	0	0	0	2	0	0	5	201	206	0.0	1		2026-09-25T22:45:29+08:00
-10DA_1	null_template	none	ok		243	12.0	0	0	11	5	0	0	0	1	0	0	1	121	122	0.0	1		2026-09-25T22:45:30+08:00
+target_id	arm	model	status	reason	n_residues	tolerance_used	bad_bonds	bad_angles	bad_bonds_strict	bad_angles_strict	clashes	ca_chirality_errors	cis_nonpro	cis_pro	twisted_peptides	rama_outliers	rama_allowed	rama_favoured	rama_scored	rama_outlier_fraction	passes_all	failed_checks	within_deposited_range	over_threshold_checks	recorded
+10AF_1	null_template	none	ok		388	12.0	0	0	5	3	0	0	0	0	0	0	4	164	168	0.0	1		1		2026-09-26T16:00:13+08:00
+10AF_1	null_unrelated	none	ok		506	12.0	1	0	169	30	0	0	0	0	0	1	6	263	270	0.0037	0	bond lengths: 1; Ramachandran outliers: 1	1		2026-09-26T16:00:15+08:00
+10CX_1	null_unrelated	none	ok		332	12.0	0	0	11	5	0	0	0	2	0	0	5	201	206	0.0	1		1		2026-09-26T16:00:17+08:00
+10DA_1	null_template	none	ok		243	12.0	0	0	11	5	0	0	0	1	0	0	1	121	122	0.0	1		1		2026-09-26T16:00:19+08:00
+10DA_1	null_unrelated	none	ok		494	12.0	0	0	1	25	8	0	0	2	0	1	10	243	254	0.0039	0	non-bonded clashes: 8; Ramachandran outliers: 1	1		2026-09-26T16:00:21+08:00
+10FS_1	null_template	none	ok		957	12.0	0	0	7	5	0	0	0	2	0	0	23	869	892	0.0	1		1		2026-09-26T16:00:23+08:00
+10FS_1	null_unrelated	none	ok		157	12.0	0	0	2	6	0	0	0	0	0	0	2	91	93	0.0	1		1		2026-09-26T16:00:27+08:00
+10JX_1	null_unrelated	none	ok		130	12.0	2	0	862	123	0	0	0	1	0	1	15	112	128	0.0078	0	bond lengths: 2; Ramachandran outliers: 1	1		2026-09-26T16:00:29+08:00
+10UT_1	null_template	none	ok		1208	12.0	1	0	157	47	0	0	0	0	0	0	14	567	581	0.0	0	bond lengths: 1	1		2026-09-26T16:00:31+08:00
+10UT_1	null_unrelated	none	ok		154	12.0	10	0	1153	138	0	0	0	0	0	4	14	132	150	0.0267	0	bond lengths: 10; Ramachandran outliers: 4	1		2026-09-26T16:00:34+08:00
+10UV_1	null_unrelated	none	ok		213	12.0	0	0	2	0	4	0	0	1	0	0	3	87	90	0.0	0	non-bonded clashes: 4	1		2026-09-26T16:00:37+08:00
+10UW_1	null_template	none	ok		1262	12.0	0	0	127	9	0	0	0	4	0	0	2	630	632	0.0	1		1		2026-09-26T16:00:39+08:00
+10UW_1	null_unrelated	none	ok		290	12.0	0	0	51	2	0	0	0	1	0	0	3	123	126	0.0	1		1		2026-09-26T16:00:42+08:00
+10UX_1	null_template	none	ok		790	12.0	0	0	115	17	0	0	0	2	0	0	11	435	446	0.0	1		1		2026-09-26T16:00:44+08:00
+10UX_1	null_unrelated	none	ok		257	12.0	0	0	32	0	0	0	0	1	0	0	3	113	116	0.0	1		1		2026-09-26T16:00:46+08:00
+10XE_1	null_unrelated	none	ok		1586	12.0	0	0	10	16	30	0	0	0	0	0	17	607	624	0.0	0	non-bonded clashes: 30	0	clashes	2026-09-26T16:00:48+08:00
+10XG_1	null_unrelated	none	ok		171	12.0	0	0	0	0	0	0	0	0	0	0	2	143	145	0.0	1		1		2026-09-26T16:00:52+08:00
+10XH_1	null_unrelated	none	ok		13696	12.0	48	0	8081	1644	0	0	36	0	300	304	1340	12040	13684	0.0222	0	bond lengths: 48; cis peptide bonds outside proline: 36; twisted peptide bonds: 300; Ramachandran outliers: 304	0	bad_bonds; cis_nonpro; twisted_peptides; rama_outliers	2026-09-26T16:00:53+08:00
+11CH_1	null_template	none	ok		1414	12.0	0	0	145	52	10	0	0	0	0	0	15	633	648	0.0	0	non-bonded clashes: 10	1		2026-09-26T16:01:27+08:00
+11CH_1	null_unrelated	none	ok		543	12.0	0	0	20	5	0	0	0	0	1	1	5	246	252	0.004	0	twisted peptide bonds: 1; Ramachandran outliers: 1	1		2026-09-26T16:01:31+08:00
+11OW_1	null_unrelated	none	ok		548	12.0	0	0	21	12	0	0	0	0	2	6	19	498	523	0.0115	0	twisted peptide bonds: 2; Ramachandran outliers: 6	1		2026-09-26T16:01:33+08:00
+12FA_1	null_template	none	ok		302	12.0	1	0	14	11	0	0	0	0	0	1	0	178	179	0.0056	0	bond lengths: 1; Ramachandran outliers: 1	1		2026-09-26T16:01:36+08:00
+12FA_1	null_unrelated	none	ok		1642	12.0	0	0	10	8	0	0	0	0	3	1	19	845	865	0.0012	0	twisted peptide bonds: 3; Ramachandran outliers: 1	1		2026-09-26T16:01:37+08:00
+12HP_1	null_template	none	ok		1530	12.0	0	0	49	24	42	0	1	8	3	6	34	1454	1494	0.004	0	non-bonded clashes: 42; cis peptide bonds outside proline: 1; twisted peptide bonds: 3; Ramachandran outliers: 6	0	clashes	2026-09-26T16:01:41+08:00
+12HP_1	null_unrelated	none	ok		318	12.0	0	0	71	1	0	0	0	0	1	0	2	285	287	0.0	0	twisted peptide bonds: 1	1		2026-09-26T16:01:46+08:00
+12IS_1	null_template	none	ok		647	12.0	0	0	72	15	0	0	0	0	1	0	9	363	372	0.0	0	twisted peptide bonds: 1	1		2026-09-26T16:01:48+08:00
+12IS_1	null_unrelated	none	ok		390	12.0	0	0	18	2	0	0	0	0	0	0	3	148	151	0.0	1		1		2026-09-26T16:01:50+08:00
+12XX_1	null_template	none	ok		168	12.0	0	0	0	2	0	0	0	0	0	0	0	125	125	0.0	1		1		2026-09-26T16:01:53+08:00
+12XX_1	null_unrelated	none	ok		587	12.0	0	0	15	24	0	0	1	0	0	0	4	279	283	0.0	0	cis peptide bonds outside proline: 1	1		2026-09-26T16:01:54+08:00
+13EE_1	null_template	none	ok		318	12.0	0	0	71	1	0	0	0	0	1	0	2	285	287	0.0	0	twisted peptide bonds: 1	1		2026-09-26T16:01:57+08:00
+13EE_1	null_unrelated	none	ok		196	12.0	8	0	1353	181	0	0	0	0	0	12	39	141	192	0.0625	0	bond lengths: 8; Ramachandran outliers: 12	1		2026-09-26T16:01:59+08:00
+13TX_1	null_template	none	ok		216	12.0	0	0	32	6	0	0	0	4	0	3	9	150	162	0.0185	0	Ramachandran outliers: 3	1		2026-09-26T16:02:01+08:00
+13TX_1	null_unrelated	none	ok		243	12.0	0	0	11	5	0	0	0	1	0	0	1	121	122	0.0	1		1		2026-09-26T16:02:03+08:00
+21EJ_1	null_template	none	ok		515	12.0	0	0	32	196	0	0	0	0	0	0	4	226	230	0.0	1		1		2026-09-26T16:02:05+08:00
+21EJ_1	null_unrelated	none	ok		175	12.0	1	0	1212	170	0	0	0	0	0	0	19	154	173	0.0	0	bond lengths: 1	1		2026-09-26T16:02:07+08:00
+21LR_1	null_template	none	ok		331	12.0	0	0	86	17	0	0	1	0	0	1	1	164	166	0.006	0	cis peptide bonds outside proline: 1; Ramachandran outliers: 1	1		2026-09-26T16:02:10+08:00
+21LR_1	null_unrelated	none	ok		1212	12.0	0	0	114	68	0	0	0	6	0	0	8	496	504	0.0	1		1		2026-09-26T16:02:12+08:00
+21NG_1	null_unrelated	none	ok		243	12.0	0	0	11	5	0	0	0	1	0	0	1	121	122	0.0	1		1		2026-09-26T16:02:15+08:00
+22FG_1	null_template	none	ok		130	12.0	2	0	862	123	0	0	0	1	0	1	15	112	128	0.0078	0	bond lengths: 2; Ramachandran outliers: 1	1		2026-09-26T16:02:17+08:00
+22FG_1	null_unrelated	none	ok		207	12.0	0	0	21	3	0	0	0	0	0	0	2	108	110	0.0	1		1		2026-09-26T16:02:19+08:00
+22FK_1	null_template	none	ok		332	12.0	0	0	11	5	0	0	0	2	0	0	5	201	206	0.0	1		1		2026-09-26T16:02:21+08:00
+22FK_1	null_unrelated	none	ok		10203	12.0	31	13	104	1700	30	0	2	20	9	482	905	4160	5547	0.0869	0	bond lengths: 31; bond angles: 13; non-bonded clashes: 30; cis peptide bonds outside proline: 2; twisted peptide bonds: 9; Ramachandran outliers: 482	0	bad_bonds; bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:02:23+08:00
+22LX_1	null_unrelated	none	ok		171	12.0	0	0	0	0	0	0	0	0	0	0	2	143	145	0.0	1		1		2026-09-26T16:03:07+08:00
+24MP_1	null_template	none	ok		530	12.0	0	0	0	1	0	0	0	0	0	0	8	304	312	0.0	1		1		2026-09-26T16:03:09+08:00
+24MP_1	null_unrelated	none	ok		478	12.0	0	0	92	9	2	0	0	0	0	0	7	290	297	0.0	0	non-bonded clashes: 2	1		2026-09-26T16:03:12+08:00
+26AO_1	null_template	none	ok		252	12.0	1	0	175	177	0	0	0	0	0	0	11	150	161	0.0	0	bond lengths: 1	1		2026-09-26T16:03:15+08:00
+26AO_1	null_unrelated	none	ok		1056	12.0	0	0	56	32	0	0	0	6	0	2	19	764	785	0.0025	0	Ramachandran outliers: 2	1		2026-09-26T16:03:17+08:00
+26JK_1	null_template	none	ok		182	12.0	1	0	4	11	0	0	0	0	0	0	3	138	141	0.0	0	bond lengths: 1	1		2026-09-26T16:03:20+08:00
+26JK_1	null_unrelated	none	ok		121	12.0	1	0	865	121	0	0	0	0	0	0	6	113	119	0.0	0	bond lengths: 1	1		2026-09-26T16:03:22+08:00
+26RW_1	null_template	none	ok		170	12.0	1	0	1125	161	0	0	0	0	0	9	15	144	168	0.0536	0	bond lengths: 1; Ramachandran outliers: 9	1		2026-09-26T16:03:24+08:00
+26RW_1	null_unrelated	none	ok		312	12.0	0	0	49	26	0	0	1	2	0	19	49	236	304	0.0625	0	cis peptide bonds outside proline: 1; Ramachandran outliers: 19	1		2026-09-26T16:03:26+08:00
+27AA_1	null_template	none	ok		741	12.0	0	0	27	121	4	0	0	7	0	14	40	622	676	0.0207	0	non-bonded clashes: 4; Ramachandran outliers: 14	1		2026-09-26T16:03:29+08:00
+27AA_1	null_unrelated	none	ok		1126	12.0	0	0	0	1	0	0	0	0	3	3	80	967	1050	0.0029	0	twisted peptide bonds: 3; Ramachandran outliers: 3	1		2026-09-26T16:03:32+08:00
+27AH_1	null_unrelated	none	ok		271	12.0	0	0	32	3	2	0	0	0	0	0	0	113	113	0.0	0	non-bonded clashes: 2	1		2026-09-26T16:03:35+08:00
+27JK_1	null_unrelated	none	ok		257	12.0	0	0	32	0	0	0	0	1	0	0	3	113	116	0.0	1		1		2026-09-26T16:03:37+08:00
+27WO_1	null_template	none	ok		2239	12.0	0	0	15	7	0	0	0	2	2	5	184	2036	2225	0.0022	0	twisted peptide bonds: 2; Ramachandran outliers: 5	1		2026-09-26T16:03:39+08:00
+27WO_1	null_unrelated	none	ok		388	12.0	0	0	5	3	0	0	0	0	0	0	4	164	168	0.0	1		1		2026-09-26T16:03:45+08:00
+28DB_1	null_template	none	ok		1309	12.0	0	0	138	19	4	0	0	0	0	0	13	619	632	0.0	0	non-bonded clashes: 4	1		2026-09-26T16:03:47+08:00
+28DB_1	null_unrelated	none	ok		331	12.0	0	0	86	17	0	0	1	0	0	1	1	164	166	0.006	0	cis peptide bonds outside proline: 1; Ramachandran outliers: 1	1		2026-09-26T16:03:50+08:00
+29LI_1	null_template	none	ok		124	12.0	3	0	861	119	0	0	0	0	0	1	3	117	121	0.0083	0	bond lengths: 3; Ramachandran outliers: 1	1		2026-09-26T16:03:52+08:00
+29LI_1	null_unrelated	none	ok		234	12.0	0	1	108	163	0	0	0	1	0	2	7	140	149	0.0134	0	bond angles: 1; Ramachandran outliers: 2	1		2026-09-26T16:03:55+08:00
+29LW_1	null_template	none	ok		285	12.0	0	0	12	23	0	0	0	0	0	0	6	258	264	0.0	1		1		2026-09-26T16:03:56+08:00
+29LW_1	null_unrelated	none	ok		124	12.0	3	0	861	119	0	0	0	0	0	1	3	117	121	0.0083	0	bond lengths: 3; Ramachandran outliers: 1	1		2026-09-26T16:03:59+08:00
+30JI_1	null_template	none	ok		235	12.0	0	0	1	0	0	0	0	0	0	0	8	167	175	0.0	1		1		2026-09-26T16:04:01+08:00
+30JI_1	null_unrelated	none	ok		374	12.0	0	1	17	12	0	0	2	0	5	16	28	317	361	0.0443	0	bond angles: 1; cis peptide bonds outside proline: 2; twisted peptide bonds: 5; Ramachandran outliers: 16	1		2026-09-26T16:04:03+08:00
+31KJ_1	null_unrelated	none	ok		825	12.0	1	0	109	30	0	0	0	1	0	0	7	538	545	0.0	0	bond lengths: 1	1		2026-09-26T16:04:05+08:00
+32JG_1	null_template	none	ok		1253	12.0	0	0	7	5	0	0	0	0	0	44	128	1073	1245	0.0353	0	Ramachandran outliers: 44	0	rama_outliers	2026-09-26T16:04:08+08:00
+32JG_1	null_unrelated	none	ok		680	12.0	0	0	0	0	0	0	3	4	0	2	12	507	521	0.0038	0	cis peptide bonds outside proline: 3; Ramachandran outliers: 2	1		2026-09-26T16:04:13+08:00
+32OA_1	null_template	none	ok		333	12.0	0	0	94	17	12	0	0	0	0	0	7	141	148	0.0	0	non-bonded clashes: 12	1		2026-09-26T16:04:25+08:00
+32OA_1	null_unrelated	none	ok		271	12.0	0	0	32	3	2	0	0	0	0	0	0	113	113	0.0	0	non-bonded clashes: 2	1		2026-09-26T16:04:30+08:00
+32QT_1	null_template	none	ok		312	12.0	0	0	49	26	0	0	1	2	0	19	49	236	304	0.0625	0	cis peptide bonds outside proline: 1; Ramachandran outliers: 19	1		2026-09-26T16:04:33+08:00
+32QT_1	null_unrelated	none	ok		345	12.0	1	0	38	32	0	0	0	1	0	5	11	270	286	0.0175	0	bond lengths: 1; Ramachandran outliers: 5	1		2026-09-26T16:04:35+08:00
+35TM_1	null_template	none	ok		13696	12.0	48	0	8080	1644	0	0	36	0	300	304	1340	12040	13684	0.0222	0	bond lengths: 48; cis peptide bonds outside proline: 36; twisted peptide bonds: 300; Ramachandran outliers: 304	0	bad_bonds; cis_nonpro; twisted_peptides; rama_outliers	2026-09-26T16:04:37+08:00
+35TM_1	null_unrelated	none	ok		192	12.0	0	0	3	1	0	0	0	0	0	0	0	143	143	0.0	1		1		2026-09-26T16:05:10+08:00
+36IQ_1	null_unrelated	none	ok		285	12.0	0	0	12	23	0	0	0	0	0	0	6	258	264	0.0	1		1		2026-09-26T16:05:12+08:00
+36IW_1	null_template	none	ok		10203	12.0	31	13	104	1700	30	0	2	20	9	482	905	4160	5547	0.0869	0	bond lengths: 31; bond angles: 13; non-bonded clashes: 30; cis peptide bonds outside proline: 2; twisted peptide bonds: 9; Ramachandran outliers: 482	0	bad_bonds; bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:05:14+08:00
+36IW_1	null_unrelated	none	ok		1028	12.0	0	0	48	3	0	0	0	14	0	0	0	916	916	0.0	1		1		2026-09-26T16:06:01+08:00
+36MB_1	null_unrelated	none	ok		312	12.0	0	0	49	26	0	0	1	2	0	19	49	236	304	0.0625	0	cis peptide bonds outside proline: 1; Ramachandran outliers: 19	1		2026-09-26T16:06:05+08:00
+37JY_1	null_unrelated	none	ok		1334	12.0	16	2	1354	463	0	0	10	0	9	18	46	914	978	0.0184	0	bond lengths: 16; bond angles: 2; cis peptide bonds outside proline: 10; twisted peptide bonds: 9; Ramachandran outliers: 18	0	bad_bonds; bad_angles; cis_nonpro; twisted_peptides	2026-09-26T16:06:07+08:00
+38LI_1	null_template	none	ok		825	12.0	1	0	109	30	0	0	0	1	0	0	7	538	545	0.0	0	bond lengths: 1	1		2026-09-26T16:06:11+08:00
+38LI_1	null_unrelated	none	ok		312	12.0	0	0	49	26	0	0	1	2	0	19	49	236	304	0.0625	0	cis peptide bonds outside proline: 1; Ramachandran outliers: 19	1		2026-09-26T16:06:14+08:00
+44ID_1	null_template	none	ok		125	12.0	0	0	12	0	0	0	0	0	0	0	3	109	112	0.0	1		1		2026-09-26T16:06:16+08:00
+44ID_1	null_unrelated	none	ok		121	12.0	1	0	865	121	0	0	0	0	0	0	6	113	119	0.0	0	bond lengths: 1	1		2026-09-26T16:06:18+08:00
+7H47_1	null_template	none	ok		587	12.0	0	0	15	24	0	0	1	0	0	0	4	279	283	0.0	0	cis peptide bonds outside proline: 1	1		2026-09-26T16:06:20+08:00
+7H47_1	null_unrelated	none	ok		2031	12.0	1	1	771	177	0	0	5	0	7	18	41	1766	1825	0.0099	0	bond lengths: 1; bond angles: 1; cis peptide bonds outside proline: 5; twisted peptide bonds: 7; Ramachandran outliers: 18	0	cis_nonpro	2026-09-26T16:06:22+08:00
+7HI9_1	null_template	none	ok		529	12.0	0	0	26	49	0	0	0	4	1	3	11	345	359	0.0084	0	twisted peptide bonds: 1; Ramachandran outliers: 3	1		2026-09-26T16:06:27+08:00
+7HI9_1	null_unrelated	none	ok		184	12.0	1	0	8	5	0	0	0	1	0	0	4	92	96	0.0	0	bond lengths: 1	1		2026-09-26T16:06:30+08:00
+8JMY_1	null_unrelated	none	ok		680	12.0	0	0	0	0	0	0	3	4	0	2	12	507	521	0.0038	0	cis peptide bonds outside proline: 3; Ramachandran outliers: 2	1		2026-09-26T16:06:32+08:00
+8JN0_1	null_template	none	ok		656	12.0	0	0	26	3	10	0	0	1	0	1	4	286	291	0.0034	0	non-bonded clashes: 10; Ramachandran outliers: 1	1		2026-09-26T16:06:35+08:00
+8JN0_1	null_unrelated	none	ok		836	12.0	0	0	19	16	0	0	0	0	0	0	10	706	716	0.0	1		1		2026-09-26T16:06:37+08:00
+8JNB_1	null_template	none	ok		1742	12.0	2	1	11	25	3	0	1	0	2	4	83	1645	1732	0.0023	0	bond lengths: 2; bond angles: 1; non-bonded clashes: 3; cis peptide bonds outside proline: 1; twisted peptide bonds: 2; Ramachandran outliers: 4	1		2026-09-26T16:06:40+08:00
+8JNB_1	null_unrelated	none	ok		218	12.0	1	0	101	36	0	0	0	0	0	0	2	113	115	0.0	0	bond lengths: 1	1		2026-09-26T16:06:45+08:00
+8JQU_1	null_template	none	ok		175	12.0	1	0	1212	170	0	0	0	0	0	0	19	154	173	0.0	0	bond lengths: 1	1		2026-09-26T16:06:47+08:00
+8JQU_1	null_unrelated	none	ok		728	12.0	0	0	116	30	0	0	0	0	2	0	15	491	506	0.0	0	twisted peptide bonds: 2	1		2026-09-26T16:06:49+08:00
+8JU7_1	null_unrelated	none	ok		1208	12.0	1	0	157	47	0	0	0	0	0	0	14	567	581	0.0	0	bond lengths: 1	1		2026-09-26T16:06:52+08:00
+8JU8_1	null_unrelated	none	ok		647	12.0	0	0	72	15	0	0	0	0	1	0	9	363	372	0.0	0	twisted peptide bonds: 1	1		2026-09-26T16:06:55+08:00
+8JUC_1	null_template	none	ok		335	12.0	0	0	73	5	0	0	0	2	0	0	3	151	154	0.0	1		1		2026-09-26T16:06:57+08:00
+8JUC_1	null_unrelated	none	ok		1028	12.0	0	0	48	3	0	0	0	14	0	0	0	916	916	0.0	1		1		2026-09-26T16:06:59+08:00
+8JWD_1	null_template	none	ok		307	12.0	0	0	29	2	0	0	0	0	1	5	11	206	222	0.0225	0	twisted peptide bonds: 1; Ramachandran outliers: 5	1		2026-09-26T16:07:02+08:00
+8JWD_1	null_unrelated	none	ok		318	12.0	0	0	71	1	0	0	0	0	1	0	2	285	287	0.0	0	twisted peptide bonds: 1	1		2026-09-26T16:07:04+08:00
+8JWS_1	null_template	none	ok		329	12.0	0	0	9	3	0	0	1	1	0	0	6	159	165	0.0	0	cis peptide bonds outside proline: 1	1		2026-09-26T16:07:06+08:00
+8JWS_1	null_unrelated	none	ok		402	12.0	0	0	39	15	0	0	2	0	3	7	16	335	358	0.0196	0	cis peptide bonds outside proline: 2; twisted peptide bonds: 3; Ramachandran outliers: 7	1		2026-09-26T16:07:08+08:00
+8JYI_1	null_template	none	ok		192	12.0	0	0	3	1	0	0	0	0	0	0	0	143	143	0.0	1		1		2026-09-26T16:07:11+08:00
+8JYI_1	null_unrelated	none	ok		656	12.0	0	0	26	3	10	0	0	1	0	1	4	286	291	0.0034	0	non-bonded clashes: 10; Ramachandran outliers: 1	1		2026-09-26T16:07:13+08:00
+8JZA_1	null_template	none	ok		506	12.0	1	0	169	30	0	0	0	0	0	1	6	263	270	0.0037	0	bond lengths: 1; Ramachandran outliers: 1	1		2026-09-26T16:07:15+08:00
+8JZA_1	null_unrelated	none	ok		1126	12.0	0	0	0	1	0	0	0	0	3	3	80	967	1050	0.0029	0	twisted peptide bonds: 3; Ramachandran outliers: 3	1		2026-09-26T16:07:17+08:00
+8K1W_1	null_template	none	ok		207	12.0	0	0	21	3	0	0	0	0	0	0	2	108	110	0.0	1		1		2026-09-26T16:07:21+08:00
+8K1W_1	null_unrelated	none	ok		182	12.0	1	0	4	11	0	0	0	0	0	0	3	138	141	0.0	0	bond lengths: 1	1		2026-09-26T16:07:23+08:00
+8K4I_1	null_template	none	ok		685	12.0	0	0	68	195	0	0	0	0	0	0	9	311	320	0.0	1		1		2026-09-26T16:07:24+08:00
+8K4I_1	null_unrelated	none	ok		656	12.0	0	0	26	3	10	0	0	1	0	1	4	286	291	0.0034	0	non-bonded clashes: 10; Ramachandran outliers: 1	1		2026-09-26T16:07:27+08:00
+8K4M_1	null_template	none	ok		1604	12.0	0	0	5	43	0	0	0	0	2	2	29	1139	1170	0.0017	0	twisted peptide bonds: 2; Ramachandran outliers: 2	1		2026-09-26T16:07:29+08:00
+8K4M_1	null_unrelated	none	ok		1309	12.0	0	0	138	19	4	0	0	0	0	0	13	619	632	0.0	0	non-bonded clashes: 4	1		2026-09-26T16:07:34+08:00
+8K6G_1	null_template	none	ok		3458	12.0	8	5	380	504	2	0	0	0	0	0	30	1510	1540	0.0	0	bond lengths: 8; bond angles: 5; non-bonded clashes: 2	0	bad_angles	2026-09-26T16:07:37+08:00
+8K6G_1	null_unrelated	none	ok		545	12.0	1	1	215	75	0	0	0	0	1	1	23	385	409	0.0024	0	bond lengths: 1; bond angles: 1; twisted peptide bonds: 1; Ramachandran outliers: 1	1		2026-09-26T16:07:42+08:00
+8K75_1	null_template	none	ok		452	12.0	2	1	217	58	0	0	2	0	2	5	7	261	273	0.0183	0	bond lengths: 2; bond angles: 1; cis peptide bonds outside proline: 2; twisted peptide bonds: 2; Ramachandran outliers: 5	1		2026-09-26T16:07:44+08:00
+8K75_1	null_unrelated	none	ok		1126	12.0	0	0	0	1	0	0	0	0	3	3	80	967	1050	0.0029	0	twisted peptide bonds: 3; Ramachandran outliers: 3	1		2026-09-26T16:07:46+08:00
+8K84_1	null_unrelated	none	ok		345	12.0	1	0	38	32	0	0	0	1	0	5	11	270	286	0.0175	0	bond lengths: 1; Ramachandran outliers: 5	1		2026-09-26T16:07:50+08:00
+8K9N_1	null_template	none	ok		284	12.0	0	0	292	41	0	0	0	2	0	0	8	238	246	0.0	1		1		2026-09-26T16:07:52+08:00
+8K9N_1	null_unrelated	none	ok		1604	12.0	0	0	5	43	0	0	0	0	2	2	29	1139	1170	0.0017	0	twisted peptide bonds: 2; Ramachandran outliers: 2	1		2026-09-26T16:07:55+08:00
+8KA7_1	null_unrelated	none	ok		530	12.0	0	0	0	1	0	0	0	0	0	0	8	304	312	0.0	1		1		2026-09-26T16:07:59+08:00
+8KAA_1	null_template	none	ok		671	12.0	0	0	32	36	0	0	0	0	0	11	41	336	388	0.0284	0	Ramachandran outliers: 11	1		2026-09-26T16:08:02+08:00
+8KAA_1	null_unrelated	none	ok		798	12.0	0	0	33	10	0	0	3	0	2	4	20	593	617	0.0065	0	cis peptide bonds outside proline: 3; twisted peptide bonds: 2; Ramachandran outliers: 4	1		2026-09-26T16:08:04+08:00
+8KAC_1	null_unrelated	none	ok		234	12.0	0	1	108	163	0	0	0	1	0	2	7	140	149	0.0134	0	bond angles: 1; Ramachandran outliers: 2	1		2026-09-26T16:08:08+08:00
+8KBM_1	null_unrelated	none	ok		184	12.0	1	0	8	5	0	0	0	1	0	0	4	92	96	0.0	0	bond lengths: 1	1		2026-09-26T16:08:10+08:00
+8KC1_1	null_unrelated	none	ok		1334	12.0	16	2	1354	463	0	0	10	0	9	18	46	914	978	0.0184	0	bond lengths: 16; bond angles: 2; cis peptide bonds outside proline: 10; twisted peptide bonds: 9; Ramachandran outliers: 18	0	bad_bonds; bad_angles; cis_nonpro; twisted_peptides	2026-09-26T16:08:12+08:00
+8KHU_1	null_template	none	ok		1642	12.0	0	0	10	8	0	0	0	0	3	1	19	845	865	0.0012	0	twisted peptide bonds: 3; Ramachandran outliers: 1	1		2026-09-26T16:08:16+08:00
+8KHU_1	null_unrelated	none	ok		1334	12.0	16	2	1354	463	0	0	10	0	9	18	46	914	978	0.0184	0	bond lengths: 16; bond angles: 2; cis peptide bonds outside proline: 10; twisted peptide bonds: 9; Ramachandran outliers: 18	0	bad_bonds; bad_angles; cis_nonpro; twisted_peptides	2026-09-26T16:08:19+08:00
+8P91_1	null_template	none	ok		121	12.0	0	0	0	1	0	0	0	0	0	0	1	65	66	0.0	1		1		2026-09-26T16:08:23+08:00
+8P91_1	null_unrelated	none	ok		1060	12.0	12	0	3912	20	0	0	0	0	0	0	3	489	492	0.0	0	bond lengths: 12	1		2026-09-26T16:08:25+08:00
+8PAQ_1	null_unrelated	none	ok		1642	12.0	0	0	10	8	0	0	0	0	3	1	19	845	865	0.0012	0	twisted peptide bonds: 3; Ramachandran outliers: 1	1		2026-09-26T16:08:30+08:00
+8PHN_1	null_template	none	ok		296	12.0	0	0	2	2	4	0	0	1	0	0	5	115	120	0.0	0	non-bonded clashes: 4	1		2026-09-26T16:08:34+08:00
+8PHN_1	null_unrelated	none	ok		439	12.0	0	0	172	27	14	0	0	2	0	1	5	227	233	0.0043	0	non-bonded clashes: 14; Ramachandran outliers: 1	0	clashes	2026-09-26T16:08:35+08:00
+8PHX_1	null_template	none	ok		345	12.0	1	0	38	32	0	0	0	1	0	5	11	270	286	0.0175	0	bond lengths: 1; Ramachandran outliers: 5	1		2026-09-26T16:08:37+08:00
+8PHX_1	null_unrelated	none	ok		1604	12.0	0	0	5	43	0	0	0	0	2	2	29	1139	1170	0.0017	0	twisted peptide bonds: 2; Ramachandran outliers: 2	1		2026-09-26T16:08:40+08:00
+8PHY_1	null_template	none	ok		184	12.0	1	0	8	5	0	0	0	1	0	0	4	92	96	0.0	0	bond lengths: 1	1		2026-09-26T16:08:44+08:00
+8PHY_1	null_unrelated	none	ok		196	12.0	8	0	1353	181	0	0	0	0	0	12	39	141	192	0.0625	0	bond lengths: 8; Ramachandran outliers: 12	1		2026-09-26T16:08:46+08:00
+8PJ7_1	null_template	none	ok		154	12.0	10	0	1153	138	0	0	0	0	0	4	14	132	150	0.0267	0	bond lengths: 10; Ramachandran outliers: 4	1		2026-09-26T16:08:49+08:00
+8PJ7_1	null_unrelated	none	ok		292	12.0	0	0	3	4	0	0	0	4	0	0	19	265	284	0.0	1		1		2026-09-26T16:08:51+08:00
+8PJQ_1	null_template	none	ok		536	12.0	0	0	5	1	0	0	0	0	0	0	6	273	279	0.0	1		1		2026-09-26T16:08:53+08:00
+8PJQ_1	null_unrelated	none	ok		100	12.0	0	0	0	0	0	0	0	0	0	0	1	67	68	0.0	1		1		2026-09-26T16:08:56+08:00
+8PKR_1	null_template	none	ok		728	12.0	0	0	116	30	0	0	0	0	2	0	15	491	506	0.0	0	twisted peptide bonds: 2	1		2026-09-26T16:08:57+08:00
+8PKR_1	null_unrelated	none	ok		906	12.0	0	0	25	95	0	0	0	0	0	18	44	826	888	0.0203	0	Ramachandran outliers: 18	1		2026-09-26T16:09:00+08:00
+8PNM_1	null_template	none	ok		1126	12.0	0	0	0	1	0	0	0	0	3	3	80	967	1050	0.0029	0	twisted peptide bonds: 3; Ramachandran outliers: 3	1		2026-09-26T16:09:03+08:00
+8PNM_1	null_unrelated	none	ok		242	12.0	2	0	81	11	16	1	1	2	1	0	2	92	94	0.0	0	bond lengths: 2; non-bonded clashes: 16; alpha carbon chirality: 1; cis peptide bonds outside proline: 1; twisted peptide bonds: 1	0	clashes; ca_chirality_errors	2026-09-26T16:09:07+08:00
+8POR_1	null_template	none	ok		323	12.0	0	0	4	9	0	0	0	0	0	0	3	178	181	0.0	1		1		2026-09-26T16:09:09+08:00
+8POR_1	null_unrelated	none	ok		1414	12.0	0	0	145	52	10	0	0	0	0	0	15	633	648	0.0	0	non-bonded clashes: 10	1		2026-09-26T16:09:11+08:00
+8PQM_1	null_template	none	ok		597	12.0	0	0	9	10	0	0	0	0	0	0	7	420	427	0.0	1		1		2026-09-26T16:09:14+08:00
+8PQM_1	null_unrelated	none	ok		1334	12.0	16	2	1354	463	0	0	10	0	9	18	46	914	978	0.0184	0	bond lengths: 16; bond angles: 2; cis peptide bonds outside proline: 10; twisted peptide bonds: 9; Ramachandran outliers: 18	0	bad_bonds; bad_angles; cis_nonpro; twisted_peptides	2026-09-26T16:09:17+08:00
+8PQR_1	null_template	none	ok		548	12.0	0	0	21	12	0	0	0	0	2	6	19	498	523	0.0115	0	twisted peptide bonds: 2; Ramachandran outliers: 6	1		2026-09-26T16:09:21+08:00
+8PQR_1	null_unrelated	none	ok		1262	12.0	0	0	127	9	0	0	0	4	0	0	2	630	632	0.0	1		1		2026-09-26T16:09:23+08:00
+8PR6_1	null_template	none	ok		292	12.0	0	0	3	4	0	0	0	4	0	0	19	265	284	0.0	1		1		2026-09-26T16:09:26+08:00
+8PR6_1	null_unrelated	none	ok		157	12.0	0	0	2	6	0	0	0	0	0	0	2	91	93	0.0	1		1		2026-09-26T16:09:29+08:00
+8PRR_1	null_template	none	ok		836	12.0	0	0	19	16	0	0	0	0	0	0	10	706	716	0.0	1		1		2026-09-26T16:09:30+08:00
+8PRR_1	null_unrelated	none	ok		478	12.0	0	0	92	9	2	0	0	0	0	0	7	290	297	0.0	0	non-bonded clashes: 2	1		2026-09-26T16:09:33+08:00
+8PVZ_1	null_template	none	ok		374	12.0	0	1	17	12	0	0	2	0	5	16	28	317	361	0.0443	0	bond angles: 1; cis peptide bonds outside proline: 2; twisted peptide bonds: 5; Ramachandran outliers: 16	1		2026-09-26T16:09:36+08:00
+8PVZ_1	null_unrelated	none	ok		798	12.0	0	0	33	10	0	0	3	0	2	4	20	593	617	0.0065	0	cis peptide bonds outside proline: 3; twisted peptide bonds: 2; Ramachandran outliers: 4	1		2026-09-26T16:09:39+08:00
+8PWC_1	null_template	none	ok		157	12.0	0	0	2	6	0	0	0	0	0	0	2	91	93	0.0	1		1		2026-09-26T16:09:42+08:00
+8PWC_1	null_unrelated	none	ok		390	12.0	0	0	18	2	0	0	0	0	0	0	3	148	151	0.0	1		1		2026-09-26T16:09:44+08:00
+8PX5_1	null_template	none	ok		390	12.0	0	0	18	2	0	0	0	0	0	0	3	148	151	0.0	1		1		2026-09-26T16:09:45+08:00
+8PX5_1	null_unrelated	none	ok		130	12.0	2	0	862	123	0	0	0	1	0	1	15	112	128	0.0078	0	bond lengths: 2; Ramachandran outliers: 1	1		2026-09-26T16:09:47+08:00
+8PYV_1	null_template	none	ok		429	12.0	0	0	24	59	0	0	0	0	3	39	87	294	420	0.0929	0	twisted peptide bonds: 3; Ramachandran outliers: 39	0	rama_outliers	2026-09-26T16:09:49+08:00
+8PYV_1	null_unrelated	none	ok		798	12.0	0	0	33	10	0	0	3	0	2	4	20	593	617	0.0065	0	cis peptide bonds outside proline: 3; twisted peptide bonds: 2; Ramachandran outliers: 4	1		2026-09-26T16:09:52+08:00
+8PYW_1	null_template	none	ok		906	12.0	0	0	25	95	0	0	0	0	0	18	44	826	888	0.0203	0	Ramachandran outliers: 18	1		2026-09-26T16:09:55+08:00
+8PYW_1	null_unrelated	none	ok		543	12.0	0	0	20	5	0	0	0	0	1	1	5	246	252	0.004	0	twisted peptide bonds: 1; Ramachandran outliers: 1	1		2026-09-26T16:09:58+08:00
+8PZO_1	null_unrelated	none	ok		741	12.0	0	0	27	121	4	0	0	7	0	14	40	622	676	0.0207	0	non-bonded clashes: 4; Ramachandran outliers: 14	1		2026-09-26T16:10:01+08:00
+8Q0S_1	null_template	none	ok		242	12.0	2	0	81	11	16	1	1	2	1	0	2	92	94	0.0	0	bond lengths: 2; non-bonded clashes: 16; alpha carbon chirality: 1; cis peptide bonds outside proline: 1; twisted peptide bonds: 1	0	clashes; ca_chirality_errors	2026-09-26T16:10:04+08:00
+8Q0S_1	null_unrelated	none	ok		790	12.0	0	0	115	17	0	0	0	2	0	0	11	435	446	0.0	1		1		2026-09-26T16:10:05+08:00
+8Q1V_1	null_template	none	ok		439	12.0	0	0	172	27	14	0	0	2	0	1	5	227	233	0.0043	0	non-bonded clashes: 14; Ramachandran outliers: 1	0	clashes	2026-09-26T16:10:08+08:00
+8Q1V_1	null_unrelated	none	ok		413	12.0	0	0	41	10	0	0	0	0	0	0	0	197	197	0.0	1		1		2026-09-26T16:10:09+08:00
+8Q1W_1	null_template	none	ok		213	12.0	0	0	2	0	4	0	0	1	0	0	3	87	90	0.0	0	non-bonded clashes: 4	1		2026-09-26T16:10:10+08:00
+8Q1W_1	null_unrelated	none	ok		130	12.0	2	0	862	123	0	0	0	1	0	1	15	112	128	0.0078	0	bond lengths: 2; Ramachandran outliers: 1	1		2026-09-26T16:10:11+08:00
+8Q4E_1	null_unrelated	none	ok		121	12.0	1	0	865	121	0	0	0	0	0	0	6	113	119	0.0	0	bond lengths: 1	1		2026-09-26T16:10:13+08:00
+8Q53_1	null_template	none	ok		543	12.0	0	0	20	5	0	0	0	0	1	1	5	246	252	0.004	0	twisted peptide bonds: 1; Ramachandran outliers: 1	1		2026-09-26T16:10:14+08:00
+8Q53_1	null_unrelated	none	ok		685	12.0	0	0	68	195	0	0	0	0	0	0	9	311	320	0.0	1		1		2026-09-26T16:10:15+08:00
+8Q5F_1	null_template	none	ok		271	12.0	0	0	32	3	2	0	0	0	0	0	0	113	113	0.0	0	non-bonded clashes: 2	1		2026-09-26T16:10:17+08:00
+8Q5F_1	null_unrelated	none	ok		358	12.0	0	0	4	2	0	0	0	0	0	0	1	127	128	0.0	1		1		2026-09-26T16:10:18+08:00
+8Q6M_1	null_template	none	ok		3152	12.0	2	2	274	51	14	0	0	0	0	0	19	1491	1510	0.0	0	bond lengths: 2; bond angles: 2; non-bonded clashes: 14	0	bad_angles; clashes	2026-09-26T16:10:20+08:00
+8Q6M_1	null_unrelated	none	ok		335	12.0	0	0	73	5	0	0	0	2	0	0	3	151	154	0.0	1		1		2026-09-26T16:10:23+08:00
+8Q6U_1	null_template	none	ok		1200	12.0	0	0	414	98	0	0	0	4	5	3	10	641	654	0.0046	0	twisted peptide bonds: 5; Ramachandran outliers: 3	1		2026-09-26T16:10:24+08:00
+8Q6U_1	null_unrelated	none	ok		1253	12.0	0	0	7	5	0	0	0	0	0	44	128	1073	1245	0.0353	0	Ramachandran outliers: 44	0	rama_outliers	2026-09-26T16:10:26+08:00
+8Q78_1	null_template	none	ok		478	12.0	0	0	92	9	2	0	0	0	0	0	7	290	297	0.0	0	non-bonded clashes: 2	1		2026-09-26T16:10:28+08:00
+8Q78_1	null_unrelated	none	ok		223	12.0	0	0	35	9	0	0	0	0	1	1	9	116	126	0.0079	0	twisted peptide bonds: 1; Ramachandran outliers: 1	1		2026-09-26T16:10:30+08:00
+8QAO_1	null_template	none	ok		171	12.0	0	0	0	0	0	0	0	0	0	0	2	143	145	0.0	1		1		2026-09-26T16:10:31+08:00
+8QAO_1	null_unrelated	none	ok		154	12.0	10	0	1153	138	0	0	0	0	0	4	14	132	150	0.0267	0	bond lengths: 10; Ramachandran outliers: 4	1		2026-09-26T16:10:32+08:00
+8QAZ_1	null_template	none	ok		237	12.0	0	0	36	9	0	0	0	0	0	0	2	111	113	0.0	1		1		2026-09-26T16:10:33+08:00
+8QAZ_1	null_unrelated	none	ok		2118	12.0	31	0	3823	1635	0	0	1	3	8	56	124	1926	2106	0.0266	0	bond lengths: 31; cis peptide bonds outside proline: 1; twisted peptide bonds: 8; Ramachandran outliers: 56	0	bad_bonds; twisted_peptides; rama_outliers	2026-09-26T16:10:34+08:00
+8QB1_1	null_unrelated	none	ok		656	12.0	0	0	26	3	10	0	0	1	0	1	4	286	291	0.0034	0	non-bonded clashes: 10; Ramachandran outliers: 1	1		2026-09-26T16:10:38+08:00
+8QF3_1	null_template	none	ok		525	12.0	0	0	3	2	0	0	0	0	0	0	7	349	356	0.0	1		1		2026-09-26T16:10:39+08:00
+8QF3_1	null_unrelated	none	ok		836	12.0	0	0	19	16	0	0	0	0	0	0	10	706	716	0.0	1		1		2026-09-26T16:10:41+08:00
+8QFU_1	null_template	none	ok		489	12.0	0	0	197	58	0	0	0	0	4	14	27	438	479	0.0292	0	twisted peptide bonds: 4; Ramachandran outliers: 14	1		2026-09-26T16:10:42+08:00
+8QFU_1	null_unrelated	none	ok		168	12.0	0	0	0	2	0	0	0	0	0	0	0	125	125	0.0	1		1		2026-09-26T16:10:44+08:00
+8QH6_1	null_template	none	ok		524	12.0	0	0	11	12	0	0	0	0	0	0	4	262	266	0.0	1		1		2026-09-26T16:10:44+08:00
+8QH6_1	null_unrelated	none	ok		1742	12.0	2	1	11	25	3	0	1	0	2	4	83	1645	1732	0.0023	0	bond lengths: 2; bond angles: 1; non-bonded clashes: 3; cis peptide bonds outside proline: 1; twisted peptide bonds: 2; Ramachandran outliers: 4	1		2026-09-26T16:10:46+08:00
+8QIY_1	null_template	none	ok		758	12.0	0	0	30	4	0	0	1	3	0	0	13	452	465	0.0	0	cis peptide bonds outside proline: 1	1		2026-09-26T16:10:49+08:00
+8QIY_1	null_unrelated	none	ok		647	12.0	0	0	72	15	0	0	0	0	1	0	9	363	372	0.0	0	twisted peptide bonds: 1	1		2026-09-26T16:10:50+08:00
+8QJ6_1	null_template	none	ok		1586	12.0	0	0	10	16	30	0	0	0	0	0	17	607	624	0.0	0	non-bonded clashes: 30	0	clashes	2026-09-26T16:10:51+08:00
+8QJ6_1	null_unrelated	none	ok		154	12.0	10	0	1153	138	0	0	0	0	0	4	14	132	150	0.0267	0	bond lengths: 10; Ramachandran outliers: 4	1		2026-09-26T16:10:53+08:00
+8QKF_1	null_template	none	ok		302	12.0	0	0	2	2	0	0	0	0	0	0	1	180	181	0.0	1		1		2026-09-26T16:10:54+08:00
+8QKF_1	null_unrelated	none	ok		798	12.0	0	0	33	10	0	0	3	0	2	4	20	593	617	0.0065	0	cis peptide bonds outside proline: 3; twisted peptide bonds: 2; Ramachandran outliers: 4	1		2026-09-26T16:10:55+08:00
+8QKY_1	null_template	none	ok		545	12.0	1	1	215	75	0	0	0	0	1	1	23	385	409	0.0024	0	bond lengths: 1; bond angles: 1; twisted peptide bonds: 1; Ramachandran outliers: 1	1		2026-09-26T16:10:57+08:00
+8QKY_1	null_unrelated	none	ok		312	12.0	0	0	49	26	0	0	1	2	0	19	49	236	304	0.0625	0	cis peptide bonds outside proline: 1; Ramachandran outliers: 19	1		2026-09-26T16:10:58+08:00
+8QOK_1	null_template	none	ok		1056	12.0	0	0	56	32	0	0	0	6	0	2	19	764	785	0.0025	0	Ramachandran outliers: 2	1		2026-09-26T16:10:59+08:00
+8QOK_1	null_unrelated	none	ok		595	12.0	0	0	26	28	0	0	1	0	1	9	22	408	439	0.0205	0	cis peptide bonds outside proline: 1; twisted peptide bonds: 1; Ramachandran outliers: 9	1		2026-09-26T16:11:01+08:00
+8QRY_1	null_template	none	ok		2118	12.0	31	0	3823	1635	0	0	1	3	8	56	124	1926	2106	0.0266	0	bond lengths: 31; cis peptide bonds outside proline: 1; twisted peptide bonds: 8; Ramachandran outliers: 56	0	bad_bonds; twisted_peptides; rama_outliers	2026-09-26T16:11:03+08:00
+8QRY_1	null_unrelated	none	ok		323	12.0	0	0	4	9	0	0	0	0	0	0	3	178	181	0.0	1		1		2026-09-26T16:11:07+08:00
+8QUP_1	null_template	none	ok		121	12.0	1	0	865	121	0	0	0	0	0	0	6	113	119	0.0	0	bond lengths: 1	1		2026-09-26T16:11:08+08:00
+8QUP_1	null_unrelated	none	ok		333	12.0	0	0	94	17	12	0	0	0	0	0	7	141	148	0.0	0	non-bonded clashes: 12	1		2026-09-26T16:11:10+08:00
+8QX5_1	null_template	none	ok		731	12.0	0	0	54	15	2	0	0	2	0	0	5	317	322	0.0	0	non-bonded clashes: 2	1		2026-09-26T16:11:11+08:00
+8QX5_1	null_unrelated	none	ok		218	12.0	1	0	101	36	0	0	0	0	0	0	2	113	115	0.0	0	bond lengths: 1	1		2026-09-26T16:11:12+08:00
+8QX6_1	null_unrelated	none	ok		525	12.0	0	0	3	2	0	0	0	0	0	0	7	349	356	0.0	1		1		2026-09-26T16:11:13+08:00
+8QZV_1	null_template	none	ok		223	12.0	0	0	35	9	0	0	0	0	1	1	9	116	126	0.0079	0	twisted peptide bonds: 1; Ramachandran outliers: 1	1		2026-09-26T16:11:16+08:00
+8QZV_1	null_unrelated	none	ok		726	12.0	0	0	22	24	0	0	3	0	2	7	9	543	559	0.0125	0	cis peptide bonds outside proline: 3; twisted peptide bonds: 2; Ramachandran outliers: 7	1		2026-09-26T16:11:17+08:00
+8R28_1	null_template	none	ok		333	12.0	0	0	43	1	0	0	0	0	0	2	1	209	212	0.0094	0	Ramachandran outliers: 2	1		2026-09-26T16:11:19+08:00
+8R28_1	null_unrelated	none	ok		548	12.0	0	0	21	12	0	0	0	0	2	6	19	498	523	0.0115	0	twisted peptide bonds: 2; Ramachandran outliers: 6	1		2026-09-26T16:11:20+08:00
+8R2C_1	null_unrelated	none	ok		452	12.0	2	1	217	58	0	0	2	0	2	5	7	261	273	0.0183	0	bond lengths: 2; bond angles: 1; cis peptide bonds outside proline: 2; twisted peptide bonds: 2; Ramachandran outliers: 5	1		2026-09-26T16:11:22+08:00
+8R3F_1	null_template	none	ok		513	12.0	0	0	47	72	0	0	0	0	0	9	28	342	379	0.0237	0	Ramachandran outliers: 9	1		2026-09-26T16:11:23+08:00
+8R3F_1	null_unrelated	none	ok		2118	12.0	31	0	3823	1635	0	0	1	3	8	56	124	1926	2106	0.0266	0	bond lengths: 31; cis peptide bonds outside proline: 1; twisted peptide bonds: 8; Ramachandran outliers: 56	0	bad_bonds; twisted_peptides; rama_outliers	2026-09-26T16:11:25+08:00
+8R3N_1	null_template	none	ok		1060	12.0	12	0	3912	20	0	0	0	0	0	0	3	489	492	0.0	0	bond lengths: 12	1		2026-09-26T16:11:30+08:00
+8R3N_1	null_unrelated	none	ok		307	12.0	0	0	29	2	0	0	0	0	1	5	11	206	222	0.0225	0	twisted peptide bonds: 1; Ramachandran outliers: 5	1		2026-09-26T16:11:32+08:00
+8R5K_1	null_template	none	ok		290	12.0	0	0	51	2	0	0	0	1	0	0	3	123	126	0.0	1		1		2026-09-26T16:11:33+08:00
+8R5K_1	null_unrelated	none	ok		154	12.0	10	0	1153	138	0	0	0	0	0	4	14	132	150	0.0267	0	bond lengths: 10; Ramachandran outliers: 4	1		2026-09-26T16:11:34+08:00
+8R5N_1	null_template	none	ok		214	12.0	0	6	64	66	0	0	0	2	2	5	8	145	158	0.0316	0	bond angles: 6; twisted peptide bonds: 2; Ramachandran outliers: 5	0	bad_angles	2026-09-26T16:11:35+08:00
+8R5N_1	null_unrelated	none	ok		439	12.0	0	0	172	27	14	0	0	2	0	1	5	227	233	0.0043	0	non-bonded clashes: 14; Ramachandran outliers: 1	0	clashes	2026-09-26T16:11:36+08:00
+8R6I_1	null_template	none	ok		680	12.0	0	0	0	0	0	0	3	4	0	2	12	507	521	0.0038	0	cis peptide bonds outside proline: 3; Ramachandran outliers: 2	1		2026-09-26T16:11:38+08:00
+8R6I_1	null_unrelated	none	ok		2239	12.0	0	0	15	7	0	0	0	2	2	5	184	2036	2225	0.0022	0	twisted peptide bonds: 2; Ramachandran outliers: 5	1		2026-09-26T16:11:39+08:00
+8R8A_1	null_template	none	ok		577	12.0	0	0	1	35	10	0	0	0	0	11	49	451	511	0.0215	0	non-bonded clashes: 10; Ramachandran outliers: 11	1		2026-09-26T16:11:44+08:00
+8R8A_1	null_unrelated	none	ok		302	12.0	0	0	2	2	0	0	0	0	0	0	1	180	181	0.0	1		1		2026-09-26T16:11:46+08:00
+8RCY_1	null_template	none	ok		494	12.0	0	0	1	25	8	0	0	2	0	1	10	243	254	0.0039	0	non-bonded clashes: 8; Ramachandran outliers: 1	1		2026-09-26T16:11:47+08:00
+8RCY_1	null_unrelated	none	ok		157	12.0	0	0	2	6	0	0	0	0	0	0	2	91	93	0.0	1		1		2026-09-26T16:11:49+08:00
+8RD7_1	null_template	none	ok		100	12.0	0	0	0	0	0	0	0	0	0	0	1	67	68	0.0	1		1		2026-09-26T16:11:50+08:00
+8RD7_1	null_unrelated	none	ok		124	12.0	3	0	861	119	0	0	0	0	0	1	3	117	121	0.0083	0	bond lengths: 3; Ramachandran outliers: 1	1		2026-09-26T16:11:51+08:00
+8RDD_1	null_template	none	ok		402	12.0	0	0	39	15	0	0	2	0	3	7	16	335	358	0.0196	0	cis peptide bonds outside proline: 2; twisted peptide bonds: 3; Ramachandran outliers: 7	1		2026-09-26T16:11:53+08:00
+8RDD_1	null_unrelated	none	ok		595	12.0	0	0	26	28	0	0	1	0	1	9	22	408	439	0.0205	0	cis peptide bonds outside proline: 1; twisted peptide bonds: 1; Ramachandran outliers: 9	1		2026-09-26T16:11:54+08:00
+8RF6_1	null_template	none	ok		257	12.0	0	0	32	0	0	0	0	1	0	0	3	113	116	0.0	1		1		2026-09-26T16:11:57+08:00
+8RF6_1	null_unrelated	none	ok		1742	12.0	2	1	11	25	3	0	1	0	2	4	83	1645	1732	0.0023	0	bond lengths: 2; bond angles: 1; non-bonded clashes: 3; cis peptide bonds outside proline: 1; twisted peptide bonds: 2; Ramachandran outliers: 4	1		2026-09-26T16:12:02+08:00
+8RHO_1	null_template	none	ok		726	12.0	0	0	22	24	0	0	3	0	2	7	9	543	559	0.0125	0	cis peptide bonds outside proline: 3; twisted peptide bonds: 2; Ramachandran outliers: 7	1		2026-09-26T16:12:07+08:00
+8RHO_1	null_unrelated	none	ok		290	12.0	0	0	51	2	0	0	0	1	0	0	3	123	126	0.0	1		1		2026-09-26T16:12:10+08:00
+8RHR_1	null_template	none	ok		719	12.0	0	0	35	12	0	0	0	3	0	2	18	455	475	0.0042	0	Ramachandran outliers: 2	1		2026-09-26T16:12:11+08:00
+8RHR_1	null_unrelated	none	ok		1321	12.0	0	0	55	20	16	0	0	0	0	0	7	525	532	0.0	0	non-bonded clashes: 16	0	clashes	2026-09-26T16:12:14+08:00
+8RIJ_1	null_template	none	ok		1334	12.0	16	2	1354	463	0	0	10	0	9	18	46	914	978	0.0184	0	bond lengths: 16; bond angles: 2; cis peptide bonds outside proline: 10; twisted peptide bonds: 9; Ramachandran outliers: 18	0	bad_bonds; bad_angles; cis_nonpro; twisted_peptides	2026-09-26T16:12:16+08:00
+8RIJ_1	null_unrelated	none	ok		544	12.0	0	0	53	54	0	0	0	2	1	1	6	304	311	0.0032	0	twisted peptide bonds: 1; Ramachandran outliers: 1	1		2026-09-26T16:12:20+08:00
+8RKP_1	null_template	none	ok		1321	12.0	0	0	55	20	16	0	0	0	0	0	7	525	532	0.0	0	non-bonded clashes: 16	0	clashes	2026-09-26T16:12:22+08:00
+8RKP_1	null_unrelated	none	ok		685	12.0	0	0	68	195	0	0	0	0	0	0	9	311	320	0.0	1		1		2026-09-26T16:12:24+08:00
+8RNZ_1	null_template	none	ok		2031	12.0	1	1	771	177	0	0	5	0	7	18	41	1766	1825	0.0099	0	bond lengths: 1; bond angles: 1; cis peptide bonds outside proline: 5; twisted peptide bonds: 7; Ramachandran outliers: 18	0	cis_nonpro	2026-09-26T16:12:26+08:00
+8RNZ_1	null_unrelated	none	ok		1414	12.0	0	0	145	52	10	0	0	0	0	0	15	633	648	0.0	0	non-bonded clashes: 10	1		2026-09-26T16:12:31+08:00
+8RRY_1	null_template	none	ok		1212	12.0	0	0	114	68	0	0	0	6	0	0	8	496	504	0.0	1		1		2026-09-26T16:12:34+08:00
+8RRY_1	null_unrelated	none	ok		182	12.0	1	0	4	11	0	0	0	0	0	0	3	138	141	0.0	0	bond lengths: 1	1		2026-09-26T16:12:36+08:00
+8RU1_1	null_template	none	ok		413	12.0	0	0	41	10	0	0	0	0	0	0	0	197	197	0.0	1		1		2026-09-26T16:12:37+08:00
+8RU1_1	null_unrelated	none	ok		1604	12.0	0	0	5	43	0	0	0	0	2	2	29	1139	1170	0.0017	0	twisted peptide bonds: 2; Ramachandran outliers: 2	1		2026-09-26T16:12:40+08:00
+8RU5_1	null_template	none	ok		358	12.0	0	0	4	2	0	0	0	0	0	0	1	127	128	0.0	1		1		2026-09-26T16:12:43+08:00
+8RU5_1	null_unrelated	none	ok		237	12.0	0	0	36	9	0	0	0	0	0	0	2	111	113	0.0	1		1		2026-09-26T16:12:45+08:00
+8RW6_1	null_template	none	ok		798	12.0	0	0	33	10	0	0	3	0	2	4	20	593	617	0.0065	0	cis peptide bonds outside proline: 3; twisted peptide bonds: 2; Ramachandran outliers: 4	1		2026-09-26T16:12:46+08:00
+8RW6_1	null_unrelated	none	ok		731	12.0	0	0	54	15	2	0	0	2	0	0	5	317	322	0.0	0	non-bonded clashes: 2	1		2026-09-26T16:12:49+08:00
+8RXA_1	null_unrelated	none	ok		223	12.0	0	0	35	9	0	0	0	0	1	1	9	116	126	0.0079	0	twisted peptide bonds: 1; Ramachandran outliers: 1	1		2026-09-26T16:12:51+08:00
+8RYS_1	null_template	none	ok		234	12.0	0	1	108	163	0	0	0	1	0	2	7	140	149	0.0134	0	bond angles: 1; Ramachandran outliers: 2	1		2026-09-26T16:12:53+08:00
+8RYS_1	null_unrelated	none	ok		184	12.0	1	0	8	5	0	0	0	1	0	0	4	92	96	0.0	0	bond lengths: 1	1		2026-09-26T16:12:54+08:00
+8S48_1	null_template	none	ok		322	12.0	0	0	2	1	0	0	0	0	0	0	6	302	308	0.0	1		1		2026-09-26T16:12:56+08:00
+8S48_1	null_unrelated	none	ok		1414	12.0	0	0	145	52	10	0	0	0	0	0	15	633	648	0.0	0	non-bonded clashes: 10	1		2026-09-26T16:12:59+08:00
+8S4E_1	null_template	none	ok		222	12.0	10	0	1528	217	0	0	0	0	0	22	24	172	218	0.1009	0	bond lengths: 10; Ramachandran outliers: 22	0	rama_outliers	2026-09-26T16:13:02+08:00
+8S4E_1	null_unrelated	none	ok		1060	12.0	12	0	3912	20	0	0	0	0	0	0	3	489	492	0.0	0	bond lengths: 12	1		2026-09-26T16:13:05+08:00
+8S7A_1	null_template	none	ok		196	12.0	8	0	1353	181	0	0	0	0	0	12	39	141	192	0.0625	0	bond lengths: 8; Ramachandran outliers: 12	1		2026-09-26T16:13:09+08:00
+8S7A_1	null_unrelated	none	ok		130	12.0	2	0	862	123	0	0	0	1	0	1	15	112	128	0.0078	0	bond lengths: 2; Ramachandran outliers: 1	1		2026-09-26T16:13:11+08:00
+8T2M_1	null_template	none	ok		218	12.0	1	0	101	36	0	0	0	0	0	0	2	113	115	0.0	0	bond lengths: 1	1		2026-09-26T16:13:14+08:00
+8T2M_1	null_unrelated	none	ok		312	12.0	0	0	49	26	0	0	1	2	0	19	49	236	304	0.0625	0	cis peptide bonds outside proline: 1; Ramachandran outliers: 19	1		2026-09-26T16:13:16+08:00
+8T4C_1	null_template	none	ok		1028	12.0	0	0	48	3	0	0	0	14	0	0	0	916	916	0.0	1		1		2026-09-26T16:13:18+08:00
+8T4C_1	null_unrelated	none	ok		1642	12.0	0	0	10	8	0	0	0	0	3	1	19	845	865	0.0012	0	twisted peptide bonds: 3; Ramachandran outliers: 1	1		2026-09-26T16:13:22+08:00
+8T5A_1	null_template	none	ok		595	12.0	0	0	26	28	0	0	1	0	1	9	22	408	439	0.0205	0	cis peptide bonds outside proline: 1; twisted peptide bonds: 1; Ramachandran outliers: 9	1		2026-09-26T16:13:26+08:00
+8T5A_1	null_unrelated	none	ok		223	12.0	0	0	35	9	0	0	0	0	1	1	9	116	126	0.0079	0	twisted peptide bonds: 1; Ramachandran outliers: 1	1		2026-09-26T16:13:29+08:00
+8T7K_1	null_template	none	ok		544	12.0	0	0	53	54	0	0	0	2	1	1	6	304	311	0.0032	0	twisted peptide bonds: 1; Ramachandran outliers: 1	1		2026-09-26T16:13:31+08:00
+8T7K_1	null_unrelated	none	ok		1212	12.0	0	0	114	68	0	0	0	6	0	0	8	496	504	0.0	1		1		2026-09-26T16:13:32+08:00
+27WO_1	af2_nomsa	alphafold2_ptm	ok		81	12.0	0	5	22	31	2	0	0	0	2	8	7	64	79	0.1013	0	bond angles: 5; non-bonded clashes: 2; twisted peptide bonds: 2; Ramachandran outliers: 8	0	bad_angles	2026-09-26T16:13:35+08:00
+27AH_1	af2_nomsa	alphafold2_ptm	ok		82	12.0	0	0	2	3	0	0	0	0	0	1	2	77	80	0.0125	0	Ramachandran outliers: 1	1		2026-09-26T16:13:37+08:00
+8PQM_1	af2_nomsa	alphafold2_ptm	ok		82	12.0	0	1	8	6	0	0	0	0	0	0	4	76	80	0.0	0	bond angles: 1	1		2026-09-26T16:13:39+08:00
+36MB_1	af2_nomsa	alphafold2_ptm	ok		83	12.0	0	1	11	10	0	0	0	0	0	0	0	81	81	0.0	0	bond angles: 1	1		2026-09-26T16:13:40+08:00
+8PRR_1	af2_nomsa	alphafold2_ptm	ok		84	12.0	1	5	12	20	0	0	0	0	0	8	5	69	82	0.0976	0	bond lengths: 1; bond angles: 5; Ramachandran outliers: 8	0	bad_angles	2026-09-26T16:13:41+08:00
+8S7A_1	af2_nomsa	alphafold2_ptm	ok		84	12.0	0	1	22	28	0	0	0	0	0	4	4	74	82	0.0488	0	bond angles: 1; Ramachandran outliers: 4	1		2026-09-26T16:13:43+08:00
+21NG_1	af2_nomsa	alphafold2_ptm	ok		85	12.0	1	5	17	16	0	0	0	0	1	5	5	73	83	0.0602	0	bond lengths: 1; bond angles: 5; twisted peptide bonds: 1; Ramachandran outliers: 5	0	bad_angles	2026-09-26T16:13:46+08:00
+8P91_1	af2_nomsa	alphafold2_ptm	ok		85	12.0	0	20	15	59	0	0	0	0	12	32	4	47	83	0.3855	0	bond angles: 20; twisted peptide bonds: 12; Ramachandran outliers: 32	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:13:47+08:00
+8PR6_1	af2_nomsa	alphafold2_ptm	ok		85	12.0	0	1	15	41	4	0	0	0	0	13	8	62	83	0.1566	0	bond angles: 1; non-bonded clashes: 4; Ramachandran outliers: 13	1		2026-09-26T16:13:49+08:00
+8KC1_1	af2_nomsa	alphafold2_ptm	ok		87	12.0	0	3	16	29	0	0	0	0	0	7	6	72	85	0.0824	0	bond angles: 3; Ramachandran outliers: 7	0	bad_angles	2026-09-26T16:13:50+08:00
+8QB1_1	af2_nomsa	alphafold2_ptm	ok		88	12.0	0	0	14	8	4	0	0	0	0	3	4	79	86	0.0349	0	non-bonded clashes: 4; Ramachandran outliers: 3	1		2026-09-26T16:13:53+08:00
+8JN0_1	af2_nomsa	alphafold2_ptm	ok		89	12.0	4	8	45	60	41	0	0	1	8	14	12	61	87	0.1609	0	bond lengths: 4; bond angles: 8; non-bonded clashes: 41; twisted peptide bonds: 8; Ramachandran outliers: 14	0	bad_angles; clashes; twisted_peptides	2026-09-26T16:13:54+08:00
+8Q1W_1	af2_nomsa	alphafold2_ptm	ok		89	12.0	0	12	17	67	13	0	0	0	0	20	10	57	87	0.2299	0	bond angles: 12; non-bonded clashes: 13; Ramachandran outliers: 20	0	bad_angles; clashes; rama_outliers	2026-09-26T16:13:56+08:00
+10XE_1	af2_nomsa	alphafold2_ptm	ok		91	12.0	0	3	16	26	8	0	0	0	2	5	2	82	89	0.0562	0	bond angles: 3; non-bonded clashes: 8; twisted peptide bonds: 2; Ramachandran outliers: 5	0	bad_angles	2026-09-26T16:13:57+08:00
+8RD7_1	af2_nomsa	alphafold2_ptm	ok		91	12.0	0	7	14	39	9	0	0	0	0	13	8	68	89	0.1461	0	bond angles: 7; non-bonded clashes: 9; Ramachandran outliers: 13	0	bad_angles	2026-09-26T16:13:59+08:00
+10XH_1	af2_nomsa	alphafold2_ptm	ok		93	12.0	0	5	15	31	6	0	0	0	5	11	4	76	91	0.1209	0	bond angles: 5; non-bonded clashes: 6; twisted peptide bonds: 5; Ramachandran outliers: 11	0	bad_angles	2026-09-26T16:14:01+08:00
+8Q1V_1	af2_nomsa	alphafold2_ptm	ok		93	12.0	0	18	28	72	4	0	0	0	4	27	12	52	91	0.2967	0	bond angles: 18; non-bonded clashes: 4; twisted peptide bonds: 4; Ramachandran outliers: 27	0	bad_angles; rama_outliers	2026-09-26T16:14:03+08:00
+8JNB_1	af2_nomsa	alphafold2_ptm	ok		94	12.0	0	7	22	36	2	0	0	0	6	18	13	61	92	0.1957	0	bond angles: 7; non-bonded clashes: 2; twisted peptide bonds: 6; Ramachandran outliers: 18	0	bad_angles	2026-09-26T16:14:04+08:00
+8QAO_1	af2_nomsa	alphafold2_ptm	ok		95	12.0	1	14	20	51	2	0	0	0	4	21	9	63	93	0.2258	0	bond lengths: 1; bond angles: 14; non-bonded clashes: 2; twisted peptide bonds: 4; Ramachandran outliers: 21	0	bad_angles; rama_outliers	2026-09-26T16:14:06+08:00
+8QRY_1	af2_nomsa	alphafold2_ptm	ok		96	12.0	0	3	19	36	7	0	0	0	0	10	10	74	94	0.1064	0	bond angles: 3; non-bonded clashes: 7; Ramachandran outliers: 10	0	bad_angles	2026-09-26T16:14:08+08:00
+10XG_1	af2_nomsa	alphafold2_ptm	ok		97	12.0	0	4	19	31	2	0	0	0	2	10	10	75	95	0.1053	0	bond angles: 4; non-bonded clashes: 2; twisted peptide bonds: 2; Ramachandran outliers: 10	0	bad_angles	2026-09-26T16:14:10+08:00
+13TX_1	af2_nomsa	alphafold2_ptm	ok		97	12.0	0	22	24	60	3	0	0	0	2	30	10	55	95	0.3158	0	bond angles: 22; non-bonded clashes: 3; twisted peptide bonds: 2; Ramachandran outliers: 30	0	bad_angles; rama_outliers	2026-09-26T16:14:11+08:00
+8Q0S_1	af2_nomsa	alphafold2_ptm	ok		97	12.0	0	13	25	86	2	0	0	0	10	29	18	48	95	0.3053	0	bond angles: 13; non-bonded clashes: 2; twisted peptide bonds: 10; Ramachandran outliers: 29	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:14:12+08:00
+8QJ6_1	af2_nomsa	alphafold2_ptm	ok		97	12.0	3	24	34	98	13	0	0	0	10	17	8	70	95	0.1789	0	bond lengths: 3; bond angles: 24; non-bonded clashes: 13; twisted peptide bonds: 10; Ramachandran outliers: 17	0	bad_angles; clashes; twisted_peptides	2026-09-26T16:14:14+08:00
+36IQ_1	af2_nomsa	alphafold2_ptm	ok		98	12.0	0	0	14	5	0	0	0	0	1	0	1	95	96	0.0	0	twisted peptide bonds: 1	1		2026-09-26T16:14:16+08:00
+8PJQ_1	af2_nomsa	alphafold2_ptm	ok		98	12.0	0	13	20	59	2	0	0	0	6	18	10	68	96	0.1875	0	bond angles: 13; non-bonded clashes: 2; twisted peptide bonds: 6; Ramachandran outliers: 18	0	bad_angles	2026-09-26T16:14:18+08:00
+31KJ_1	af2_nomsa	alphafold2_ptm	ok		99	12.0	0	2	10	25	0	0	0	1	0	7	9	81	97	0.0722	0	bond angles: 2; Ramachandran outliers: 7	0	bad_angles	2026-09-26T16:14:20+08:00
+8RNZ_1	af2_nomsa	alphafold2_ptm	ok		100	12.0	0	9	24	59	11	0	0	0	9	18	17	63	98	0.1837	0	bond angles: 9; non-bonded clashes: 11; twisted peptide bonds: 9; Ramachandran outliers: 18	0	bad_angles; twisted_peptides	2026-09-26T16:14:21+08:00
+12FA_1	af2_nomsa	alphafold2_ptm	ok		104	12.0	1	4	19	40	0	0	0	0	2	6	8	88	102	0.0588	0	bond lengths: 1; bond angles: 4; twisted peptide bonds: 2; Ramachandran outliers: 6	0	bad_angles	2026-09-26T16:14:23+08:00
+8KBM_1	af2_nomsa	alphafold2_ptm	ok		104	12.0	0	4	22	58	13	0	0	0	2	13	10	79	102	0.1275	0	bond angles: 4; non-bonded clashes: 13; twisted peptide bonds: 2; Ramachandran outliers: 13	0	bad_angles; clashes	2026-09-26T16:14:25+08:00
+8PHY_1	af2_nomsa	alphafold2_ptm	ok		104	12.0	1	10	33	75	0	0	0	0	11	21	16	65	102	0.2059	0	bond lengths: 1; bond angles: 10; twisted peptide bonds: 11; Ramachandran outliers: 21	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:14:27+08:00
+8JU7_1	af2_nomsa	alphafold2_ptm	ok		105	12.0	0	6	25	35	2	0	0	0	1	11	10	82	103	0.1068	0	bond angles: 6; non-bonded clashes: 2; twisted peptide bonds: 1; Ramachandran outliers: 11	0	bad_angles	2026-09-26T16:14:28+08:00
+8R3F_1	af2_nomsa	alphafold2_ptm	ok		105	12.0	0	5	20	50	7	0	0	0	4	18	11	74	103	0.1748	0	bond angles: 5; non-bonded clashes: 7; twisted peptide bonds: 4; Ramachandran outliers: 18	0	bad_angles	2026-09-26T16:14:30+08:00
+22FK_1	af2_nomsa	alphafold2_ptm	ok		106	12.0	1	14	27	68	25	0	0	0	4	15	15	74	104	0.1442	0	bond lengths: 1; bond angles: 14; non-bonded clashes: 25; twisted peptide bonds: 4; Ramachandran outliers: 15	0	bad_angles; clashes	2026-09-26T16:14:32+08:00
+8RXA_1	af2_nomsa	alphafold2_ptm	ok		109	12.0	0	6	15	28	9	0	0	0	2	7	10	90	107	0.0654	0	bond angles: 6; non-bonded clashes: 9; twisted peptide bonds: 2; Ramachandran outliers: 7	0	bad_angles	2026-09-26T16:14:34+08:00
+8PWC_1	af2_nomsa	alphafold2_ptm	ok		110	12.0	0	2	17	36	3	0	0	0	7	14	10	84	108	0.1296	0	bond angles: 2; non-bonded clashes: 3; twisted peptide bonds: 7; Ramachandran outliers: 14	0	bad_angles	2026-09-26T16:14:35+08:00
+8R6I_1	af2_nomsa	alphafold2_ptm	ok		114	12.0	2	8	40	92	11	0	0	1	1	13	12	87	112	0.1161	0	bond lengths: 2; bond angles: 8; non-bonded clashes: 11; twisted peptide bonds: 1; Ramachandran outliers: 13	0	bad_angles	2026-09-26T16:14:36+08:00
+8RW6_1	af2_nomsa	alphafold2_ptm	ok		114	12.0	0	11	34	98	4	0	0	0	10	25	22	65	112	0.2232	0	bond angles: 11; non-bonded clashes: 4; twisted peptide bonds: 10; Ramachandran outliers: 25	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:14:38+08:00
+8Q5F_1	af2_nomsa	alphafold2_ptm	ok		115	12.0	0	12	22	63	4	0	0	0	3	15	13	85	113	0.1327	0	bond angles: 12; non-bonded clashes: 4; twisted peptide bonds: 3; Ramachandran outliers: 15	0	bad_angles	2026-09-26T16:14:40+08:00
+8PNM_1	af2_nomsa	alphafold2_ptm	ok		116	12.0	0	3	31	51	4	0	0	0	0	14	7	93	114	0.1228	0	bond angles: 3; non-bonded clashes: 4; Ramachandran outliers: 14	0	bad_angles	2026-09-26T16:14:42+08:00
+8QAZ_1	af2_nomsa	alphafold2_ptm	ok		116	12.0	0	5	19	35	11	0	0	0	1	16	7	91	114	0.1404	0	bond angles: 5; non-bonded clashes: 11; twisted peptide bonds: 1; Ramachandran outliers: 16	0	bad_angles	2026-09-26T16:14:43+08:00
+8RU1_1	af2_nomsa	alphafold2_ptm	ok		116	12.0	0	10	28	60	0	0	0	0	4	17	8	89	114	0.1491	0	bond angles: 10; twisted peptide bonds: 4; Ramachandran outliers: 17	0	bad_angles	2026-09-26T16:14:45+08:00
+21EJ_1	af2_nomsa	alphafold2_ptm	ok		118	12.0	2	6	37	64	5	0	0	0	5	14	20	82	116	0.1207	0	bond lengths: 2; bond angles: 6; non-bonded clashes: 5; twisted peptide bonds: 5; Ramachandran outliers: 14	0	bad_angles	2026-09-26T16:14:47+08:00
+8RF6_1	af2_nomsa	alphafold2_ptm	ok		118	12.0	0	6	37	82	6	0	0	0	4	15	20	81	116	0.1293	0	bond angles: 6; non-bonded clashes: 6; twisted peptide bonds: 4; Ramachandran outliers: 15	0	bad_angles	2026-09-26T16:14:49+08:00
+12HP_1	af2_nomsa	alphafold2_ptm	ok		120	12.0	0	3	27	63	6	0	0	0	1	17	17	84	118	0.1441	0	bond angles: 3; non-bonded clashes: 6; twisted peptide bonds: 1; Ramachandran outliers: 17	0	bad_angles	2026-09-26T16:14:51+08:00
+44ID_1	af2_nomsa	alphafold2_ptm	ok		120	12.0	0	8	39	86	11	0	0	0	10	23	15	80	118	0.1949	0	bond angles: 8; non-bonded clashes: 11; twisted peptide bonds: 10; Ramachandran outliers: 23	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:14:52+08:00
+8QKF_1	af2_nomsa	alphafold2_ptm	ok		120	12.0	0	7	18	46	2	0	0	0	13	18	11	89	118	0.1525	0	bond angles: 7; non-bonded clashes: 2; twisted peptide bonds: 13; Ramachandran outliers: 18	0	bad_angles; twisted_peptides	2026-09-26T16:14:54+08:00
+11OW_1	af2_nomsa	alphafold2_ptm	ok		121	12.0	3	6	36	109	13	0	0	0	7	21	19	79	119	0.1765	0	bond lengths: 3; bond angles: 6; non-bonded clashes: 13; twisted peptide bonds: 7; Ramachandran outliers: 21	0	bad_angles; clashes; rama_outliers	2026-09-26T16:14:56+08:00
+8R28_1	af2_nomsa	alphafold2_ptm	ok		121	12.0	2	35	31	103	4	0	0	0	7	40	21	58	119	0.3361	0	bond lengths: 2; bond angles: 35; non-bonded clashes: 4; twisted peptide bonds: 7; Ramachandran outliers: 40	0	bad_angles; rama_outliers	2026-09-26T16:14:58+08:00
+22FG_1	af2_nomsa	alphafold2_ptm	ok		122	12.0	0	10	37	59	19	0	0	0	1	17	11	92	120	0.1417	0	bond angles: 10; non-bonded clashes: 19; twisted peptide bonds: 1; Ramachandran outliers: 17	0	bad_angles; clashes	2026-09-26T16:14:59+08:00
+8RHO_1	af2_nomsa	alphafold2_ptm	ok		122	12.0	0	10	36	70	7	0	0	0	3	15	12	93	120	0.125	0	bond angles: 10; non-bonded clashes: 7; twisted peptide bonds: 3; Ramachandran outliers: 15	0	bad_angles	2026-09-26T16:15:01+08:00
+29LI_1	af2_nomsa	alphafold2_ptm	ok		123	12.0	1	21	28	78	21	0	1	0	3	23	12	86	121	0.1901	0	bond lengths: 1; bond angles: 21; non-bonded clashes: 21; cis peptide bonds outside proline: 1; twisted peptide bonds: 3; Ramachandran outliers: 23	0	bad_angles; clashes; rama_outliers	2026-09-26T16:15:03+08:00
+8KA7_1	af2_nomsa	alphafold2_ptm	ok		124	12.0	0	3	23	16	2	0	0	0	0	5	5	112	122	0.041	0	bond angles: 3; non-bonded clashes: 2; Ramachandran outliers: 5	0	bad_angles	2026-09-26T16:15:05+08:00
+8QUP_1	af2_nomsa	alphafold2_ptm	ok		124	12.0	0	0	6	2	0	0	0	0	0	2	2	118	122	0.0164	0	Ramachandran outliers: 2	1		2026-09-26T16:15:06+08:00
+8S4E_1	af2_nomsa	alphafold2_ptm	ok		124	12.0	0	11	26	88	2	0	0	0	1	22	16	84	122	0.1803	0	bond angles: 11; non-bonded clashes: 2; twisted peptide bonds: 1; Ramachandran outliers: 22	0	bad_angles; rama_outliers	2026-09-26T16:15:08+08:00
+8K1W_1	af2_nomsa	alphafold2_ptm	ok		125	12.0	0	13	28	107	17	0	0	0	11	26	14	83	123	0.2114	0	bond angles: 13; non-bonded clashes: 17; twisted peptide bonds: 11; Ramachandran outliers: 26	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:15:10+08:00
+8Q78_1	af2_nomsa	alphafold2_ptm	ok		125	12.0	0	4	25	46	8	0	0	0	0	13	11	99	123	0.1057	0	bond angles: 4; non-bonded clashes: 8; Ramachandran outliers: 13	0	bad_angles	2026-09-26T16:15:12+08:00
+8K9N_1	af2_nomsa	alphafold2_ptm	ok		126	12.0	0	8	24	67	6	0	0	0	3	18	18	88	124	0.1452	0	bond angles: 8; non-bonded clashes: 6; twisted peptide bonds: 3; Ramachandran outliers: 18	0	bad_angles	2026-09-26T16:15:13+08:00
+8Q53_1	af2_nomsa	alphafold2_ptm	ok		126	12.0	1	8	34	76	12	0	0	0	3	22	12	90	124	0.1774	0	bond lengths: 1; bond angles: 8; non-bonded clashes: 12; twisted peptide bonds: 3; Ramachandran outliers: 22	0	bad_angles; rama_outliers	2026-09-26T16:15:15+08:00
+8JWS_1	af2_nomsa	alphafold2_ptm	ok		127	12.0	0	10	33	81	8	0	0	0	9	20	22	83	125	0.16	0	bond angles: 10; non-bonded clashes: 8; twisted peptide bonds: 9; Ramachandran outliers: 20	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:15:17+08:00
+36IW_1	af2_nomsa	alphafold2_ptm	ok		128	12.0	0	11	24	87	4	0	0	0	5	14	11	101	126	0.1111	0	bond angles: 11; non-bonded clashes: 4; twisted peptide bonds: 5; Ramachandran outliers: 14	0	bad_angles	2026-09-26T16:15:19+08:00
+8PKR_1	af2_nomsa	alphafold2_ptm	ok		128	12.0	5	18	38	84	9	0	0	0	13	27	22	77	126	0.2143	0	bond lengths: 5; bond angles: 18; non-bonded clashes: 9; twisted peptide bonds: 13; Ramachandran outliers: 27	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:15:21+08:00
+8QF3_1	af2_nomsa	alphafold2_ptm	ok		128	12.0	0	10	28	96	8	0	0	1	5	15	19	92	126	0.119	0	bond angles: 10; non-bonded clashes: 8; twisted peptide bonds: 5; Ramachandran outliers: 15	0	bad_angles	2026-09-26T16:15:23+08:00
+8R5K_1	af2_nomsa	alphafold2_ptm	ok		128	12.0	2	21	35	85	3	0	0	0	7	29	24	73	126	0.2302	0	bond lengths: 2; bond angles: 21; non-bonded clashes: 3; twisted peptide bonds: 7; Ramachandran outliers: 29	0	bad_angles; rama_outliers	2026-09-26T16:15:25+08:00
+8JMY_1	af2_nomsa	alphafold2_ptm	ok		129	12.0	0	10	28	77	12	0	0	0	6	18	12	97	127	0.1417	0	bond angles: 10; non-bonded clashes: 12; twisted peptide bonds: 6; Ramachandran outliers: 18	0	bad_angles	2026-09-26T16:15:27+08:00
+8KAC_1	af2_nomsa	alphafold2_ptm	ok		129	12.0	0	2	23	13	0	0	0	0	1	5	3	119	127	0.0394	0	bond angles: 2; twisted peptide bonds: 1; Ramachandran outliers: 5	0	bad_angles	2026-09-26T16:15:29+08:00
+38LI_1	af2_nomsa	alphafold2_ptm	ok		130	12.0	2	7	35	81	2	0	0	1	1	26	17	85	128	0.2031	0	bond lengths: 2; bond angles: 7; non-bonded clashes: 2; twisted peptide bonds: 1; Ramachandran outliers: 26	0	bad_angles; rama_outliers	2026-09-26T16:15:30+08:00
+8R8A_1	af2_nomsa	alphafold2_ptm	ok		130	12.0	0	11	37	96	13	0	0	0	7	25	16	87	128	0.1953	0	bond angles: 11; non-bonded clashes: 13; twisted peptide bonds: 7; Ramachandran outliers: 25	0	bad_angles; clashes; rama_outliers	2026-09-26T16:15:32+08:00
+8RU5_1	af2_nomsa	alphafold2_ptm	ok		130	12.0	1	6	23	44	4	0	0	0	1	11	8	109	128	0.0859	0	bond lengths: 1; bond angles: 6; non-bonded clashes: 4; twisted peptide bonds: 1; Ramachandran outliers: 11	0	bad_angles	2026-09-26T16:15:34+08:00
+8T2M_1	af2_nomsa	alphafold2_ptm	ok		130	12.0	0	7	40	94	6	0	0	0	8	24	16	88	128	0.1875	0	bond angles: 7; non-bonded clashes: 6; twisted peptide bonds: 8; Ramachandran outliers: 24	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:15:36+08:00
+8PHX_1	af2_nomsa	alphafold2_ptm	ok		132	12.0	1	3	30	67	35	0	0	0	4	17	13	100	130	0.1308	0	bond lengths: 1; bond angles: 3; non-bonded clashes: 35; twisted peptide bonds: 4; Ramachandran outliers: 17	0	bad_angles; clashes	2026-09-26T16:15:38+08:00
+8JZA_1	af2_nomsa	alphafold2_ptm	ok		134	12.0	0	13	40	93	8	0	0	0	5	25	21	86	132	0.1894	0	bond angles: 13; non-bonded clashes: 8; twisted peptide bonds: 5; Ramachandran outliers: 25	0	bad_angles; rama_outliers	2026-09-26T16:15:39+08:00
+8RKP_1	af2_nomsa	alphafold2_ptm	ok		134	12.0	0	1	17	21	4	0	0	0	0	6	3	123	132	0.0455	0	bond angles: 1; non-bonded clashes: 4; Ramachandran outliers: 6	1		2026-09-26T16:15:41+08:00
+27JK_1	af2_nomsa	alphafold2_ptm	ok		137	12.0	0	13	37	89	5	0	0	0	12	25	17	93	135	0.1852	0	bond angles: 13; non-bonded clashes: 5; twisted peptide bonds: 12; Ramachandran outliers: 25	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:15:43+08:00
+8K4M_1	af2_nomsa	alphafold2_ptm	ok		137	12.0	0	9	33	78	2	0	0	0	2	21	13	101	135	0.1556	0	bond angles: 9; non-bonded clashes: 2; twisted peptide bonds: 2; Ramachandran outliers: 21	0	bad_angles; rama_outliers	2026-09-26T16:15:45+08:00
+8RCY_1	af2_nomsa	alphafold2_ptm	ok		137	12.0	0	22	45	82	13	0	0	0	5	26	24	85	135	0.1926	0	bond angles: 22; non-bonded clashes: 13; twisted peptide bonds: 5; Ramachandran outliers: 26	0	bad_angles; clashes; rama_outliers	2026-09-26T16:15:46+08:00
+8PZO_1	af2_nomsa	alphafold2_ptm	ok		138	12.0	0	12	43	122	13	0	0	0	5	34	20	82	136	0.25	0	bond angles: 12; non-bonded clashes: 13; twisted peptide bonds: 5; Ramachandran outliers: 34	0	bad_angles; clashes; rama_outliers	2026-09-26T16:15:48+08:00
+35TM_1	af2_nomsa	alphafold2_ptm	ok		139	12.0	0	2	23	43	9	0	0	0	0	7	9	121	137	0.0511	0	bond angles: 2; non-bonded clashes: 9; Ramachandran outliers: 7	0	bad_angles	2026-09-26T16:15:50+08:00
+8JU8_1	af2_nomsa	alphafold2_ptm	ok		139	12.0	0	0	18	7	4	0	0	0	0	0	2	135	137	0.0	0	non-bonded clashes: 4	1		2026-09-26T16:15:52+08:00
+8PHN_1	af2_nomsa	alphafold2_ptm	ok		139	12.0	1	16	41	93	2	0	0	0	6	22	13	102	137	0.1606	0	bond lengths: 1; bond angles: 16; non-bonded clashes: 2; twisted peptide bonds: 6; Ramachandran outliers: 22	0	bad_angles; rama_outliers	2026-09-26T16:15:54+08:00
+10UV_1	af2_nomsa	alphafold2_ptm	ok		140	12.0	0	7	32	75	0	0	0	0	3	22	19	97	138	0.1594	0	bond angles: 7; twisted peptide bonds: 3; Ramachandran outliers: 22	0	bad_angles; rama_outliers	2026-09-26T16:15:55+08:00
+8QOK_1	af2_nomsa	alphafold2_ptm	ok		140	12.0	0	7	34	60	4	0	0	0	5	14	13	111	138	0.1014	0	bond angles: 7; non-bonded clashes: 4; twisted peptide bonds: 5; Ramachandran outliers: 14	0	bad_angles	2026-09-26T16:15:57+08:00
+8K75_1	af2_nomsa	alphafold2_ptm	ok		141	12.0	0	13	31	116	11	0	0	0	8	38	26	75	139	0.2734	0	bond angles: 13; non-bonded clashes: 11; twisted peptide bonds: 8; Ramachandran outliers: 38	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:16:00+08:00
+29LW_1	af2_nomsa	alphafold2_ptm	ok		142	12.0	0	6	38	65	2	0	0	0	0	17	11	112	140	0.1214	0	bond angles: 6; non-bonded clashes: 2; Ramachandran outliers: 17	0	bad_angles	2026-09-26T16:16:01+08:00
+8QH6_1	af2_nomsa	alphafold2_ptm	ok		143	12.0	0	1	25	41	3	0	0	0	0	7	11	123	141	0.0496	0	bond angles: 1; non-bonded clashes: 3; Ramachandran outliers: 7	1		2026-09-26T16:16:02+08:00
+10JX_1	af2_nomsa	alphafold2_ptm	ok		145	12.0	0	10	32	59	0	0	0	0	2	9	14	120	143	0.0629	0	bond angles: 10; twisted peptide bonds: 2; Ramachandran outliers: 9	0	bad_angles	2026-09-26T16:16:05+08:00
+32JG_1	af2_nomsa	alphafold2_ptm	ok		145	12.0	2	10	36	90	13	0	0	0	2	27	17	99	143	0.1888	0	bond lengths: 2; bond angles: 10; non-bonded clashes: 13; twisted peptide bonds: 2; Ramachandran outliers: 27	0	bad_angles; clashes; rama_outliers	2026-09-26T16:16:07+08:00
+11CH_1	af2_nomsa	alphafold2_ptm	ok		146	12.0	0	17	35	80	5	0	0	0	10	16	22	106	144	0.1111	0	bond angles: 17; non-bonded clashes: 5; twisted peptide bonds: 10; Ramachandran outliers: 16	0	bad_angles; twisted_peptides	2026-09-26T16:16:08+08:00
+12IS_1	af2_nomsa	alphafold2_ptm	ok		146	12.0	0	14	21	71	7	0	0	1	3	29	17	98	144	0.2014	0	bond angles: 14; non-bonded clashes: 7; twisted peptide bonds: 3; Ramachandran outliers: 29	0	bad_angles; rama_outliers	2026-09-26T16:16:10+08:00
+12XX_1	af2_nomsa	alphafold2_ptm	ok		146	12.0	0	0	12	6	2	0	0	0	0	1	1	142	144	0.0069	0	non-bonded clashes: 2; Ramachandran outliers: 1	1		2026-09-26T16:16:12+08:00
+37JY_1	af2_nomsa	alphafold2_ptm	ok		147	12.0	0	8	30	99	2	0	0	1	10	30	25	90	145	0.2069	0	bond angles: 8; non-bonded clashes: 2; twisted peptide bonds: 10; Ramachandran outliers: 30	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:16:14+08:00
+8T4C_1	af2_nomsa	alphafold2_ptm	ok		147	12.0	0	20	29	121	5	0	0	0	14	34	17	94	145	0.2345	0	bond angles: 20; non-bonded clashes: 5; twisted peptide bonds: 14; Ramachandran outliers: 34	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:16:16+08:00
+8JWD_1	af2_nomsa	alphafold2_ptm	ok		148	12.0	0	6	15	52	4	0	0	0	8	11	10	125	146	0.0753	0	bond angles: 6; non-bonded clashes: 4; twisted peptide bonds: 8; Ramachandran outliers: 11	0	bad_angles; twisted_peptides	2026-09-26T16:16:17+08:00
+8PJ7_1	af2_nomsa	alphafold2_ptm	ok		148	12.0	5	19	59	161	34	0	0	1	13	33	22	91	146	0.226	0	bond lengths: 5; bond angles: 19; non-bonded clashes: 34; twisted peptide bonds: 13; Ramachandran outliers: 33	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:16:19+08:00
+8PVZ_1	af2_nomsa	alphafold2_ptm	ok		148	12.0	0	11	43	69	4	0	0	0	5	25	10	111	146	0.1712	0	bond angles: 11; non-bonded clashes: 4; twisted peptide bonds: 5; Ramachandran outliers: 25	0	bad_angles; rama_outliers	2026-09-26T16:16:21+08:00
+8QKY_1	af2_nomsa	alphafold2_ptm	ok		148	12.0	1	16	43	126	4	0	0	0	14	36	15	95	146	0.2466	0	bond lengths: 1; bond angles: 16; non-bonded clashes: 4; twisted peptide bonds: 14; Ramachandran outliers: 36	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:16:23+08:00
+7H47_1	af2_nomsa	alphafold2_ptm	ok		150	12.0	0	13	30	95	4	0	0	0	0	29	20	99	148	0.1959	0	bond angles: 13; non-bonded clashes: 4; Ramachandran outliers: 29	0	bad_angles; rama_outliers	2026-09-26T16:16:25+08:00
+8JYI_1	af2_nomsa	alphafold2_ptm	ok		151	12.0	1	10	38	111	11	0	0	0	15	30	23	96	149	0.2013	0	bond lengths: 1; bond angles: 10; non-bonded clashes: 11; twisted peptide bonds: 15; Ramachandran outliers: 30	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:16:26+08:00
+8KAA_1	af2_nomsa	alphafold2_ptm	ok		151	12.0	1	24	46	120	4	0	0	0	18	46	23	80	149	0.3087	0	bond lengths: 1; bond angles: 24; non-bonded clashes: 4; twisted peptide bonds: 18; Ramachandran outliers: 46	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:16:28+08:00
+32OA_1	af2_nomsa	alphafold2_ptm	ok		152	12.0	2	17	59	113	22	0	0	0	13	34	19	97	150	0.2267	0	bond lengths: 2; bond angles: 17; non-bonded clashes: 22; twisted peptide bonds: 13; Ramachandran outliers: 34	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:16:31+08:00
+8PYV_1	af2_nomsa	alphafold2_ptm	ok		152	12.0	1	7	28	53	0	0	0	0	1	9	7	134	150	0.06	0	bond lengths: 1; bond angles: 7; twisted peptide bonds: 1; Ramachandran outliers: 9	0	bad_angles	2026-09-26T16:16:32+08:00
+8PYW_1	af2_nomsa	alphafold2_ptm	ok		152	12.0	0	15	53	127	7	0	0	0	5	25	27	98	150	0.1667	0	bond angles: 15; non-bonded clashes: 7; twisted peptide bonds: 5; Ramachandran outliers: 25	0	bad_angles; rama_outliers	2026-09-26T16:16:34+08:00
+22LX_1	af2_nomsa	alphafold2_ptm	ok		153	12.0	0	3	22	23	14	0	0	0	7	6	5	140	151	0.0397	0	bond angles: 3; non-bonded clashes: 14; twisted peptide bonds: 7; Ramachandran outliers: 6	0	bad_angles; clashes	2026-09-26T16:16:36+08:00
+32QT_1	af2_nomsa	alphafold2_ptm	ok		153	12.0	1	23	50	125	35	0	0	0	20	35	29	87	151	0.2318	0	bond lengths: 1; bond angles: 23; non-bonded clashes: 35; twisted peptide bonds: 20; Ramachandran outliers: 35	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:16:38+08:00
+8RYS_1	af2_nomsa	alphafold2_ptm	ok		153	12.0	9	27	77	170	169	0	0	0	20	33	16	102	151	0.2185	0	bond lengths: 9; bond angles: 27; non-bonded clashes: 169; twisted peptide bonds: 20; Ramachandran outliers: 33	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:16:40+08:00
+8T5A_1	af2_nomsa	alphafold2_ptm	ok		153	12.0	3	18	38	84	2	0	0	0	11	19	13	119	151	0.1258	0	bond lengths: 3; bond angles: 18; non-bonded clashes: 2; twisted peptide bonds: 11; Ramachandran outliers: 19	0	bad_angles; twisted_peptides	2026-09-26T16:16:41+08:00
+8PQR_1	af2_nomsa	alphafold2_ptm	ok		154	12.0	0	7	36	67	2	0	0	0	3	21	10	121	152	0.1382	0	bond angles: 7; non-bonded clashes: 2; twisted peptide bonds: 3; Ramachandran outliers: 21	0	bad_angles; rama_outliers	2026-09-26T16:16:43+08:00
+8Q6M_1	af2_nomsa	alphafold2_ptm	ok		154	12.0	1	25	32	124	4	0	0	0	10	39	26	87	152	0.2566	0	bond lengths: 1; bond angles: 25; non-bonded clashes: 4; twisted peptide bonds: 10; Ramachandran outliers: 39	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:16:45+08:00
+10DA_1	af2_nomsa	alphafold2_ptm	ok		155	12.0	0	8	55	84	2	0	0	0	6	16	20	117	153	0.1046	0	bond angles: 8; non-bonded clashes: 2; twisted peptide bonds: 6; Ramachandran outliers: 16	0	bad_angles	2026-09-26T16:16:47+08:00
+8KHU_1	af2_nomsa	alphafold2_ptm	ok		155	12.0	0	7	29	44	6	0	0	0	3	15	6	132	153	0.098	0	bond angles: 7; non-bonded clashes: 6; twisted peptide bonds: 3; Ramachandran outliers: 15	0	bad_angles	2026-09-26T16:16:49+08:00
+10UT_1	af2_nomsa	alphafold2_ptm	ok		156	12.0	2	18	34	89	9	0	0	0	9	30	20	104	154	0.1948	0	bond lengths: 2; bond angles: 18; non-bonded clashes: 9; twisted peptide bonds: 9; Ramachandran outliers: 30	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:16:50+08:00
+8JUC_1	af2_nomsa	alphafold2_ptm	ok		156	12.0	0	7	43	95	8	0	0	0	1	23	21	110	154	0.1494	0	bond angles: 7; non-bonded clashes: 8; twisted peptide bonds: 1; Ramachandran outliers: 23	0	bad_angles; rama_outliers	2026-09-26T16:16:52+08:00
+8T7K_1	af2_nomsa	alphafold2_ptm	ok		156	12.0	0	19	54	107	4	0	0	0	6	31	26	97	154	0.2013	0	bond angles: 19; non-bonded clashes: 4; twisted peptide bonds: 6; Ramachandran outliers: 31	0	bad_angles; rama_outliers	2026-09-26T16:16:55+08:00
+8PX5_1	af2_nomsa	alphafold2_ptm	ok		157	12.0	0	28	36	148	4	0	0	0	17	38	32	85	155	0.2452	0	bond angles: 28; non-bonded clashes: 4; twisted peptide bonds: 17; Ramachandran outliers: 38	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:16:56+08:00
+26JK_1	af2_nomsa	alphafold2_ptm	ok		158	12.0	2	11	39	93	6	0	0	0	7	23	21	112	156	0.1474	0	bond lengths: 2; bond angles: 11; non-bonded clashes: 6; twisted peptide bonds: 7; Ramachandran outliers: 23	0	bad_angles; rama_outliers	2026-09-26T16:16:58+08:00
+8RIJ_1	af2_nomsa	alphafold2_ptm	ok		158	12.0	1	21	51	134	6	0	0	0	13	39	25	92	156	0.25	0	bond lengths: 1; bond angles: 21; non-bonded clashes: 6; twisted peptide bonds: 13; Ramachandran outliers: 39	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:17:00+08:00
+10UW_1	af2_nomsa	alphafold2_ptm	ok		160	12.0	1	12	32	111	8	0	0	0	13	37	23	98	158	0.2342	0	bond lengths: 1; bond angles: 12; non-bonded clashes: 8; twisted peptide bonds: 13; Ramachandran outliers: 37	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:17:02+08:00
+8K6G_1	af2_nomsa	alphafold2_ptm	ok		160	12.0	0	3	35	71	12	0	0	0	0	8	10	140	158	0.0506	0	bond angles: 3; non-bonded clashes: 12; Ramachandran outliers: 8	0	bad_angles	2026-09-26T16:17:04+08:00
+8QFU_1	af2_nomsa	alphafold2_ptm	ok		160	12.0	0	29	48	159	11	0	0	0	25	43	35	80	158	0.2722	0	bond angles: 29; non-bonded clashes: 11; twisted peptide bonds: 25; Ramachandran outliers: 43	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:17:07+08:00
+13EE_1	af2_nomsa	alphafold2_ptm	ok		161	12.0	0	14	52	110	12	0	0	0	3	21	26	112	159	0.1321	0	bond angles: 14; non-bonded clashes: 12; twisted peptide bonds: 3; Ramachandran outliers: 21	0	bad_angles; rama_outliers	2026-09-26T16:17:09+08:00
+28DB_1	af2_nomsa	alphafold2_ptm	ok		161	12.0	0	16	44	113	6	0	0	0	13	35	24	100	159	0.2201	0	bond angles: 16; non-bonded clashes: 6; twisted peptide bonds: 13; Ramachandran outliers: 35	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:17:11+08:00
+8QIY_1	af2_nomsa	alphafold2_ptm	ok		162	12.0	1	17	43	94	16	0	0	1	9	22	21	117	160	0.1375	0	bond lengths: 1; bond angles: 17; non-bonded clashes: 16; twisted peptide bonds: 9; Ramachandran outliers: 22	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:17:13+08:00
+8K4I_1	af2_nomsa	alphafold2_ptm	ok		163	12.0	2	4	24	28	4	0	0	0	0	11	9	141	161	0.0683	0	bond lengths: 2; bond angles: 4; non-bonded clashes: 4; Ramachandran outliers: 11	0	bad_angles	2026-09-26T16:17:15+08:00
+8Q4E_1	af2_nomsa	alphafold2_ptm	ok		165	12.0	0	15	38	123	9	0	0	0	15	35	23	105	163	0.2147	0	bond angles: 15; non-bonded clashes: 9; twisted peptide bonds: 15; Ramachandran outliers: 35	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:17:17+08:00
+8QX6_1	af2_nomsa	alphafold2_ptm	ok		165	12.0	1	7	45	83	4	0	0	0	1	20	24	119	163	0.1227	0	bond lengths: 1; bond angles: 7; non-bonded clashes: 4; twisted peptide bonds: 1; Ramachandran outliers: 20	0	bad_angles; rama_outliers	2026-09-26T16:17:19+08:00
+8R5N_1	af2_nomsa	alphafold2_ptm	ok		165	12.0	1	14	50	107	4	0	0	0	7	30	19	114	163	0.184	0	bond lengths: 1; bond angles: 14; non-bonded clashes: 4; twisted peptide bonds: 7; Ramachandran outliers: 30	0	bad_angles; rama_outliers	2026-09-26T16:17:21+08:00
+27AA_1	af2_nomsa	alphafold2_ptm	ok		166	12.0	0	17	46	125	27	0	0	0	14	27	18	119	164	0.1646	0	bond angles: 17; non-bonded clashes: 27; twisted peptide bonds: 14; Ramachandran outliers: 27	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:17:22+08:00
+8PAQ_1	af2_nomsa	alphafold2_ptm	ok		166	12.0	0	11	42	81	4	0	0	0	2	19	9	136	164	0.1159	0	bond angles: 11; non-bonded clashes: 4; twisted peptide bonds: 2; Ramachandran outliers: 19	0	bad_angles	2026-09-26T16:17:24+08:00
+10UX_1	af2_nomsa	alphafold2_ptm	ok		167	12.0	0	14	71	149	58	0	0	0	10	30	23	112	165	0.1818	0	bond angles: 14; non-bonded clashes: 58; twisted peptide bonds: 10; Ramachandran outliers: 30	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:17:26+08:00
+8QZV_1	af2_nomsa	alphafold2_ptm	ok		167	12.0	1	14	49	124	14	0	0	1	7	31	18	116	165	0.1879	0	bond lengths: 1; bond angles: 14; non-bonded clashes: 14; twisted peptide bonds: 7; Ramachandran outliers: 31	0	bad_angles; clashes; rama_outliers	2026-09-26T16:17:28+08:00
+8R2C_1	af2_nomsa	alphafold2_ptm	ok		169	12.0	0	13	46	124	28	0	0	0	16	30	23	114	167	0.1796	0	bond angles: 13; non-bonded clashes: 28; twisted peptide bonds: 16; Ramachandran outliers: 30	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:17:30+08:00
+26AO_1	af2_nomsa	alphafold2_ptm	ok		170	12.0	1	19	51	164	19	0	0	0	22	42	30	96	168	0.25	0	bond lengths: 1; bond angles: 19; non-bonded clashes: 19; twisted peptide bonds: 22; Ramachandran outliers: 42	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:17:32+08:00
+26RW_1	af2_nomsa	alphafold2_ptm	ok		170	12.0	0	8	39	65	0	0	0	0	5	17	11	140	168	0.1012	0	bond angles: 8; twisted peptide bonds: 5; Ramachandran outliers: 17	0	bad_angles	2026-09-26T16:17:34+08:00
+8Q6U_1	af2_nomsa	alphafold2_ptm	ok		170	12.0	1	13	52	106	4	0	0	1	5	19	20	129	168	0.1131	0	bond lengths: 1; bond angles: 13; non-bonded clashes: 4; twisted peptide bonds: 5; Ramachandran outliers: 19	0	bad_angles	2026-09-26T16:17:36+08:00
+8RDD_1	af2_nomsa	alphafold2_ptm	ok		170	12.0	0	13	54	108	10	0	0	0	13	28	25	115	168	0.1667	0	bond angles: 13; non-bonded clashes: 10; twisted peptide bonds: 13; Ramachandran outliers: 28	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:17:37+08:00
+8RRY_1	af2_nomsa	alphafold2_ptm	ok		170	12.0	0	25	67	182	63	0	0	0	14	44	29	95	168	0.2619	0	bond angles: 25; non-bonded clashes: 63; twisted peptide bonds: 14; Ramachandran outliers: 44	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:17:39+08:00
+8RHR_1	af2_nomsa	alphafold2_ptm	ok		171	12.0	1	11	38	100	2	0	0	0	5	28	16	125	169	0.1657	0	bond lengths: 1; bond angles: 11; non-bonded clashes: 2; twisted peptide bonds: 5; Ramachandran outliers: 28	0	bad_angles; rama_outliers	2026-09-26T16:17:41+08:00
+10FS_1	af2_nomsa	alphafold2_ptm	ok		172	12.0	1	8	50	134	2	0	0	0	15	30	26	114	170	0.1765	0	bond lengths: 1; bond angles: 8; non-bonded clashes: 2; twisted peptide bonds: 15; Ramachandran outliers: 30	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:17:43+08:00
+24MP_1	af2_nomsa	alphafold2_ptm	ok		173	12.0	1	14	44	126	8	0	0	0	11	27	21	123	171	0.1579	0	bond lengths: 1; bond angles: 14; non-bonded clashes: 8; twisted peptide bonds: 11; Ramachandran outliers: 27	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:17:45+08:00
+30JI_1	af2_nomsa	alphafold2_ptm	ok		173	12.0	0	12	38	116	2	0	0	0	19	31	22	118	171	0.1813	0	bond angles: 12; non-bonded clashes: 2; twisted peptide bonds: 19; Ramachandran outliers: 31	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:17:47+08:00
+7HI9_1	af2_nomsa	alphafold2_ptm	ok		173	12.0	0	19	51	129	6	0	0	0	12	24	26	121	171	0.1404	0	bond angles: 19; non-bonded clashes: 6; twisted peptide bonds: 12; Ramachandran outliers: 24	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:17:49+08:00
+21LR_1	af2_nomsa	alphafold2_ptm	ok		174	12.0	0	15	26	81	2	0	0	0	7	17	10	145	172	0.0988	0	bond angles: 15; non-bonded clashes: 2; twisted peptide bonds: 7; Ramachandran outliers: 17	0	bad_angles	2026-09-26T16:17:51+08:00
+8JQU_1	af2_nomsa	alphafold2_ptm	ok		175	12.0	3	18	50	123	7	0	0	0	11	30	18	125	173	0.1734	0	bond lengths: 3; bond angles: 18; non-bonded clashes: 7; twisted peptide bonds: 11; Ramachandran outliers: 30	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:17:53+08:00
+8K84_1	af2_nomsa	alphafold2_ptm	ok		177	12.0	0	0	14	4	2	0	0	0	0	0	1	174	175	0.0	0	non-bonded clashes: 2	1		2026-09-26T16:17:54+08:00
+8QX5_1	af2_nomsa	alphafold2_ptm	ok		177	12.0	0	14	60	118	8	0	0	0	8	16	19	140	175	0.0914	0	bond angles: 14; non-bonded clashes: 8; twisted peptide bonds: 8; Ramachandran outliers: 16	0	bad_angles; twisted_peptides	2026-09-26T16:17:56+08:00
+8S48_1	af2_nomsa	alphafold2_ptm	ok		178	12.0	0	20	52	100	23	0	0	0	11	27	16	133	176	0.1534	0	bond angles: 20; non-bonded clashes: 23; twisted peptide bonds: 11; Ramachandran outliers: 27	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T16:17:59+08:00
+10CX_1	af2_nomsa	alphafold2_ptm	ok		179	12.0	0	18	55	126	2	0	0	0	7	21	29	127	177	0.1186	0	bond angles: 18; non-bonded clashes: 2; twisted peptide bonds: 7; Ramachandran outliers: 21	0	bad_angles; rama_outliers	2026-09-26T16:18:00+08:00
+8POR_1	af2_nomsa	alphafold2_ptm	ok		179	12.0	0	22	49	115	6	0	0	0	19	42	23	112	177	0.2373	0	bond angles: 22; non-bonded clashes: 6; twisted peptide bonds: 19; Ramachandran outliers: 42	0	bad_angles; twisted_peptides; rama_outliers	2026-09-26T16:18:02+08:00
+8R3N_1	af2_nomsa	alphafold2_ptm	ok		179	12.0	1	20	45	131	12	0	0	0	3	32	27	118	177	0.1808	0	bond lengths: 1; bond angles: 20; non-bonded clashes: 12; twisted peptide bonds: 3; Ramachandran outliers: 32	0	bad_angles; rama_outliers	2026-09-26T16:18:04+08:00
+27WO_1	af2_msa_notmpl	alphafold2_ptm	ok		81	12.0	0	1	11	4	0	0	0	0	0	3	1	75	79	0.038	0	bond angles: 1; Ramachandran outliers: 3	1		2026-09-26T16:18:07+08:00
+27AH_1	af2_msa_notmpl	alphafold2_ptm	ok		82	12.0	0	0	2	3	0	0	0	0	0	1	2	77	80	0.0125	0	Ramachandran outliers: 1	1		2026-09-26T16:18:09+08:00
+8PQM_1	af2_msa_notmpl	alphafold2_ptm	ok		82	12.0	0	0	6	15	2	0	0	0	0	4	1	75	80	0.05	0	non-bonded clashes: 2; Ramachandran outliers: 4	1		2026-09-26T16:18:10+08:00
+36MB_1	af2_msa_notmpl	alphafold2_ptm	ok		83	12.0	0	1	11	10	0	0	0	0	0	0	0	81	81	0.0	0	bond angles: 1	1		2026-09-26T16:18:12+08:00
+8PRR_1	af2_msa_notmpl	alphafold2_ptm	ok		84	12.0	0	1	14	15	0	0	0	0	0	2	4	76	82	0.0244	0	bond angles: 1; Ramachandran outliers: 2	1		2026-09-26T16:18:14+08:00
+8S7A_1	af2_msa_notmpl	alphafold2_ptm	ok		84	12.0	0	3	14	15	0	0	0	0	0	4	3	75	82	0.0488	0	bond angles: 3; Ramachandran outliers: 4	0	bad_angles	2026-09-26T16:18:16+08:00
+21NG_1	af2_msa_notmpl	alphafold2_ptm	ok		85	12.0	0	0	9	4	0	0	0	0	0	2	0	81	83	0.0241	0	Ramachandran outliers: 2	1		2026-09-26T16:18:18+08:00
+8P91_1	af2_msa_notmpl	alphafold2_ptm	ok		85	12.0	0	6	11	25	0	0	0	0	2	14	4	65	83	0.1687	0	bond angles: 6; twisted peptide bonds: 2; Ramachandran outliers: 14	0	bad_angles	2026-09-26T16:18:19+08:00
+8PR6_1	af2_msa_notmpl	alphafold2_ptm	ok		85	12.0	0	0	6	8	0	0	0	1	5	5	2	76	83	0.0602	0	twisted peptide bonds: 5; Ramachandran outliers: 5	1		2026-09-26T16:18:21+08:00
+8KC1_1	af2_msa_notmpl	alphafold2_ptm	ok		87	12.0	0	3	16	29	0	0	0	0	0	7	6	72	85	0.0824	0	bond angles: 3; Ramachandran outliers: 7	0	bad_angles	2026-09-26T16:18:24+08:00
+8QB1_1	af2_msa_notmpl	alphafold2_ptm	ok		88	12.0	0	8	13	18	0	0	0	2	5	9	5	72	86	0.1047	0	bond angles: 8; twisted peptide bonds: 5; Ramachandran outliers: 9	0	bad_angles	2026-09-26T16:18:25+08:00
+8JN0_1	af2_msa_notmpl	alphafold2_ptm	ok		89	12.0	0	0	3	5	0	0	0	1	0	0	2	85	87	0.0	1		1		2026-09-26T16:18:26+08:00
+8Q1W_1	af2_msa_notmpl	alphafold2_ptm	ok		89	12.0	0	0	8	7	0	0	0	1	0	0	1	86	87	0.0	1		1		2026-09-26T16:18:28+08:00
+10XE_1	af2_msa_notmpl	alphafold2_ptm	ok		91	12.0	0	1	2	2	6	0	0	0	0	0	1	88	89	0.0	0	bond angles: 1; non-bonded clashes: 6	1		2026-09-26T16:18:30+08:00
+8POR_1	af2_msa_notmpl	alphafold2_ptm	ok		179	12.0	0	3	12	12	9	0	0	0	0	5	7	165	177	0.0282	0	bond angles: 3; non-bonded clashes: 9; Ramachandran outliers: 5	0	bad_angles	2026-09-26T16:18:32+08:00
+8QX5_1	af2_msa_notmpl	alphafold2_ptm	ok		177	12.0	0	7	22	40	0	0	0	0	6	10	9	156	175	0.0571	0	bond angles: 7; twisted peptide bonds: 6; Ramachandran outliers: 10	0	bad_angles	2026-09-26T16:18:33+08:00
+8JQU_1	af2_msa_notmpl	alphafold2_ptm	ok		175	12.0	0	3	13	13	0	0	0	0	0	9	5	159	173	0.052	0	bond angles: 3; Ramachandran outliers: 9	0	bad_angles	2026-09-26T16:18:35+08:00
+30JI_1	af2_msa_notmpl	alphafold2_ptm	ok		173	12.0	0	2	19	17	0	0	0	0	0	2	6	163	171	0.0117	0	bond angles: 2; Ramachandran outliers: 2	0	bad_angles	2026-09-26T16:18:37+08:00
+8R5N_1	af2_msa_notmpl	alphafold2_ptm	ok		165	12.0	0	1	14	6	2	0	0	0	0	1	2	160	163	0.0061	0	bond angles: 1; non-bonded clashes: 2; Ramachandran outliers: 1	1		2026-09-26T16:18:39+08:00
+37JY_1	af2_msa_notmpl	alphafold2_ptm	ok		147	12.0	0	0	10	6	0	0	0	0	0	0	4	141	145	0.0	1		1		2026-09-26T16:18:41+08:00
+10JX_1	af2_msa_notmpl	alphafold2_ptm	ok		145	12.0	1	0	17	21	2	0	0	0	0	3	2	138	143	0.021	0	bond lengths: 1; non-bonded clashes: 2; Ramachandran outliers: 3	1		2026-09-26T16:18:42+08:00
+29LW_1	af2_msa_notmpl	alphafold2_ptm	ok		142	12.0	0	1	7	8	0	0	0	0	0	1	3	136	140	0.0071	0	bond angles: 1; Ramachandran outliers: 1	1		2026-09-26T16:18:44+08:00
+35TM_1	af2_msa_notmpl	alphafold2_ptm	ok		139	12.0	0	1	16	11	0	0	0	0	0	5	6	126	137	0.0365	0	bond angles: 1; Ramachandran outliers: 5	1		2026-09-26T16:18:47+08:00
+8RCY_1	af2_msa_notmpl	alphafold2_ptm	ok		137	12.0	0	2	15	12	0	0	0	1	0	3	5	127	135	0.0222	0	bond angles: 2; Ramachandran outliers: 3	0	bad_angles	2026-09-26T16:18:48+08:00
+44ID_1	af2_msa_notmpl	alphafold2_ptm	ok		120	12.0	0	2	10	13	9	0	0	0	0	3	3	112	118	0.0254	0	bond angles: 2; non-bonded clashes: 9; Ramachandran outliers: 3	0	bad_angles	2026-09-26T16:18:50+08:00
+8PWC_1	af2_msa_notmpl	alphafold2_ptm	ok		110	12.0	0	7	11	23	0	0	0	0	7	6	9	93	108	0.0556	0	bond angles: 7; twisted peptide bonds: 7; Ramachandran outliers: 6	0	bad_angles	2026-09-26T16:18:52+08:00
+8KBM_1	af2_msa_notmpl	alphafold2_ptm	ok		104	12.0	0	0	10	5	0	0	0	0	0	0	1	101	102	0.0	1		1		2026-09-26T16:18:54+08:00
+36IQ_1	af2_msa_notmpl	alphafold2_ptm	ok		98	12.0	0	0	14	5	0	0	0	0	1	0	1	95	96	0.0	0	twisted peptide bonds: 1	1		2026-09-26T16:18:55+08:00
+10XH_1	af2_msa_notmpl	alphafold2_ptm	ok		93	12.0	0	1	10	8	0	0	0	0	0	1	2	88	91	0.011	0	bond angles: 1; Ramachandran outliers: 1	1		2026-09-26T16:18:57+08:00
+8RD7_1	af2_msa_notmpl	alphafold2_ptm	ok		91	12.0	0	8	9	28	0	0	0	0	8	16	2	71	89	0.1798	0	bond angles: 8; twisted peptide bonds: 8; Ramachandran outliers: 16	0	bad_angles; twisted_peptides	2026-09-26T16:18:58+08:00
+8POR_1	af2_msa_tmpl	alphafold2_ptm	ok		179	12.0	0	3	13	10	0	0	0	0	0	5	6	166	177	0.0282	0	bond angles: 3; Ramachandran outliers: 5	0	bad_angles	2026-09-26T16:19:01+08:00
