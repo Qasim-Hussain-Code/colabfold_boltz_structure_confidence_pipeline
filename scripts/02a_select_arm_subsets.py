@@ -214,6 +214,13 @@ def main(argv=None) -> int:
 
     for arm, keep in chosen.items():
         budget_h = budgets[arm] / 3600.0
+        # Same reasoning as the stage that builds the set: this arm's subset
+        # has just been decided again, so its earlier rows describe a subset
+        # that no longer exists.
+        stale = L.clear_exclusions(results, "02a_select_arm_subsets", arm=arm)
+        if stale:
+            print(f"[02a] cleared {stale} exclusion rows from an earlier "
+                  f"selection for {arm}")
         for t in by_length:
             if t in keep:
                 continue

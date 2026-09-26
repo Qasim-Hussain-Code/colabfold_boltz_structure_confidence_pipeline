@@ -653,6 +653,13 @@ def main() -> int:
                 sorted(lig_rows, key=lambda r: (r["pdb_id"], r["comp_id"])))
 
     # --- exclusions and the summary -----------------------------------------
+    # This stage has just rewritten config/targets.tsv, so its earlier rows
+    # describe a set that no longer exists. Leaving them turned 53 targets that
+    # are in the final set into targets the table said had been dropped.
+    stale = L.clear_exclusions(results_dir, "02_build_holdout_set")
+    if stale:
+        print(f"[02_build_holdout_set] cleared {stale} exclusion rows from an "
+              f"earlier build of the set")
     for tid, why in excluded:
         L.record_exclusion(results_dir, tid, "02_build_holdout_set", why)
 
