@@ -152,6 +152,16 @@ def main(argv=None) -> int:
             m_len, m_peak = int(m_len), float(m_peak)
         except ValueError:
             m_len = 0
+        if m_len > 0 and m_peak <= f["base"]:
+            # A run that skipped its own work still records a row, and its peak
+            # is the interpreter and nothing else. Treating that as the cost of
+            # the sequence would say any length fits. It is refused, and said
+            # so, because falling back without a word is how the application
+            # arm quietly kept a construct that was too short.
+            if not args.quiet:
+                print(f"[memory] the measured peak of {m_peak:.0f} MB at {m_len} "
+                      f"residues is at or below the {f['base']:.0f} MB floor, so "
+                      f"it is the framework rather than the sequence; ignored")
         if m_len > 0 and m_peak > f["base"]:
             q = (m_peak - f["base"]) / (m_len / 1000.0) ** 2
             from_measured = longest_within({"base": f["base"], "quad": q}, budget)
