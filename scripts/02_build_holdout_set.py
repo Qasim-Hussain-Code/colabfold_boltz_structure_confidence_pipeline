@@ -72,7 +72,7 @@ TARGET_COLUMNS = [
     "resolution", "deposit_date", "initial_release_date", "method",
     "uniprot", "organism", "title", "cluster_id_30", "cluster_size_30",
     "pre_cutoff_cluster_members", "closest_pre_cutoff_identity",
-    "closest_pre_cutoff_entry", "release_only_would_admit", "sequence",
+    "closest_pre_cutoff_entry", "sequence",
     "recorded",
 ]
 
@@ -567,7 +567,6 @@ def main() -> int:
             "pre_cutoff_cluster_members": "",
             "closest_pre_cutoff_identity": "",
             "closest_pre_cutoff_entry": "",
-            "release_only_would_admit": "",
             "recorded": L.now_iso(),
         })
         rows.append(rec)
