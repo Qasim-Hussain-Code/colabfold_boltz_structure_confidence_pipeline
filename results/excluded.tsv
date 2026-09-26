@@ -429,3 +429,5 @@ target_id	stage	arm	reason	detail	recorded
 10AF_1	02a_select_arm_subsets	af2_msa_tmpl	beyond the 5 hours of inference this arm was given	projected 3485 s at 179 residues	2026-09-26T08:44:39+08:00
 10CX_1	02a_select_arm_subsets	af2_msa_tmpl	beyond the 5 hours of inference this arm was given	projected 321 s at 179 residues	2026-09-26T08:44:39+08:00
 8R3N_1	02a_select_arm_subsets	af2_msa_tmpl	beyond the 5 hours of inference this arm was given	projected 3485 s at 179 residues	2026-09-26T08:44:39+08:00
+8QX5_1	03a_choose_ligand_instances		every copy of its ligand sits on chain B, and none of those is the chain the prediction is of (A) or a copy of it		2026-09-26T17:07:25+08:00
+8RD7_1	03a_choose_ligand_instances		every copy of its ligand sits on chain D, and none of those is the chain the prediction is of (A) or a copy of it		2026-09-26T17:07:25+08:00
