@@ -164,8 +164,14 @@ def fig_calibration_scatter(results: Path, figures: Path, conf: dict) -> str | N
         n_high = sum(1 for p, _l in pts if p >= high)
         share = f"{100.0 * bad / n_high:.1f}%" if n_high else "no residues"
         ax.set_title(label_of(arm), color=INK, loc="left")
-        ax.text(0.03, 0.04, f"above {high:.2f} and below {trust:g}: {share}",
-                transform=ax.transAxes, fontsize=8, color=INK_2)
+        # Against the shaded region rather than in the opposite corner: the
+        # number counts what is inside that box, and a reader should not have
+        # to work out which of the two it belongs to. The panel background
+        # behind the text keeps it legible over the scatter.
+        ax.text(0.97, trust + 0.02, f"above {high:.2f} and below {trust:g}: {share}",
+                transform=ax.get_xaxis_transform(), fontsize=8, color=INK_2,
+                ha="right", va="bottom", zorder=3,
+                bbox=dict(facecolor=SURFACE, edgecolor="none", pad=1.5, alpha=0.85))
         ax.set_xlim(0, 1)
         ax.set_ylim(0, 1)
         tidy(ax, "both")
@@ -200,6 +206,7 @@ def fig_calibration_curve(results: Path, figures: Path) -> str | None:
     if not by_arm:
         return None
     fig, ax = plt.subplots(figsize=(6.4, 4.4))
+    ends: list[tuple[float, float, str]] = []
     ax.plot([0, 1], [0, 1], color=MUTED, lw=1.0, ls=(0, (4, 3)),
             label="perfect calibration", zorder=1)
     for arm in [a for a in ARM_ORDER if a in by_arm] + \
@@ -212,13 +219,24 @@ def fig_calibration_curve(results: Path, figures: Path) -> str | None:
         # Direct label at the end of each line, because three of the six
         # colours sit below the contrast floor against this surface.
         if xs:
-            ax.annotate(label_of(arm), (xs[-1], ys[-1]), xytext=(4, 0),
-                        textcoords="offset points", fontsize=7.5, color=INK_2,
-                        va="center")
+            ends.append((ys[-1], xs[-1], label_of(arm)))
+    # The labels go in the figure margin, not inside a widened axis. Confidence
+    # cannot exceed one, and stretching the scale to 1.25 to make room for text
+    # invites a reader to look for points that could never exist there.
+    ends.sort()
+    min_gap = 0.055
+    placed: list[float] = []
+    for y, x, text in ends:
+        while placed and y - placed[-1] < min_gap:
+            y = placed[-1] + min_gap
+        placed.append(y)
+        ax.annotate(text, (x, y), xytext=(8, 0), textcoords="offset points",
+                    fontsize=7.5, color=INK_2, va="center",
+                    annotation_clip=False)
     ax.set_xlabel("mean confidence in bin")
     ax.set_ylabel("mean measured lDDT-CA in bin")
     ax.set_title("Calibration, binned", loc="left", color=INK)
-    ax.set_xlim(0, 1.25)
+    ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     tidy(ax, "both")
     ax.legend(frameon=False, fontsize=8, loc="upper left")
