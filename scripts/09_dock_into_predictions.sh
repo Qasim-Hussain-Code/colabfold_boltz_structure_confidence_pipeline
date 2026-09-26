@@ -20,15 +20,18 @@
 #  targets. The published figure is quoted alongside as context and the README
 #  says plainly which is which.
 #
-#  Two fixes were needed in that repository before this could work, and both
-#  were made there rather than worked around here, as the brief for this stage
-#  requires. The first: its scoring stage looked for reference ligands only
-#  under the two dataset names it shipped with, so a run on any other dataset
-#  was skipped silently, with no message and no row. The second: when the
-#  protonation step falls back to its second tool, the receptor file it writes
-#  carries header records that the docking program rejects, which turned a
-#  protonation fallback into a docking failure for every affected receptor. The
-#  pinned commit carries both.
+#  Three fixes were needed in that repository before this could work, and all
+#  three were made there rather than worked around here, as the brief for this
+#  stage requires. The first: its scoring stage looked for reference ligands
+#  only under the two dataset names it shipped with, so a run on any other
+#  dataset was skipped silently, with no message and no row. The second: when
+#  the protonation step falls back to its second tool, the receptor file it
+#  writes carries header records that the docking program rejects, which turned
+#  a protonation fallback into a docking failure for every affected receptor.
+#  The third: ligand preparation ran the whole set through one worker pool with
+#  no per-item handling, so a ligand the charge model could not parameterise
+#  ended the preparation of every other ligand with a traceback and no table.
+#  One heme in this set does exactly that. The pinned commit carries all three.
 #
 #  A coordinate frame problem this stage has to solve, and it is the one most
 #  likely to produce a wrong answer quietly. That pipeline measures pose
@@ -213,4 +216,13 @@ csc_run "collect_results" "$PY_ANALYSIS" "${SCRIPT_DIR}/lib_dock_handoff.py" \
     --stage1-config "${STAGE1_DIR}/project.conf" --collect
 
 csc_stage_end "arm=${ARM} targets=${N_TARGETS}"
-csc_mark_done "$STAGE"
+# A run that covered part of the set must not mark the stage finished. The
+# prediction stage had this exact fault: a single-target test stamped the arm,
+# and the full run that followed skipped it and reported success having done
+# nothing.
+if (( LIMIT > 0 )); then
+    echo "[${STAGE}] this run covered ${N_TARGETS} targets under --limit, so the"
+    echo "           stage is not marked as finished. Re-run without --limit."
+else
+    csc_mark_done "$STAGE"
+fi

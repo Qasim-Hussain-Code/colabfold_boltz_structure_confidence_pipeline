@@ -782,7 +782,7 @@ CONDA_ENV_OST=csc_ost
 # was pinned. Two fixes needed by this stage were made there rather than here,
 # and this commit is the one that carries them.
 STAGE1_REPO="https://github.com/Qasim-Hussain-Code/vina_gnina_pose_benchmark_pipeline.git"
-STAGE1_COMMIT=d329fbe0c08e4b36ed89f8ce077febc606350254
+STAGE1_COMMIT=313851a0941f70da32f190efb66790a0c8cbb74a
 STAGE1_DIR="${DATA_DIR}/stage1"
 # Vina and Vinardo only. GNINA's release binary is 2.1 GB and needs a CUDA
 # runtime environment of about the same size, and stage 1 measured its CNN
