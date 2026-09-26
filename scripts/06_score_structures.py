@@ -56,7 +56,8 @@ SCORE_COLUMNS = [
     "lddt_ca", "lddt_all_atom", "tm_score", "gdt_ts", "gdt_ha", "rmsd_ca",
     "pocket_lddt_ca", "pocket_rmsd_all_atom", "pocket_radius", "pocket_n_residues",
     "mean_plddt", "ptm", "model_clashes", "model_bad_bonds", "model_bad_angles",
-    "inconsistent_residues", "ost_version", "recorded",
+    "inconsistent_residues", "reference_chain", "reference_chains_dropped",
+    "ost_version", "recorded",
 ]
 
 RESIDUE_COLUMNS = [
@@ -78,6 +79,53 @@ def run(cmd: list[str], timeout: int = 3600):
 # ---------------------------------------------------------------------------
 # OpenStructure
 # ---------------------------------------------------------------------------
+def write_target_chain(reference: Path, chain_name: str, out_path: Path) -> tuple[int, int]:
+    """The one chain the prediction is of, written on its own.
+
+    This is the difference between measuring a prediction and measuring a
+    prediction against an assembly it was never asked to build.
+
+    lDDT asks, for every pair of residues within its inclusion radius in the
+    reference, whether the model preserves that distance. A deposited entry is
+    whatever was crystallised, often several chains. A model of one entity is
+    one chain. Every contact the reference makes across a chain boundary is
+    then a distance the model cannot reproduce, not because it is wrong but
+    because it was never given the partner, and each one counts against it.
+
+    Measured here, comparing against the whole entry instead of the target
+    chain: an entry with six chains scored 0.136 where the chain alone scored
+    0.940, four chains 0.164 against 0.963, three 0.283 against 0.892, two
+    0.377 against 0.950. Single-chain entries were identical either way, which
+    is what says the effect is the extra chains and nothing else. Read the
+    wrong way, that pattern looks like a model that is confidently wrong on
+    most targets, which is the opposite of the truth.
+
+    The ligand and any other component stay out too, so what is compared is
+    polymer against polymer.
+
+    Returns the residues written and the chains dropped, both recorded per
+    target so a reader can see which entries this mattered for.
+    """
+    import gemmi
+
+    st = gemmi.read_structure(str(reference))
+    st.setup_entities()
+    st.remove_alternative_conformations()
+    st.remove_hydrogens()
+    st.remove_waters()
+    dropped = 0
+    for model in st:
+        names = sorted({c.name for c in model if c.name != chain_name})
+        dropped += len(names)
+        for name in names:
+            model.remove_chain(name)
+    st.remove_ligands_and_waters()
+    n = sum(1 for model in st for chain in model for _res in chain)
+    doc = st.make_mmcif_document()
+    doc.write_file(str(out_path))
+    return n, dropped
+
+
 def compare_structures(ost_bin: str, model: Path, reference: Path, out_json: Path,
                        inclusion_radius: float,
                        map_seqid_thresh: float) -> tuple[bool, dict, str]:
@@ -447,6 +495,36 @@ def main() -> int:
             reference = tmp / "reference.cif"
             L.gunzip_to(model_gz, model)
             L.gunzip_to(ref_gz, reference)
+
+            # Compare against the chain the prediction is of, not the whole
+            # deposited entry. See write_target_chain for what that was costing.
+            want_chain = target.get("auth_asym_id", "")
+            reference_one = tmp / "reference_chain.cif"
+            n_ref_res = n_dropped = 0
+            if want_chain:
+                try:
+                    n_ref_res, n_dropped = write_target_chain(
+                        reference, want_chain, reference_one)
+                except Exception as e:  # noqa: BLE001 - one target's reference
+                    row.update({"status": "failed",
+                                "reason": f"could not isolate chain {want_chain}: "
+                                          f"{type(e).__name__}: {str(e)[:90]}"})
+                    rows.append(row)
+                    L.record_exclusion(results_dir, tid, "06_score_structures",
+                                       row["reason"], arm=arm)
+                    continue
+            if n_ref_res == 0:
+                row.update({"status": "failed",
+                            "reason": f"chain {want_chain or '(unnamed)'} holds no "
+                                      f"residues in the reference"})
+                rows.append(row)
+                L.record_exclusion(results_dir, tid, "06_score_structures",
+                                   row["reason"], arm=arm)
+                continue
+            row["reference_chain"] = want_chain
+            row["reference_chains_dropped"] = n_dropped
+            reference = reference_one
+
             out_json = tmp / "compare.json"
             ok, data, why = compare_structures(ost_bin, model, reference, out_json, radius,
                                                map_seqid_thresh)

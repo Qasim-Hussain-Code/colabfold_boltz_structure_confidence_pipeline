@@ -157,6 +157,32 @@ def record_exclusion(results_dir: str | Path, target_id: str, stage: str,
     }])
 
 
+def clear_exclusions(results_dir: str | Path, stage: str, arm: str = "") -> int:
+    """Drop this stage's earlier rows before it records its new ones.
+
+    The file is append-only, which is right for a stage that runs once and
+    wrong for one that can be rebuilt. The set-building stage was rebuilt with
+    a larger target count, and its first run's rows stayed: 53 of the 150
+    targets in the final set were also listed as excluded, with a reason
+    quoting a limit that no longer applied. A table whose purpose is to say
+    what was dropped, saying that about targets which were kept and scored, is
+    the same failure as a silent exclusion pointed the other way.
+
+    A stage that rewrites its output owns its rows here and clears them first.
+    Returns how many were removed, so the caller can say so.
+    """
+    path = Path(results_dir) / "excluded.tsv"
+    if not path.is_file():
+        return 0
+    rows = read_tsv(path)
+    keep = [r for r in rows
+            if not (r.get("stage") == stage and (not arm or r.get("arm") == arm))]
+    removed = len(rows) - len(keep)
+    if removed:
+        write_tsv(path, EXCLUSION_COLUMNS, keep)
+    return removed
+
+
 # ---------------------------------------------------------------------------
 # Compressed JSON
 # ---------------------------------------------------------------------------
