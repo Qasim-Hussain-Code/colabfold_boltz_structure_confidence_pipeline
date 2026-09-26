@@ -49,6 +49,7 @@ MANIFEST_COLUMNS = ["dataset", "complex_id", "pdb_id", "ccd_id", "protein_pdb",
 
 ALIGN_COLUMNS = ["target_id", "arm", "status", "reason", "n_matched_ca",
                  "superposition_rmsd_ca", "n_model_residues", "n_reference_residues",
+                 "receptor_chain", "chains_dropped", "components_dropped",
                  "recorded"]
 
 HANDOFF_COLUMNS = ["arm", "method", "n_attempted", "n_scored", "n_assessed",
@@ -79,10 +80,15 @@ def kabsch(mob, ref):
 
 def polymer_residues(structure, chain_name: str | None = None):
     """Residues of the first protein chain, keyed by position in the deposited
-    sequence. Waters and other non-polymer components are left out."""
+    sequence. Waters and other non-polymer components are left out.
+
+    Returns the residues and the name of the chain they came from, because the
+    receptor writer needs to keep that same chain and no other.
+    """
     out = {}
+    picked = ""
     if not len(structure):
-        return out
+        return out, picked
     for chain in structure[0]:
         if chain_name and chain.name != chain_name:
             continue
@@ -96,17 +102,36 @@ def polymer_residues(structure, chain_name: str | None = None):
             if ca is not None:
                 out[int(res.label_seq)] = (res, (ca.pos.x, ca.pos.y, ca.pos.z))
         if out:
+            picked = chain.name
             break
-    return out
+    return out, picked
 
 
-def write_receptor_pdb(structure, path: Path) -> int:
+def write_receptor_pdb(structure, path: Path, keep_chain: str = "") -> tuple[int, int, int]:
     """Write a receptor the docking pipeline can read.
 
     That pipeline reads fixed-column records and cannot carry a chain
     identifier longer than one character, so the chain is renamed. It strips
     waters and additives itself; nothing is removed here beyond what is needed
     to make a well formed file, so the two arms are cleaned by the same code.
+
+    keep_chain is the reason this function takes an argument at all. The model
+    predicts one chain, so a predicted receptor is one chain. A deposited entry
+    is whatever was crystallised: other protein chains, cofactors, metals. If
+    the crystal arm hands over all of that while the predicted arm hands over a
+    lone chain, the difference between the two numbers is not the difference
+    between predicted and experimental coordinates. It is that plus everything
+    the prediction never had. This stage exists to measure the first, so both
+    arms are cut to the same chain and what was dropped is counted rather than
+    quietly discarded.
+
+    The cost of that choice is real and runs the other way: a pocket formed
+    between two chains is more open in a lone chain than it is in the entry, so
+    the crystal arm here is a harder target than docking into the full assembly
+    would be. The counts this returns are what the README needs to say so.
+
+    Returns the residues written, the chains dropped, and the non-water
+    components dropped along with them.
     """
     import gemmi
 
@@ -115,13 +140,38 @@ def write_receptor_pdb(structure, path: Path) -> int:
     st.remove_alternative_conformations()
     st.remove_hydrogens()
     st.remove_waters()
+
+    dropped_chains = dropped_components = 0
+    if keep_chain:
+        for model in st:
+            # The names are collected before anything is removed. Removing a
+            # chain while iterating over the model skips the next one, which
+            # left three of six chains standing in an entry here and produced a
+            # 438-residue receptor for a 147-residue target.
+            to_drop = sorted({c.name for c in model if c.name != keep_chain})
+            dropped_chains += len(to_drop)
+            for chain in model:
+                if chain.name in to_drop:
+                    dropped_components += sum(
+                        1 for res in chain if res.het_flag == "H")
+            for name in to_drop:
+                model.remove_chain(name)
+        # A component that sits in the kept chain rather than in one of its
+        # own, which is how many entries record a cofactor.
+        for model in st:
+            for chain in model:
+                for res in list(chain):
+                    if res.het_flag == "H":
+                        dropped_components += 1
+        st.remove_ligands_and_waters()
+
     for model in st:
         for chain in model:
             if len(chain.name) > 1:
                 chain.name = chain.name[0]
     n = sum(1 for model in st for chain in model for _res in chain)
     st.write_pdb(str(path))
-    return n
+    return n, dropped_chains, dropped_components
 
 
 def prepare(conf: dict, arm: str, stage1_conf: dict, limit: int) -> int:
@@ -168,13 +218,17 @@ def prepare(conf: dict, arm: str, stage1_conf: dict, limit: int) -> int:
         L.gunzip_to(ref_gz, ref_cif)
         ref_st = gemmi.read_structure(str(ref_cif))
         ref_st.setup_entities()
-        ref_res = polymer_residues(ref_st)
+        ref_res, ref_chain = polymer_residues(ref_st)
         receptor = out_dir / f"{tid}.pdb"
 
         if arm == "crystal":
-            n = write_receptor_pdb(ref_st, receptor)
+            n, dropped_chains, dropped_comps = write_receptor_pdb(
+                ref_st, receptor, keep_chain=ref_chain)
             align.update({"n_matched_ca": "", "superposition_rmsd_ca": "",
-                          "n_model_residues": n, "n_reference_residues": len(ref_res)})
+                          "n_model_residues": n, "n_reference_residues": len(ref_res),
+                          "receptor_chain": ref_chain,
+                          "chains_dropped": dropped_chains,
+                          "components_dropped": dropped_comps})
         else:
             pred = predictions.get(tid)
             if pred is None or not pred.get("structure_file"):
@@ -194,7 +248,7 @@ def prepare(conf: dict, arm: str, stage1_conf: dict, limit: int) -> int:
             L.gunzip_to(model_gz, model_path)
             model_st = gemmi.read_structure(str(model_path))
             model_st.setup_entities()
-            mod_res = polymer_residues(model_st)
+            mod_res, mod_chain = polymer_residues(model_st)
 
             pairs = [(mod_res[i][1], ref_res[i][1]) for i in sorted(mod_res)
                      if i in ref_res]
@@ -214,10 +268,14 @@ def prepare(conf: dict, arm: str, stage1_conf: dict, limit: int) -> int:
                             v = np.array([atom.pos.x, atom.pos.y, atom.pos.z]) - cm
                             v = rot @ v + cr
                             atom.pos = gemmi.Position(float(v[0]), float(v[1]), float(v[2]))
-            n = write_receptor_pdb(model_st, receptor)
+            n, dropped_chains, dropped_comps = write_receptor_pdb(
+                model_st, receptor, keep_chain=mod_chain)
             align.update({"n_matched_ca": len(pairs),
                           "superposition_rmsd_ca": L.fmt(rmsd, 3),
-                          "n_model_residues": n, "n_reference_residues": len(ref_res)})
+                          "n_model_residues": n, "n_reference_residues": len(ref_res),
+                          "receptor_chain": mod_chain,
+                          "chains_dropped": dropped_chains,
+                          "components_dropped": dropped_comps})
             model_path.unlink(missing_ok=True)
 
         ref_cif.unlink(missing_ok=True)
