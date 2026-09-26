@@ -113,7 +113,21 @@ done
 #
 # With too little data to fit, this returns 0 and the cap in project.conf is
 # the only one that applies.
-FITS_IN_MEMORY="$("$PY_ANALYSIS" "${SCRIPT_DIR}/lib_memory.py" --config "${REPO_DIR}/project.conf" --arms af2_msa --budget-mb "$(( RAM_GB * 1024 ))" --quiet 2>/dev/null || echo 0)"
+# What this construct actually cost the last time it ran, if it has. Memory
+# depends on how deep the alignment is as well as how long the sequence is,
+# and the fit above is made over targets whose alignments run to thousands
+# of sequences. This one returned 89. Measured, a 201-residue construct
+# peaked at 3478 MB where that fit predicted about 4900, and the difference
+# cost the construct the body it needs to answer anything.
+PEDV_MEASURED=""
+PREV_LEN="$(awk -F'\t' 'NR==2{print $5}' "${RESULTS_DIR}/pedv/construct.tsv" 2>/dev/null)"
+PREV_KB="$(awk -F'\t' '$2=="predict_pedv_af2_msa_notmpl"{p=$4} END{print p}' "${LOG_DIR}/08_predict_pedv.commands.tsv" 2>/dev/null)"
+if [[ "$PREV_LEN" =~ ^[0-9]+$ && "$PREV_KB" =~ ^[0-9]+$ ]]; then
+    PEDV_MEASURED="--measured ${PREV_LEN}:$(( PREV_KB / 1024 ))"
+    echo "[${STAGE}] the last run of this construct: ${PREV_LEN} residues at $(( PREV_KB / 1024 )) MB"
+fi
+
+FITS_IN_MEMORY="$("$PY_ANALYSIS" "${SCRIPT_DIR}/lib_memory.py" --config "${REPO_DIR}/project.conf" --arms af2_msa --budget-mb "$(( RAM_GB * 1024 ))" ${PEDV_MEASURED} --quiet 2>/dev/null || echo 0)"
 [[ "$FITS_IN_MEMORY" =~ ^[0-9]+$ ]] || FITS_IN_MEMORY=0
 if (( FITS_IN_MEMORY > 0 )); then
     echo "[${STAGE}] the measured memory curve allows ${FITS_IN_MEMORY} residues"

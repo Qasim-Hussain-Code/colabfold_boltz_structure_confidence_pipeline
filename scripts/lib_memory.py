@@ -62,6 +62,11 @@ def parse_args(argv=None):
     p.add_argument("--budget-mb", type=int, default=0)
     p.add_argument("--quiet", action="store_true",
                    help="print only the answer, for a shell to read")
+    p.add_argument("--measured", default="",
+                   help="LENGTH:PEAK_MB actually observed for the thing being "
+                        "sized. A measurement of the sequence in hand beats an "
+                        "extrapolation from other sequences, so the longer of "
+                        "the two allowances is returned.")
     return p.parse_args(argv)
 
 
@@ -133,6 +138,28 @@ def main(argv=None) -> int:
 
     budget = args.budget_mb or (L.conf_int(conf, "RAM_GB", 5) * 1024)
     n = longest_within(f, budget)
+
+    # A measurement of the sequence being sized, where one exists, beats an
+    # extrapolation from other sequences. Memory depends on how deep the
+    # alignment is as well as how long the sequence is, and a fit made over
+    # targets whose alignments run to thousands of sequences badly overstates
+    # the cost of one whose alignment holds 89. Measured here: a 201-residue
+    # construct with an 89-sequence alignment peaked at 3478 MB where that fit
+    # predicted about 4900, and the difference cost the construct its body.
+    if args.measured:
+        try:
+            m_len, m_peak = args.measured.split(":")
+            m_len, m_peak = int(m_len), float(m_peak)
+        except ValueError:
+            m_len = 0
+        if m_len > 0 and m_peak > f["base"]:
+            q = (m_peak - f["base"]) / (m_len / 1000.0) ** 2
+            from_measured = longest_within({"base": f["base"], "quad": q}, budget)
+            if not args.quiet:
+                print(f"[memory] measured {m_peak:.0f} MB at {m_len} residues, which "
+                      f"implies {q:.0f} MB per kres^2 and allows {from_measured} "
+                      f"residues")
+            n = max(n, from_measured)
     if args.quiet:
         print(n)
     else:
