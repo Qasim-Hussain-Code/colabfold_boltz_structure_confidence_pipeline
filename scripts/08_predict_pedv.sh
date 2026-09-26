@@ -35,13 +35,20 @@
 #
 #  Which arm is a prediction here
 #  ------------------------------
-#  One of the two models compared in this repository was trained on structures
-#  released before a date that precedes every deposited entry of this protein,
-#  and the other on structures released after several of them. With templates
-#  off, only the first is making a prediction in any useful sense; for the
-#  second these coordinates were available during training. Both are run and
-#  the table says which is which, because the comparison is more interesting
-#  for being uneven.
+#  What runs here is AlphaFold2 twice, once with an alignment and once without.
+#  Its recorded cutoff is 30 April 2018 and every deposited entry of this
+#  protein was released in 2019 or later, so with templates off both arms are
+#  predicting rather than recalling, and the pair says how much of whatever
+#  the model produces comes from the alignment.
+#
+#  The comparison that is missing, and why. Boltz-2's recorded cutoff is 1 June
+#  2023, which is after all six of these entries, so those coordinates were
+#  available to it during training and the same construct run through it would
+#  be an uneven and more interesting comparison. It is not run here: the weights
+#  and their run do not fit in the disk this machine has left, which is recorded
+#  rather than presented as a choice. The README says the same, because an arm
+#  that was planned and not run is a limitation and not an omission to be
+#  quietly dropped.
 #
 #  Usage:
 #      bash scripts/08_predict_pedv.sh
