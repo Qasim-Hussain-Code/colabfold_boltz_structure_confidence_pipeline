@@ -287,6 +287,14 @@ csc_skip_if_done() {  # csc_skip_if_done <stage> <force 0|1>
 # Python stages write. Silent exclusions are how benchmark numbers get
 # inflated, so every refusal lands here whichever language refused it.
 csc_record_exclusion() {
+    # A row naming no target and no stage says nothing and cannot be acted
+    # on. One reached this file from a call whose arguments were all empty,
+    # and a table whose job is to account for every dropped target should
+    # not carry a row that accounts for nothing.
+    if [[ -z "${1:-}" || -z "${2:-}" ]]; then
+        echo "[warn] csc_record_exclusion called without a target or a stage; ignored" >&2
+        return 0
+    fi
     local f="${RESULTS_DIR}/excluded.tsv"
     mkdir -p "$RESULTS_DIR"
     [[ -s "$f" ]] || printf 'target_id\tstage\tarm\treason\tdetail\trecorded\n' > "$f"

@@ -117,6 +117,7 @@ BANNED = ["it is worth noting", "it's worth noting", "it is important to note",
 # Names of assistants and code-generation tools. A repository with a single
 # author should not credit one anywhere, including in a commit trailer.
 SEQUENCE_LETTERS = set("ACDEFGHIKLMNPQRSTVWYXBZUO")
+SYMBOL_RANGE = re.compile("[\u2100-\U0010FFFF]")
 TOOLS = ["co-authored-by", "generated with", "copilot", "chatgpt", "gpt-4",
          "claude", "anthropic", "openai", "cursor.ai", "codeium"]
 
@@ -152,8 +153,13 @@ for rel in files:
         if chr(0x2013) in line:
             en += 1
             print(f"    EN DASH {rel}:{i}")
-        for ch in line:
-            if ord(ch) > 0x2100 and unicodedata.category(ch) in ("So", "Sk"):
+        # A regex rather than a loop over every character. The rendered report
+        # is nearly three million characters and a per-character loop over it
+        # took minutes, which made this check and the commit hook that shares
+        # it too slow to run. The candidate range is narrowed first and only
+        # the few matches are asked for their category.
+        for ch in SYMBOL_RANGE.findall(line):
+            if unicodedata.category(ch) in ("So", "Sk"):
                 emoji += 1
                 print(f"    EMOJI {rel}:{i} {ch!r}")
         low = line.lower()
@@ -203,7 +209,7 @@ PATTERNS = [
     ("macos user path", re.compile(r"/Users/[A-Za-z0-9_.-]+/")),
     ("application data path", re.compile(r"AppData", re.I)),
     ("machine identifier", re.compile(r"\{?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}?", re.I)),
-    ("electronic address", re.compile(r"[A-Za-z0-9._%+-]+@(?!users\.noreply\.github\.com)[A-Za-z0-9.-]+\.[A-Za-z]{2,}")),
+    ("electronic address", re.compile(r"[A-Za-z0-9._%+-]{1,64}@(?!users\.noreply\.github\.com)[A-Za-z0-9.-]{1,255}\.[A-Za-z]{2,}")),
     ("private network address", re.compile(r"(?<![\d.])(10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3})(?![\d.])")),
 ]
 if host:
@@ -222,6 +228,12 @@ for rel in files:
         continue
     for i, line in enumerate(text.splitlines(), 1):
         for name, rx in PATTERNS:
+            # A line with no at-sign cannot hold an address, and the
+            # address pattern is the one that backtracks on the long
+            # base64 lines of the rendered report. One of them is 1.38
+            # million characters and it stalled the check outright.
+            if "@" in rx.pattern and "@" not in line:
+                continue
             if rx.search(line):
                 hits += 1
                 print(f"    {name} {rel}:{i}")
