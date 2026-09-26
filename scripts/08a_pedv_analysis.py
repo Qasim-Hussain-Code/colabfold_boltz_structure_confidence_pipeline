@@ -306,11 +306,12 @@ def mobile_boundary(loaded: dict, names: list, ref: str,
     ordered = sorted(worst)
     vals = [worst[p] for p in ordered]
     # The threshold comes from the background rather than from a number chosen
-    # in advance, and it is a robust outlier rule because that is what this is:
-    # most of the chain is rigid and a minority of it moves a long way. The
-    # median plus three deviations from the median puts the line above the
-    # scatter of a rigid fit and far below a domain that travels tens of
-    # Angstroms.
+    # in advance, and it is an outlier rule because that is what this is: most
+    # of the chain is rigid and a minority of it moves a long way. Taking the
+    # median and a spread measured from the median keeps the line where it
+    # belongs even though that minority is enormous. Three deviations puts it
+    # above the scatter of a rigid fit and far below a domain that travels
+    # tens of Angstroms.
     #
     # A fixed four Angstrom rule marks most of the chain as moving and finds no
     # boundary at all; a flat multiple of the median depends on how good the

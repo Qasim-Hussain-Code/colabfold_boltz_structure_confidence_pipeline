@@ -40,6 +40,25 @@ mapfile -t TRACKED < <(git ls-files 2>/dev/null)
 say "checking ${#TRACKED[@]} tracked files"
 say
 
+# Four of these checks are written in python, and python is not on PATH here
+# unless an environment is active. Resolving it from project.conf first, then
+# from PATH, keeps the checks working from a bare shell. If none is found the
+# checks that need it say so rather than reporting the repository as faulty:
+# a tool that cannot run has found nothing, and printing FAIL for that reads as
+# a privacy violation that does not exist.
+PY=""
+if [[ -f "${ROOT}/project.conf" ]]; then
+    env_name="$(sed -n 's/^CONDA_ENV_ANALYSIS=//p' "${ROOT}/project.conf" | tr -d '"'"'"'"' | head -1)"
+    base="$(sed -n 's/^CONDA_BASE=//p' "${ROOT}/project.conf" | tr -d '"'"'"'"' | head -1)"
+    [[ -n "$base" && -n "$env_name" && -x "${base}/envs/${env_name}/bin/python" ]] &&
+        PY="${base}/envs/${env_name}/bin/python"
+fi
+[[ -z "$PY" ]] && PY="$(command -v python3 2>/dev/null || command -v python 2>/dev/null || true)"
+if [[ -z "$PY" ]]; then
+    say "  [skip] no python interpreter found; the checks written in python are"
+    say "         not run, and this is not a finding about the repository"
+fi
+
 # ---- 1. shell ---------------------------------------------------------------
 say "shell scripts"
 SH_BAD=0
@@ -60,7 +79,8 @@ fi
 
 # ---- 2. python --------------------------------------------------------------
 say "python scripts"
-if python - <<'PY'
+if [[ -z "$PY" ]]; then say "  [skip] this check needs python"
+elif "$PY" - <<'PY'
 import ast, glob, sys
 
 
@@ -80,7 +100,8 @@ then pass "all python scripts parse"; else fail "a python script does not parse"
 
 # ---- 3, 4, 8, 10. prose -----------------------------------------------------
 say "writing conventions"
-if python - <<'PY'
+if [[ -z "$PY" ]]; then say "  [skip] this check needs python"
+elif "$PY" - <<'PY'
 import re
 import subprocess
 import sys
@@ -95,6 +116,7 @@ BANNED = ["it is worth noting", "it's worth noting", "it is important to note",
           "comprehensive", "highlights the", "overall,"]
 # Names of assistants and code-generation tools. A repository with a single
 # author should not credit one anywhere, including in a commit trailer.
+SEQUENCE_LETTERS = set("ACDEFGHIKLMNPQRSTVWYXBZUO")
 TOOLS = ["co-authored-by", "generated with", "copilot", "chatgpt", "gpt-4",
          "claude", "anthropic", "openai", "cursor.ai", "codeium"]
 
@@ -112,6 +134,16 @@ for rel in files:
     except OSError:
         continue
     for i, line in enumerate(text.splitlines(), 1):
+        # A protein sequence is a string of letters and some of those strings
+        # spell English words. One target sequence here contains DELVE, which
+        # is an ordinary peptide and not a writing habit. Sequence fields are
+        # taken out of the line before any prose rule is applied to it, rather
+        # than the whole file being exempted, so the prose around them is still
+        # checked.
+        if p.suffix == ".tsv":
+            line = "	".join(
+                "" if (len(f) >= 20 and set(f) <= SEQUENCE_LETTERS) else f
+                for f in line.split("	"))
         # Built from their code points so this file does not itself contain
         # the characters it is looking for.
         if chr(0x2014) in line:
@@ -154,7 +186,8 @@ else fail "writing conventions violated, see above"; fi
 
 # ---- 9. nothing that identifies the machine ---------------------------------
 say "privacy"
-if python - <<'PY'
+if [[ -z "$PY" ]]; then say "  [skip] this check needs python"
+elif "$PY" - <<'PY'
 import re
 import socket
 import subprocess
@@ -218,7 +251,8 @@ else pass "no model weights tracked"; fi
 
 # ---- 6, 7. figures and results ----------------------------------------------
 say "figures and results"
-if python - <<'PY'
+if [[ -z "$PY" ]]; then say "  [skip] this check needs python"
+elif "$PY" - <<'PY'
 import re
 import sys
 from pathlib import Path
