@@ -169,6 +169,17 @@ fi
 
 # --- the alignment, once, from the same server as every other target ---------
 MSA="${PEDV_DIR}/construct.a3m"
+# The alignment belongs to the construct it was fetched for. --force can
+# change the construct length, and an alignment of the wrong length is
+# worse than none: the model would be handed sequences that do not line up
+# with the one it is folding.
+if (( FORCE == 1 )) && [[ -s "$MSA" ]]; then
+    msa_len="$(awk 'NR==2 {print length($0)}' "$MSA")"
+    if [[ "$msa_len" != "$LEN" ]]; then
+        echo "[${STAGE}] the cached alignment is for a ${msa_len}-residue construct, not ${LEN}; refetching"
+        rm -f "$MSA"
+    fi
+fi
 if [[ ! -s "$MSA" ]]; then
     WORK="$(csc_scratch "${STAGE}_msa")"
     mkdir -p "$WORK"
@@ -188,6 +199,11 @@ for arm in af2_msa_notmpl af2_nomsa; do
         echo "[${STAGE}] ${arm} already predicted; skipping"
         continue
     fi
+    # Stale outputs from an earlier construct. colabfold skips a query whose
+    # results it already finds, so without this --force re-ran the stage and
+    # changed nothing: it reported success while the structure on disk was
+    # still the 201-residue construct the previous run wrote.
+    (( FORCE == 1 )) && rm -rf "$out"
     mkdir -p "$out"
     args=(--model-type "$AF2_MODEL_TYPE" --num-models 1 --num-recycle "$AF2_NUM_RECYCLE"
           --random-seed "$SEED" --rank "$AF2_RANK" --data "${CACHE_DIR}/colabfold")
