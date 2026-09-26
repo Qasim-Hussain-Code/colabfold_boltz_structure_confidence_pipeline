@@ -195,6 +195,20 @@ if should_run 05_predict; then
     bash "${SCRIPTS}/05_predict.sh" --arm "${ARM:-af2_msa_notmpl}" --seed-variance \
         --limit "${SEED_VARIANCE_N_TARGETS:-1}" || \
         echo "[run_all] the seed experiment failed; continuing"
+
+    # The prediction table against the files on disk, before anything reads
+    # the table as complete. A confidence file with no row makes the arm skip
+    # that target forever and drops it from every later denominator without
+    # saying so. This refuses rather than repairs: a disagreement means a run
+    # died somewhere unexpected, and what to do about it is a decision.
+    banner "05a_reconcile_predictions"
+    "$PY" "${SCRIPTS}/05a_reconcile_predictions.py" --config "${ROOT}/project.conf" \
+        ${ARM:+--arm "$ARM"} || {
+        echo "[run_all] the prediction table and the files on disk disagree;"
+        echo "[run_all] see results/reconciliation.tsv, then rerun 05a with --repair"
+        echo "[run_all] and rerun the affected arm before scoring"
+        exit 6
+    }
 fi
 
 if should_run 06_score_structures; then

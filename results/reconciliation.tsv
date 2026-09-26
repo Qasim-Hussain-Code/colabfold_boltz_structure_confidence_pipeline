@@ -1,0 +1,5 @@
+target_id	arm	problem	detail	confidence_file	structure_file	action	recorded
+10QV_1	af2_nomsa	quarantined	moved out of results by an earlier run of this stage as not_in_set		10QV_1.pdb.gz	held at quarantine/not_in_set/af2_nomsa/10QV_1.pdb.gz	
+10QV_1	af2_nomsa	quarantined	moved out of results by an earlier run of this stage as not_in_set	10QV_1__af2_nomsa.json.gz		held at quarantine/not_in_set/confidence/10QV_1__af2_nomsa.json.gz	
+10AF_1	af2_nomsa	quarantined	moved out of results by an earlier run of this stage as orphan_artifact		10AF_1.pdb.gz	held at quarantine/orphan_artifact/af2_nomsa/10AF_1.pdb.gz	
+10AF_1	af2_nomsa	quarantined	moved out of results by an earlier run of this stage as orphan_artifact	10AF_1__af2_nomsa.json.gz		held at quarantine/orphan_artifact/confidence/10AF_1__af2_nomsa.json.gz	
