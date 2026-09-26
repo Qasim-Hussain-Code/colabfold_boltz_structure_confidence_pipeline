@@ -250,6 +250,60 @@ def main() -> int:
                  "fraction_passing_geometry", "n_accurate_and_valid",
                  "fraction_accurate_and_valid", "accuracy_line", "recorded"], arm_rows)
 
+    # --- arm against arm, on the targets both of them have -------------------
+    # The arms no longer cover the same set. An alignment arm costs about
+    # twelve times what the single-sequence arm costs and grows with the square
+    # of the length, so each was given a budget and each bought what it could;
+    # config/arm_subsets.tsv records which targets that was. Comparing the
+    # medians in the table above would then be comparing two different sets of
+    # proteins and calling the difference an effect of the arm.
+    #
+    # So every pair of arms is also compared on the targets both of them
+    # predicted, as a difference per target. The interval resamples targets,
+    # which is the unit of replication, and the count of shared targets is
+    # reported beside it because with twelve of them it is the number that
+    # decides what the comparison can support.
+    lddt_by = {}
+    for s in scores:
+        if s.get("status") == "ok" and num(s.get("lddt_ca")) is not None:
+            lddt_by[(s["arm"], s["target_id"])] = num(s["lddt_ca"])
+    arms_present = sorted({a for a, _t in lddt_by})
+    pair_rows = []
+    for i, a in enumerate(arms_present):
+        for b in arms_present[i + 1:]:
+            shared = sorted({t for (arm, t) in lddt_by if arm == a}
+                            & {t for (arm, t) in lddt_by if arm == b})
+            if len(shared) < 3:
+                continue
+            diffs = {t: [lddt_by[(b, t)] - lddt_by[(a, t)]] for t in shared}
+
+            def med_diff(picked):
+                flat = [v for grp in picked for v in grp]
+                return L.quantiles(flat)[1] if flat else float("nan")
+
+            lo, hi = L.cluster_bootstrap(diffs, med_diff, n_boot=2000, seed=11)
+            b_better = sum(1 for t in shared if lddt_by[(b, t)] > lddt_by[(a, t)])
+            pair_rows.append({
+                "arm_a": a, "arm_b": b, "n_shared_targets": len(shared),
+                "median_lddt_ca_a": L.fmt(L.quantiles([lddt_by[(a, t)] for t in shared])[1], 4),
+                "median_lddt_ca_b": L.fmt(L.quantiles([lddt_by[(b, t)] for t in shared])[1], 4),
+                "median_paired_difference": L.fmt(
+                    L.quantiles([lddt_by[(b, t)] - lddt_by[(a, t)] for t in shared])[1], 4),
+                "ci_low": L.fmt(lo, 4), "ci_high": L.fmt(hi, 4),
+                "n_targets_b_higher": b_better,
+                "note": "b minus a, per target, over the targets both arms have; "
+                        "the interval resamples targets",
+                "recorded": L.now_iso(),
+            })
+    L.write_tsv(results_dir / "arm_pairs.tsv",
+                ["arm_a", "arm_b", "n_shared_targets", "median_lddt_ca_a",
+                 "median_lddt_ca_b", "median_paired_difference", "ci_low",
+                 "ci_high", "n_targets_b_higher", "note", "recorded"], pair_rows)
+    for r in pair_rows:
+        print(f"  {r['arm_a']} against {r['arm_b']}: {r['n_shared_targets']} shared "
+              f"targets, median difference {r['median_paired_difference']} "
+              f"[{r['ci_low']}, {r['ci_high']}]")
+
     # --- the threshold, derived rather than chosen ---------------------------
     # The question a reader has is where to stop trusting a confident region.
     # It is answered by sweeping the band and reporting, at each value, the
