@@ -431,3 +431,4 @@ target_id	arm	model	seed	status	reason	sequence_length	n_residues_scored	mean_pl
 8QB1_1	af2_msa_notmpl	alphafold2_ptm	20260925	ok		88	88	85.95	0.76	29.812	6.361	5907			832.97	3444.3		1	0-100	predictions/af2_msa_notmpl/8QB1_1.pdb.gz	confidence/8QB1_1__af2_msa_notmpl.json.gz	2026-09-26T07:37:22+08:00
 8JN0_1	af2_msa_notmpl	alphafold2_ptm	20260925	ok		89	89	97.043	0.87	26.156	2.344	3973			692.97	3041.1		1	0-100	predictions/af2_msa_notmpl/8JN0_1.pdb.gz	confidence/8JN0_1__af2_msa_notmpl.json.gz	2026-09-26T07:48:55+08:00
 8Q1W_1	af2_msa_notmpl	alphafold2_ptm	20260925	ok		89	89	88.733	0.81	28.266	4.916	6576			852.78	3420.2		1	0-100	predictions/af2_msa_notmpl/8Q1W_1.pdb.gz	confidence/8Q1W_1__af2_msa_notmpl.json.gz	2026-09-26T08:03:08+08:00
+10XE_1	af2_msa_notmpl	alphafold2_ptm	20260925	ok		91	91	91.859	0.82	25.359	3.42	2174			725.30	2968.7		1	0-100	predictions/af2_msa_notmpl/10XE_1.pdb.gz	confidence/10XE_1__af2_msa_notmpl.json.gz	2026-09-26T08:33:29+08:00
