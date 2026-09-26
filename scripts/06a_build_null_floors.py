@@ -69,7 +69,8 @@ def fetch_entry(pdb_id: str, dest: Path) -> bool:
         return False
 
 
-def chain_ca(path: Path, entity_id: str | None = None):
+def chain_ca(path: Path, entity_id: str | None = None,
+             match_seq: str | None = None):
     """One polymer chain: its alpha carbons in order, and its one-letter sequence.
 
     The coordinates are returned as a list in chain order rather than keyed by
@@ -84,6 +85,20 @@ def chain_ca(path: Path, entity_id: str | None = None):
     st.setup_entities()
     if not len(st):
         return None, [], "", None
+    # Which chain, and why it cannot be whichever comes first.
+    #
+    # A template is found by searching sequences, and what comes back is an
+    # entity inside an entry. That entry may hold one chain or it may hold a
+    # ribosome. Taking the first polymer chain of a large assembly hands back
+    # something unrelated to the target, and the alignment then pairs residues
+    # that have nothing to do with each other: on this set that produced
+    # superpositions of 16 to 34 Angstroms and floors that scored near zero
+    # for templates 71 to 86 per cent identical to their target.
+    #
+    # So when the sequence being matched is known, every polymer chain is
+    # aligned against it and the best match is the one returned. That is
+    # self-correcting and needs no entity bookkeeping.
+    found = []
     for chain in st[0]:
         poly = chain.get_polymer()
         if len(poly) < 20:
@@ -98,8 +113,17 @@ def chain_ca(path: Path, entity_id: str | None = None):
             letters.append(code if code.isalpha() else "X")
             coords.append((atom.pos.x, atom.pos.y, atom.pos.z))
         if coords:
-            return chain.name, coords, "".join(letters), st
-    return None, [], "", None
+            found.append((chain.name, coords, "".join(letters)))
+    if not found:
+        return None, [], "", None
+    if match_seq and len(found) > 1:
+        def identity_to(seq: str) -> float:
+            res = gemmi.align_string_sequences(list(match_seq), list(seq), [],
+                                               gemmi.AlignmentScoring())
+            return res.calculate_identity()
+        found.sort(key=lambda f: identity_to(f[2]), reverse=True)
+    name, coords, letters = found[0]
+    return name, coords, letters, st
 
 
 def aligned_pairs(seq_a: str, coords_a: list, seq_b: str, coords_b: list):
@@ -142,7 +166,8 @@ def _cigar_tokens(cigar: str):
             n = ""
 
 
-def superpose_and_write(src_st, pairs, src_coords, ref_coords, out_gz: Path):
+def superpose_and_write(src_st, pairs, src_coords, ref_coords, out_gz: Path,
+                        keep_chain: str = ""):
     """Fit the copied chain onto the target and write it where a prediction goes.
 
     A copied template is only a comparator if it is put in the same frame as
@@ -172,6 +197,17 @@ def superpose_and_write(src_st, pairs, src_coords, ref_coords, out_gz: Path):
                     v = np.array([atom.pos.x, atom.pos.y, atom.pos.z]) - ca_
                     v = rot @ v + cb
                     atom.pos = gemmi.Position(float(v[0]), float(v[1]), float(v[2]))
+    # Only the chain that was matched. A floor stands where a prediction would,
+    # and a prediction is one chain; writing the whole source entry would hand
+    # the scoring stage an assembly, which is the same mismatch that made every
+    # accuracy number in this repository wrong once already.
+    if keep_chain:
+        for model in src_st:
+            names = sorted({c.name for c in model if c.name != keep_chain})
+            for name in names:
+                model.remove_chain(name)
+        src_st.remove_ligands_and_waters()
+
     out_gz.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as td:
         tmp = Path(td) / "floor.cif"
@@ -250,7 +286,8 @@ def main() -> int:
                     row["reason"] = "already built"
                 src_cif = Path(td) / f"{src_pdb}.cif"
                 L.gunzip_to(src_gz, src_cif)
-                src_chain, src_coords, src_seq, src_st = chain_ca(src_cif)
+                src_chain, src_coords, src_seq, src_st = chain_ca(
+                    src_cif, match_seq=ref_seq)
                 if not src_coords:
                     row.update({"status": "failed", "reason": "no usable chain in the source"})
                     rows.append(row)
@@ -259,7 +296,8 @@ def main() -> int:
                 pairs, aligned_identity = aligned_pairs(src_seq, src_coords,
                                                         ref_seq, ref_coords)
                 row["aligned_identity"] = L.fmt(aligned_identity / 100.0, 4)
-                fit = superpose_and_write(src_st, pairs, src_coords, ref_coords, out_gz)
+                fit = superpose_and_write(src_st, pairs, src_coords, ref_coords, out_gz,
+                                          keep_chain=src_chain or "")
                 if fit[0] is None:
                     row.update({"status": "failed",
                                 "reason": "too few shared positions to place the copy"})
