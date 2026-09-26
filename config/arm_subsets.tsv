@@ -1,0 +1,43 @@
+target_id	arm	why	sequence_length	msa_depth	projected_s
+27WO_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	81	12820	714
+27AH_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	82	2	67
+8PQM_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	82	19183	731
+36MB_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	83	2	69
+8PRR_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	84	24594	767
+8S7A_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	84	9800	767
+21NG_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	85	3277	786
+8P91_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	85	8935	786
+8PR6_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	85	6109	786
+8KC1_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	87	2	76
+8QB1_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	88	5907	842
+8JN0_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	89	3973	861
+8Q1W_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	89	6576	861
+10XE_1	af2_msa_notmpl	already predicted, so it costs nothing to keep	91	2174	901
+8RD7_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	91	5710	901
+10XH_1	af2_msa_notmpl	chosen to spread the set over the length range	93	487	941
+36IQ_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	98	2	96
+8KBM_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	104	3427	1176
+8PWC_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	110	1537	1316
+44ID_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	120	4210	1566
+8RCY_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	137	13650	2041
+35TM_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	139	3818	2101
+29LW_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	142	11415	2193
+10JX_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	145	8306	2287
+37JY_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	147	420	2350
+8R5N_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	165	2557	2961
+30JI_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	173	2529	3255
+8JQU_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	175	16151	3331
+8QX5_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	177	1336	3407
+8POR_1	af2_msa_notmpl	the docking handoff reads this arm for its receptor	179	13923	3485
+27WO_1	af2_msa_tmpl	chosen to spread the set over the length range	81	12820	714
+36MB_1	af2_msa_tmpl	chosen to spread the set over the length range	83	2	69
+8S7A_1	af2_msa_tmpl	chosen to spread the set over the length range	84	9800	767
+8PR6_1	af2_msa_tmpl	chosen to spread the set over the length range	85	6109	786
+8JN0_1	af2_msa_tmpl	chosen to spread the set over the length range	89	3973	861
+10XE_1	af2_msa_tmpl	chosen to spread the set over the length range	91	2174	901
+36IQ_1	af2_msa_tmpl	chosen to spread the set over the length range	98	2	96
+8PWC_1	af2_msa_tmpl	chosen to spread the set over the length range	110	1537	1316
+35TM_1	af2_msa_tmpl	chosen to spread the set over the length range	139	3818	2101
+37JY_1	af2_msa_tmpl	chosen to spread the set over the length range	147	420	2350
+30JI_1	af2_msa_tmpl	chosen to spread the set over the length range	173	2529	3255
+8POR_1	af2_msa_tmpl	chosen to spread the set over the length range	179	13923	3485

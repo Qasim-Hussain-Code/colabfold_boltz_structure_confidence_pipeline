@@ -31,5 +31,14 @@ dependencies:
   - seaborn
   - statsmodels
   - quarto
+  # Quarto renders the prose by itself but shells out to a Jupyter kernel for
+  # every code chunk, and the report is nothing but code chunks reading the
+  # tables in results/. Without these, the render fails with a missing module
+  # and run_all.sh reports it at the end of a run measured in days, which is
+  # the most expensive moment to discover it.
+  - nbclient
+  - nbformat
+  - ipykernel
+  - pyyaml
   - shellcheck
   - pip
