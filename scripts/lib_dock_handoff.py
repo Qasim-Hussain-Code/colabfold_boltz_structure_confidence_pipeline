@@ -316,7 +316,11 @@ def prepare(conf: dict, arm: str, stage1_conf: dict, limit: int) -> int:
         })
 
     L.write_tsv(s1_config / f"dataset_{arm}.tsv", MANIFEST_COLUMNS, rows)
-    L.append_tsv(results_dir / "docking_alignment.tsv", ALIGN_COLUMNS, align_rows)
+    # Replaced, not appended. Both tables are rewritten every time an arm is
+    # rerun, and appending left three generations of rows in them with
+    # nothing to say which was current.
+    L.replace_rows(results_dir / "docking_alignment.tsv", ALIGN_COLUMNS,
+                   ("target_id", "arm"), align_rows)
     ok = [a for a in align_rows if a["status"] == "ok"]
     print(f"[handoff] {len(rows)} receptors written for the {arm} arm, "
           f"{len(align_rows) - len(ok)} could not be prepared")
@@ -421,7 +425,8 @@ def collect(conf: dict, arm: str, stage1_conf: dict) -> int:
             "note": "success requires the pose within 2 Angstrom and every physical check passed",
             "recorded": L.now_iso(),
         })
-    L.append_tsv(results_dir / "docking_handoff.tsv", HANDOFF_COLUMNS, rows)
+    L.replace_rows(results_dir / "docking_handoff.tsv", HANDOFF_COLUMNS,
+                   ("arm", "method"), rows)
     for r in rows:
         print(f"[handoff] {r['arm']} {r['method']}: {r['n_success']}/{r['n_assessed']} "
               f"success ({r['rate_success']}), median top-1 RMSD {r['median_top1_rmsd']}")
