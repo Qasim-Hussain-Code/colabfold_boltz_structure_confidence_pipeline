@@ -157,6 +157,29 @@ def record_exclusion(results_dir: str | Path, target_id: str, stage: str,
     }])
 
 
+def replace_rows(path: str | Path, columns: list[str], key: tuple[str, ...],
+                 rows) -> int:
+    """Write rows into a table, replacing any that share a key with them.
+
+    append_tsv is right for a stage that runs once and wrong for one that can
+    be rebuilt. The floor builder appended, and a rebuild left two rows for
+    every floor in results/predictions.tsv, so the scoring stage then scored
+    540 predictions where 270 exist. Nothing said so: the counts simply
+    doubled and every table downstream inherited it.
+
+    A stage that can rebuild its own rows calls this instead. Returns how many
+    rows were replaced.
+    """
+    path = Path(path)
+    rows = list(rows)
+    keys = {tuple(r.get(k, "") for k in key) for r in rows}
+    prior = read_tsv(path) if path.is_file() else []
+    keep = [r for r in prior if tuple(r.get(k, "") for k in key) not in keys]
+    replaced = len(prior) - len(keep)
+    write_tsv(path, columns, keep + rows)
+    return replaced
+
+
 def clear_exclusions(results_dir: str | Path, stage: str, arm: str = "") -> int:
     """Drop this stage's earlier rows before it records its new ones.
 

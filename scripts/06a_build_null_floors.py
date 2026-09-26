@@ -320,7 +320,14 @@ def main() -> int:
 
     L.write_tsv(results_dir / "null_floors.tsv", FLOOR_COLUMNS, rows)
     if pred_rows:
-        L.append_tsv(results_dir / "predictions.tsv", PREDICTION_COLUMNS, pred_rows)
+        # Replaced rather than appended. This stage can be rebuilt, and a
+        # rebuild that appends leaves two rows for every floor, which the
+        # scoring stage then scores twice.
+        n = L.replace_rows(results_dir / "predictions.tsv", PREDICTION_COLUMNS,
+                           ("target_id", "arm"), pred_rows)
+        if n:
+            print(f"[06a_build_null_floors] replaced {n} floor rows from an "
+                  f"earlier build")
     ok = [r for r in rows if r["status"] == "ok"]
     print(f"[06a_build_null_floors] {len(ok)} floors built of {len(rows)} attempted")
     for arm in ("null_template", "null_unrelated"):

@@ -1,301 +1,301 @@
 target_id	arm	source_entry	source_chain	identity	aligned_identity	n_matched_ca	superposition_rmsd_ca	status	reason	recorded
-10AF_1	null_template	4JCP_1	A	0.988	0.9882	170	0.14	ok		2026-09-25T21:58:17+08:00
-10AF_1	null_unrelated	4W6Y_2	A		0.2397	139	17.223	ok		2026-09-25T21:58:17+08:00
-10CX_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:58:19+08:00
-10CX_1	null_unrelated	4I8B_1	A		0.3905	100	14.095	ok		2026-09-25T21:58:19+08:00
-10DA_1	null_template	2FC3_1	A	0.685	0.6935	124	4.02	ok		2026-09-25T21:58:20+08:00
-10DA_1	null_unrelated	1K9J_1	A		0.2231	122	14.942	ok		2026-09-25T21:58:20+08:00
-10FS_1	null_template	7UY0_1	A	0.994	0.9884	171	1.727	ok		2026-09-25T21:58:20+08:00
-10FS_1	null_unrelated	1T4F_1	M		0.375	87	16.235	ok		2026-09-25T21:58:22+08:00
-10JX_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:58:22+08:00
-10JX_1	null_unrelated	1V9W_1	A		0.2385	123	20.826	ok		2026-09-25T21:58:22+08:00
-10UT_1	null_template	2RAF_1	A	1.0	0.2993	136	19.043	ok		2026-09-25T21:58:24+08:00
-10UT_1	null_unrelated	2NDF_1	A		0.2044	131	19.342	ok		2026-09-25T21:58:25+08:00
-10UV_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:58:26+08:00
-10UV_1	null_unrelated	7B21_1	AAA		0.2935	90	15.554	ok		2026-09-25T21:58:26+08:00
-10UW_1	null_template	4ZI8_1	A	1.0	0.4315	145	36.615	ok		2026-09-25T21:58:27+08:00
-10UW_1	null_unrelated	3O5L_1	A		0.2422	124	17.488	ok		2026-09-25T21:58:28+08:00
-10UX_1	null_template	2HSZ_1	A	1.0	0.3758	144	18.631	ok		2026-09-25T21:58:29+08:00
-10UX_1	null_unrelated	8A4Y_1	A		0.2712	115	18.462	ok		2026-09-25T21:58:29+08:00
-10XE_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:58:30+08:00
-10XE_1	null_unrelated	4LM8_1	A		0.7253	91	25.089	ok		2026-09-25T21:58:30+08:00
-10XG_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:58:31+08:00
-10XG_1	null_unrelated	6TRI_1	A		0.2625	76	9.851	ok		2026-09-25T21:58:31+08:00
-10XH_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:58:32+08:00
-10XH_1	null_unrelated	5GO9_1	A		0.9556	90	52.349	ok		2026-09-25T21:58:32+08:00
-11CH_1	null_template	4CSH_1	A	0.325	0.3873	130	5.036	ok		2026-09-25T21:58:34+08:00
-11CH_1	null_unrelated	2ZJD_1	A		0.2314	113	15.43	ok		2026-09-25T21:58:35+08:00
-11OW_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:58:36+08:00
-11OW_1	null_unrelated	7O62_1	A		0.2583	112	13.015	ok		2026-09-25T21:58:36+08:00
-12FA_1	null_template	2VRZ_1	A	0.395	0.4021	94	3.137	ok		2026-09-25T21:58:37+08:00
-12FA_1	null_unrelated	5GMZ_1	A		0.3299	97	14.46	ok		2026-09-25T21:58:37+08:00
-12HP_1	null_template	5I9Q_3	A	0.37	0.5259	116	20.709	ok		2026-09-25T21:58:38+08:00
-12HP_1	null_unrelated	6E8A_1	A		0.2672	115	18.271	ok		2026-09-25T21:58:39+08:00
-12IS_1	null_template	4F3N_1	A	1.0	0.5546	118	21.056	ok		2026-09-25T21:58:40+08:00
-12IS_1	null_unrelated	5MDU_1	A		0.2605	115	17.49	ok		2026-09-25T21:58:41+08:00
-12XX_1	null_template	7JRQ_1	A	0.262	0.3307	115	10.462	ok		2026-09-25T21:58:42+08:00
-12XX_1	null_unrelated	4MG3_1	A		0.2394	133	14.991	ok		2026-09-25T21:58:43+08:00
-13EE_1	null_template	6E8A_1	A	1.0	0.973	144	10.108	ok		2026-09-25T21:58:43+08:00
-13EE_1	null_unrelated	2N3J_1	A		0.3469	96	18.422	ok		2026-09-25T21:58:43+08:00
-13TX_1	null_template	6Z4U_1	A	1.0	1.0	84	0.394	ok		2026-09-25T21:58:44+08:00
-13TX_1	null_unrelated	2FC3_1	A		0.3095	83	18.901	ok		2026-09-25T21:58:45+08:00
-21EJ_1	null_template	6L2E_1	A	1.0	1.0	118	0.231	ok		2026-09-25T21:58:45+08:00
-21EJ_1	null_unrelated	5YOZ_1	A		0.3475	111	13.146	ok		2026-09-25T21:58:46+08:00
-21LR_1	null_template	1GWG_1	A	0.965	0.9643	168	0.18	ok		2026-09-25T21:58:48+08:00
-21LR_1	null_unrelated	2BEM_1	A		0.2471	152	18.82	ok		2026-09-25T21:58:48+08:00
-21NG_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:58:49+08:00
-21NG_1	null_unrelated	2FC3_1	A		0.3494	83	12.311	ok		2026-09-25T21:58:49+08:00
-22FG_1	null_template	1V9W_1	A	0.418	0.4344	120	7.92	ok		2026-09-25T21:58:49+08:00
-22FG_1	null_unrelated	7YGK_1	A		0.2232	107	14.13	ok		2026-09-25T21:58:50+08:00
-22FK_1	null_template	4I8B_1	A	0.952	0.9524	105	0.231	ok		2026-09-25T21:58:50+08:00
-22FK_1	null_unrelated	4V4V_37	AB		0.4717	106	19.523	ok		2026-09-25T21:58:50+08:00
-22LX_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:58:54+08:00
-22LX_1	null_unrelated	6TRI_1	A		0.3625	80	13.415	ok		2026-09-25T21:58:54+08:00
-24MP_1	null_template	5XTJ_1	A	0.646	0.6582	158	1.078	ok		2026-09-25T21:58:54+08:00
-24MP_1	null_unrelated	6QUP_2	A		0.2515	153	16.51	ok		2026-09-25T21:58:54+08:00
-26AO_1	null_template	2NUL_1	A	1.0	0.9939	163	0.421	ok		2026-09-25T21:58:55+08:00
-26AO_1	null_unrelated	1NQ3_1	A		0.2857	131	14.662	ok		2026-09-25T21:58:56+08:00
-26JK_1	null_template	3CMI_1	A	0.503	0.4685	139	1.977	ok		2026-09-25T21:58:56+08:00
-26JK_1	null_unrelated	7NY0_1	A		0.281	117	17.508	ok		2026-09-25T21:58:57+08:00
-26RW_1	null_template	8HTA_1	A	0.988	0.9871	155	2.458	ok		2026-09-25T21:58:58+08:00
-26RW_1	null_unrelated	1KO6_1	A		0.1974	143	18.735	ok		2026-09-25T21:59:00+08:00
-27AA_1	null_template	2R2K_1	A	1.0	1.0	166	0.397	ok		2026-09-25T21:59:01+08:00
-27AA_1	null_unrelated	6S4L_1	A		0.2771	162	26.584	ok		2026-09-25T21:59:02+08:00
-27AH_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:03+08:00
-27AH_1	null_unrelated	6GPU_1	A		0.2805	80	14.336	ok		2026-09-25T21:59:03+08:00
-27JK_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:03+08:00
-27JK_1	null_unrelated	8A4Y_1	A		0.2966	110	16.677	ok		2026-09-25T21:59:03+08:00
-27WO_1	null_template	7BVC_3	A	0.546	0.8625	80	28.535	ok		2026-09-25T21:59:03+08:00
-27WO_1	null_unrelated	4JCP_1	A		0.45	80	12.438	ok		2026-09-25T21:59:05+08:00
-28DB_1	null_template	4ZNO_1	A	1.0	0.4779	134	31.953	ok		2026-09-25T21:59:05+08:00
-28DB_1	null_unrelated	1GWG_1	A		0.2426	133	16.575	ok		2026-09-25T21:59:06+08:00
-29LI_1	null_template	6NBN_1	A	0.739	0.7373	118	1.427	ok		2026-09-25T21:59:06+08:00
-29LI_1	null_unrelated	1I1B_1	A		0.2458	118	16.363	ok		2026-09-25T21:59:07+08:00
-29LW_1	null_template	3SW1_1	A	1.0	1.0	134	0.612	ok		2026-09-25T21:59:08+08:00
-29LW_1	null_unrelated	6NBN_1	A		0.2764	108	15.85	ok		2026-09-25T21:59:08+08:00
-30JI_1	null_template	7AZN_1	A	1.0	0.9653	167	1.298	ok		2026-09-25T21:59:09+08:00
-30JI_1	null_unrelated	5ZR4_1	A		0.2197	163	19.614	ok		2026-09-25T21:59:10+08:00
-31KJ_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:11+08:00
-31KJ_1	null_unrelated	6WQ6_1	A		0.6875	96	25.312	ok		2026-09-25T21:59:11+08:00
-32JG_1	null_template	5NBD_2	A	0.808	0.5984	127	34.43	ok		2026-09-25T21:59:11+08:00
-32JG_1	null_unrelated	5N15_1	A		0.2283	115	19.633	ok		2026-09-25T21:59:12+08:00
-32OA_1	null_template	2JCQ_1	A	1.0	1.0	149	0.259	ok		2026-09-25T21:59:13+08:00
-32OA_1	null_unrelated	6GPU_1	A		0.2435	109	15.142	ok		2026-09-25T21:59:14+08:00
-32QT_1	null_template	1KO6_1	A	1.0	1.0	152	1.085	ok		2026-09-25T21:59:14+08:00
-32QT_1	null_unrelated	1OXB_2	A		0.2745	146	18.669	ok		2026-09-25T21:59:14+08:00
-35TM_1	null_template	5GO9_1	A	0.441	0.9565	138	60.864	ok		2026-09-25T21:59:15+08:00
-35TM_1	null_unrelated	7XIS_1	A		0.2609	127	15.22	ok		2026-09-25T21:59:17+08:00
-36IQ_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:18+08:00
-36IQ_1	null_unrelated	3SW1_1	A		0.3626	86	13.169	ok		2026-09-25T21:59:18+08:00
-36IW_1	null_template	4V4V_37	AB	0.733	0.5047	105	17.425	ok		2026-09-25T21:59:18+08:00
-36IW_1	null_unrelated	3ERW_1	A		0.3271	95	14.552	ok		2026-09-25T21:59:19+08:00
-36MB_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:20+08:00
-36MB_1	null_unrelated	1KO6_1	A		0.4304	78	16.059	ok		2026-09-25T21:59:20+08:00
-37JY_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:20+08:00
-37JY_1	null_unrelated	1OS2_1	A		0.2585	136	16.483	ok		2026-09-25T21:59:20+08:00
-38LI_1	null_template	6WQ6_1	A	0.553	0.7213	122	27.381	ok		2026-09-25T21:59:21+08:00
-38LI_1	null_unrelated	1KO6_1	A		0.3607	114	19.379	ok		2026-09-25T21:59:21+08:00
-44ID_1	null_template	7VNA_1	A	0.983	0.9823	113	1.061	ok		2026-09-25T21:59:21+08:00
-44ID_1	null_unrelated	7NY0_1	A		0.2389	108	15.032	ok		2026-09-25T21:59:22+08:00
-7H47_1	null_template	4MG3_1	A	0.978	0.9714	139	0.898	ok		2026-09-25T21:59:22+08:00
-7H47_1	null_unrelated	3ZGE_1	A		0.7357	140	25.582	ok		2026-09-25T21:59:22+08:00
-7HI9_1	null_template	6F59_2	A	1.0	0.9649	165	1.569	ok		2026-09-25T21:59:24+08:00
-7HI9_1	null_unrelated	6FMB_1	A		0.4021	95	14.409	ok		2026-09-25T21:59:24+08:00
-8JMY_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:25+08:00
-8JMY_1	null_unrelated	5N15_1	A		0.2422	118	11.746	ok		2026-09-25T21:59:25+08:00
-8JN0_1	null_template	4PYH_1	A	0.328	0.5843	89	19.887	ok		2026-09-25T21:59:25+08:00
-8JN0_1	null_unrelated	6TJI_1	A		0.6742	89	19.14	ok		2026-09-25T21:59:26+08:00
-8JNB_1	null_template	7Z37_2	AP1	0.847	0.7407	81	30.542	ok		2026-09-25T21:59:27+08:00
-8JNB_1	null_unrelated	1GNU_1	A		0.2716	81	15.799	ok		2026-09-25T21:59:28+08:00
-8JQU_1	null_template	5YOZ_1	A	1.0	1.0	164	1.956	ok		2026-09-25T21:59:28+08:00
-8JQU_1	null_unrelated	1RWI_1	B		0.3963	159	15.224	ok		2026-09-25T21:59:28+08:00
-8JU7_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:29+08:00
-8JU7_1	null_unrelated	2RAF_1	A		0.3846	104	17.45	ok		2026-09-25T21:59:29+08:00
-8JU8_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:30+08:00
-8JU8_1	null_unrelated	4F3N_1	A		0.5324	138	20.601	ok		2026-09-25T21:59:30+08:00
-8JUC_1	null_template	1YH2_1	A	1.0	1.0	152	0.186	ok		2026-09-25T21:59:30+08:00
-8JUC_1	null_unrelated	3ERW_1	A		0.2761	125	16.311	ok		2026-09-25T21:59:30+08:00
-8JWD_1	null_template	3IED_1	A	0.863	0.2927	123	18.215	ok		2026-09-25T21:59:31+08:00
-8JWD_1	null_unrelated	6E8A_1	A		0.2602	122	19.59	ok		2026-09-25T21:59:31+08:00
-8JWS_1	null_template	5ERC_1	A	0.293	0.4017	114	10.726	ok		2026-09-25T21:59:31+08:00
-8JWS_1	null_unrelated	7QHY_1	A		0.3333	117	16.56	ok		2026-09-25T21:59:32+08:00
-8JYI_1	null_template	7XIS_1	A	1.0	1.0	144	0.255	ok		2026-09-25T21:59:33+08:00
-8JYI_1	null_unrelated	4PYH_1	A		0.4444	144	20.085	ok		2026-09-25T21:59:33+08:00
-8JZA_1	null_template	4W6Y_2	A	0.708	0.2283	123	16.623	ok		2026-09-25T21:59:33+08:00
-8JZA_1	null_unrelated	6S4L_1	A		0.3622	123	30.804	ok		2026-09-25T21:59:33+08:00
-8K1W_1	null_template	7YGK_1	A	0.642	0.6339	112	1.748	ok		2026-09-25T21:59:33+08:00
-8K1W_1	null_unrelated	3CMI_1	A		0.2583	118	16.031	ok		2026-09-25T21:59:33+08:00
-8K4I_1	null_template	1IN0_1	A	0.644	0.6543	161	1.561	ok		2026-09-25T21:59:33+08:00
-8K4I_1	null_unrelated	4PYH_1	A		0.411	161	21.942	ok		2026-09-25T21:59:34+08:00
-8K4M_1	null_template	7ENI_3	A	0.467	0.8629	124	34.6	ok		2026-09-25T21:59:34+08:00
-8K4M_1	null_unrelated	4ZNO_1	A		0.4677	124	29.652	ok		2026-09-25T21:59:36+08:00
-8K6G_1	null_template	1DW9_1	A	1.0	1.0	156	0.529	ok		2026-09-25T21:59:36+08:00
-8K6G_1	null_unrelated	1VYQ_1	A		0.2518	134	19.156	ok		2026-09-25T21:59:38+08:00
-8K75_1	null_template	2GEC_1	A	0.463	0.4194	121	7.363	ok		2026-09-25T21:59:39+08:00
-8K75_1	null_unrelated	6S4L_1	A		0.379	123	30.369	ok		2026-09-25T21:59:40+08:00
-8K84_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:40+08:00
-8K84_1	null_unrelated	1OXB_2	A		0.2651	154	17.283	ok		2026-09-25T21:59:40+08:00
-8K9N_1	null_template	5X31_1	A	1.0	1.0	125	0.513	ok		2026-09-25T21:59:40+08:00
-8K9N_1	null_unrelated	7ENI_3	A		0.792	125	30.115	ok		2026-09-25T21:59:41+08:00
-8KA7_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:41+08:00
-8KA7_1	null_unrelated	5XTJ_1	A		0.2783	111	13.637	ok		2026-09-25T21:59:41+08:00
-8KAA_1	null_template	1R9G_1	A	1.0	0.3615	128	18.626	ok		2026-09-25T21:59:41+08:00
-8KAA_1	null_unrelated	4F3L_1	B		0.4615	130	28.369	ok		2026-09-25T21:59:42+08:00
-8KAC_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:44+08:00
-8KAC_1	null_unrelated	1I1B_1	A		0.2727	117	16.515	ok		2026-09-25T21:59:44+08:00
-8KBM_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:44+08:00
-8KBM_1	null_unrelated	6FMB_1	A		0.2165	92	17.955	ok		2026-09-25T21:59:44+08:00
-8KC1_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:44+08:00
-8KC1_1	null_unrelated	1OS2_1	A		0.4337	83	13.99	ok		2026-09-25T21:59:44+08:00
-8KHU_1	null_template	5GMZ_1	A	1.0	1.0	141	0.691	ok		2026-09-25T21:59:44+08:00
-8KHU_1	null_unrelated	1OS2_1	A		0.2482	135	15.665	ok		2026-09-25T21:59:44+08:00
-8P91_1	null_template	7OG8_1	A	0.926	0.9403	67	0.651	ok		2026-09-25T21:59:44+08:00
-8P91_1	null_unrelated	6HF6_1	A		0.5224	67	13.876	ok		2026-09-25T21:59:45+08:00
-8PAQ_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T21:59:47+08:00
-8PAQ_1	null_unrelated	5GMZ_1	A		0.2517	137	18.398	ok		2026-09-25T21:59:47+08:00
-8PHN_1	null_template	7C1J_1	A	0.478	0.4672	119	2.523	ok		2026-09-25T21:59:47+08:00
-8PHN_1	null_unrelated	4V2K_1	A		0.3871	122	15.948	ok		2026-09-25T21:59:48+08:00
-8PHX_1	null_template	1OXB_2	A	0.606	0.2969	121	16.481	ok		2026-09-25T21:59:48+08:00
-8PHX_1	null_unrelated	7ENI_3	A		0.7969	128	32.093	ok		2026-09-25T21:59:48+08:00
-8PHY_1	null_template	6FMB_1	A	0.425	0.4433	95	2.96	ok		2026-09-25T21:59:49+08:00
-8PHY_1	null_unrelated	2N3J_1	A		0.2449	90	16.725	ok		2026-09-25T21:59:49+08:00
-8PJ7_1	null_template	2NDF_1	A	1.0	0.971	134	1.645	ok		2026-09-25T21:59:49+08:00
-8PJ7_1	null_unrelated	7C12_1	A		0.3836	73	11.19	ok		2026-09-25T21:59:50+08:00
-8PJQ_1	null_template	7ONC_1	A	1.0	1.0	93	0.313	ok		2026-09-25T21:59:51+08:00
-8PJQ_1	null_unrelated	6MIW_1	A		0.2754	68	11.895	ok		2026-09-25T21:59:52+08:00
-8PKR_1	null_template	1RWI_1	B	1.0	1.0	121	6.794	ok		2026-09-25T21:59:53+08:00
-8PKR_1	null_unrelated	1NSK_1	R		0.281	119	17.363	ok		2026-09-25T21:59:53+08:00
-8PNM_1	null_template	6S4L_1	A	0.809	0.8526	95	12.649	ok		2026-09-25T21:59:54+08:00
-8PNM_1	null_unrelated	2O9U_1	X		0.2	90	13.626	ok		2026-09-25T21:59:54+08:00
-8POR_1	null_template	4K47_1	A	0.39	0.4329	164	4.22	ok		2026-09-25T21:59:56+08:00
-8POR_1	null_unrelated	4CSH_1	A		0.2439	151	18.34	ok		2026-09-25T21:59:57+08:00
-8PQM_1	null_template	6ON4_1	A	0.451	0.4737	70	17.604	ok		2026-09-25T21:59:57+08:00
-8PQM_1	null_unrelated	1OS2_1	A		0.4342	76	15.131	ok		2026-09-25T21:59:58+08:00
-8PQR_1	null_template	7O62_1	A	0.383	0.3704	129	6.146	ok		2026-09-25T21:59:58+08:00
-8PQR_1	null_unrelated	4ZI8_1	A		0.4351	153	34.313	ok		2026-09-25T21:59:58+08:00
-8PR6_1	null_template	7C12_1	A	0.389	0.3836	67	8.604	ok		2026-09-25T21:59:58+08:00
-8PR6_1	null_unrelated	1T4F_1	M		0.2436	73	14.299	ok		2026-09-25T21:59:58+08:00
-8PRR_1	null_template	6TJI_1	A	0.65	0.8125	80	15.024	ok		2026-09-25T21:59:58+08:00
-8PRR_1	null_unrelated	6QUP_2	A		0.4375	80	15.686	ok		2026-09-25T21:59:59+08:00
-8PVZ_1	null_template	5ZR4_1	A	0.529	0.5259	108	9.243	ok		2026-09-25T21:59:59+08:00
-8PVZ_1	null_unrelated	4F3L_1	B		0.4667	132	20.209	ok		2026-09-25T21:59:59+08:00
-8PWC_1	null_template	1T4F_1	M	1.0	0.9886	87	1.94	ok		2026-09-25T21:59:59+08:00
-8PWC_1	null_unrelated	5MDU_1	A		0.3085	93	13.837	ok		2026-09-25T21:59:59+08:00
-8PX5_1	null_template	5MDU_1	A	1.0	1.0	152	0.134	ok		2026-09-25T21:59:59+08:00
-8PX5_1	null_unrelated	1V9W_1	A		0.2769	123	18.044	ok		2026-09-25T21:59:59+08:00
-8PYV_1	null_template	3DWW_1	A	1.0	1.0	142	4.706	ok		2026-09-25T21:59:59+08:00
-8PYV_1	null_unrelated	4F3L_1	B		0.4178	142	27.531	ok		2026-09-25T22:00:01+08:00
-8PYW_1	null_template	1NSK_1	R	1.0	0.9934	151	0.987	ok		2026-09-25T22:00:01+08:00
-8PYW_1	null_unrelated	2ZJD_1	A		0.3471	114	16.831	ok		2026-09-25T22:00:02+08:00
-8PZO_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T22:00:02+08:00
-8PZO_1	null_unrelated	2R2K_1	A		0.3008	118	17.074	ok		2026-09-25T22:00:02+08:00
-8Q0S_1	null_template	2O9U_1	X	1.0	1.0	96	1.688	ok		2026-09-25T22:00:02+08:00
-8Q0S_1	null_unrelated	2HSZ_1	A		0.4375	96	15.821	ok		2026-09-25T22:00:02+08:00
-8Q1V_1	null_template	4V2K_1	A	0.354	0.6076	79	18.553	ok		2026-09-25T22:00:02+08:00
-8Q1V_1	null_unrelated	3NXB_1	A		0.2278	78	14.217	ok		2026-09-25T22:00:02+08:00
-8Q1W_1	null_template	7B21_1	AAA	0.396	0.4375	78	6.147	ok		2026-09-25T22:00:03+08:00
-8Q1W_1	null_unrelated	1V9W_1	A		0.2875	80	13.598	ok		2026-09-25T22:00:03+08:00
-8Q4E_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T22:00:03+08:00
-8Q4E_1	null_unrelated	7NY0_1	A		0.2645	112	16.797	ok		2026-09-25T22:00:03+08:00
-8Q53_1	null_template	2ZJD_1	A	1.0	1.0	115	1.307	ok		2026-09-25T22:00:03+08:00
-8Q53_1	null_unrelated	1IN0_1	A		0.3478	113	18.488	ok		2026-09-25T22:00:04+08:00
-8Q5F_1	null_template	6GPU_1	A	0.947	0.945	109	1.264	ok		2026-09-25T22:00:04+08:00
-8Q5F_1	null_unrelated	5QXI_1	A		0.2477	108	15.852	ok		2026-09-25T22:00:04+08:00
-8Q6M_1	null_template	4B3E_1	A	1.0	1.0	153	0.663	ok		2026-09-25T22:00:05+08:00
-8Q6M_1	null_unrelated	1YH2_1	A		0.183	144	15.585	ok		2026-09-25T22:00:06+08:00
-8Q6U_1	null_template	6ERD_1	A	0.982	0.9818	165	0.662	ok		2026-09-25T22:00:06+08:00
-8Q6U_1	null_unrelated	5NBD_2	A		0.6061	165	31.854	ok		2026-09-25T22:00:08+08:00
-8Q78_1	null_template	6QUP_2	A	0.779	0.2893	119	18.259	ok		2026-09-25T22:00:09+08:00
-8Q78_1	null_unrelated	1EIF_1	A		0.2479	114	21.101	ok		2026-09-25T22:00:09+08:00
-8QAO_1	null_template	6TRI_1	A	1.0	1.0	80	0.834	ok		2026-09-25T22:00:10+08:00
-8QAO_1	null_unrelated	2NDF_1	A		0.3373	83	15.049	ok		2026-09-25T22:00:10+08:00
-8QAZ_1	null_template	4LC2_1	A	1.0	1.0	113	0.504	ok		2026-09-25T22:00:10+08:00
-8QAZ_1	null_unrelated	5FLZ_2	A		0.6814	113	40.869	ok		2026-09-25T22:00:11+08:00
-8QB1_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T22:00:15+08:00
-8QB1_1	null_unrelated	4PYH_1	A		0.5682	88	20.814	ok		2026-09-25T22:00:15+08:00
-8QF3_1	null_template	7R1Z_1	E	1.0	1.0	125	0.949	ok		2026-09-25T22:00:15+08:00
-8QF3_1	null_unrelated	6TJI_1	A		0.5556	125	20.478	ok		2026-09-25T22:00:17+08:00
-8QFU_1	null_template	5L2D_1	A	1.0	0.3459	133	19.742	ok		2026-09-25T22:00:17+08:00
-8QFU_1	null_unrelated	7JRQ_1	A		0.2205	122	18.867	ok		2026-09-25T22:00:18+08:00
-8QH6_1	null_template	6SCB_1	A	1.0	1.0	128	0.161	ok		2026-09-25T22:00:18+08:00
-8QH6_1	null_unrelated	7Z37_2	AP1		0.6953	128	23.651	ok		2026-09-25T22:00:19+08:00
-8QIY_1	null_template	5O06_1	A	1.0	1.0	157	1.004	ok		2026-09-25T22:00:19+08:00
-8QIY_1	null_unrelated	4F3N_1	A		0.535	157	17.68	ok		2026-09-25T22:00:20+08:00
-8QJ6_1	null_template	4LM8_1	A	0.961	0.8281	64	25.695	ok		2026-09-25T22:00:20+08:00
-8QJ6_1	null_unrelated	2NDF_1	A		0.3125	64	16.325	ok		2026-09-25T22:00:20+08:00
-8QKF_1	null_template	4GGG_1	A	0.358	0.3587	91	1.543	ok		2026-09-25T22:00:20+08:00
-8QKF_1	null_unrelated	4F3L_1	B		0.5859	99	24.469	ok		2026-09-25T22:00:21+08:00
-8QKY_1	null_template	1VYQ_1	A	0.433	0.3134	131	14.645	ok		2026-09-25T22:00:21+08:00
-8QKY_1	null_unrelated	1KO6_1	A		0.2836	127	19.657	ok		2026-09-25T22:00:22+08:00
-8QOK_1	null_template	1NQ3_1	A	0.992	0.9774	131	0.683	ok		2026-09-25T22:00:22+08:00
-8QOK_1	null_unrelated	1BI4_1	A		0.2932	119	17.441	ok		2026-09-25T22:00:22+08:00
-8QRY_1	null_template	5FLZ_2	A	1.0	0.7604	96	32.766	ok		2026-09-25T22:00:22+08:00
-8QRY_1	null_unrelated	4K47_1	A		0.3958	96	15.048	ok		2026-09-25T22:00:24+08:00
-8QUP_1	null_template	7NY0_1	A	0.859	0.8509	114	2.717	ok		2026-09-25T22:00:25+08:00
-8QUP_1	null_unrelated	2JCQ_1	A		0.2456	109	16.077	ok		2026-09-25T22:00:25+08:00
-8QX5_1	null_template	8A0H_1	A	0.534	0.6139	158	12.149	ok		2026-09-25T22:00:25+08:00
-8QX5_1	null_unrelated	1GNU_1	A		0.2821	117	14.755	ok		2026-09-25T22:00:26+08:00
-8QX6_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T22:00:26+08:00
-8QX6_1	null_unrelated	7R1Z_1	E		0.256	124	16.826	ok		2026-09-25T22:00:26+08:00
-8QZV_1	null_template	1EIF_1	A	0.421	0.3594	121	4.04	ok		2026-09-25T22:00:26+08:00
-8QZV_1	null_unrelated	5FFI_1	A		0.2881	113	18.68	ok		2026-09-25T22:00:26+08:00
-8R28_1	null_template	3L0R_1	A	0.504	0.5146	103	2.746	ok		2026-09-25T22:00:26+08:00
-8R28_1	null_unrelated	7O62_1	A		0.2913	103	15.895	ok		2026-09-25T22:00:27+08:00
-8R2C_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T22:00:28+08:00
-8R2C_1	null_unrelated	2GEC_1	A		0.2681	134	16.092	ok		2026-09-25T22:00:28+08:00
-8R3F_1	null_template	1A02_3	N	1.0	1.0	103	0.796	ok		2026-09-25T22:00:28+08:00
-8R3F_1	null_unrelated	5FLZ_2	A		0.7379	103	40.361	ok		2026-09-25T22:00:29+08:00
-8R3N_1	null_template	6HF6_1	A	0.434	0.4518	166	2.603	ok		2026-09-25T22:00:31+08:00
-8R3N_1	null_unrelated	3IED_1	A		0.2753	177	18.977	ok		2026-09-25T22:00:31+08:00
-8R5K_1	null_template	3O5L_1	A	1.0	1.0	128	0.868	ok		2026-09-25T22:00:31+08:00
-8R5K_1	null_unrelated	2NDF_1	A		0.2422	124	16.567	ok		2026-09-25T22:00:31+08:00
-8R5N_1	null_template	2A90_1	A	0.323	0.4062	148	3.289	ok		2026-09-25T22:00:32+08:00
-8R5N_1	null_unrelated	4V2K_1	A		0.3455	164	17.143	ok		2026-09-25T22:00:32+08:00
-8R6I_1	null_template	5N15_1	A	0.6	0.6053	114	5.165	ok		2026-09-25T22:00:32+08:00
-8R6I_1	null_unrelated	7BVC_3	A		0.7632	114	30.016	ok		2026-09-25T22:00:32+08:00
-8R8A_1	null_template	1HWM_2	A	0.444	0.4016	127	16.464	ok		2026-09-25T22:00:33+08:00
-8R8A_1	null_unrelated	4GGG_1	A		0.25	90	15.098	ok		2026-09-25T22:00:34+08:00
-8RCY_1	null_template	1K9J_1	A	1.0	0.9923	129	0.845	ok		2026-09-25T22:00:34+08:00
-8RCY_1	null_unrelated	1T4F_1	M		0.2841	85	13.899	ok		2026-09-25T22:00:34+08:00
-8RD7_1	null_template	6MIW_1	A	1.0	0.971	67	0.636	ok		2026-09-25T22:00:34+08:00
-8RD7_1	null_unrelated	6NBN_1	A		0.3067	74	12.541	ok		2026-09-25T22:00:34+08:00
-8RDD_1	null_template	7QHY_1	A	0.385	0.4512	158	2.966	ok		2026-09-25T22:00:35+08:00
-8RDD_1	null_unrelated	1BI4_1	A		0.2606	136	16.805	ok		2026-09-25T22:00:35+08:00
-8RF6_1	null_template	8A4Y_1	A	1.0	1.0	118	0.387	ok		2026-09-25T22:00:35+08:00
-8RF6_1	null_unrelated	7Z37_2	AP1		0.678	118	34.059	ok		2026-09-25T22:00:35+08:00
-8RHO_1	null_template	5FFI_1	A	1.0	1.0	118	9.816	ok		2026-09-25T22:00:35+08:00
-8RHO_1	null_unrelated	3O5L_1	A		0.281	106	14.848	ok		2026-09-25T22:00:36+08:00
-8RHR_1	null_template	3K6L_1	A	1.0	1.0	164	0.804	ok		2026-09-25T22:00:36+08:00
-8RHR_1	null_unrelated	5B3I_1	A		0.2741	132	18.466	ok		2026-09-25T22:00:36+08:00
-8RIJ_1	null_template	1OS2_1	A	1.0	1.0	158	0.44	ok		2026-09-25T22:00:37+08:00
-8RIJ_1	null_unrelated	2O6C_1	A		0.2215	143	16.194	ok		2026-09-25T22:00:37+08:00
-8RKP_1	null_template	5B3I_1	A	1.0	1.0	134	0.617	ok		2026-09-25T22:00:38+08:00
-8RKP_1	null_unrelated	1IN0_1	A		0.2313	132	20.442	ok		2026-09-25T22:00:38+08:00
-8RNZ_1	null_template	3ZGE_1	A	1.0	0.9359	78	26.086	ok		2026-09-25T22:00:38+08:00
-8RNZ_1	null_unrelated	4CSH_1	A		0.4487	77	13.988	ok		2026-09-25T22:00:39+08:00
-8RRY_1	null_template	2BEM_1	A	1.0	1.0	170	0.317	ok		2026-09-25T22:00:39+08:00
-8RRY_1	null_unrelated	3CMI_1	A		0.2168	139	16.559	ok		2026-09-25T22:00:39+08:00
-8RU1_1	null_template	3NXB_1	A	1.0	1.0	101	0.578	ok		2026-09-25T22:00:39+08:00
-8RU1_1	null_unrelated	7ENI_3	A		0.7692	104	33.905	ok		2026-09-25T22:00:39+08:00
-8RU5_1	null_template	5QXI_1	A	1.0	1.0	130	0.362	ok		2026-09-25T22:00:39+08:00
-8RU5_1	null_unrelated	4LC2_1	A		0.386	111	4.394	ok		2026-09-25T22:00:39+08:00
-8RW6_1	null_template	4F3L_1	B	1.0	1.0	106	2.101	ok		2026-09-25T22:00:39+08:00
-8RW6_1	null_unrelated	8A0H_1	A		0.5189	106	20.557	ok		2026-09-25T22:00:39+08:00
-8RXA_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-25T22:00:39+08:00
-8RXA_1	null_unrelated	1EIF_1	A		0.2745	95	16.781	ok		2026-09-25T22:00:39+08:00
-8RYS_1	null_template	1I1B_1	A	1.0	0.9933	149	0.421	ok		2026-09-25T22:00:39+08:00
-8RYS_1	null_unrelated	6FMB_1	A		0.3093	96	15.638	ok		2026-09-25T22:00:39+08:00
-8S48_1	null_template	6HVL_1	A	1.0	1.0	156	1.294	ok		2026-09-25T22:00:39+08:00
-8S48_1	null_unrelated	4CSH_1	A		0.2372	143	15.375	ok		2026-09-25T22:00:40+08:00
-8S4E_1	null_template	1RJJ_1	A	0.882	0.9029	103	3.472	ok		2026-09-25T22:00:41+08:00
-8S4E_1	null_unrelated	6HF6_1	A		0.3495	100	16.626	ok		2026-09-25T22:00:44+08:00
-8S7A_1	null_template	2N3J_1	A	0.602	0.5946	74	4.197	ok		2026-09-25T22:00:44+08:00
-8S7A_1	null_unrelated	1V9W_1	A		0.4459	74	17.5	ok		2026-09-25T22:00:44+08:00
-8T2M_1	null_template	1GNU_1	A	1.0	1.0	117	1.267	ok		2026-09-25T22:00:45+08:00
-8T2M_1	null_unrelated	1KO6_1	A		0.2326	126	18.518	ok		2026-09-25T22:00:45+08:00
-8T4C_1	null_template	3ERW_1	A	0.292	0.3209	124	8.475	ok		2026-09-25T22:00:45+08:00
-8T4C_1	null_unrelated	5GMZ_1	A		0.2098	134	17.322	ok		2026-09-25T22:00:45+08:00
-8T5A_1	null_template	1BI4_1	A	0.986	0.9773	131	1.029	ok		2026-09-25T22:00:45+08:00
-8T5A_1	null_unrelated	1EIF_1	A		0.2344	119	16.137	ok		2026-09-25T22:00:45+08:00
-8T7K_1	null_template	2O6C_1	A	0.696	0.7051	156	0.812	ok		2026-09-25T22:00:45+08:00
-8T7K_1	null_unrelated	2BEM_1	A		0.2372	147	18.426	ok		2026-09-25T22:00:45+08:00
+10AF_1	null_template	4JCP_1	A	0.988	0.9882	170	0.14	ok		2026-09-26T17:19:12+08:00
+10AF_1	null_unrelated	4W6Y_2	B		0.3203	123	17.494	ok		2026-09-26T17:19:13+08:00
+10CX_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:13+08:00
+10CX_1	null_unrelated	4I8B_1	A		0.3905	100	14.095	ok		2026-09-26T17:19:13+08:00
+10DA_1	null_template	2FC3_1	A	0.685	0.6935	124	4.02	ok		2026-09-26T17:19:13+08:00
+10DA_1	null_unrelated	1K9J_1	B		0.2266	122	15.064	ok		2026-09-26T17:19:13+08:00
+10FS_1	null_template	7UY0_1	A	0.994	0.9884	171	1.727	ok		2026-09-26T17:19:13+08:00
+10FS_1	null_unrelated	1T4F_1	M		0.375	87	16.235	ok		2026-09-26T17:19:13+08:00
+10JX_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:13+08:00
+10JX_1	null_unrelated	1V9W_1	A		0.2385	123	20.826	ok		2026-09-26T17:19:13+08:00
+10UT_1	null_template	2RAF_1	B	1.0	0.3285	135	18.542	ok		2026-09-26T17:19:14+08:00
+10UT_1	null_unrelated	2NDF_1	A		0.2044	131	19.342	ok		2026-09-26T17:19:14+08:00
+10UV_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:15+08:00
+10UV_1	null_unrelated	7B21_1	AAA		0.2935	90	15.554	ok		2026-09-26T17:19:15+08:00
+10UW_1	null_template	4ZI8_1	B	1.0	0.4726	146	37.282	ok		2026-09-26T17:19:15+08:00
+10UW_1	null_unrelated	3O5L_1	A		0.2422	124	17.488	ok		2026-09-26T17:19:16+08:00
+10UX_1	null_template	2HSZ_1	A	1.0	0.3758	144	18.631	ok		2026-09-26T17:19:16+08:00
+10UX_1	null_unrelated	8A4Y_1	A		0.2712	115	18.462	ok		2026-09-26T17:19:16+08:00
+10XE_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:16+08:00
+10XE_1	null_unrelated	4LM8_1	A		0.7253	91	25.089	ok		2026-09-26T17:19:16+08:00
+10XG_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:16+08:00
+10XG_1	null_unrelated	6TRI_1	A		0.2625	76	9.851	ok		2026-09-26T17:19:16+08:00
+10XH_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:16+08:00
+10XH_1	null_unrelated	5GO9_1	A		0.9556	90	52.349	ok		2026-09-26T17:19:16+08:00
+11CH_1	null_template	4CSH_1	A	0.325	0.3873	130	5.036	ok		2026-09-26T17:19:18+08:00
+11CH_1	null_unrelated	2ZJD_1	C		0.2295	114	15.44	ok		2026-09-26T17:19:18+08:00
+11OW_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:18+08:00
+11OW_1	null_unrelated	7O62_1	A		0.2583	112	13.015	ok		2026-09-26T17:19:18+08:00
+12FA_1	null_template	2VRZ_1	B	0.395	0.4235	84	2.591	ok		2026-09-26T17:19:18+08:00
+12FA_1	null_unrelated	5GMZ_1	D		0.3505	97	14.56	ok		2026-09-26T17:19:18+08:00
+12HP_1	null_template	5I9Q_3	A	0.37	0.5259	116	20.709	ok		2026-09-26T17:19:18+08:00
+12HP_1	null_unrelated	6E8A_1	A		0.2672	115	18.271	ok		2026-09-26T17:19:18+08:00
+12IS_1	null_template	4F3N_1	A	1.0	0.5546	118	21.056	ok		2026-09-26T17:19:18+08:00
+12IS_1	null_unrelated	5MDU_1	A		0.2605	115	17.49	ok		2026-09-26T17:19:18+08:00
+12XX_1	null_template	7JRQ_1	A	0.262	0.3307	115	10.462	ok		2026-09-26T17:19:18+08:00
+12XX_1	null_unrelated	4MG3_1	A		0.2394	133	14.991	ok		2026-09-26T17:19:18+08:00
+13EE_1	null_template	6E8A_1	B	1.0	0.986	141	10.104	ok		2026-09-26T17:19:19+08:00
+13EE_1	null_unrelated	2N3J_1	A		0.3469	96	18.422	ok		2026-09-26T17:19:19+08:00
+13TX_1	null_template	6Z4U_1	A	1.0	1.0	84	0.394	ok		2026-09-26T17:19:19+08:00
+13TX_1	null_unrelated	2FC3_1	A		0.3095	83	18.901	ok		2026-09-26T17:19:19+08:00
+21EJ_1	null_template	6L2E_1	A	1.0	1.0	118	0.231	ok		2026-09-26T17:19:19+08:00
+21EJ_1	null_unrelated	5YOZ_1	A		0.3475	111	13.146	ok		2026-09-26T17:19:19+08:00
+21LR_1	null_template	1GWG_1	A	0.965	0.9643	168	0.18	ok		2026-09-26T17:19:20+08:00
+21LR_1	null_unrelated	2BEM_1	A		0.2471	152	18.82	ok		2026-09-26T17:19:20+08:00
+21NG_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:20+08:00
+21NG_1	null_unrelated	2FC3_1	A		0.3494	83	12.311	ok		2026-09-26T17:19:20+08:00
+22FG_1	null_template	1V9W_1	A	0.418	0.4344	120	7.92	ok		2026-09-26T17:19:20+08:00
+22FG_1	null_unrelated	7YGK_1	A		0.2232	107	14.13	ok		2026-09-26T17:19:21+08:00
+22FK_1	null_template	4I8B_1	A	0.952	0.9524	105	0.231	ok		2026-09-26T17:19:21+08:00
+22FK_1	null_unrelated	4V4V_37	BZ		0.5517	29	11.474	ok		2026-09-26T17:19:21+08:00
+22LX_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:22+08:00
+22LX_1	null_unrelated	6TRI_1	A		0.3625	80	13.415	ok		2026-09-26T17:19:22+08:00
+24MP_1	null_template	5XTJ_1	A	0.646	0.6582	158	1.078	ok		2026-09-26T17:19:22+08:00
+24MP_1	null_unrelated	6QUP_2	B		0.3529	117	16.388	ok		2026-09-26T17:19:22+08:00
+26AO_1	null_template	2NUL_1	A	1.0	0.9939	163	0.421	ok		2026-09-26T17:19:22+08:00
+26AO_1	null_unrelated	1NQ3_1	D		0.2879	130	14.601	ok		2026-09-26T17:19:22+08:00
+26JK_1	null_template	3CMI_1	A	0.503	0.4685	139	1.977	ok		2026-09-26T17:19:22+08:00
+26JK_1	null_unrelated	7NY0_1	A		0.281	117	17.508	ok		2026-09-26T17:19:22+08:00
+26RW_1	null_template	8HTA_1	A	0.988	0.9871	155	2.458	ok		2026-09-26T17:19:23+08:00
+26RW_1	null_unrelated	1KO6_1	A		0.1974	143	18.735	ok		2026-09-26T17:19:24+08:00
+27AA_1	null_template	2R2K_1	A	1.0	1.0	166	0.397	ok		2026-09-26T17:19:24+08:00
+27AA_1	null_unrelated	6S4L_1	A		0.2771	162	26.584	ok		2026-09-26T17:19:24+08:00
+27AH_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:24+08:00
+27AH_1	null_unrelated	6GPU_1	A		0.2805	80	14.336	ok		2026-09-26T17:19:24+08:00
+27JK_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:24+08:00
+27JK_1	null_unrelated	8A4Y_1	A		0.2966	110	16.677	ok		2026-09-26T17:19:24+08:00
+27WO_1	null_template	7BVC_3	B	0.546	0.9	79	33.948	ok		2026-09-26T17:19:24+08:00
+27WO_1	null_unrelated	4JCP_1	A		0.45	80	12.438	ok		2026-09-26T17:19:24+08:00
+28DB_1	null_template	4ZNO_1	A	1.0	0.4779	134	31.953	ok		2026-09-26T17:19:25+08:00
+28DB_1	null_unrelated	1GWG_1	A		0.2426	133	16.575	ok		2026-09-26T17:19:25+08:00
+29LI_1	null_template	6NBN_1	A	0.739	0.7373	118	1.427	ok		2026-09-26T17:19:25+08:00
+29LI_1	null_unrelated	1I1B_1	A		0.2458	118	16.363	ok		2026-09-26T17:19:26+08:00
+29LW_1	null_template	3SW1_1	A	1.0	1.0	134	0.612	ok		2026-09-26T17:19:26+08:00
+29LW_1	null_unrelated	6NBN_1	A		0.2764	108	15.85	ok		2026-09-26T17:19:26+08:00
+30JI_1	null_template	7AZN_1	A	1.0	0.9653	167	1.298	ok		2026-09-26T17:19:27+08:00
+30JI_1	null_unrelated	5ZR4_1	A		0.2197	163	19.614	ok		2026-09-26T17:19:27+08:00
+31KJ_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:27+08:00
+31KJ_1	null_unrelated	6WQ6_1	A		0.6875	96	25.312	ok		2026-09-26T17:19:27+08:00
+32JG_1	null_template	5NBD_2	C	0.808	0.8211	123	3.875	ok		2026-09-26T17:19:28+08:00
+32JG_1	null_unrelated	5N15_1	A		0.2283	115	19.633	ok		2026-09-26T17:19:28+08:00
+32OA_1	null_template	2JCQ_1	A	1.0	1.0	149	0.259	ok		2026-09-26T17:19:28+08:00
+32OA_1	null_unrelated	6GPU_1	A		0.2435	109	15.142	ok		2026-09-26T17:19:28+08:00
+32QT_1	null_template	1KO6_1	A	1.0	1.0	152	1.085	ok		2026-09-26T17:19:28+08:00
+32QT_1	null_unrelated	1OXB_2	A		0.2745	146	18.669	ok		2026-09-26T17:19:28+08:00
+35TM_1	null_template	5GO9_1	A	0.441	0.9565	138	60.864	ok		2026-09-26T17:19:28+08:00
+35TM_1	null_unrelated	7XIS_1	A		0.2609	127	15.22	ok		2026-09-26T17:19:30+08:00
+36IQ_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:30+08:00
+36IQ_1	null_unrelated	3SW1_1	A		0.3626	86	13.169	ok		2026-09-26T17:19:30+08:00
+36IW_1	null_template	4V4V_37	BL	0.733	0.7103	103	2.471	ok		2026-09-26T17:19:30+08:00
+36IW_1	null_unrelated	3ERW_1	G		0.2897	100	14.137	ok		2026-09-26T17:19:31+08:00
+36MB_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:31+08:00
+36MB_1	null_unrelated	1KO6_1	A		0.4304	78	16.059	ok		2026-09-26T17:19:31+08:00
+37JY_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:31+08:00
+37JY_1	null_unrelated	1OS2_1	A		0.2585	136	16.483	ok		2026-09-26T17:19:31+08:00
+38LI_1	null_template	6WQ6_1	A	0.553	0.7213	122	27.381	ok		2026-09-26T17:19:31+08:00
+38LI_1	null_unrelated	1KO6_1	A		0.3607	114	19.379	ok		2026-09-26T17:19:31+08:00
+44ID_1	null_template	7VNA_1	A	0.983	0.9823	113	1.061	ok		2026-09-26T17:19:31+08:00
+44ID_1	null_unrelated	7NY0_1	A		0.2389	108	15.032	ok		2026-09-26T17:19:31+08:00
+7H47_1	null_template	4MG3_1	A	0.978	0.9714	139	0.898	ok		2026-09-26T17:19:32+08:00
+7H47_1	null_unrelated	3ZGE_1	A		0.7357	140	25.582	ok		2026-09-26T17:19:32+08:00
+7HI9_1	null_template	6F59_2	B	1.0	1.0	171	1.179	ok		2026-09-26T17:19:32+08:00
+7HI9_1	null_unrelated	6FMB_1	A		0.4021	95	14.409	ok		2026-09-26T17:19:32+08:00
+8JMY_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:33+08:00
+8JMY_1	null_unrelated	5N15_1	A		0.2422	118	11.746	ok		2026-09-26T17:19:33+08:00
+8JN0_1	null_template	4PYH_1	A	0.328	0.5843	89	19.887	ok		2026-09-26T17:19:33+08:00
+8JN0_1	null_unrelated	6TJI_1	A		0.6742	89	19.14	ok		2026-09-26T17:19:33+08:00
+8JNB_1	null_template	7Z37_2	AP1	0.847	0.7407	81	30.542	ok		2026-09-26T17:19:33+08:00
+8JNB_1	null_unrelated	1GNU_1	A		0.2716	81	15.799	ok		2026-09-26T17:19:33+08:00
+8JQU_1	null_template	5YOZ_1	A	1.0	1.0	164	1.956	ok		2026-09-26T17:19:33+08:00
+8JQU_1	null_unrelated	1RWI_1	A		0.3963	159	15.159	ok		2026-09-26T17:19:34+08:00
+8JU7_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:34+08:00
+8JU7_1	null_unrelated	2RAF_1	A		0.3846	104	17.45	ok		2026-09-26T17:19:34+08:00
+8JU8_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:34+08:00
+8JU8_1	null_unrelated	4F3N_1	A		0.5324	138	20.601	ok		2026-09-26T17:19:34+08:00
+8JUC_1	null_template	1YH2_1	A	1.0	1.0	152	0.186	ok		2026-09-26T17:19:34+08:00
+8JUC_1	null_unrelated	3ERW_1	C		0.2846	122	15.957	ok		2026-09-26T17:19:34+08:00
+8JWD_1	null_template	3IED_1	A	0.863	0.2927	123	18.215	ok		2026-09-26T17:19:34+08:00
+8JWD_1	null_unrelated	6E8A_1	A		0.2602	122	19.59	ok		2026-09-26T17:19:34+08:00
+8JWS_1	null_template	5ERC_1	A	0.293	0.4017	114	10.726	ok		2026-09-26T17:19:34+08:00
+8JWS_1	null_unrelated	7QHY_1	A		0.3333	117	16.56	ok		2026-09-26T17:19:34+08:00
+8JYI_1	null_template	7XIS_1	A	1.0	1.0	144	0.255	ok		2026-09-26T17:19:34+08:00
+8JYI_1	null_unrelated	4PYH_1	A		0.4444	144	20.085	ok		2026-09-26T17:19:34+08:00
+8JZA_1	null_template	4W6Y_2	B	0.708	0.6929	126	2.152	ok		2026-09-26T17:19:34+08:00
+8JZA_1	null_unrelated	6S4L_1	A		0.3622	123	30.804	ok		2026-09-26T17:19:34+08:00
+8K1W_1	null_template	7YGK_1	A	0.642	0.6339	112	1.748	ok		2026-09-26T17:19:35+08:00
+8K1W_1	null_unrelated	3CMI_1	A		0.2583	118	16.031	ok		2026-09-26T17:19:35+08:00
+8K4I_1	null_template	1IN0_1	A	0.644	0.6543	161	1.561	ok		2026-09-26T17:19:35+08:00
+8K4I_1	null_unrelated	4PYH_1	A		0.411	161	21.942	ok		2026-09-26T17:19:35+08:00
+8K4M_1	null_template	7ENI_3	A	0.467	0.8629	124	34.6	ok		2026-09-26T17:19:35+08:00
+8K4M_1	null_unrelated	4ZNO_1	A		0.4677	124	29.652	ok		2026-09-26T17:19:35+08:00
+8K6G_1	null_template	1DW9_1	A	1.0	1.0	156	0.529	ok		2026-09-26T17:19:35+08:00
+8K6G_1	null_unrelated	1VYQ_1	C		0.259	132	19.597	ok		2026-09-26T17:19:35+08:00
+8K75_1	null_template	2GEC_1	A	0.463	0.4194	121	7.363	ok		2026-09-26T17:19:35+08:00
+8K75_1	null_unrelated	6S4L_1	A		0.379	123	30.369	ok		2026-09-26T17:19:35+08:00
+8K84_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:35+08:00
+8K84_1	null_unrelated	1OXB_2	B		0.2903	119	17.311	ok		2026-09-26T17:19:35+08:00
+8K9N_1	null_template	5X31_1	A	1.0	1.0	125	0.513	ok		2026-09-26T17:19:36+08:00
+8K9N_1	null_unrelated	7ENI_3	A		0.792	125	30.115	ok		2026-09-26T17:19:36+08:00
+8KA7_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:36+08:00
+8KA7_1	null_unrelated	5XTJ_1	A		0.2783	111	13.637	ok		2026-09-26T17:19:36+08:00
+8KAA_1	null_template	1R9G_1	A	1.0	0.3615	128	18.626	ok		2026-09-26T17:19:36+08:00
+8KAA_1	null_unrelated	4F3L_1	B		0.4615	130	28.369	ok		2026-09-26T17:19:36+08:00
+8KAC_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:36+08:00
+8KAC_1	null_unrelated	1I1B_1	A		0.2727	117	16.515	ok		2026-09-26T17:19:36+08:00
+8KBM_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:36+08:00
+8KBM_1	null_unrelated	6FMB_1	A		0.2165	92	17.955	ok		2026-09-26T17:19:36+08:00
+8KC1_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:36+08:00
+8KC1_1	null_unrelated	1OS2_1	A		0.4337	83	13.99	ok		2026-09-26T17:19:36+08:00
+8KHU_1	null_template	5GMZ_1	A	1.0	1.0	141	0.691	ok		2026-09-26T17:19:36+08:00
+8KHU_1	null_unrelated	1OS2_1	A		0.2482	135	15.665	ok		2026-09-26T17:19:36+08:00
+8P91_1	null_template	7OG8_1	A	0.926	0.9403	67	0.651	ok		2026-09-26T17:19:36+08:00
+8P91_1	null_unrelated	6HF6_1	A		0.5224	67	13.876	ok		2026-09-26T17:19:36+08:00
+8PAQ_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:37+08:00
+8PAQ_1	null_unrelated	5GMZ_1	A		0.2517	137	18.398	ok		2026-09-26T17:19:37+08:00
+8PHN_1	null_template	7C1J_1	A	0.478	0.4672	119	2.523	ok		2026-09-26T17:19:37+08:00
+8PHN_1	null_unrelated	4V2K_1	A		0.3871	122	15.948	ok		2026-09-26T17:19:37+08:00
+8PHX_1	null_template	1OXB_2	B	0.606	0.6048	124	1.272	ok		2026-09-26T17:19:37+08:00
+8PHX_1	null_unrelated	7ENI_3	A		0.7969	128	32.093	ok		2026-09-26T17:19:37+08:00
+8PHY_1	null_template	6FMB_1	A	0.425	0.4433	95	2.96	ok		2026-09-26T17:19:37+08:00
+8PHY_1	null_unrelated	2N3J_1	A		0.2449	90	16.725	ok		2026-09-26T17:19:37+08:00
+8PJ7_1	null_template	2NDF_1	A	1.0	0.971	134	1.645	ok		2026-09-26T17:19:38+08:00
+8PJ7_1	null_unrelated	7C12_1	A		0.3836	73	11.19	ok		2026-09-26T17:19:39+08:00
+8PJQ_1	null_template	7ONC_1	A	1.0	1.0	93	0.313	ok		2026-09-26T17:19:39+08:00
+8PJQ_1	null_unrelated	6MIW_1	A		0.2754	68	11.895	ok		2026-09-26T17:19:39+08:00
+8PKR_1	null_template	1RWI_1	B	1.0	1.0	121	6.794	ok		2026-09-26T17:19:39+08:00
+8PKR_1	null_unrelated	1NSK_1	R		0.281	119	17.363	ok		2026-09-26T17:19:39+08:00
+8PNM_1	null_template	6S4L_1	A	0.809	0.8526	95	12.649	ok		2026-09-26T17:19:39+08:00
+8PNM_1	null_unrelated	2O9U_1	X		0.2	90	13.626	ok		2026-09-26T17:19:39+08:00
+8POR_1	null_template	4K47_1	A	0.39	0.4329	164	4.22	ok		2026-09-26T17:19:39+08:00
+8POR_1	null_unrelated	4CSH_1	A		0.2439	151	18.34	ok		2026-09-26T17:19:39+08:00
+8PQM_1	null_template	6ON4_1	B	0.451	0.4605	69	18.634	ok		2026-09-26T17:19:39+08:00
+8PQM_1	null_unrelated	1OS2_1	A		0.4342	76	15.131	ok		2026-09-26T17:19:39+08:00
+8PQR_1	null_template	7O62_1	D	0.383	0.3968	125	6.376	ok		2026-09-26T17:19:39+08:00
+8PQR_1	null_unrelated	4ZI8_1	B		0.4481	153	34.989	ok		2026-09-26T17:19:39+08:00
+8PR6_1	null_template	7C12_1	A	0.389	0.3836	67	8.604	ok		2026-09-26T17:19:39+08:00
+8PR6_1	null_unrelated	1T4F_1	M		0.2436	73	14.299	ok		2026-09-26T17:19:40+08:00
+8PRR_1	null_template	6TJI_1	A	0.65	0.8125	80	15.024	ok		2026-09-26T17:19:40+08:00
+8PRR_1	null_unrelated	6QUP_2	A		0.4375	80	15.686	ok		2026-09-26T17:19:40+08:00
+8PVZ_1	null_template	5ZR4_1	A	0.529	0.5259	108	9.243	ok		2026-09-26T17:19:40+08:00
+8PVZ_1	null_unrelated	4F3L_1	A		0.4963	135	20.698	ok		2026-09-26T17:19:40+08:00
+8PWC_1	null_template	1T4F_1	M	1.0	0.9886	87	1.94	ok		2026-09-26T17:19:40+08:00
+8PWC_1	null_unrelated	5MDU_1	A		0.3085	93	13.837	ok		2026-09-26T17:19:40+08:00
+8PX5_1	null_template	5MDU_1	A	1.0	1.0	152	0.134	ok		2026-09-26T17:19:40+08:00
+8PX5_1	null_unrelated	1V9W_1	A		0.2769	123	18.044	ok		2026-09-26T17:19:40+08:00
+8PYV_1	null_template	3DWW_1	A	1.0	1.0	142	4.706	ok		2026-09-26T17:19:41+08:00
+8PYV_1	null_unrelated	4F3L_1	B		0.4178	142	27.531	ok		2026-09-26T17:19:41+08:00
+8PYW_1	null_template	1NSK_1	R	1.0	0.9934	151	0.987	ok		2026-09-26T17:19:41+08:00
+8PYW_1	null_unrelated	2ZJD_1	A		0.3471	114	16.831	ok		2026-09-26T17:19:41+08:00
+8PZO_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:41+08:00
+8PZO_1	null_unrelated	2R2K_1	A		0.3008	118	17.074	ok		2026-09-26T17:19:41+08:00
+8Q0S_1	null_template	2O9U_1	X	1.0	1.0	96	1.688	ok		2026-09-26T17:19:41+08:00
+8Q0S_1	null_unrelated	2HSZ_1	A		0.4375	96	15.821	ok		2026-09-26T17:19:41+08:00
+8Q1V_1	null_template	4V2K_1	A	0.354	0.6076	79	18.553	ok		2026-09-26T17:19:41+08:00
+8Q1V_1	null_unrelated	3NXB_1	A		0.2278	78	14.217	ok		2026-09-26T17:19:41+08:00
+8Q1W_1	null_template	7B21_1	AAA	0.396	0.4375	78	6.147	ok		2026-09-26T17:19:41+08:00
+8Q1W_1	null_unrelated	1V9W_1	A		0.2875	80	13.598	ok		2026-09-26T17:19:41+08:00
+8Q4E_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:42+08:00
+8Q4E_1	null_unrelated	7NY0_1	A		0.2645	112	16.797	ok		2026-09-26T17:19:42+08:00
+8Q53_1	null_template	2ZJD_1	A	1.0	1.0	115	1.307	ok		2026-09-26T17:19:42+08:00
+8Q53_1	null_unrelated	1IN0_1	A		0.3478	113	18.488	ok		2026-09-26T17:19:42+08:00
+8Q5F_1	null_template	6GPU_1	A	0.947	0.945	109	1.264	ok		2026-09-26T17:19:43+08:00
+8Q5F_1	null_unrelated	5QXI_1	A		0.2477	108	15.852	ok		2026-09-26T17:19:43+08:00
+8Q6M_1	null_template	4B3E_1	A	1.0	1.0	153	0.663	ok		2026-09-26T17:19:43+08:00
+8Q6M_1	null_unrelated	1YH2_1	A		0.183	144	15.585	ok		2026-09-26T17:19:43+08:00
+8Q6U_1	null_template	6ERD_1	B	0.982	0.9876	161	0.839	ok		2026-09-26T17:19:43+08:00
+8Q6U_1	null_unrelated	5NBD_2	A		0.6061	165	31.854	ok		2026-09-26T17:19:43+08:00
+8Q78_1	null_template	6QUP_2	B	0.779	0.7815	118	1.46	ok		2026-09-26T17:19:43+08:00
+8Q78_1	null_unrelated	1EIF_1	A		0.2479	114	21.101	ok		2026-09-26T17:19:43+08:00
+8QAO_1	null_template	6TRI_1	A	1.0	1.0	80	0.834	ok		2026-09-26T17:19:43+08:00
+8QAO_1	null_unrelated	2NDF_1	A		0.3373	83	15.049	ok		2026-09-26T17:19:43+08:00
+8QAZ_1	null_template	4LC2_1	A	1.0	1.0	113	0.504	ok		2026-09-26T17:19:44+08:00
+8QAZ_1	null_unrelated	5FLZ_2	A		0.6814	113	40.869	ok		2026-09-26T17:19:44+08:00
+8QB1_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:46+08:00
+8QB1_1	null_unrelated	4PYH_1	A		0.5682	88	20.814	ok		2026-09-26T17:19:46+08:00
+8QF3_1	null_template	7R1Z_1	E	1.0	1.0	125	0.949	ok		2026-09-26T17:19:46+08:00
+8QF3_1	null_unrelated	6TJI_1	A		0.5556	125	20.478	ok		2026-09-26T17:19:46+08:00
+8QFU_1	null_template	5L2D_1	C	1.0	0.6364	33	13.693	ok		2026-09-26T17:19:46+08:00
+8QFU_1	null_unrelated	7JRQ_1	A		0.2205	122	18.867	ok		2026-09-26T17:19:46+08:00
+8QH6_1	null_template	6SCB_1	A	1.0	1.0	128	0.161	ok		2026-09-26T17:19:46+08:00
+8QH6_1	null_unrelated	7Z37_2	AP1		0.6953	128	23.651	ok		2026-09-26T17:19:46+08:00
+8QIY_1	null_template	5O06_1	A	1.0	1.0	157	1.004	ok		2026-09-26T17:19:46+08:00
+8QIY_1	null_unrelated	4F3N_1	A		0.535	157	17.68	ok		2026-09-26T17:19:46+08:00
+8QJ6_1	null_template	4LM8_1	A	0.961	0.8281	64	25.695	ok		2026-09-26T17:19:46+08:00
+8QJ6_1	null_unrelated	2NDF_1	A		0.3125	64	16.325	ok		2026-09-26T17:19:46+08:00
+8QKF_1	null_template	4GGG_1	A	0.358	0.3587	91	1.543	ok		2026-09-26T17:19:47+08:00
+8QKF_1	null_unrelated	4F3L_1	B		0.5859	99	24.469	ok		2026-09-26T17:19:47+08:00
+8QKY_1	null_template	1VYQ_1	B	0.433	0.3582	123	15.512	ok		2026-09-26T17:19:47+08:00
+8QKY_1	null_unrelated	1KO6_1	A		0.2836	127	19.657	ok		2026-09-26T17:19:47+08:00
+8QOK_1	null_template	1NQ3_1	C	0.992	0.985	132	0.514	ok		2026-09-26T17:19:47+08:00
+8QOK_1	null_unrelated	1BI4_1	C		0.3158	123	17.922	ok		2026-09-26T17:19:47+08:00
+8QRY_1	null_template	5FLZ_2	A	1.0	0.7604	96	32.766	ok		2026-09-26T17:19:48+08:00
+8QRY_1	null_unrelated	4K47_1	A		0.3958	96	15.048	ok		2026-09-26T17:19:49+08:00
+8QUP_1	null_template	7NY0_1	A	0.859	0.8509	114	2.717	ok		2026-09-26T17:19:49+08:00
+8QUP_1	null_unrelated	2JCQ_1	A		0.2456	109	16.077	ok		2026-09-26T17:19:50+08:00
+8QX5_1	null_template	8A0H_1	A	0.534	0.6139	158	12.149	ok		2026-09-26T17:19:50+08:00
+8QX5_1	null_unrelated	1GNU_1	A		0.2821	117	14.755	ok		2026-09-26T17:19:50+08:00
+8QX6_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:50+08:00
+8QX6_1	null_unrelated	7R1Z_1	C		0.2712	118	16.845	ok		2026-09-26T17:19:50+08:00
+8QZV_1	null_template	1EIF_1	A	0.421	0.3594	121	4.04	ok		2026-09-26T17:19:50+08:00
+8QZV_1	null_unrelated	5FFI_1	E		0.3235	102	17.349	ok		2026-09-26T17:19:50+08:00
+8R28_1	null_template	3L0R_1	A	0.504	0.5146	103	2.746	ok		2026-09-26T17:19:50+08:00
+8R28_1	null_unrelated	7O62_1	B		0.2913	103	16.436	ok		2026-09-26T17:19:50+08:00
+8R2C_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:50+08:00
+8R2C_1	null_unrelated	2GEC_1	A		0.2681	134	16.092	ok		2026-09-26T17:19:50+08:00
+8R3F_1	null_template	1A02_3	N	1.0	1.0	103	0.796	ok		2026-09-26T17:19:50+08:00
+8R3F_1	null_unrelated	5FLZ_2	A		0.7379	103	40.361	ok		2026-09-26T17:19:50+08:00
+8R3N_1	null_template	6HF6_1	A	0.434	0.4518	166	2.603	ok		2026-09-26T17:19:52+08:00
+8R3N_1	null_unrelated	3IED_1	A		0.2753	177	18.977	ok		2026-09-26T17:19:52+08:00
+8R5K_1	null_template	3O5L_1	A	1.0	1.0	128	0.868	ok		2026-09-26T17:19:52+08:00
+8R5K_1	null_unrelated	2NDF_1	A		0.2422	124	16.567	ok		2026-09-26T17:19:52+08:00
+8R5N_1	null_template	2A90_1	A	0.323	0.4062	148	3.289	ok		2026-09-26T17:19:53+08:00
+8R5N_1	null_unrelated	4V2K_1	A		0.3455	164	17.143	ok		2026-09-26T17:19:53+08:00
+8R6I_1	null_template	5N15_1	A	0.6	0.6053	114	5.165	ok		2026-09-26T17:19:53+08:00
+8R6I_1	null_unrelated	7BVC_3	B		0.7982	114	31.853	ok		2026-09-26T17:19:53+08:00
+8R8A_1	null_template	1HWM_2	B	0.444	0.5433	126	10.398	ok		2026-09-26T17:19:53+08:00
+8R8A_1	null_unrelated	4GGG_1	B		0.2796	87	13.335	ok		2026-09-26T17:19:53+08:00
+8RCY_1	null_template	1K9J_1	B	1.0	1.0	128	1.254	ok		2026-09-26T17:19:53+08:00
+8RCY_1	null_unrelated	1T4F_1	M		0.2841	85	13.899	ok		2026-09-26T17:19:53+08:00
+8RD7_1	null_template	6MIW_1	A	1.0	0.971	67	0.636	ok		2026-09-26T17:19:53+08:00
+8RD7_1	null_unrelated	6NBN_1	A		0.3067	74	12.541	ok		2026-09-26T17:19:53+08:00
+8RDD_1	null_template	7QHY_1	A	0.385	0.4512	158	2.966	ok		2026-09-26T17:19:54+08:00
+8RDD_1	null_unrelated	1BI4_1	A		0.2606	136	16.805	ok		2026-09-26T17:19:54+08:00
+8RF6_1	null_template	8A4Y_1	A	1.0	1.0	118	0.387	ok		2026-09-26T17:19:54+08:00
+8RF6_1	null_unrelated	7Z37_2	AP1		0.678	118	34.059	ok		2026-09-26T17:19:54+08:00
+8RHO_1	null_template	5FFI_1	A	1.0	1.0	118	9.816	ok		2026-09-26T17:19:55+08:00
+8RHO_1	null_unrelated	3O5L_1	A		0.281	106	14.848	ok		2026-09-26T17:19:55+08:00
+8RHR_1	null_template	3K6L_1	A	1.0	1.0	164	0.804	ok		2026-09-26T17:19:55+08:00
+8RHR_1	null_unrelated	5B3I_1	A		0.2741	132	18.466	ok		2026-09-26T17:19:55+08:00
+8RIJ_1	null_template	1OS2_1	A	1.0	1.0	158	0.44	ok		2026-09-26T17:19:55+08:00
+8RIJ_1	null_unrelated	2O6C_1	B		0.2229	142	16.097	ok		2026-09-26T17:19:55+08:00
+8RKP_1	null_template	5B3I_1	A	1.0	1.0	134	0.617	ok		2026-09-26T17:19:55+08:00
+8RKP_1	null_unrelated	1IN0_1	A		0.2313	132	20.442	ok		2026-09-26T17:19:55+08:00
+8RNZ_1	null_template	3ZGE_1	A	1.0	0.9359	78	26.086	ok		2026-09-26T17:19:55+08:00
+8RNZ_1	null_unrelated	4CSH_1	A		0.4487	77	13.988	ok		2026-09-26T17:19:55+08:00
+8RRY_1	null_template	2BEM_1	A	1.0	1.0	170	0.317	ok		2026-09-26T17:19:55+08:00
+8RRY_1	null_unrelated	3CMI_1	A		0.2168	139	16.559	ok		2026-09-26T17:19:55+08:00
+8RU1_1	null_template	3NXB_1	A	1.0	1.0	101	0.578	ok		2026-09-26T17:19:56+08:00
+8RU1_1	null_unrelated	7ENI_3	A		0.7692	104	33.905	ok		2026-09-26T17:19:56+08:00
+8RU5_1	null_template	5QXI_1	A	1.0	1.0	130	0.362	ok		2026-09-26T17:19:56+08:00
+8RU5_1	null_unrelated	4LC2_1	A		0.386	111	4.394	ok		2026-09-26T17:19:56+08:00
+8RW6_1	null_template	4F3L_1	B	1.0	1.0	106	2.101	ok		2026-09-26T17:19:56+08:00
+8RW6_1	null_unrelated	8A0H_1	A		0.5189	106	20.557	ok		2026-09-26T17:19:56+08:00
+8RXA_1	null_template			0.0				failed	no pre-cutoff chain was found for this target	2026-09-26T17:19:56+08:00
+8RXA_1	null_unrelated	1EIF_1	A		0.2745	95	16.781	ok		2026-09-26T17:19:56+08:00
+8RYS_1	null_template	1I1B_1	A	1.0	0.9933	149	0.421	ok		2026-09-26T17:19:56+08:00
+8RYS_1	null_unrelated	6FMB_1	A		0.3093	96	15.638	ok		2026-09-26T17:19:56+08:00
+8S48_1	null_template	6HVL_1	A	1.0	1.0	156	1.294	ok		2026-09-26T17:19:56+08:00
+8S48_1	null_unrelated	4CSH_1	A		0.2372	143	15.375	ok		2026-09-26T17:19:56+08:00
+8S4E_1	null_template	1RJJ_1	A	0.882	0.9029	103	3.472	ok		2026-09-26T17:19:56+08:00
+8S4E_1	null_unrelated	6HF6_1	A		0.3495	100	16.626	ok		2026-09-26T17:19:57+08:00
+8S7A_1	null_template	2N3J_1	A	0.602	0.5946	74	4.197	ok		2026-09-26T17:19:57+08:00
+8S7A_1	null_unrelated	1V9W_1	A		0.4459	74	17.5	ok		2026-09-26T17:19:58+08:00
+8T2M_1	null_template	1GNU_1	A	1.0	1.0	117	1.267	ok		2026-09-26T17:19:58+08:00
+8T2M_1	null_unrelated	1KO6_1	A		0.2326	126	18.518	ok		2026-09-26T17:19:58+08:00
+8T4C_1	null_template	3ERW_1	F	0.292	0.3435	121	8.558	ok		2026-09-26T17:19:58+08:00
+8T4C_1	null_unrelated	5GMZ_1	D		0.2222	135	19.011	ok		2026-09-26T17:19:58+08:00
+8T5A_1	null_template	1BI4_1	C	0.986	0.9848	132	1.064	ok		2026-09-26T17:19:58+08:00
+8T5A_1	null_unrelated	1EIF_1	A		0.2344	119	16.137	ok		2026-09-26T17:19:58+08:00
+8T7K_1	null_template	2O6C_1	A	0.696	0.7051	156	0.812	ok		2026-09-26T17:19:59+08:00
+8T7K_1	null_unrelated	2BEM_1	A		0.2372	147	18.426	ok		2026-09-26T17:19:59+08:00
