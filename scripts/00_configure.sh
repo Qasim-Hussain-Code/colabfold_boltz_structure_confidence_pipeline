@@ -748,11 +748,30 @@ LDDT_TRUST=0.7
 # Calibration binning, named because expected calibration error depends on it.
 CALIBRATION_BINS=10
 
+# ---- what each arm may spend ------------------------------------------------
+# An alignment arm costs about twelve times the single-sequence arm and grows
+# with the square of the sequence length. Measured on this machine that is 76
+# hours for one arm over the whole set and 150 for two, so each arm is given a
+# budget and 02a_select_arm_subsets.py spends it. Empty gives every arm the
+# whole set, which is right where that is affordable.
+ARM_BUDGET_HOURS=af2_msa_notmpl=10,af2_msa_tmpl=5
+
+# How many docking searches run at once. Each uses one CPU and a fixed seed,
+# so this cannot change a result. It exists because the ligands in the docking
+# subset are nucleotides and cofactors and dock far more slowly than the
+# drug-like ligands the docking pipeline was benchmarked on.
+DOCKING_JOBS=2
+
 # ---- the application arm ---------------------------------------------------
 # Deposited entries of the same protein whose arrangements that arm measures
 # against. They are listed here rather than in the script so that changing the
 # comparison set is a configuration change and shows up in a diff.
 PEDV_ENTRIES=6U7K,6VV5,7W6M,7W73,7Y6S,7Y6T
+
+# How long a construct that arm may predict. The memory helper fits this from
+# the predictions already finished and from what the construct itself cost
+# last time, and the smaller of the two caps applies.
+PEDV_MAX_CONSTRUCT=350
 
 # ---- paths ----------------------------------------------------------------
 REPO_DIR="${REPO_DIR}"
