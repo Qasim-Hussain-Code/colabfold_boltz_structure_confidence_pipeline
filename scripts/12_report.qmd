@@ -179,6 +179,23 @@ which it is.
 show(load("arm_comparison.tsv"), "No arm comparison yet.")
 ```
 
+The arms do not cover the same targets. An alignment arm costs about twelve
+times what the single-sequence arm costs and grows with the square of the
+sequence length, so each arm was given a wall-clock budget and
+`config/arm_subsets.tsv` records what that budget bought. The medians above are
+therefore over different sets of proteins, and the difference between two rows
+is not by itself a difference between two arms.
+
+The table below is the comparison that can be read that way: for each pair of
+arms, the difference per target over the targets both of them predicted. The
+interval resamples targets rather than residues. The count of shared targets is
+the number that decides what each comparison supports.
+
+```{python}
+#| label: arm-pairs
+show(load("arm_pairs.tsv"), "No paired arm comparison yet.")
+```
+
 ```{python}
 #| label: arm-figures
 #| code-fold: true
