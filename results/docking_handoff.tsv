@@ -1,7 +1,7 @@
 arm	method	n_attempted	n_scored	n_assessed	n_rmsd_within_2a	rate_rmsd_within_2a	n_success	rate_success	ci_low	ci_high	median_top1_rmsd	note	recorded
-predicted/A0_null	vina	13	12	12	0	0.0	0	0.0	0.0	0.2425	6.745	success requires the pose within 2 Angstrom and every physical check passed	2026-09-26T19:28:50+08:00
-predicted/A2_genconf_refbox	vina	13	11	11	1	0.0909	1	0.0909	0.0162	0.3774	7.904	success requires the pose within 2 Angstrom and every physical check passed	2026-09-26T19:28:50+08:00
-predicted/A2_genconf_refbox	vinardo	13	9	9	1	0.1111	1	0.1111	0.0199	0.435	7.713	success requires the pose within 2 Angstrom and every physical check passed	2026-09-26T19:28:50+08:00
-crystal/A0_null	vina	13	12	12	0	0.0	0	0.0	0.0	0.2425	6.745	success requires the pose within 2 Angstrom and every physical check passed	2026-09-26T19:28:50+08:00
-crystal/A2_genconf_refbox	vina	13	11	11	4	0.3636	4	0.3636	0.1517	0.6462	6.332	success requires the pose within 2 Angstrom and every physical check passed	2026-09-26T19:28:50+08:00
-crystal/A2_genconf_refbox	vinardo	13	9	9	5	0.5556	5	0.5556	0.2667	0.8112	1.91	success requires the pose within 2 Angstrom and every physical check passed	2026-09-26T19:28:50+08:00
+predicted/A0_null	vina	13	12	12	0	0.0	0	0.0	0.0	0.2425	6.745	success requires the pose within 2 Angstrom and every physical check passed	2026-09-26T19:30:21+08:00
+predicted/A2_genconf_refbox	vina	13	11	11	1	0.0909	1	0.0909	0.0162	0.3774	7.904	success requires the pose within 2 Angstrom and every physical check passed	2026-09-26T19:30:21+08:00
+predicted/A2_genconf_refbox	vinardo	13	9	9	1	0.1111	1	0.1111	0.0199	0.435	7.713	success requires the pose within 2 Angstrom and every physical check passed	2026-09-26T19:30:21+08:00
+crystal/A0_null	vina	13	12	12	0	0.0	0	0.0	0.0	0.2425	6.745	success requires the pose within 2 Angstrom and every physical check passed	2026-09-26T19:30:21+08:00
+crystal/A2_genconf_refbox	vina	13	11	11	4	0.3636	4	0.3636	0.1517	0.6462	6.332	success requires the pose within 2 Angstrom and every physical check passed	2026-09-26T19:30:21+08:00
+crystal/A2_genconf_refbox	vinardo	13	9	9	5	0.5556	5	0.5556	0.2667	0.8112	1.91	success requires the pose within 2 Angstrom and every physical check passed	2026-09-26T19:30:21+08:00
