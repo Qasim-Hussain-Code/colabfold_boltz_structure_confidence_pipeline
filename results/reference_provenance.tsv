@@ -1,0 +1,173 @@
+target_id	kind	file	bytes	sha256	source	status	reason	recorded
+10AF_1	structure	10AF_1.cif.gz	95200	a33b5bd511fe6a14a5f145067000088e62989353aa2a51d0200e5d42b659b749	files.rcsb.org	ok		2026-09-25T21:51:39+08:00
+10CX_1	structure	10CX_1.cif.gz	132864	d1e882e4866e7aeeedac43f98b877194f3ace0d36fcf820814f88355a2d83590	files.rcsb.org	ok		2026-09-25T21:51:39+08:00
+10DA_1	structure	10DA_1.cif.gz	355522	d01395021c4840175f78e4cb31c242c25ed7d792bc436fcbd6d7e70fa265bed0	files.rcsb.org	ok		2026-09-25T21:51:40+08:00
+10FS_1	structure	10FS_1.cif.gz	185168	f62644b3dfc963a90116ccd70668e93d4fc715a81ba30730fbfff8137f187c69	files.rcsb.org	ok		2026-09-25T21:51:40+08:00
+10JX_1	structure	10JX_1.cif.gz	175374	14536aadb35229b77c7de8c1ff3a43cd1eeaa72ce1f338babee22d8babf1c8a3	files.rcsb.org	ok		2026-09-25T21:51:41+08:00
+10UT_1	structure	10UT_1.cif.gz	156863	b6be18851cbb8d07c5aec60894b4dc0c22d452b01f01adbda3e37b045a93fe8e	files.rcsb.org	ok		2026-09-25T21:51:41+08:00
+10UV_1	structure	10UV_1.cif.gz	132458	8f1b8574ca045d2953bee6817b6ee7a803ba1c2d728971a945eea05273fc3885	files.rcsb.org	ok		2026-09-25T21:51:42+08:00
+10UW_1	structure	10UW_1.cif.gz	334780	fd00cd1de678fb48e0dbdfae1a1edaf72f54b7cc59d622c1b80e7c2a4e3cca36	files.rcsb.org	ok		2026-09-25T21:51:43+08:00
+10UX_1	structure	10UX_1.cif.gz	315456	c3225b03277cd14ea714d2cc3a4f615bc75f023cf94355702af86295e1f64424	files.rcsb.org	ok		2026-09-25T21:51:44+08:00
+10XE_1	structure	10XE_1.cif.gz	166388	4cf1ca5cc90d480531afc0c16b095e6eb26a88557bc2f234ce77cb041194e120	files.rcsb.org	ok		2026-09-25T21:51:45+08:00
+10XG_1	structure	10XG_1.cif.gz	66559	db2977c23f7e44d6dea5565c8c55fef0e327b23faf0af41ee61f841d308de5a3	files.rcsb.org	ok		2026-09-25T21:51:45+08:00
+10XH_1	structure	10XH_1.cif.gz	99862	59f88dcc802517c17e375c6e78ef8e896e652879456df9c540df27a308f4350e	files.rcsb.org	ok		2026-09-25T21:51:46+08:00
+11CH_1	structure	11CH_1.cif.gz	53493	a212d21c0814ff650ff7a6536a014bbf5caccaa65ce7885fbc29f17e3ec45659	files.rcsb.org	ok		2026-09-25T21:51:46+08:00
+11OW_1	structure	11OW_1.cif.gz	136912	b86dfd0e6bd1584e78ec52a98127cc9ca8638f0a56e831e6f1eecfed1861847d	files.rcsb.org	ok		2026-09-25T21:51:47+08:00
+12FA_1	structure	12FA_1.cif.gz	81244	81fa7bc43a2aeb4c914618d582e77a9e7262ac9efc47d1983d4e2a1ff81f9715	files.rcsb.org	ok		2026-09-25T21:51:48+08:00
+12HP_1	structure	12HP_1.cif.gz	201444	d45e726272c39263ee8828de6c7b9607071f98d0f3ff2d3c129ed42010f1ab7a	files.rcsb.org	ok		2026-09-25T21:51:49+08:00
+12IS_1	structure	12IS_1.cif.gz	75769	bb51c51aebcd12cbf88cad00b52d2048b7b576468f8916cc307a85dde02a4d16	files.rcsb.org	ok		2026-09-25T21:51:50+08:00
+12XX_1	structure	12XX_1.cif.gz	155311	78040edd3f90b8bd2f980ec784c1d00f55623cb2b225d4d2519a67b25d22cc72	files.rcsb.org	ok		2026-09-25T21:51:50+08:00
+13EE_1	structure	13EE_1.cif.gz	159163	f96b6a10e8d0ea2e87d410f0e7e65e2984522e767c95e1241b891acd35beddd5	files.rcsb.org	ok		2026-09-25T21:51:51+08:00
+13TX_1	structure	13TX_1.cif.gz	132641	eceda1b550d46a63581cb5fef698b7d243cc3d3d40795bb776b09db549495442	files.rcsb.org	ok		2026-09-25T21:51:52+08:00
+21EJ_1	structure	21EJ_1.cif.gz	165375	742e5a753c26565e5ccc36bc7f22cc9f37f75f402c4adacbaef072d42c27d17c	files.rcsb.org	ok		2026-09-25T21:51:53+08:00
+21LR_1	structure	21LR_1.cif.gz	58356	94c78ad000852dad455bcecd9d458f7e977afbd8d2da3df40f5feff8d4bd55e4	files.rcsb.org	ok		2026-09-25T21:51:54+08:00
+21NG_1	structure	21NG_1.cif.gz	47371	8f5c779d075036ac50aeed76477ae55feaa0d53f5f8b38c925b6bced8460f0e1	files.rcsb.org	ok		2026-09-25T21:51:54+08:00
+22FG_1	structure	22FG_1.cif.gz	42356	b85b585d0e876cb22f5cbe78d878286d987ff79cd501476fdbd3b324c0851808	files.rcsb.org	ok		2026-09-25T21:51:55+08:00
+22FK_1	structure	22FK_1.cif.gz	123640	c8eb2ce62dd49737b3dc794da7d4b5c985692734f65c936c59a36bdc4c132f80	files.rcsb.org	ok		2026-09-25T21:51:55+08:00
+22LX_1	structure	22LX_1.cif.gz	47233	c5f7fe382ac02316cb7582bc133d3d032a3ef555760349648cb842c6c68e58c8	files.rcsb.org	ok		2026-09-25T21:51:56+08:00
+24MP_1	structure	24MP_1.cif.gz	182113	68e9838c5279dbfc6d7a606e65d975ea8d5efb99fb5fdb88b60e4acc21cdaf93	files.rcsb.org	ok		2026-09-25T21:51:56+08:00
+26AO_1	structure	26AO_1.cif.gz	210715	d97802eb6ee410e44025ff2440a7fb8778db79fdcbe5df9c4ac13c80e9162bf3	files.rcsb.org	ok		2026-09-25T21:51:58+08:00
+26JK_1	structure	26JK_1.cif.gz	137620	cada5376fd9f5717ca757a5703897a4082543aa938f011dafa2ca7b061e9d387	files.rcsb.org	ok		2026-09-25T21:51:58+08:00
+26RW_1	structure	26RW_1.cif.gz	61625	818f257aa8e127523bed9fa4d4bd60e52bf57c00497998cd4ed2c70a5e9d7fb4	files.rcsb.org	ok		2026-09-25T21:51:58+08:00
+27AA_1	structure	27AA_1.cif.gz	157327	a14ec226b51e8f38fb455bb6038c96aa55e004a57268106ea069ea90b85c62ea	files.rcsb.org	ok		2026-09-25T21:51:59+08:00
+27AH_1	structure	27AH_1.cif.gz	101147	75191c84866a8e6a0821f5c562f22d9da99a419192cc76a9e43d6ad3174da314	files.rcsb.org	ok		2026-09-25T21:52:00+08:00
+27JK_1	structure	27JK_1.cif.gz	50063	6a9ccec763d5ff7a6516884223e2b8ccc6ff2b9bdfa2c28f028724dc9e304ca4	files.rcsb.org	ok		2026-09-25T21:52:00+08:00
+27WO_1	structure	27WO_1.cif.gz	32202	f71027e7ec8f199942e34b37ca9c02e5a233f111d0a6202190c082d8ed3d23ed	files.rcsb.org	ok		2026-09-25T21:52:00+08:00
+28DB_1	structure	28DB_1.cif.gz	134393	03d4619732ded0617975164be89ccdff9482e64c6d3a756309d9b45afed06285	files.rcsb.org	ok		2026-09-25T21:52:01+08:00
+29LI_1	structure	29LI_1.cif.gz	70783	49667a5a6f79604e3ea0b6db5351fd81d144f1de0a2c607f922ad25e031c37ef	files.rcsb.org	ok		2026-09-25T21:52:02+08:00
+29LW_1	structure	29LW_1.cif.gz	135988	adf41879ab47cae97c1abc47d23d5b4e32d095e4d0e97271f8b2dedd20ea8233	files.rcsb.org	ok		2026-09-25T21:52:03+08:00
+30JI_1	structure	30JI_1.cif.gz	110335	da1bc90e2efd4ce0105549ad1de56997e98afc8a8475ec417f2d5214a29a3622	files.rcsb.org	ok		2026-09-25T21:52:03+08:00
+31KJ_1	structure	31KJ_1.cif.gz	114056	cca32cd2cfb36730304722ac00b080cf29eada8861c516bc4590b884682f6975	files.rcsb.org	ok		2026-09-25T21:52:04+08:00
+32JG_1	structure	32JG_1.cif.gz	146203	e9dd9f86c8ca2a5caa35bbcbdb27941329d6e263bc20383d6bf55fe1eca282f0	files.rcsb.org	ok		2026-09-25T21:52:04+08:00
+32OA_1	structure	32OA_1.cif.gz	155510	297d1cd5bf07714f5ff28378c8945dd380c3d299a7de35792fa667e5a63358b4	files.rcsb.org	ok		2026-09-25T21:52:05+08:00
+32QT_1	structure	32QT_1.cif.gz	83707	c559015a6ff200865646e177ad51e6d0c5e13483b144093756799ec067cb4b3f	files.rcsb.org	ok		2026-09-25T21:52:06+08:00
+35TM_1	structure	35TM_1.cif.gz	165593	e265fe78ab0729b23ce50b8c9ad28d071c0c0e65815cec7ab5124d6ff907b914	files.rcsb.org	ok		2026-09-25T21:52:07+08:00
+36IQ_1	structure	36IQ_1.cif.gz	104296	2d7120b709784e5235ab39ca31fa98710192fe7877119e6ea0a4319412fcb43a	files.rcsb.org	ok		2026-09-25T21:52:08+08:00
+36IW_1	structure	36IW_1.cif.gz	61357	d3474af7b5dd27f82551182d262043a63f5fe963563f79b41e78a5018bec6080	files.rcsb.org	ok		2026-09-25T21:52:08+08:00
+36MB_1	structure	36MB_1.cif.gz	170083	a4c2844b68bddd8100f14986b0d347e052c9ac38428500fa3e8d8edffae02053	files.rcsb.org	ok		2026-09-25T21:52:09+08:00
+37JY_1	structure	37JY_1.cif.gz	442169	127f09d9182e6ded3f63cbece4242c581e9e5fa9b812b62adb3b280560c93b83	files.rcsb.org	ok		2026-09-25T21:52:10+08:00
+38LI_1	structure	38LI_1.cif.gz	169825	870eaa42ac7042163dcce792c335714e010aabdb7772eecff893b5d1c94ab6ed	files.rcsb.org	ok		2026-09-25T21:52:11+08:00
+44ID_1	structure	44ID_1.cif.gz	111760	0cd28e31023e7cd9513f9521e9968b0525f49e848048f416f927d9aab56a77be	files.rcsb.org	ok		2026-09-25T21:52:11+08:00
+7H47_1	structure	7H47_1.cif.gz	52129	19983a0a33c2b31c076513d5a766e6a92748142e86c5efde05c199b5d4dc4c9f	files.rcsb.org	ok		2026-09-25T21:52:12+08:00
+7HI9_1	structure	7HI9_1.cif.gz	55514	dcbc0e5711689c97c985cc48dc6f55bd9efa2fa954a6746b3088aec02ab1a4e3	files.rcsb.org	ok		2026-09-25T21:52:12+08:00
+8JMY_1	structure	8JMY_1.cif.gz	277350	ca3ab245c0207c7c8ecf2cb5519e9a5a5602f102b9053384b51c3579393ecf8d	files.rcsb.org	ok		2026-09-25T21:52:13+08:00
+8JN0_1	structure	8JN0_1.cif.gz	85046	6cd27c4b7c8994d9df3ab0faa8130cd499903671f8660cbb1ab45e70950b283f	files.rcsb.org	ok		2026-09-25T21:52:13+08:00
+8JNB_1	structure	8JNB_1.cif.gz	40465	35e512b9f2ecf7c35159fb61f432719316f37cdf4c3a06e9cecf418014b718a2	files.rcsb.org	ok		2026-09-25T21:52:14+08:00
+8JQU_1	structure	8JQU_1.cif.gz	80794	43b1d9c1aa4ac4d868ffff8bf3e7478dbeb3a8513244fc740f32193c7a936a77	files.rcsb.org	ok		2026-09-25T21:52:15+08:00
+8JU7_1	structure	8JU7_1.cif.gz	57226	6540f271e5fbfc14e15ac1742f3d63c6f167f87373e5dbb8f9be3c962389be9b	files.rcsb.org	ok		2026-09-25T21:52:15+08:00
+8JU8_1	structure	8JU8_1.cif.gz	77696	70b85b5b7902cd907079c34307b6c5660933a7ce9995450250fffe1a4d9d57ea	files.rcsb.org	ok		2026-09-25T21:52:16+08:00
+8JUC_1	structure	8JUC_1.cif.gz	50393	a91552ad939c1e0944e16049b49567b4050baea73d02f20ee0db14564181815a	files.rcsb.org	ok		2026-09-25T21:52:16+08:00
+8JWD_1	structure	8JWD_1.cif.gz	86013	98a73df0ff9960dc48ea1224fcc1df5a488b102cac4e6fa1ef1954457abdd08f	files.rcsb.org	ok		2026-09-25T21:52:17+08:00
+8JWS_1	structure	8JWS_1.cif.gz	183339	b7f736cbfa9c265110508c7f08e2dee06184de5152b5a6d94c33cf87263117d8	files.rcsb.org	ok		2026-09-25T21:52:18+08:00
+8JYI_1	structure	8JYI_1.cif.gz	78618	b94ce77b589e2e2525fb3501a1462c7fdd33cf9ad5fd33bc8fab97435b76ab95	files.rcsb.org	ok		2026-09-25T21:52:18+08:00
+8JZA_1	structure	8JZA_1.cif.gz	107031	46929cafc07e01054329696c69ca6a5cfd775f075385e01d6eab4251585fd09d	files.rcsb.org	ok		2026-09-25T21:52:19+08:00
+8K1W_1	structure	8K1W_1.cif.gz	78609	60f48c95ef07e8202d6d4bf8d94aa8d7ca3ca994bcbb5d8da96f1eb777cfafb6	files.rcsb.org	ok		2026-09-25T21:52:20+08:00
+8K4I_1	structure	8K4I_1.cif.gz	85572	3f01d8ae696a5532c74d73d79010bd900bfe9c17c6a82203fdceaf30cf8319e7	files.rcsb.org	ok		2026-09-25T21:52:20+08:00
+8K4M_1	structure	8K4M_1.cif.gz	42170	4bdc80d3af1c72c76f5a95d455f0a7b4683ff492f4f6e7f03a076a7ab109003a	files.rcsb.org	ok		2026-09-25T21:52:21+08:00
+8K6G_1	structure	8K6G_1.cif.gz	351137	8a95cc80a28302b135845fe83925d53015ec3931c63f93ed200040e4d39c0802	files.rcsb.org	ok		2026-09-25T21:52:22+08:00
+8K75_1	structure	8K75_1.cif.gz	46435	c7e6304e869fc13a85d7ba9fa35e2f4369f8d4a4af7828f5a7ed29f1343c77d9	files.rcsb.org	ok		2026-09-25T21:52:22+08:00
+8K84_1	structure	8K84_1.cif.gz	101924	f4801c8478a06f9df3c4df1a1cd703dec40ab8b5178f7db284c157580e70f18d	files.rcsb.org	ok		2026-09-25T21:52:23+08:00
+8K9N_1	structure	8K9N_1.cif.gz	133331	ec4701d269723b64336825fefff6cacd182b3c7291c3b1df80e6be6a445dc961	files.rcsb.org	ok		2026-09-25T21:52:24+08:00
+8KA7_1	structure	8KA7_1.cif.gz	65645	ccf8b97f3cccb9cf05ceec71ff3303a38150f1be21fc2b6542e00d81f392baa4	files.rcsb.org	ok		2026-09-25T21:52:25+08:00
+8KAA_1	structure	8KAA_1.cif.gz	156403	6286cb2c95ecec9de1cfccb0a07eb05a7c3f118802fe8c1c37c5900aed6cfe24	files.rcsb.org	ok		2026-09-25T21:52:26+08:00
+8KAC_1	structure	8KAC_1.cif.gz	69616	43eb6527236dce04866f322cea6565d27ce50172eb971e23f4076e1d52aa0d29	files.rcsb.org	ok		2026-09-25T21:52:26+08:00
+8KBM_1	structure	8KBM_1.cif.gz	67388	66bd1d27acdebbbe2c7702c7c8b5c237938b6176f6782ed5dee4f71392b68a0f	files.rcsb.org	ok		2026-09-25T21:52:27+08:00
+8KC1_1	structure	8KC1_1.cif.gz	48612	e8368ae98394e7322b5dcc39f28bd620086d3d1738630165f8b150c0b525824f	files.rcsb.org	ok		2026-09-25T21:52:27+08:00
+8KHU_1	structure	8KHU_1.cif.gz	468051	4e4e11fa34da9a7115be8ba59644ccd65d6fef9eda4e405b0611e637cd829ae8	files.rcsb.org	ok		2026-09-25T21:52:28+08:00
+8P91_1	structure	8P91_1.cif.gz	31080	9b302d01df394f3bd785337ecca438d940dd1b3af18eea4e1a4c43e890898a1c	files.rcsb.org	ok		2026-09-25T21:52:29+08:00
+8PAQ_1	structure	8PAQ_1.cif.gz	96822	30b178149f92de83bf3f694699727a739e2fdc6fa20c95e116f5833b5f57e5db	files.rcsb.org	ok		2026-09-25T21:52:29+08:00
+8PHN_1	structure	8PHN_1.cif.gz	41405	ce0a791e2353ea74ac95d6b21a46ad307438424ebe5af1b1661aadceac32e6ea	files.rcsb.org	ok		2026-09-25T21:52:29+08:00
+8PHX_1	structure	8PHX_1.cif.gz	125686	606ed42b72286664a23d7881a3d1dc5ce3c4a382fcb025ce24aa82aca7e455a7	files.rcsb.org	ok		2026-09-25T21:52:30+08:00
+8PHY_1	structure	8PHY_1.cif.gz	153281	52b0cd422623271788e5a351e55e5a206bae933f5dcc9322b0495a5af72aa26f	files.rcsb.org	ok		2026-09-25T21:52:31+08:00
+8PJ7_1	structure	8PJ7_1.cif.gz	50377	2b62b2a90771df0564c255601ac4031539826af58f74fb02d9a5df1bbc5b2a4b	files.rcsb.org	ok		2026-09-25T21:52:31+08:00
+8PJQ_1	structure	8PJQ_1.cif.gz	70715	f5a432b0b2f88e0bc39cf1f41f51c5c2b1d0a1fe394a38126bef3d72397599ec	files.rcsb.org	ok		2026-09-25T21:52:32+08:00
+8PKR_1	structure	8PKR_1.cif.gz	168463	cf75745aa64cd5c42477098d1e376963768dddd7f3e4107e91e766ceee2dd0fe	files.rcsb.org	ok		2026-09-25T21:52:33+08:00
+8PNM_1	structure	8PNM_1.cif.gz	604504	ee482628b2b3bd9429ebf604549932efc3868d0d6da70e178befdbcbad7c43b3	files.rcsb.org	ok		2026-09-25T21:52:34+08:00
+8POR_1	structure	8POR_1.cif.gz	98016	8a1c2ed0d966af0a8e6056b1b5073d0139d6795429caffd71db1193a8ada8151	files.rcsb.org	ok		2026-09-25T21:52:35+08:00
+8PQM_1	structure	8PQM_1.cif.gz	34586	471e6ace63ae4d5c003ffc2a48083545777a62d243cc6f54cc847d15a280c989	files.rcsb.org	ok		2026-09-25T21:52:35+08:00
+8PQR_1	structure	8PQR_1.cif.gz	279702	5c3a460156d54c04a3e31c9e8b96384b73f8c29adc9ba0c33d591fe6361b4156	files.rcsb.org	ok		2026-09-25T21:52:36+08:00
+8PR6_1	structure	8PR6_1.cif.gz	48107	0f7217ded0e2c227bc7df2b1e5eb347c5d320e599e9d2bd5b930f3641c3fc8fe	files.rcsb.org	ok		2026-09-25T21:52:37+08:00
+8PRR_1	structure	8PRR_1.cif.gz	63030	825ceb28a0d141746f26633f462940caec253ab4f3bc43f0b2b300e43a5ab81f	files.rcsb.org	ok		2026-09-25T21:52:37+08:00
+8PVZ_1	structure	8PVZ_1.cif.gz	153663	1e1b0691ebabab7b3c0f497f4b7194157b3674fb781eaf5f8ab3d81b02eb7d26	files.rcsb.org	ok		2026-09-25T21:52:38+08:00
+8PWC_1	structure	8PWC_1.cif.gz	194271	ba04fb2a08c2af9adb5ff88e18566559d83115232b57fe6b235cd9032aaa5df7	files.rcsb.org	ok		2026-09-25T21:52:38+08:00
+8PX5_1	structure	8PX5_1.cif.gz	48525	ee37073d86690dc2eb1af8605662727156dcd4fd54bdf638c8576defc5f06290	files.rcsb.org	ok		2026-09-25T21:52:39+08:00
+8PYV_1	structure	8PYV_1.cif.gz	90937	3c13c506c321c139a638b93e67b67466a37fa4a6c73f571f392eea9a9528daf8	files.rcsb.org	ok		2026-09-25T21:52:39+08:00
+8PYW_1	structure	8PYW_1.cif.gz	986072	a3e4c0e1ea4504c6dcf7aa8a1393f9478ad074261597752a4476a70702b4b282	files.rcsb.org	ok		2026-09-25T21:52:40+08:00
+8PZO_1	structure	8PZO_1.cif.gz	140816	3bc3e19c81d62a9ac1a0ddaf9905af7118d535a02051fb34990d525a04df5016	files.rcsb.org	ok		2026-09-25T21:52:41+08:00
+8Q0S_1	structure	8Q0S_1.cif.gz	69641	a969eadeba1118a333cff7842b740e19ba835dcf31392c655e7cf81375f37d06	files.rcsb.org	ok		2026-09-25T21:52:42+08:00
+8Q1V_1	structure	8Q1V_1.cif.gz	98165	10e91ade03dd7ebaada4fbd3c7e7da0b711d62f1d3de02a36566a1a754c54534	files.rcsb.org	ok		2026-09-25T21:52:42+08:00
+8Q1W_1	structure	8Q1W_1.cif.gz	110005	bdca648412016a756d96c4691bb152f612882381eab5db74683cea5b92ed183c	files.rcsb.org	ok		2026-09-25T21:52:43+08:00
+8Q4E_1	structure	8Q4E_1.cif.gz	408539	8705b658bb4885b5e22b30115755699548ac5749e07e2f14c4dae16b6528f40e	files.rcsb.org	ok		2026-09-25T21:52:44+08:00
+8Q53_1	structure	8Q53_1.cif.gz	43485	e7d8ff7b8a1993f53d81493dba9a48eaeff6339e7be88b354e27337825839b69	files.rcsb.org	ok		2026-09-25T21:52:44+08:00
+8Q5F_1	structure	8Q5F_1.cif.gz	63093	c27317a0329e92637cc6bda11f3c7cb833d76d56b16c968cad7056d7819d32ee	files.rcsb.org	ok		2026-09-25T21:52:45+08:00
+8Q6M_1	structure	8Q6M_1.cif.gz	134509	727476c4904e676bc1146a43e57f102eb7a642b247b81415168ccac10d583cef	files.rcsb.org	ok		2026-09-25T21:52:46+08:00
+8Q6U_1	structure	8Q6U_1.cif.gz	157772	a0c02fc6bb8f4eb3753d3a822444839a5102234c33397a54041f20e4db18eff0	files.rcsb.org	ok		2026-09-25T21:52:47+08:00
+8Q78_1	structure	8Q78_1.cif.gz	433242	6089e46ec010769f40bfe4014ee1e3595af5b0d1a7cb1e389a8cb36e001329ae	files.rcsb.org	ok		2026-09-25T21:52:47+08:00
+8QAO_1	structure	8QAO_1.cif.gz	59045	224cc800e72e1511b3fd9e4718c0ae6fca524cb0424cded02b8d388700f2116a	files.rcsb.org	ok		2026-09-25T21:52:48+08:00
+8QAZ_1	structure	8QAZ_1.cif.gz	91090	783af1565e561474e94175bee79431ba4b6fdc05b1fe423555f2fa4cd0486bee	files.rcsb.org	ok		2026-09-25T21:52:49+08:00
+8QB1_1	structure	8QB1_1.cif.gz	228598	bfebecb23b387d2e96fb426d065bc2733378eeac35b87dce879101b105c88a17	files.rcsb.org	ok		2026-09-25T21:52:50+08:00
+8QF3_1	structure	8QF3_1.cif.gz	194770	00ab7b15a192c2166655c20412c07103127d4ef4b7b120f18a102e9f8a832fc1	files.rcsb.org	ok		2026-09-25T21:52:51+08:00
+8QFU_1	structure	8QFU_1.cif.gz	232743	28a6748315aa64c3144e2d67bb33fb6372e3346459e20570b7f775b30db826b3	files.rcsb.org	ok		2026-09-25T21:52:52+08:00
+8QH6_1	structure	8QH6_1.cif.gz	164249	f2a036f6455e79a4e1e5c86e0f8cd37068021a4fbbb1b360c1e079c23d24b2b4	files.rcsb.org	ok		2026-09-25T21:52:53+08:00
+8QIY_1	structure	8QIY_1.cif.gz	109824	67e943f94e977797e142d6f4c6706118f756027bf38209fdcd628a33ef69fc90	files.rcsb.org	ok		2026-09-25T21:52:54+08:00
+8QJ6_1	structure	8QJ6_1.cif.gz	32045	2c8f10af4292a9b6e1053de65b1ca4e6febd930f29909f04cfc6e4b31f868c34	files.rcsb.org	ok		2026-09-25T21:52:54+08:00
+8QKF_1	structure	8QKF_1.cif.gz	54463	1de774afc2bd841847a6e577b0a0a6df3e3969f7bcce89bfb2eb0e29051b4dc3	files.rcsb.org	ok		2026-09-25T21:52:55+08:00
+8QKY_1	structure	8QKY_1.cif.gz	105639	9429335cef7ebb04b09551fd9864a9986184f21b2909ce88f92d5cfa7cae67a0	files.rcsb.org	ok		2026-09-25T21:52:56+08:00
+8QOK_1	structure	8QOK_1.cif.gz	203237	c4c39cc8069136ff69df559939d9c045e4dd98bfaa02cb47f5117550efe0b75d	files.rcsb.org	ok		2026-09-25T21:52:56+08:00
+8QRY_1	structure	8QRY_1.cif.gz	34068	285317f657869dd4881e0884b4f03fbc89320b8f42108c206330a4b27b4caeca	files.rcsb.org	ok		2026-09-25T21:52:57+08:00
+8QUP_1	structure	8QUP_1.cif.gz	61495	bce2dcfe98337cef1e12c5b224cbc684ffbcbab32b66115d5e69b5046b8d895d	files.rcsb.org	ok		2026-09-25T21:52:58+08:00
+8QX5_1	structure	8QX5_1.cif.gz	100104	1c564879e5f259a62130374924becb3333947c23a1f2beb9703e03486d000aa3	files.rcsb.org	ok		2026-09-25T21:52:58+08:00
+8QX6_1	structure	8QX6_1.cif.gz	130565	0d4e5629905a769d1353cd204bcb4c5befec0c0f8d4ba15b7dea01078ee1337f	files.rcsb.org	ok		2026-09-25T21:52:59+08:00
+8QZV_1	structure	8QZV_1.cif.gz	94995	6293534914d377df97d268e6bf36b9381c99787edd7a52d01015ac233b76f904	files.rcsb.org	ok		2026-09-25T21:53:00+08:00
+8R28_1	structure	8R28_1.cif.gz	60457	a1706efbf64242c6d5392aacd14e679031c8967f7f4e468e09a72a4af2714719	files.rcsb.org	ok		2026-09-25T21:53:00+08:00
+8R2C_1	structure	8R2C_1.cif.gz	97319	6ecd9a4d7422d4fc98d92e0b3cc803d6ae576004f477dfbdd180c378d4103fc4	files.rcsb.org	ok		2026-09-25T21:53:01+08:00
+8R3F_1	structure	8R3F_1.cif.gz	179086	8210c0a0f2e0e821d6d2d0de6684ede48cbc9efaf4b84244491dbedf8aecec0e	files.rcsb.org	ok		2026-09-25T21:53:01+08:00
+8R3N_1	structure	8R3N_1.cif.gz	89615	d1a52f88b2e6227719bb5924023b02daf7676e373af01fbeffc08946091af949	files.rcsb.org	ok		2026-09-25T21:53:02+08:00
+8R5K_1	structure	8R5K_1.cif.gz	91558	e27140735fac712d20d4ea7ca52fcbeb88eac19aaac67c2e2cc7065320bc2e49	files.rcsb.org	ok		2026-09-25T21:53:02+08:00
+8R5N_1	structure	8R5N_1.cif.gz	217514	7987cfc3ef9c24734faf72bd1b261ffb68f65743c2c5523fc852560a3a3619cb	files.rcsb.org	ok		2026-09-25T21:53:03+08:00
+8R6I_1	structure	8R6I_1.cif.gz	82075	04953d12fd7e9667a6b8e16b22836e7ca9e94809d34d7ab33622a90e49febf65	files.rcsb.org	ok		2026-09-25T21:53:04+08:00
+8R8A_1	structure	8R8A_1.cif.gz	104808	efc76f325adeab7cefe2b19188d7aa71259bf4a639c51f587cf8a02c98e68026	files.rcsb.org	ok		2026-09-25T21:53:04+08:00
+8RCY_1	structure	8RCY_1.cif.gz	51706	c408cbf046f002c119cae0799a0ef15bb9442d225d90fcc8f8255081cf0e38bd	files.rcsb.org	ok		2026-09-25T21:53:05+08:00
+8RD7_1	structure	8RD7_1.cif.gz	167823	2822056fc654062823a947dcf819662f183dab50be9e50c83141a341b91007c1	files.rcsb.org	ok		2026-09-25T21:53:06+08:00
+8RDD_1	structure	8RDD_1.cif.gz	90184	052662d8a8c0f310d23848072ae561f4769ea8bc17a34fbd9d614435768af4b5	files.rcsb.org	ok		2026-09-25T21:53:07+08:00
+8RF6_1	structure	8RF6_1.cif.gz	86594	e075ba70a0ab25f37ce21004c259177f25b638e5b5826defc3f6300ea4ab6bfe	files.rcsb.org	ok		2026-09-25T21:53:07+08:00
+8RHO_1	structure	8RHO_1.cif.gz	128039	774ad2bdc6f10510b26228bf4f0a3b7067d224a26cb32c03f3f7a09b3abab55b	files.rcsb.org	ok		2026-09-25T21:53:08+08:00
+8RHR_1	structure	8RHR_1.cif.gz	146654	856ca307ec33fc61cf0e9a928eb5667ef6687e24a1cde9fcbe44ad73fc8b9ea8	files.rcsb.org	ok		2026-09-25T21:53:09+08:00
+8RIJ_1	structure	8RIJ_1.cif.gz	86040	b5f78be54abbc6ef200099864edc6113989aec84b68f5feaf87ee940946a5e08	files.rcsb.org	ok		2026-09-25T21:53:10+08:00
+8RKP_1	structure	8RKP_1.cif.gz	47301	998b3b576d8e8a05ba623cb8b094d8e06cc38e1fbf2dc9f94c4cd061aeef7196	files.rcsb.org	ok		2026-09-25T21:53:10+08:00
+8RNZ_1	structure	8RNZ_1.cif.gz	113269	45e0b7fa79cb9dd24854a85311b50c6d1f9abd8f4ca97aacb0c75f762fffeea9	files.rcsb.org	ok		2026-09-25T21:53:11+08:00
+8RRY_1	structure	8RRY_1.cif.gz	167628	2eaae481008e9a491c212246020a50a4f137e1f18d72f7b599fad2480c110678	files.rcsb.org	ok		2026-09-25T21:53:12+08:00
+8RU1_1	structure	8RU1_1.cif.gz	177581	74f0ac622800d34a6895300505542b0a2a222dd11c06182ff499ecc53a37820a	files.rcsb.org	ok		2026-09-25T21:53:12+08:00
+8RU5_1	structure	8RU5_1.cif.gz	47798	4eaa2f5d3ef96e10c779a75ed192a1eebcd4a9efad8ce28ae84f20ea81d4c589	files.rcsb.org	ok		2026-09-25T21:53:12+08:00
+8RW6_1	structure	8RW6_1.cif.gz	59228	7f019ad12ce6b5667d2b18a25c4ef07b71a60ccb4e24e437f94ea2b2019446da	files.rcsb.org	ok		2026-09-25T21:53:13+08:00
+8RXA_1	structure	8RXA_1.cif.gz	57553	7abbfb1f6b0ec7e41231b7e59668d8cf9a8ee1e722e07f17d020dd8f84ec61c2	files.rcsb.org	ok		2026-09-25T21:53:14+08:00
+8RYS_1	structure	8RYS_1.cif.gz	80226	a3d38dabee92713499c39b3cdfa011fb2b71c850eace49c146d2483ca2b9f037	files.rcsb.org	ok		2026-09-25T21:53:14+08:00
+8S48_1	structure	8S48_1.cif.gz	144619	b84f04da6ad97993a0e21da6f3aa446415dd80fbd3cbf9ac33d9088a71193839	files.rcsb.org	ok		2026-09-25T21:53:15+08:00
+8S4E_1	structure	8S4E_1.cif.gz	60922	0820f712c9d3591a70a1c46dda191f1f409b344bddaffa6b6e9fc9f8ccfc5bd6	files.rcsb.org	ok		2026-09-25T21:53:15+08:00
+8S7A_1	structure	8S7A_1.cif.gz	30338	fa0d069bd0a2d74ba28a5393cb621677e254f6096c8826013247ffaf3dc3db5b	files.rcsb.org	ok		2026-09-25T21:53:16+08:00
+8T2M_1	structure	8T2M_1.cif.gz	97467	2d0f0a4a8f1fbba3031c26947671cef91cf3842d16a20cd0c646fb696fea0b06	files.rcsb.org	ok		2026-09-25T21:53:17+08:00
+8T4C_1	structure	8T4C_1.cif.gz	184238	e975782ef14246c1584f5ce09014a5cdce467e9da01ae67f0eb6e374d04d37f7	files.rcsb.org	ok		2026-09-25T21:53:18+08:00
+8T5A_1	structure	8T5A_1.cif.gz	79950	6b3f0ce9f55581ee5b52e0adbb4f2ae56d72b8297bac0295df2e1ecbbebc9f53	files.rcsb.org	ok		2026-09-25T21:53:18+08:00
+8T7K_1	structure	8T7K_1.cif.gz	46148	ac4c10ee32ed03606e5558037c4e84fd622815b6928004fc8c64e3a53bc67dcb	files.rcsb.org	ok		2026-09-25T21:53:19+08:00
+10JX_1	ligand	10JX_1__HEM.sdf	4811	a0c4a15e47bbdaa8e947b7cb5a46c403a7c1761ee08b4fb7c12c96687bf91aa6	models.rcsb.org	ok	instance L of HEM	2026-09-25T21:53:20+08:00
+29LW_1	ligand	29LW_1__9O9.sdf	3596	6868ac477c0be18dbba8955f73310fec9c465ecd48b41918fd55ab72e931e44c	models.rcsb.org	ok	instance G of 9O9	2026-09-25T21:53:21+08:00
+30JI_1	ligand	30JI_1__A1J6V.sdf	5552	711867d86b8ee13e8adbe25a2114493db4c9d21d13de71ec63d593cc60ed7fb2	models.rcsb.org	ok	instance B of A1J6V	2026-09-25T21:53:22+08:00
+35TM_1	ligand	35TM_1__AR6.sdf	4078	bf31a8880246676bee0e3088fb44cdeddd0fc33018bb8f498502f0a8a3043312	models.rcsb.org	ok	instance C of AR6	2026-09-25T21:53:23+08:00
+36IQ_1	ligand	36IQ_1__DM2.sdf	6952	53457f14019076f747c760a762a64a54773aad9625e35fbbdae806d609cfe0b1	models.rcsb.org	ok	instance C of DM2	2026-09-25T21:53:24+08:00
+37JY_1	ligand	37JY_1__A1AEP.sdf	4675	55c6c738182a7570fd0ae6fcc463f53a8fe714e92c07554624e7bdfe4583f151	models.rcsb.org	ok	instance G of A1AEP	2026-09-25T21:53:25+08:00
+44ID_1	ligand	44ID_1__BHF.sdf	2699	675c24a5e0e43fa7d519dead0d9b8f9fab71e669937eaf69a8af1f9bb587a6ad	models.rcsb.org	ok	instance D of BHF	2026-09-25T21:53:26+08:00
+8JQU_1	ligand	8JQU_1__GNP.sdf	3688	9df732823886c863dc1da8cbc3ec116503b1294db0b0922812b9f4807a1d7e06	models.rcsb.org	ok	instance C of GNP	2026-09-25T21:53:27+08:00
+8KBM_1	ligand	8KBM_1__C2E.sdf	5064	517072c62b54409e7b3755e6787fe260d8ad3cd1dbb4ecc4880870d7acce41c6	models.rcsb.org	ok	instance D of C2E	2026-09-25T21:53:28+08:00
+8POR_1	ligand	8POR_1__EYT.sdf	5064	2519ad8aec1d7f6a3f9e6f57f70497c5983c436ee72ee0110bac9f1d1cbf4331	models.rcsb.org	ok	instance C of EYT	2026-09-25T21:53:28+08:00
+8PWC_1	ligand	8PWC_1__G7I.sdf	6834	6f25c6269fdf9f36f8cad5835876e561ca1d7c2e2a39c67ffc1d8b6e3f3c3835	models.rcsb.org	ok	instance D of G7I	2026-09-25T21:53:29+08:00
+8QX5_1	ligand	8QX5_1__45D.sdf	9370	4db9ae59c58b4c70b24952d6f1450c5e2f8c0946c3ec38c437979d65f1a94fab	models.rcsb.org	ok	instance D of 45D	2026-09-25T21:53:30+08:00
+8R5N_1	ligand	8R5N_1__ATP.sdf	4700	ca615ea925fa741ce7bd37851440b6d2dd96dd19798adf5555efe472bf8a5c38	models.rcsb.org	ok	instance C of ATP	2026-09-25T21:53:31+08:00
+8RCY_1	ligand	8RCY_1__A1H0Q.sdf	2932	ee5e2ef8d63df5e76185852715f6bca4d56a7eb16e15c7b397c42ab6ef8afba6	models.rcsb.org	ok	instance D of A1H0Q	2026-09-25T21:53:32+08:00
+8RD7_1	ligand	8RD7_1__AR6.sdf	4078	135d114432400132744e561a31becc7936f0e0b569ae3de35a7f504d1d24bbea	models.rcsb.org	ok	instance K of AR6	2026-09-25T21:53:33+08:00
+rotarama	reference_data	rama8000-general-noGPIVpreP.data	891343	ccdbc6a201ca2510119e77b0dd169ca2cdea7f2c9ed348555a3b1129f8c2b00a	rlabduke/rotarama_data	ok	Ramachandran contour grid, CC BY 4.0	2026-09-25T22:44:27+08:00
+rotarama	reference_data	rama8000-gly-sym.data	946529	89c75a5ac036ff3309c51b46a2412f30137827abaff4606209ed41e04fcba637	rlabduke/rotarama_data	ok	Ramachandran contour grid, CC BY 4.0	2026-09-25T22:44:28+08:00
+rotarama	reference_data	rama8000-cispro.data	214777	143a3004668baefaf6749bd9c2acbe829d3b1a93059c74ba766b04f1e00f43ab	rlabduke/rotarama_data	ok	Ramachandran contour grid, CC BY 4.0	2026-09-25T22:44:29+08:00
+rotarama	reference_data	rama8000-transpro.data	308700	092b4c0bcd2fe846a063000c83d13cbe62ff43b2dafd67ecb8a47042cce747ec	rlabduke/rotarama_data	ok	Ramachandran contour grid, CC BY 4.0	2026-09-25T22:44:29+08:00
+rotarama	reference_data	rama8000-prepro-noGP.data	574864	1cc10b92911d47ca775f0a8131a029b42634dbe26364cece4cfdc8c85b9c3fab	rlabduke/rotarama_data	ok	Ramachandran contour grid, CC BY 4.0	2026-09-25T22:44:30+08:00
+rotarama	reference_data	rama8000-ileval-nopreP.data	704470	567e1318128a50b8f44362427bf717d564749936d22d5dbfd34e5b0c17819276	rlabduke/rotarama_data	ok	Ramachandran contour grid, CC BY 4.0	2026-09-25T22:44:31+08:00
+rotarama	reference_data	LICENSE	18657	9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411	rlabduke/rotarama_data	ok	Ramachandran contour grid, CC BY 4.0	2026-09-25T22:44:31+08:00

@@ -72,6 +72,7 @@ project.conf.tmp.*
 # Per-stage logs. The timing and resource tables next to them are tracked,
 # because the README quotes numbers out of them.
 logs/*.log
+logs/*.err
 logs/*.done
 logs/tmp/
 

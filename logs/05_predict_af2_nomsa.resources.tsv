@@ -1,0 +1,2 @@
+stage	elapsed_s	peak_rss_mb	data_dir_growth_mb	data_dir_total_mb	cache_dir_total_mb	peak_disk_mb	host_free_start_mb	host_free_min_mb	jobs	note
+05_predict_af2_nomsa	70	2681	1	184	1775	1959	4700	4700	1	arm=af2_nomsa ok=1 skipped=0 refused=0 failed=0
