@@ -83,6 +83,13 @@ scripts/.gitignore
 .quarto/
 **/*.quarto_ipynb
 
+# The rendered report. It is generated from the tables in results/ by
+# run_all.sh and carries 2.9 MB of embedded fonts and third-party
+# stylesheets, including an icon set whose class names name products
+# this repository does not mention anywhere it writes. Regenerate it
+# with quarto rather than tracking it.
+results/report/
+
 # Quarto and Jupyter build artefacts. The rendered report is kept.
 *.html
 !results/report/*.html
