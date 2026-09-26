@@ -518,6 +518,13 @@ def measure(conf: dict, entries: list[str], max_construct: int = 0) -> int:
     if max_construct and domain_positions + body_wanted > max_construct:
         body_wanted = max(0, max_construct - domain_positions)
     last_pos = consensus_last + body_wanted
+    if body_wanted == 0:
+        print(f"[pedv] WARNING: the cap of {max_construct} residues is at or "
+              f"below the {domain_positions}-residue domain, so the construct "
+              f"carries no body at all. A domain on its own has nothing to sit "
+              f"against, and where the model places it relative to the body "
+              f"cannot be measured from this. The prediction step decides what "
+              f"to do about that; this records it.")
     seq_path = Path(conf["DATA_DIR"]) / "pedv" / "construct.fasta"
     import gemmi
     import gzip
@@ -693,12 +700,17 @@ def main() -> int:
     ap.add_argument("--entries", required=True)
     ap.add_argument("--measure", action="store_true")
     ap.add_argument("--compare", action="store_true")
+    ap.add_argument("--max-construct", type=int, default=0,
+                    help="longest construct to write; the caller passes what "
+                         "the measured memory curve says will fit, and the "
+                         "smaller of that and PEDV_MAX_CONSTRUCT is used")
     args = ap.parse_args()
     conf = L.load_conf(args.config)
     entries = [e.strip() for e in args.entries.split(",") if e.strip()]
     if args.measure:
-        return measure(conf, entries,
-                       max_construct=L.conf_int(conf, "PEDV_MAX_CONSTRUCT", 0))
+        from_conf = L.conf_int(conf, "PEDV_MAX_CONSTRUCT", 0)
+        caps = [c for c in (from_conf, args.max_construct) if c > 0]
+        return measure(conf, entries, max_construct=min(caps) if caps else 0)
     if args.compare:
         return compare(conf, entries)
     ap.error("one of --measure or --compare is required")
