@@ -369,9 +369,26 @@ def main() -> int:
             return 3
 
     out_scores = results_dir / "structure_scores.tsv"
-    if out_scores.is_file() and not args.force:
-        print(f"[06_score_structures] {out_scores.name} exists; skipping (--force to redo).")
-        return 0
+    out_residues = results_dir / "residue_scores.tsv"
+    out_pockets = results_dir / "pocket_scores.tsv"
+
+    # Scoring is resumed rather than repeated. The stage used to skip entirely
+    # when its own output existed, so an arm finished after the first run was
+    # never scored: the chain called this, it printed "exists; skipping", and
+    # thirty predictions stayed out of every table downstream while the stage
+    # reported success. Rewriting the whole file each time is the other half of
+    # the same fault, because it makes scoring one new arm cost a rerun of every
+    # comparison already made.
+    #
+    # So the pairs already scored are read back, those predictions are left
+    # alone, and their rows are carried into the file that is written at the
+    # end. --force ignores what is there and redoes everything.
+    prior_scores = L.read_tsv(out_scores) if out_scores.is_file() else []
+    prior_residues = L.read_tsv(out_residues) if out_residues.is_file() else []
+    prior_pockets = L.read_tsv(out_pockets) if out_pockets.is_file() else []
+    already = set()
+    if not args.force:
+        already = {(r.get("target_id"), r.get("arm")) for r in prior_scores}
 
     preds = L.read_tsv(results_dir / "predictions.tsv") if (results_dir / "predictions.tsv").is_file() else []
     preds = [p for p in preds if p.get("status") == "ok"]
@@ -382,6 +399,14 @@ def main() -> int:
     if not preds:
         L.eprint("[error] no successful predictions to score; run 05_predict.sh first")
         return 1
+    n_all = len(preds)
+    preds = [p for p in preds if (p["target_id"], p["arm"]) not in already]
+    n_skipped = n_all - len(preds)
+    if n_skipped:
+        print(f"[06_score_structures] {n_skipped} already scored, {len(preds)} to do")
+    if not preds:
+        print("[06_score_structures] everything is already scored; nothing to do")
+        return 0
 
     targets = {t["target_id"]: t for t in L.read_tsv(config_dir / "targets.tsv")}
     # Only the targets with a usable ligand have a pocket to measure. The rest
@@ -489,14 +514,26 @@ def main() -> int:
         if i % 5 == 0 or i == len(preds):
             print(f"  {i}/{len(preds)} scored", flush=True)
 
-    L.write_tsv(out_scores, SCORE_COLUMNS, rows)
-    L.write_tsv(results_dir / "residue_scores.tsv", RESIDUE_COLUMNS, residue_rows)
-    if pocket_rows:
-        L.write_tsv(results_dir / "pocket_scores.tsv",
+    # Carry forward every row for a pair this run did not touch, then write the
+    # whole file once. Keeping the rows rather than appending means the file is
+    # still written by a single rename and a run killed halfway cannot leave a
+    # half-written table.
+    redone = {(r["target_id"], r["arm"]) for r in rows}
+    keep = [r for r in prior_scores if (r.get("target_id"), r.get("arm")) not in redone]
+    keep_res = [r for r in prior_residues if (r.get("target_id"), r.get("arm")) not in redone]
+    keep_pock = [r for r in prior_pockets if (r.get("target_id"), r.get("arm")) not in redone]
+    if keep:
+        print(f"[06_score_structures] carrying forward {len(keep)} rows scored earlier")
+
+    L.write_tsv(out_scores, SCORE_COLUMNS, keep + rows)
+    L.write_tsv(out_residues, RESIDUE_COLUMNS, keep_res + residue_rows)
+    pocket_all = keep_pock + pocket_rows
+    if pocket_all:
+        L.write_tsv(out_pockets,
                     ["target_id", "arm", "radius", "n_pocket_residues",
                      "n_residues_scored", "n_ligand_heavy_atoms", "pocket_lddt_ca",
                      "pocket_lddt_all_atom", "pocket_rmsd_all_atom",
-                     "n_atoms_compared", "global_lddt_ca", "recorded"], pocket_rows)
+                     "n_atoms_compared", "global_lddt_ca", "recorded"], pocket_all)
     ok_rows = [r for r in rows if r["status"] == "ok"]
     print(f"[06_score_structures] {len(ok_rows)} of {len(rows)} scored, "
           f"{len(residue_rows)} residue rows, {len(pocket_rows)} pocket rows, "
