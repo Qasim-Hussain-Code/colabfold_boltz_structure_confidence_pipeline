@@ -1,1 +1,13 @@
 structure_a	chain_a	structure_b	chain_b	sequence_identity	n_body_aligned	body_rmsd	n_domain_compared	domain_displacement	domain_centroid_shift	note	recorded
+prediction/af2_msa_notmpl	A	6U7K	A	95.3	98	5.827	70	35.443	26.404	superposed on the body only; resemblance is not adjudication	2026-09-26T19:27:27+08:00
+prediction/af2_msa_notmpl	A	6VV5	A	98.7	95	5.364	135	8.056	6.312	superposed on the body only; resemblance is not adjudication	2026-09-26T19:27:27+08:00
+prediction/af2_msa_notmpl	A	7W6M	A	100.0	98	5.549	201	12.509	8.688	superposed on the body only; resemblance is not adjudication	2026-09-26T19:27:27+08:00
+prediction/af2_msa_notmpl	A	7W73	A	100.0	98	5.865	201	52.825	43.598	superposed on the body only; resemblance is not adjudication	2026-09-26T19:27:27+08:00
+prediction/af2_msa_notmpl	A	7Y6S	A	99.8	98	5.778	157	47.511	38.112	superposed on the body only; resemblance is not adjudication	2026-09-26T19:27:27+08:00
+prediction/af2_msa_notmpl	A	7Y6T	A	99.8	98	5.216	201	9.647	7.971	superposed on the body only; resemblance is not adjudication	2026-09-26T19:27:27+08:00
+prediction/af2_nomsa	A	6U7K	A	95.3	98	13.44	70	38.9	32.816	superposed on the body only; resemblance is not adjudication	2026-09-26T19:27:27+08:00
+prediction/af2_nomsa	A	6VV5	A	98.7	95	12.889	135	38.069	30.499	superposed on the body only; resemblance is not adjudication	2026-09-26T19:27:27+08:00
+prediction/af2_nomsa	A	7W6M	A	100.0	98	13.748	201	44.295	36.2	superposed on the body only; resemblance is not adjudication	2026-09-26T19:27:27+08:00
+prediction/af2_nomsa	A	7W73	A	100.0	98	13.466	201	58.283	51.74	superposed on the body only; resemblance is not adjudication	2026-09-26T19:27:27+08:00
+prediction/af2_nomsa	A	7Y6S	A	99.8	98	13.371	157	51.231	44.871	superposed on the body only; resemblance is not adjudication	2026-09-26T19:27:27+08:00
+prediction/af2_nomsa	A	7Y6T	A	99.8	98	13.517	201	42.399	34.121	superposed on the body only; resemblance is not adjudication	2026-09-26T19:27:27+08:00

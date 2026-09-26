@@ -93,17 +93,24 @@ def load_chain(path: Path, chain_name: str | None = None):
         if len(poly) < 30:
             continue
         out, letters, keys = {}, [], []
-        for res in poly:
-            if res.label_seq is None:
-                continue
+        # A deposited entry carries label_seq. A prediction written as PDB
+        # carries none, because the format has no such field, so keying on it
+        # returned an empty set for every prediction and this arm compared
+        # nothing while reporting success. Where it is absent the position
+        # along the chain is used, which for a prediction is the same quantity:
+        # the model folds the construct in order, one residue per position.
+        residues = list(poly)
+        has_label = all(r.label_seq is not None for r in residues)
+        for index, res in enumerate(residues, start=1):
             ca = res.find_atom("CA", "*")
             if ca is None:
                 continue
+            key = int(res.label_seq) if has_label else index
             info = gemmi.find_tabulated_residue(res.name)
             code = info.one_letter_code.upper() if info else "X"
-            out[int(res.label_seq)] = (ca.pos.x, ca.pos.y, ca.pos.z)
+            out[key] = (ca.pos.x, ca.pos.y, ca.pos.z)
             letters.append(code if code.isalpha() else "X")
-            keys.append(int(res.label_seq))
+            keys.append(key)
         if out:
             return chain.name, out, "".join(letters), keys
     return "", {}, "", []
@@ -584,6 +591,9 @@ def compare(conf: dict, entries: list[str]) -> int:
         return 1
     cut_len = int(construct[0]["domain_last"]) - int(construct[0]["domain_first"]) + 1
 
+    import gzip
+    import tempfile
+
     rows, conf_rows = [], []
     for arm_dir in sorted(p for p in data_dir.iterdir() if p.is_dir()):
         arm = arm_dir.name
@@ -602,12 +612,29 @@ def compare(conf: dict, entries: list[str]) -> int:
         dom_positions = [k for k in ca_pred if k <= int(construct[0]["domain_last"])]
         body_positions = [k for k in ca_pred if k > int(construct[0]["domain_last"])]
 
+        # The prediction is numbered into the source entry's convention. The
+        # other entries use their own, and two of these six count from the
+        # signal peptide where the rest count from the mature chain, so each
+        # one is carried onto the source numbering by an alignment before
+        # anything is measured. Pairing by number instead is what made
+        # structures of the same protein fit each other at 25 Angstroms.
+        src_entry = construct[0]["source_entry"]
+        src_path = data_dir / f"{src_entry}.cif.gz"
+        seq_src, keys_src = "", []
+        if src_path.is_file():
+            with tempfile.NamedTemporaryFile("wb", suffix=".cif", delete=False) as fh:
+                with gzip.open(src_path, "rb") as gz:
+                    fh.write(gz.read())
+                tmp_src = Path(fh.name)
+            try:
+                _c, _ca, seq_src, keys_src = load_chain(tmp_src)
+            finally:
+                tmp_src.unlink(missing_ok=True)
+
         for entry in entries:
             path = data_dir / f"{entry}.cif.gz"
             if not path.is_file():
                 continue
-            import gzip
-            import tempfile
             with tempfile.NamedTemporaryFile("wb", suffix=".cif", delete=False) as fh:
                 with gzip.open(path, "rb") as gz:
                     fh.write(gz.read())
@@ -618,6 +645,12 @@ def compare(conf: dict, entries: list[str]) -> int:
                 tmp.unlink(missing_ok=True)
             if not ca_d:
                 continue
+            identity = 100.0
+            if entry != src_entry and seq_src:
+                onto_src, identity = position_map(seq_d, keys_d, seq_src, keys_src)
+                ca_d = {onto_src[k]: v for k, v in ca_d.items() if k in onto_src}
+                if not ca_d:
+                    continue
             fit = superpose_on(ca_pred, ca_d, body_positions)
             if fit is None:
                 continue

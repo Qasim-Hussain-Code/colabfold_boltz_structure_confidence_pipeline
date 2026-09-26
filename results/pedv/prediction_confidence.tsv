@@ -1,1 +1,9 @@
 arm	region	n_residues	mean_confidence	min_confidence	max_confidence	note	recorded
+af2_msa_notmpl	domain	201	84.07	38.81	96.69	per-residue confidence, on the score's own scale	2026-09-26T19:27:27+08:00
+af2_msa_notmpl	body	98	70.2	27.28	85.94	per-residue confidence, on the score's own scale	2026-09-26T19:27:27+08:00
+af2_msa_notmpl	domain against body	19698	12.77	1.01	30.06	pairwise predicted error in Angstrom, not a confidence; large here means the model does not know how the two pieces sit relative to each other	2026-09-26T19:27:27+08:00
+af2_msa_notmpl	within the domain	40401	6.0	0.25	29.12	pairwise predicted error in Angstrom, not a confidence	2026-09-26T19:27:27+08:00
+af2_nomsa	domain	201	37.0	23.17	57.78	per-residue confidence, on the score's own scale	2026-09-26T19:27:27+08:00
+af2_nomsa	body	98	25.27	19.91	31.47	per-residue confidence, on the score's own scale	2026-09-26T19:27:27+08:00
+af2_nomsa	domain against body	19698	26.14	1.1	30.98	pairwise predicted error in Angstrom, not a confidence; large here means the model does not know how the two pieces sit relative to each other	2026-09-26T19:27:27+08:00
+af2_nomsa	within the domain	40401	19.15	0.25	30.67	pairwise predicted error in Angstrom, not a confidence	2026-09-26T19:27:27+08:00
