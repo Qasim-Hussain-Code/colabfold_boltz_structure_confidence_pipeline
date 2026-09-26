@@ -232,7 +232,15 @@ def prepare(conf: dict, arm: str, stage1_conf: dict, limit: int) -> int:
         L.gunzip_to(ref_gz, ref_cif)
         ref_st = gemmi.read_structure(str(ref_cif))
         ref_st.setup_entities()
-        ref_res, ref_chain = polymer_residues(ref_st)
+        # The chain the ligand actually sits in, which is not always the one
+        # the manifest names. An entry with several copies of the protein has
+        # a copy of the ligand in each; 03a_choose_ligand_instances.py picks
+        # one and records which chain it belongs to, and the receptor has to
+        # be that chain or the search box lands beside it.
+        want_chain = item.get("receptor_auth_asym_id") or None
+        ref_res, ref_chain = polymer_residues(ref_st, want_chain)
+        if not ref_res and want_chain:
+            ref_res, ref_chain = polymer_residues(ref_st)
         receptor = out_dir / f"{tid}.pdb"
 
         if arm == "crystal":

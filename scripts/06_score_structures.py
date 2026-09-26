@@ -42,6 +42,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -499,6 +500,7 @@ def main() -> int:
             # Compare against the chain the prediction is of, not the whole
             # deposited entry. See write_target_chain for what that was costing.
             want_chain = target.get("auth_asym_id", "")
+            shutil.copyfile(reference, tmp / "reference_full.cif")
             reference_one = tmp / "reference_chain.cif"
             n_ref_res = n_dropped = 0
             if want_chain:
@@ -559,14 +561,29 @@ def main() -> int:
             item = subset.get(tid)
             if item:
                 lig = data_dir / "reference_ligands" / f"{tid}__{item['comp_id']}.sdf"
+                # The pocket is wherever the ligand is, and the chosen copy of
+                # the ligand does not always sit in the chain the manifest
+                # names. Where it sits in another copy of the same entity, the
+                # pocket is measured there; the sequences are identical so the
+                # positions carry over to the prediction unchanged.
+                pocket_ref = reference
+                lig_chain = item.get("receptor_auth_asym_id") or want_chain
+                if lig_chain and lig_chain != want_chain:
+                    pocket_ref = tmp / "pocket_chain.cif"
+                    try:
+                        write_target_chain(tmp / "reference_full.cif"
+                                           if (tmp / "reference_full.cif").is_file()
+                                           else reference, lig_chain, pocket_ref)
+                    except Exception:  # noqa: BLE001 - fall back to the named chain
+                        pocket_ref = reference
                 if lig.is_file():
                     for radius_value in radii:
-                        near, n_lig_atoms = pocket_residues(reference, lig, radius_value)
+                        near, n_lig_atoms = pocket_residues(pocket_ref, lig, radius_value)
                         if not near:
                             continue
                         ca_only, all_atom, n_scored = pocket_scores(
                             data.get("local_lddt"), local, near)
-                        rmsd_value, n_atoms = pocket_rmsd(model, reference, near)
+                        rmsd_value, n_atoms = pocket_rmsd(model, pocket_ref, near)
                         pocket_rows.append({
                             "target_id": tid, "arm": arm, "radius": radius_value,
                             "n_pocket_residues": len(near),

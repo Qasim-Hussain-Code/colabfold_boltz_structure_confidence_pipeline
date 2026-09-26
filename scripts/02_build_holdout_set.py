@@ -639,13 +639,40 @@ def main() -> int:
     for lr in lig_rows:
         lr["target_id"] = by_target.get(lr["pdb_id"], "")
     kept_lig = [lr for lr in lig_rows if lr["status"] == "ok"]
-    # One ligand per target, the best-scoring instance, so a target with four
-    # copies of the same compound does not count four times.
+    # One ligand per target, so a target with four copies of the same compound
+    # does not count four times. Which copy is not a free choice.
+    #
+    # An entry with several copies of the protein has a copy of the ligand in
+    # each, and they are different instances with different identifiers. The
+    # prediction is of one entity, so the receptor handed to the docking
+    # pipeline is one chain, and the search box is centred on the ligand's own
+    # coordinates. Pick the instance bound to a different copy and the box
+    # lands beside the receptor rather than in it. Measured on this set before
+    # the rule was added: instances 6.6, 9.5, 10.7 and 17.1 Angstroms from the
+    # chain being docked into, on four of fifteen targets, and the docking
+    # results for them were meaningless rather than poor.
+    #
+    # So the instance must sit on the target's own chain. Among those, the
+    # best-fitting one by real-space correlation. A target whose ligand copies
+    # all sit elsewhere has no usable instance and is dropped, with the reason
+    # recorded, rather than being docked against the wrong site.
+    polymer_chain = {r["target_id"]: r.get("auth_asym_id", "") for r in rows}
     best: dict[str, dict] = {}
+    off_chain: dict[str, dict] = {}
     for lr in kept_lig:
-        cur = best.get(lr["target_id"])
+        want = polymer_chain.get(lr["target_id"], "")
+        pool = best if (not want or lr.get("auth_asym_id") == want) else off_chain
+        cur = pool.get(lr["target_id"])
         if cur is None or float(lr["rscc"] or 0) > float(cur["rscc"] or 0):
-            best[lr["target_id"]] = lr
+            pool[lr["target_id"]] = lr
+    for tid, lr in off_chain.items():
+        if tid in best:
+            continue
+        excluded.append((tid,
+                         f"every copy of {lr['comp_id']} sits on a chain other "
+                         f"than {polymer_chain.get(tid, '?')}, which is the chain "
+                         f"the prediction is of, so the search box would not be "
+                         f"on the receptor"))
     L.write_tsv(config_dir / "docking_subset.tsv", LIGAND_COLUMNS,
                 sorted(best.values(), key=lambda r: r["target_id"]))
     L.write_tsv(results_dir / "ligand_candidates.tsv", LIGAND_COLUMNS,
