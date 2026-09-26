@@ -219,16 +219,24 @@ def main() -> int:
         lddt = [num(r.get("lddt_ca")) for r in rows]
         lddt = [v for v in lddt if v is not None]
         tm = [v for v in (num(r.get("tm_score")) for r in rows) if v is not None]
-        passes = [geom_by.get((r["target_id"], arm), {}).get("passes_all") for r in rows]
+        # The verdict used here is whether a structure is inside the range the
+        # deposited structures in this same set span, check by check. The
+        # stricter verdict, none of anything, is reported beside it: under a
+        # third of the deposited structures meet that one, so a rate computed
+        # from it says more about the standard than about the model.
+        passes = [geom_by.get((r["target_id"], arm), {}).get("within_deposited_range")
+                  for r in rows]
+        strict = [geom_by.get((r["target_id"], arm), {}).get("passes_all") for r in rows]
         n_geo = sum(1 for p in passes if p in ("1", 1))
         n_geo_known = sum(1 for p in passes if p not in ("", None))
+        n_strict = sum(1 for p in strict if p in ("1", 1))
         # Accurate and physically valid, which is the only figure called
         # success here, following the same rule stage 1 used for poses.
         both = 0
         for r in rows:
             g = geom_by.get((r["target_id"], arm), {})
             v = num(r.get("lddt_ca"))
-            if v is not None and v >= lddt_trust and g.get("passes_all") in ("1", 1):
+            if v is not None and v >= lddt_trust and                     g.get("within_deposited_range") in ("1", 1):
                 both += 1
         q = L.quantiles(lddt) if lddt else [float("nan")] * 3
         arm_rows.append({
@@ -239,6 +247,9 @@ def main() -> int:
             "n_geometry_checked": n_geo_known,
             "n_passing_geometry": n_geo,
             "fraction_passing_geometry": L.fmt(n_geo / n_geo_known if n_geo_known else None, 4),
+            "n_passing_geometry_strict": n_strict,
+            "fraction_passing_geometry_strict": L.fmt(
+                n_strict / n_geo_known if n_geo_known else None, 4),
             "n_accurate_and_valid": both,
             "fraction_accurate_and_valid": L.fmt(both / len(rows) if rows else None, 4),
             "accuracy_line": lddt_trust,
@@ -247,7 +258,8 @@ def main() -> int:
     L.write_tsv(results_dir / "arm_comparison.tsv",
                 ["arm", "n_targets", "lddt_ca_median", "lddt_ca_q1", "lddt_ca_q3",
                  "tm_score_median", "n_geometry_checked", "n_passing_geometry",
-                 "fraction_passing_geometry", "n_accurate_and_valid",
+                 "fraction_passing_geometry", "n_passing_geometry_strict",
+                 "fraction_passing_geometry_strict", "n_accurate_and_valid",
                  "fraction_accurate_and_valid", "accuracy_line", "recorded"], arm_rows)
 
     # --- arm against arm, on the targets both of them have -------------------
