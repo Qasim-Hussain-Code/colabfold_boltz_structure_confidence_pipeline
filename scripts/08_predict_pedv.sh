@@ -104,8 +104,26 @@ for entry in $(csc_split "$ENTRIES"); do
         { echo "[${STAGE}] ${entry} could not be fetched"; rm -f "$dest"; }
 done
 
+# How long a construct this machine can actually predict from an alignment,
+# fitted from the peak memory every finished prediction recorded rather than
+# from the calibration curve in project.conf. That curve was measured on
+# single-sequence runs, which cost far less memory at the same length: 2.9 GB
+# against 4.1 GB at 179 residues here, and the gap widens with length. Using
+# it for an alignment run lets a construct through that the kernel then kills.
+#
+# With too little data to fit, this returns 0 and the cap in project.conf is
+# the only one that applies.
+FITS_IN_MEMORY="$("$PY_ANALYSIS" "${SCRIPT_DIR}/lib_memory.py" --config "${REPO_DIR}/project.conf" --arms af2_msa --budget-mb "$(( RAM_GB * 1024 ))" --quiet 2>/dev/null || echo 0)"
+[[ "$FITS_IN_MEMORY" =~ ^[0-9]+$ ]] || FITS_IN_MEMORY=0
+if (( FITS_IN_MEMORY > 0 )); then
+    echo "[${STAGE}] the measured memory curve allows ${FITS_IN_MEMORY} residues"
+else
+    echo "[${STAGE}] not enough finished predictions to fit a memory curve;"
+    echo "           only the cap in project.conf applies"
+fi
+
 csc_run "measure_deposited" "$PY_ANALYSIS" "${SCRIPT_DIR}/08a_pedv_analysis.py" \
-    --config "${REPO_DIR}/project.conf" --entries "$ENTRIES" --measure
+    --config "${REPO_DIR}/project.conf" --entries "$ENTRIES" --measure     --max-construct "$FITS_IN_MEMORY"
 
 if (( NO_PREDICT == 1 )); then
     csc_stage_end "measured only"
