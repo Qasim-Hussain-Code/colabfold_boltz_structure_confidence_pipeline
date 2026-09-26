@@ -152,6 +152,27 @@ def main(argv=None) -> int:
         print("[03a] dry run; nothing written")
         return 0
 
+    # A ligand file is named for its target and its component, not for the
+    # instance, so a corrected instance of the same component lands on the same
+    # filename and the fetching stage would skip it as already present. The
+    # stale files go, and 03_fetch_references.sh fetches the right copies.
+    removed = 0
+    lig_dir = data / "reference_ligands"
+    for tid, pick in chosen.items():
+        was = next((r for r in existing if r["target_id"] == tid), {})
+        if was.get("label_asym_id") == pick.get("label_asym_id"):
+            continue
+        for f in lig_dir.glob(f"{tid}__*.sdf"):
+            f.unlink()
+            removed += 1
+    for tid, _why in dropped:
+        for f in lig_dir.glob(f"{tid}__*.sdf"):
+            f.unlink()
+            removed += 1
+    if removed:
+        print(f"[03a] removed {removed} ligand file(s) whose instance changed; "
+              f"rerun 03_fetch_references.sh to fetch the right copies")
+
     L.clear_exclusions(results, "03a_choose_ligand_instances")
     L.write_tsv(subset_file, columns, [chosen[t] for t in sorted(chosen)])
     for tid, why in dropped:

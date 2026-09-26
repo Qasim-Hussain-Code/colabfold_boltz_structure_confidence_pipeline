@@ -158,6 +158,12 @@ fi
 if should_run 03_fetch_references; then
     banner "03_fetch_references"
     bash "${SCRIPTS}/03_fetch_references.sh" "${FORCE_FLAG[@]}" "${LIMIT_FLAG[@]}"
+    # Which copy of each ligand, which needs the coordinates and so cannot be
+    # decided by the stage that queries the archive. It removes the files whose
+    # instance it changed, and the fetch is repeated for those.
+    banner "03a_choose_ligand_instances"
+    "$PY" "${SCRIPTS}/03a_choose_ligand_instances.py" --config "${ROOT}/project.conf" ||         echo "[run_all] the ligand instances could not be chosen; continuing"
+    bash "${SCRIPTS}/03_fetch_references.sh" "${LIMIT_FLAG[@]}"
 fi
 if should_run 04_run_msa; then
     banner "04_run_msa"
@@ -170,6 +176,18 @@ fi
 # alignment stage still produces the single-sequence arm.
 # -----------------------------------------------------------------------------
 if should_run 05_predict; then
+    # What each arm can afford. An alignment arm costs about twelve times the
+    # single-sequence arm and grows with the square of the sequence length:
+    # measured here, 76 hours for one arm over the whole set and 150 for two.
+    # This fits that curve from the runs already finished and spends a stated
+    # budget per arm, keeping every docking target and choosing the rest to
+    # span the length range. It needs at least three finished predictions to
+    # fit against, so a first run has nothing to fit and the arms take the
+    # whole set, which is correct on a machine where that is affordable.
+    if [[ -n "${ARM_BUDGET_HOURS:-}" ]]; then
+        banner "02a_select_arm_subsets"
+        "$PY" "${SCRIPTS}/02a_select_arm_subsets.py" --config "${ROOT}/project.conf"             --hours "$ARM_BUDGET_HOURS" ||             echo "[run_all] the arm subsets could not be chosen; the arms take the whole set"
+    fi
     banner "05_predict"
     IFS=',' read -r -a ARM_LIST <<< "${ARM:-$ARMS}"
     for arm in "${ARM_LIST[@]}"; do
