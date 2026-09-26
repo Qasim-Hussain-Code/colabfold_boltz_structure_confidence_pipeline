@@ -48,6 +48,8 @@
 #  Options:
 #      --arm NAME   predicted or crystal
 #      --limit N    stop after N targets
+#      --jobs N     dock N targets at once, default DOCK_JOBS in
+#                   project.conf or 1
 #      --force      ignore the stage stamp and redo
 #      -h, --help   this text
 # =============================================================================
@@ -59,11 +61,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/lib_common.sh"
 csc_load_conf
 
-ARM="predicted"; LIMIT=0; FORCE=0
+ARM="predicted"; LIMIT=0; FORCE=0; DOCK_JOBS=""
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --arm)     ARM="$2"; shift 2 ;;
         --limit)   LIMIT="$2"; shift 2 ;;
+        --jobs)    DOCK_JOBS="$2"; shift 2 ;;
         --force)   FORCE=1; shift ;;
         -h|--help) sed -n '2,48p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         *) echo "[error] unknown option: $1" >&2; exit 1 ;;
@@ -73,6 +76,16 @@ case "$ARM" in
     predicted|crystal) ;;
     *) echo "[error] --arm must be predicted or crystal" >&2; exit 1 ;;
 esac
+
+# How many targets are docked at once. This is not a setting of the docking
+# protocol and changing it cannot change a result: each search runs with one
+# CPU and a fixed seed, so it is deterministic whatever else is running. It
+# matters because the ligands here are nucleotides and cofactors rather than
+# the drug-like ligands the docking pipeline was benchmarked on, and one of
+# them took ten minutes where that pipeline averaged eighteen seconds. Run
+# one at a time on this set, a single arm is most of a day.
+[[ -n "$DOCK_JOBS" ]] || DOCK_JOBS="${DOCKING_JOBS:-1}"
+[[ "$DOCK_JOBS" =~ ^[0-9]+$ ]] || DOCK_JOBS=1
 
 STAGE="09_dock_${ARM}"
 csc_skip_if_done "$STAGE" "$FORCE" && exit 0
@@ -198,12 +211,12 @@ run_stage1 05_define_boxes.py --config "${STAGE1_DIR}/project.conf" \
 
 for method in $(csc_split "$STAGE1_METHODS"); do
     csc_run "stage1_dock_${method}" bash "${STAGE1_DIR}/scripts/06_dock.sh" \
-        --arm A2_genconf_refbox --method "$method" --dataset "$ARM" --jobs 1
+        --arm A2_genconf_refbox --method "$method" --dataset "$ARM" --jobs "$DOCK_JOBS"
 done
 # The floor, run once with the first method, exactly as that pipeline runs it.
 csc_run "stage1_dock_null" bash "${STAGE1_DIR}/scripts/06_dock.sh" \
     --arm A0_null --method "$(csc_split "$STAGE1_METHODS" | head -1)" \
-    --dataset "$ARM" --jobs 1 || echo "[${STAGE}] the floor arm failed; continuing"
+    --dataset "$ARM" --jobs "$DOCK_JOBS" || echo "[${STAGE}] the floor arm failed; continuing"
 
 csc_run "stage1_score" python "${STAGE1_DIR}/scripts/07_score_poses.py" \
     --config "${STAGE1_DIR}/project.conf" --jobs 1 --force
