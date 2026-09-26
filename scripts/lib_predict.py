@@ -293,7 +293,11 @@ def main() -> int:
     }
     if got is None:
         row.update({"status": "failed", "reason": why})
-        L.append_tsv(results_dir / "predictions.tsv", PREDICTION_COLUMNS, [row])
+        # Replaced, not appended. A rerun of the same target under the same
+        # arm and seed is the same prediction, and a second row for it made
+        # one target count twice in every per-target statistic.
+        L.replace_rows(results_dir / "predictions.tsv", PREDICTION_COLUMNS,
+                       ("target_id", "arm", "seed"), [row])
         L.record_exclusion(results_dir, args.target, "05_predict", why, arm=args.arm)
         print(f"[collect] {args.target} {args.arm}: {why}")
         return 1
@@ -325,7 +329,12 @@ def main() -> int:
                 "structure_file": kept_structure,
                 "confidence_file": str(conf_path.relative_to(results_dir))})
     row.update(summarise(conf_obj))
-    L.append_tsv(results_dir / "predictions.tsv", PREDICTION_COLUMNS, [row])
+    # Replaced, not appended. A rerun of the same target under the same arm
+    # and seed is the same prediction, and stacking a second row for it made
+    # one target count twice in every per-target statistic. This is the same
+    # fault the floor builder and the docking tables had.
+    L.replace_rows(results_dir / "predictions.tsv", PREDICTION_COLUMNS,
+                   ("target_id", "arm", "seed"), [row])
     print(f"[collect] {args.target} {args.arm}: {row['n_residues_scored']} residues, "
           f"mean pLDDT {row['mean_plddt']}, MSA depth {msa_depth}")
     return 0

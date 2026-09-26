@@ -227,6 +227,13 @@ measurable on top of it: whatever a template carries, the alignment carried it
 already. And the margin of the model over simply copying the best pre-cutoff
 relative is 0.109 lDDT-CA on the median target.
 
+The templates figure needs a scale to be read against, so one target was
+predicted five times under five seeds with everything else held fixed. The
+five predictions score 0.9200, 0.9220, 0.9220, 0.9230 and 0.9240 lDDT-CA, a
+range of 0.004 and a standard deviation of 0.0015. The templates effect of
+0.002 is smaller than the spread the model produces from nothing but its own
+random seed. The alignment effect of 0.476 is more than a hundred times it.
+
 ## Docking into a predicted receptor
 
 The docking is done by the previous stage of this work, called at a pinned
@@ -408,8 +415,9 @@ of the run rather than a finding, and the comparison it would have supported,
 between a model whose cutoff precedes every entry of the application subject
 and one whose cutoff follows several of them, is not made here.
 
-The seed-variance experiment and the five-model subset were planned and not
-run.
+The five-model subset was planned and not run. The seed-variance measurement
+rests on one target, so it gives the scale of run-to-run spread for that
+protein rather than for the set.
 
 Every accuracy number is measured against one chain of one deposited
 structure. Where the experiment itself places a domain in more than one

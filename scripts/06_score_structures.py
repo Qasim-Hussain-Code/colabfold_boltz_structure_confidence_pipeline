@@ -633,7 +633,15 @@ def main() -> int:
     # holds one row per repeat, which is what the spread is computed from.
     redone_pairs = {(r["target_id"], r["arm"]) for r in rows}
     keep = [r for r in prior_scores if key_of(r) not in redone]
-    keep_res = [r for r in prior_residues if key_of(r) not in redone]
+    # A row written before the seed column existed carries a blank seed, so its
+    # key can never match one written now and it would survive a rescore of its
+    # own pair. That left 24779 stale rows beside 24617 fresh ones and the
+    # analysis read them as a second seed for 190 targets. A blank seed means
+    # the row predates the column, so the pair being rescored retires it.
+    keep_res = [r for r in prior_residues
+                if key_of(r) not in redone
+                and (r.get("seed")
+                     or (r.get("target_id"), r.get("arm")) not in redone_pairs)]
     keep_pock = [r for r in prior_pockets
                  if (r.get("target_id"), r.get("arm")) not in redone_pairs]
     if keep:

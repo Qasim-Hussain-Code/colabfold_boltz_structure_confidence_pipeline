@@ -262,6 +262,16 @@ if git ls-files | grep -qE '\.(ckpt|npz|pt|tar)$'; then
 else pass "no model weights tracked"; fi
 
 # ---- 6, 7. figures and results ----------------------------------------------
+# ---- 9. the README against the tables ---------------------------------------
+say "the README against the tables it quotes"
+if [[ -z "$PY" ]]; then
+    say "  [skip] this check needs python"
+elif "$PY" "${ROOT}/scripts/13_verify_readme.py" 2>&1 | sed 's/^/  /'; then
+    pass "every number the README quotes matches its table"
+else
+    fail "a number in the README does not match the table it came from"
+fi
+
 say "figures and results"
 if [[ -z "$PY" ]]; then say "  [skip] this check needs python"
 elif "$PY" - <<'PY'

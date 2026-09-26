@@ -128,8 +128,17 @@ def main() -> int:
         print(f"[10_analyse] {len(repeated)} target and arm pairs were predicted "
               f"more than once; the calibration keeps seed {canonical} for them "
               f"and drops {before - len(residues)} repeat residue rows")
-    scores = L.read_tsv(results_dir / "structure_scores.tsv") \
+    all_scores = L.read_tsv(results_dir / "structure_scores.tsv") \
         if (results_dir / "structure_scores.tsv").is_file() else []
+
+    # Every per-target statistic below uses one prediction per target. A repeat
+    # is a repeat of a target, not another target, and counting it again moved
+    # the median accuracy of a thirty-target arm from 0.925 to 0.922 on the
+    # strength of five predictions of one protein. The full set is kept under
+    # its own name because the spread between repeats is computed from it.
+    scores = [s for s in all_scores
+              if (s.get('target_id'), s.get('arm')) not in repeated
+              or s.get('seed', '') == canonical]
     geometry = L.read_tsv(results_dir / "geometry_checks.tsv") \
         if (results_dir / "geometry_checks.tsv").is_file() else []
     predictions = L.read_tsv(results_dir / "predictions.tsv") \
@@ -360,7 +369,7 @@ def main() -> int:
 
     # --- seed variance -------------------------------------------------------
     seed_groups: dict[tuple, list] = defaultdict(list)
-    for s in scores:
+    for s in all_scores:
         if s.get("status") == "ok" and s.get("seed"):
             seed_groups[(s["target_id"], s["arm"])].append(s)
     seed_rows = []
