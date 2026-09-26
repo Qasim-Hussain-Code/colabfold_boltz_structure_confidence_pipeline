@@ -76,6 +76,13 @@ logs/*.err
 logs/*.done
 logs/tmp/
 
+# Quarto writes these beside the report while it renders, and drops its
+# own .gitignore next to them. One file in this repository says what is
+# ignored, so its copy is ignored too rather than tracked.
+scripts/.gitignore
+.quarto/
+**/*.quarto_ipynb
+
 # Quarto and Jupyter build artefacts. The rendered report is kept.
 *.html
 !results/report/*.html
