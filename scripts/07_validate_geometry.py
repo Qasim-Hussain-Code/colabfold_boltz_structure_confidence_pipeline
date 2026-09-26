@@ -322,9 +322,14 @@ def main() -> int:
     ost_bin = str(root / "envs" / conf.get("CONDA_ENV_OST", "csc_ost") / "bin" / "ost")
 
     out_path = results_dir / "geometry_checks.tsv"
-    if out_path.is_file() and not args.force:
-        print(f"[07_validate_geometry] {out_path.name} exists; skipping (--force to redo).")
-        return 0
+    # Resumed rather than repeated, for the same reason the scoring stage is.
+    # This skipped whenever its own output existed, and the output it had was
+    # four rows from a --limit run, so every arm that finished afterwards went
+    # unchecked while the stage reported success. Whether a confident structure
+    # is physically valid is one of the questions this repository asks, and it
+    # was being answered from four structures.
+    prior = L.read_tsv(out_path) if out_path.is_file() else []
+    already = set() if args.force else {(r.get("target_id"), r.get("arm")) for r in prior}
 
     grids = load_rama_grids(data_dir / "reference_data" / "rotarama")
     if not grids:
@@ -340,6 +345,14 @@ def main() -> int:
     if not preds:
         L.eprint("[error] no successful predictions to check; run 05_predict.sh first")
         return 1
+    n_all = len(preds)
+    preds = [p for p in preds if (p["target_id"], p["arm"]) not in already]
+    if n_all - len(preds):
+        print(f"[07_validate_geometry] {n_all - len(preds)} already checked, "
+              f"{len(preds)} to do")
+    if not preds:
+        print("[07_validate_geometry] everything is already checked; nothing to do")
+        return 0
 
     rows = []
     for i, pred in enumerate(preds, 1):
@@ -429,7 +442,11 @@ def main() -> int:
         if i % 5 == 0 or i == len(preds):
             print(f"  {i}/{len(preds)} checked", flush=True)
 
-    L.write_tsv(out_path, GEOMETRY_COLUMNS, rows)
+    redone = {(r["target_id"], r["arm"]) for r in rows}
+    keep = [r for r in prior if (r.get("target_id"), r.get("arm")) not in redone]
+    if keep:
+        print(f"[07_validate_geometry] carrying forward {len(keep)} rows checked earlier")
+    L.write_tsv(out_path, GEOMETRY_COLUMNS, keep + rows)
     by_arm: dict[str, list] = {}
     for r in rows:
         by_arm.setdefault(r["arm"], []).append(r)
