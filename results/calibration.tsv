@@ -1,3 +1,4 @@
 arm	n_residues	n_targets	pearson_r	spearman_rho	expected_calibration_error	calibration_bins	mean_confidence	mean_measured_lddt_ca	n_residues_above_high_band	n_of_those_below_trust	fraction_above_band_below_trust	fraction_ci_low	fraction_ci_high	high_band	trust_line	recorded
-af2_msa_notmpl	3213	30	0.7346	0.5977	0.0141	10	0.9089	0.9021	2463	34	0.0138	0.0066	0.0219	90.0	0.7	2026-09-26T15:35:59+08:00
-af2_nomsa	18801	149	0.7983	0.7104	0.0245	10	0.4518	0.428	663	1	0.0015	0.0	0.0055	90.0	0.7	2026-09-26T15:36:00+08:00
+af2_msa_notmpl	3213	30	0.7346	0.5977	0.0141	10	0.9089	0.9021	2463	34	0.0138	0.0066	0.0219	90.0	0.7	2026-09-26T18:26:58+08:00
+af2_msa_tmpl	1160	11	0.512	0.5362	0.0297	10	0.921	0.9036	874	23	0.0263	0.0086	0.0445	90.0	0.7	2026-09-26T18:26:58+08:00
+af2_nomsa	18801	149	0.7983	0.7104	0.0245	10	0.4518	0.428	663	1	0.0015	0.0	0.0055	90.0	0.7	2026-09-26T18:26:59+08:00

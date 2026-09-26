@@ -1,7 +1,9 @@
 key	value	note
 fraction_above_90_below_0.7__af2_msa_notmpl	0.0138	34 of 2463 residues above confidence 90 measured below 0.7 lDDT-CA, over 30 targets
+fraction_above_90_below_0.7__af2_msa_tmpl	0.0263	23 of 874 residues above confidence 90 measured below 0.7 lDDT-CA, over 11 targets
 fraction_above_90_below_0.7__af2_nomsa	0.0015	1 of 663 residues above confidence 90 measured below 0.7 lDDT-CA, over 149 targets
 lddt_ca_median__af2_msa_notmpl	0.925	over 30 targets
+lddt_ca_median__af2_msa_tmpl	0.908	over 11 targets
 lddt_ca_median__af2_nomsa	0.378	over 149 targets
-lddt_ca_median__null_template	0.872	over 120 targets
-lddt_ca_median__null_unrelated	0.018	over 150 targets
+lddt_ca_median__null_template	0.8825	over 120 targets
+lddt_ca_median__null_unrelated	0.016	over 150 targets
