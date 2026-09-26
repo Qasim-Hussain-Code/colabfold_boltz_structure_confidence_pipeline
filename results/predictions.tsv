@@ -456,3 +456,7 @@ target_id	arm	model	seed	status	reason	sequence_length	n_residues_scored	mean_pl
 8S7A_1	af2_msa_tmpl	alphafold2_ptm	20260925	ok		84	84	84.487	0.63	30.188	7.489	9800			1136.94	4006.8		1	0-100	predictions/af2_msa_tmpl/8S7A_1.pdb.gz	confidence/8S7A_1__af2_msa_tmpl.json.gz	2026-09-26T17:18:50+08:00
 35TM_1	af2_msa_tmpl	alphafold2_ptm	20260925	failed	no rank 1 score file was written	139									92.57	4557.6		1				2026-09-26T17:20:22+08:00
 8PR6_1	af2_msa_tmpl	alphafold2_ptm	20260925	ok		85	85	92.142	0.82	28.859	4.08	6109			986.19	4149.0		1	0-100	predictions/af2_msa_tmpl/8PR6_1.pdb.gz	confidence/8PR6_1__af2_msa_tmpl.json.gz	2026-09-26T17:36:49+08:00
+8PWC_1	af2_msa_tmpl	alphafold2_ptm	20260925	ok		110	110	87.057	0.76	30.547	7.82	1537			920.99	3594.6		1	0-100	predictions/af2_msa_tmpl/8PWC_1.pdb.gz	confidence/8PWC_1__af2_msa_tmpl.json.gz	2026-09-26T17:52:11+08:00
+8JN0_1	af2_msa_tmpl	alphafold2_ptm	20260925	ok		89	89	97.19	0.87	25.703	2.285	3973			949.56	3928.4		1	0-100	predictions/af2_msa_tmpl/8JN0_1.pdb.gz	confidence/8JN0_1__af2_msa_tmpl.json.gz	2026-09-26T18:08:01+08:00
+36IQ_1	af2_msa_tmpl	alphafold2_ptm	20260925	ok		98	98	86.707	0.72	30.406	5.561	2			161.90	2998.1		1	0-100	predictions/af2_msa_tmpl/36IQ_1.pdb.gz	confidence/36IQ_1__af2_msa_tmpl.json.gz	2026-09-26T18:10:43+08:00
+10XE_1	af2_msa_tmpl	alphafold2_ptm	20260925	ok		91	91	91.976	0.81	25.156	3.364	2174			813.67	3343.4		1	0-100	predictions/af2_msa_tmpl/10XE_1.pdb.gz	confidence/10XE_1__af2_msa_tmpl.json.gz	2026-09-26T18:24:17+08:00

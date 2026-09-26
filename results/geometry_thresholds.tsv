@@ -1,8 +1,8 @@
 check	threshold	basis	n_deposited	recorded
-bad_bonds	4	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T17:49:33+08:00
-bad_angles	0	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T17:49:33+08:00
-clashes	0	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T17:49:33+08:00
-ca_chirality_errors	0	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T17:49:33+08:00
-cis_nonpro	1	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T17:49:33+08:00
-twisted_peptides	2	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T17:49:33+08:00
-rama_outliers	9	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T17:49:33+08:00
+bad_bonds	4	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T18:25:02+08:00
+bad_angles	0	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T18:25:02+08:00
+clashes	0	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T18:25:02+08:00
+ca_chirality_errors	0	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T18:25:02+08:00
+cis_nonpro	1	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T18:25:02+08:00
+twisted_peptides	2	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T18:25:02+08:00
+rama_outliers	9	95th percentile over the deposited structures in this set, which are the two floor arms	270	2026-09-26T18:25:02+08:00
