@@ -109,6 +109,25 @@ def main() -> int:
         L.eprint("[error] results/residue_scores.tsv missing; run 06_score_structures.py")
         return 1
     residues = L.read_tsv(res_path)
+    # One prediction per target in the calibration pool. A seed-variance run
+    # predicts one target several times, and pooling residues over all of them
+    # weighs that target once per repeat: five times here, which moved the
+    # calibration error of a 30-target arm from 0.0141 to 0.0208. The repeats
+    # are what the spread below is computed from and they belong there, not in
+    # a pool that is meant to hold one prediction per target.
+    canonical = str(conf.get("SEED", "")).strip()
+    seeds_per_pair: dict[tuple, set] = defaultdict(set)
+    for r in residues:
+        seeds_per_pair[(r.get("target_id"), r.get("arm"))].add(r.get("seed", ""))
+    repeated = {k for k, v in seeds_per_pair.items() if len(v) > 1}
+    if repeated:
+        before = len(residues)
+        residues = [r for r in residues
+                    if (r.get("target_id"), r.get("arm")) not in repeated
+                    or r.get("seed", "") == canonical]
+        print(f"[10_analyse] {len(repeated)} target and arm pairs were predicted "
+              f"more than once; the calibration keeps seed {canonical} for them "
+              f"and drops {before - len(residues)} repeat residue rows")
     scores = L.read_tsv(results_dir / "structure_scores.tsv") \
         if (results_dir / "structure_scores.tsv").is_file() else []
     geometry = L.read_tsv(results_dir / "geometry_checks.tsv") \

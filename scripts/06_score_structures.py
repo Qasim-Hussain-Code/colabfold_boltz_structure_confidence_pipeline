@@ -62,7 +62,7 @@ SCORE_COLUMNS = [
 ]
 
 RESIDUE_COLUMNS = [
-    "target_id", "arm", "chain", "resnum", "plddt", "lddt_ca", "recorded",
+    "target_id", "arm", "seed", "chain", "resnum", "plddt", "lddt_ca", "recorded",
 ]
 
 
@@ -609,8 +609,15 @@ def main() -> int:
                             row["pocket_n_residues"] = len(near)
             conf_path = results_dir / pred.get("confidence_file", "")
             if conf_path.is_file():
-                residue_rows.extend(
-                    pair_plddt_with_lddt(L.read_json_gz(conf_path), local, tid, arm))
+                # The seed travels with the residue rows. A seed-variance run
+                # predicts one target five times, and without it that target
+                # would weigh five times as much in a calibration pooled over
+                # residues, which shifted the calibration error from 0.0141 to
+                # 0.0208 on one target out of thirty.
+                seed_of = pred.get("seed", "")
+                for r in pair_plddt_with_lddt(L.read_json_gz(conf_path), local, tid, arm):
+                    r["seed"] = seed_of
+                    residue_rows.append(r)
 
         rows.append(row)
         if i % 5 == 0 or i == len(preds):
@@ -626,8 +633,7 @@ def main() -> int:
     # holds one row per repeat, which is what the spread is computed from.
     redone_pairs = {(r["target_id"], r["arm"]) for r in rows}
     keep = [r for r in prior_scores if key_of(r) not in redone]
-    keep_res = [r for r in prior_residues
-                if (r.get("target_id"), r.get("arm")) not in redone_pairs]
+    keep_res = [r for r in prior_residues if key_of(r) not in redone]
     keep_pock = [r for r in prior_pockets
                  if (r.get("target_id"), r.get("arm")) not in redone_pairs]
     if keep:
