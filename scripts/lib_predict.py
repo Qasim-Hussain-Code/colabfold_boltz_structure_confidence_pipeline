@@ -249,6 +249,9 @@ def main() -> int:
     p_out.add_argument("--arm", required=True)
     p_out.add_argument("--model", required=True)
     p_out.add_argument("--seed", default="")
+    p_out.add_argument("--tag", default="",
+                       help="name for the output files, which differs from the "
+                            "target when one target is predicted more than once")
     p_out.add_argument("--source", required=True, choices=["colabfold", "boltz2"])
     p_out.add_argument("--out-dir", required=True, type=Path)
     p_out.add_argument("--elapsed", default="")
@@ -301,15 +304,20 @@ def main() -> int:
     conf_obj["seed"] = args.seed
 
     msa_depth = a3m_depth(Path(args.msa_file)) if args.msa_file else 0
+    # The name a repeat carries. A seed-variance run predicts one target
+    # several times, and without the seed in the name each repeat overwrote
+    # the one before it and the arm's own prediction along with them. The
+    # prediction stage already builds this tag; it only had to be passed here.
+    tag = args.tag or args.target
     conf_dir = results_dir / "confidence"
-    conf_path = conf_dir / f"{args.target}__{args.arm}.json.gz"
+    conf_path = conf_dir / f"{tag}__{args.arm}.json.gz"
     L.write_json_gz(conf_path, conf_obj)
 
     kept_structure = ""
     if structure is not None and structure.is_file():
         struct_dir = Path(conf["DATA_DIR"]) / "predictions" / args.arm
         struct_dir.mkdir(parents=True, exist_ok=True)
-        dest = struct_dir / f"{args.target}{structure.suffix}.gz"
+        dest = struct_dir / f"{tag}{structure.suffix}.gz"
         L.gzip_file(structure, dest)
         kept_structure = str(dest.relative_to(Path(conf["DATA_DIR"])))
 
