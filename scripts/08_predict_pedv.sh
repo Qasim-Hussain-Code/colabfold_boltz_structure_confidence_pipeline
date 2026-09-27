@@ -194,6 +194,7 @@ fi
 [[ -s "$MSA" ]] && echo "[${STAGE}] alignment depth $(grep -c '^>' "$MSA")"
 
 # --- predict ------------------------------------------------------------------
+N_ARM_FAIL=0
 for arm in af2_msa_notmpl af2_nomsa; do
     out="${PEDV_DIR}/${arm}"
     if [[ -d "$out" && -n "$(find "$out" -name '*_scores_rank_001_*.json' 2>/dev/null)" && $FORCE -eq 0 ]]; then
@@ -215,13 +216,24 @@ for arm in af2_msa_notmpl af2_nomsa; do
     esac
     csc_run "predict_pedv_${arm}" \
         "$(csc_env_bin "$CONDA_ENV_COLABFOLD" colabfold_batch)" \
-        "${args[@]}" "$input" "$out" || \
-        echo "[${STAGE}] ${arm} failed; continuing"
+        "${args[@]}" "$input" "$out" || {
+            echo "[${STAGE}] ${arm} failed; continuing"
+            N_ARM_FAIL=$(( N_ARM_FAIL + 1 ))
+        }
 done
 
 # --- where the prediction put the domain --------------------------------------
 csc_run "compare_prediction" "$PY_ANALYSIS" "${SCRIPT_DIR}/08a_pedv_analysis.py" \
     --config "${REPO_DIR}/project.conf" --entries "$ENTRIES" --compare
 
-csc_stage_end "construct=${LEN} residues"
-csc_mark_done "$STAGE"
+csc_stage_end "construct=${LEN} residues failed_arms=${N_ARM_FAIL}"
+# A stage that predicted nothing must not mark itself finished. Both arms are
+# allowed to fail without stopping the run, because the deposited measurements
+# above are worth keeping on their own, but the stamp is what every later stage
+# reads to decide this arm is complete.
+if (( N_ARM_FAIL > 0 )); then
+    echo "[${STAGE}] ${N_ARM_FAIL} of 2 arms failed, so the stage is not marked"
+    echo "           as finished. The deposited measurements were still written."
+else
+    csc_mark_done "$STAGE"
+fi

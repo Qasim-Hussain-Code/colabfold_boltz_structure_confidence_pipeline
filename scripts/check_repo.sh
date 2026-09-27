@@ -284,7 +284,7 @@ else
 fi
 
 # The shape of the subject lines. The rule is two or three lower case words
-# joined with underscores. This reports rather than fails: the commits that
+# joined by an underscore. This reports rather than fails: the commits that
 # break it are already in a public history, and rewriting them would mean a
 # force push. A local commit-msg hook refuses new ones.
 BAD_SUBJECTS="$(git log --format='%s' 2>/dev/null | awk '{ n = split($0, a, "_"); if (n < 2 || n > 3 || $0 ~ /[^a-z0-9_]/) c++ } END { print c+0 }')"
