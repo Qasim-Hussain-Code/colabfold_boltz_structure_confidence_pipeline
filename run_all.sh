@@ -101,6 +101,19 @@ should_run() {
     local i; i="$(stage_index "$name")"
     (( i >= START ))
 }
+# --only takes a stage name, and a name that matches no stage used to run no
+# stages and exit 0, which reads exactly like a run that had nothing to do.
+if [[ -n "$ONLY" ]]; then
+    ok=0
+    for s in "${STAGES[@]}"; do [[ "$s" == "$ONLY" ]] && ok=1; done
+    if (( ok == 0 )); then
+        echo "[run_all] --only ${ONLY} matches no stage. The stages are:" >&2
+        printf '           %s
+' "${STAGES[@]}" >&2
+        exit 2
+    fi
+fi
+
 banner() {
     echo
     echo "=============================================================="
@@ -143,7 +156,10 @@ if should_run 01_install; then
     # The memory ceiling in project.conf is a projection until this runs. It
     # predicts three short targets and refits the curve from what this machine
     # actually did.
-    if [[ ! -s "${RESULTS_DIR}/environment/memory_curve.tsv" ]]; then
+    # The stamp, not the table: results/environment/memory_curve.tsv is
+    # tracked and so exists on any clone, carrying measurements from the
+    # machine that produced it.
+    if [[ ! -f "${LOG_DIR}/00_configure_calibrate.done" ]]; then
         banner "00_configure --calibrate"
         bash "${SCRIPTS}/00_configure.sh" --calibrate || \
             echo "[run_all] calibration failed; the ceiling stays a projection and says so"
@@ -162,7 +178,9 @@ if should_run 03_fetch_references; then
     # decided by the stage that queries the archive. It removes the files whose
     # instance it changed, and the fetch is repeated for those.
     banner "03a_choose_ligand_instances"
-    "$PY" "${SCRIPTS}/03a_choose_ligand_instances.py" --config "${ROOT}/project.conf" ||         echo "[run_all] the ligand instances could not be chosen; continuing"
+    "$PY" "${SCRIPTS}/03a_choose_ligand_instances.py" \
+        --config "${ROOT}/project.conf" || \
+        echo "[run_all] the ligand instances could not be chosen; continuing"
     bash "${SCRIPTS}/03_fetch_references.sh" "${LIMIT_FLAG[@]}"
 fi
 if should_run 04_run_msa; then
@@ -191,7 +209,9 @@ if should_run 05_predict; then
     # RECHOOSE_ARM_SUBSETS=1 to do it.
     if [[ -n "${RECHOOSE_ARM_SUBSETS:-}" && -n "${ARM_BUDGET_HOURS:-}" ]]; then
         banner "02a_select_arm_subsets"
-        "$PY" "${SCRIPTS}/02a_select_arm_subsets.py" --config "${ROOT}/project.conf"             --hours "$ARM_BUDGET_HOURS" ||             echo "[run_all] the arm subsets could not be chosen; the arms take the whole set"
+        "$PY" "${SCRIPTS}/02a_select_arm_subsets.py" \
+            --config "${ROOT}/project.conf" --hours "$ARM_BUDGET_HOURS" || \
+            echo "[run_all] the arm subsets could not be chosen; the arms take the whole set"
     fi
     banner "05_predict"
     IFS=',' read -r -a ARM_LIST <<< "${ARM:-$ARMS}"
@@ -245,7 +265,9 @@ if should_run 06_score_structures; then
     # predictions, so they cost a download each and no inference, and the
     # scoring stage treats them exactly as it treats a prediction.
     banner "06a_build_null_floors"
-    "$PY" "${SCRIPTS}/06a_build_null_floors.py" --config "${ROOT}/project.conf"         "${FORCE_FLAG[@]}" "${LIMIT_FLAG[@]}" ||         echo "[run_all] the floors failed; continuing without them"
+    "$PY" "${SCRIPTS}/06a_build_null_floors.py" --config "${ROOT}/project.conf" \
+        "${FORCE_FLAG[@]}" "${LIMIT_FLAG[@]}" || \
+        echo "[run_all] the floors failed; continuing without them"
     banner "06_score_structures"
     "$PY" "${SCRIPTS}/06_score_structures.py" --config "${ROOT}/project.conf" \
         ${ARM:+--arm "$ARM"} "${FORCE_FLAG[@]}"
@@ -289,6 +311,11 @@ if should_run 12_report; then
             "$QUARTO" render "scripts/12_report.qmd" --to html \
                 --output-dir "${RESULTS_DIR}/report" ) || \
             echo "[12_report] the render failed; the tables in results/ are unaffected"
+        # The renderer embeds an icon stylesheet the report never uses, and
+        # several of its class names are companies that sell language models.
+        "$PY" "${SCRIPTS}/15_clean_report.py" \
+            "${RESULTS_DIR}/report/12_report.html" || \
+            echo "[12_report] the report could not be cleaned; check it before sharing"
     else
         echo "[12_report] quarto not on PATH; skipping."
         echo "            Every number it would show is already in results/."

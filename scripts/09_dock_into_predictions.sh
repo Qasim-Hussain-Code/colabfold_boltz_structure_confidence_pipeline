@@ -211,12 +211,14 @@ run_stage1 05_define_boxes.py --config "${STAGE1_DIR}/project.conf" \
 
 for method in $(csc_split "$STAGE1_METHODS"); do
     csc_run "stage1_dock_${method}" bash "${STAGE1_DIR}/scripts/06_dock.sh" \
-        --arm A2_genconf_refbox --method "$method" --dataset "$ARM"         --jobs "$DOCK_JOBS" ${FORCE:+--force}
+        --arm A2_genconf_refbox --method "$method" --dataset "$ARM" \
+        --jobs "$DOCK_JOBS" ${FORCE:+--force}
 done
 # The floor, run once with the first method, exactly as that pipeline runs it.
 csc_run "stage1_dock_null" bash "${STAGE1_DIR}/scripts/06_dock.sh" \
     --arm A0_null --method "$(csc_split "$STAGE1_METHODS" | head -1)" \
-    --dataset "$ARM" --jobs "$DOCK_JOBS" ${FORCE:+--force} ||     echo "[${STAGE}] the floor arm failed; continuing"
+    --dataset "$ARM" --jobs "$DOCK_JOBS" ${FORCE:+--force} || \
+    echo "[${STAGE}] the floor arm failed; continuing"
 
 csc_run "stage1_score" python "${STAGE1_DIR}/scripts/07_score_poses.py" \
     --config "${STAGE1_DIR}/project.conf" --jobs 1 --force

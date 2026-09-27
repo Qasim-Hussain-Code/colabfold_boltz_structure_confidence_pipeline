@@ -94,8 +94,13 @@ trap cleanup EXIT INT TERM
 THREADS=""; RAM_GB=""; DISK_GB=""; JOBS=""; CACHE_DIR=""; DATA_DIR=""
 HOURS=""; ASSUME_YES=0; CALIBRATE=0; MAX_TARGETS=""; RECALIBRATE=0
 HOST_RESERVE_OVERRIDE=""
-DEFAULT_ARMS="af2_msa_notmpl,af2_msa_tmpl,af2_nomsa,boltz2_msa,null_template,null_unrelated"
-DEFAULT_MODELS="alphafold2_ptm,boltz2"
+# The arms the README reports, and only those. The Boltz-2 arm is implemented
+# and its environment is pinned, but it was never run and the README says so,
+# so a default that includes it makes a fresh clone attempt an experiment this
+# repository does not describe and sizes the disk gate against weights it will
+# not use. --arms is how to ask for it.
+DEFAULT_ARMS="af2_msa_notmpl,af2_msa_tmpl,af2_nomsa,null_template,null_unrelated"
+DEFAULT_MODELS="alphafold2_ptm"
 ARMS="$DEFAULT_ARMS"
 MODELS="$DEFAULT_MODELS"
 
@@ -229,7 +234,11 @@ DEFAULT_DISK=$(( DEFAULT_DISK - 4 )); (( DEFAULT_DISK < 1 )) && DEFAULT_DISK=1
 [[ -n "$DISK_GB" ]] || ask "disk budget, data plus cache (GB)" "$DEFAULT_DISK" DISK_GB
 [[ -n "$JOBS"    ]] || ask "concurrent prediction jobs"    "1"            JOBS
 [[ -n "$HOURS"   ]] || ask "wall clock budget (hours)"     "72"           HOURS
-[[ -n "$MAX_TARGETS" ]] || MAX_TARGETS=0
+# The size of the held-out set. Zero means no cap, which is not what the set
+# this repository reports was built with: it was capped at 150 and every
+# number quoted is over those 150. A clone that starts from no cap builds a
+# different set and cannot reproduce any of them.
+[[ -n "$MAX_TARGETS" ]] || MAX_TARGETS=150
 
 for pair in "THREADS:$THREADS" "RAM_GB:$RAM_GB" "DISK_GB:$DISK_GB" "JOBS:$JOBS" \
             "HOURS:$HOURS" "MAX_TARGETS:$MAX_TARGETS"; do
@@ -328,8 +337,21 @@ if (( CALIBRATE == 1 )); then
     # property of this machine and these models. An existing table is used as
     # it stands, and --recalibrate is how to take the measurement again after
     # the hardware or the model changes.
+    #
+    # The table is tracked, so on a fresh clone it is present and describes
+    # somebody else's machine. The stamp beside it is not tracked, so its
+    # absence is what separates "measured here" from "shipped with the
+    # repository". Without this a clone inherits this machine's memory curve
+    # and sizes every refusal against hardware it is not running on.
+    CAL_STAMP="${LOG_DIR}/00_configure_calibrate.done"
     CAL_POINTS=0
     [[ -s "$CAL_OUT" ]] && CAL_POINTS="$(awk -F'\t' 'NR>1 && $3 ~ /^[0-9.]+$/ {n++} END {print n+0}' "$CAL_OUT")"
+    if (( CAL_POINTS >= 2 )) && [[ ! -f "$CAL_STAMP" ]]; then
+        echo "[00_configure] ${CAL_OUT} carries ${CAL_POINTS} measurements but has"
+        echo "               no stamp beside it, so they were taken on another"
+        echo "               machine. Measuring again on this one."
+        CAL_POINTS=0
+    fi
     if (( CAL_POINTS >= 2 )) && (( RECALIBRATE == 0 )); then
         echo "[00_configure] using the ${CAL_POINTS} measurements already in ${CAL_OUT}"
         echo "               (--recalibrate to measure again)"
@@ -337,6 +359,11 @@ if (( CALIBRATE == 1 )); then
         echo "[error] calibration run failed; project.conf keeps its provisional curve" >&2
         exit 5
     fi
+    # The stamp says this machine was measured. It is written whether the
+    # points were taken now or accepted from a previous run on this machine,
+    # because in both cases the measurement belongs to this hardware.
+    mkdir -p "$LOG_DIR"
+    date -Iseconds > "$CAL_STAMP"
     # Least squares on peak_rss_mb = a + b*(L/1000)^2, and the same for
     # seconds. The largest absolute residual is carried out with the
     # coefficients: with three points a quadratic fit always looks good, and a

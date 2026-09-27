@@ -260,6 +260,22 @@ else
     pass "no commit credits a tool"
 fi
 
+# The rendered report is not tracked, so the scans above never see it, and it
+# is the one artefact a reader is handed rather than reads in the repository.
+# It is checked here when it exists.
+REPORT="${ROOT}/results/report/12_report.html"
+if [[ -f "$REPORT" ]]; then
+    HITS="$(grep -o -i -E 'anthropic|openai|claude|copilot|chatgpt|perplexity' \
+        "$REPORT" 2>/dev/null | sort -u | tr '\n' ' ')"
+    if [[ -n "$HITS" ]]; then
+        fail "the rendered report names: ${HITS}(run scripts/15_clean_report.py)"
+    else
+        pass "the rendered report names no tool or vendor"
+    fi
+else
+    say "  [skip] the report has not been rendered, so it was not scanned"
+fi
+
 # ---- 5. repository hygiene --------------------------------------------------
 say "repository hygiene"
 BIG="$(git ls-files -z | xargs -0 ls -l 2>/dev/null | awk '$5 > 52428800 {print $9}')"

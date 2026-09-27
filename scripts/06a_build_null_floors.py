@@ -334,7 +334,13 @@ def main() -> int:
         if i % 20 == 0 or i == len(targets):
             print(f"  {i}/{len(targets)} targets", flush=True)
 
-    L.write_tsv(results_dir / "null_floors.tsv", FLOOR_COLUMNS, rows)
+    # Replaced by key, not written whole. Under --limit this run builds a few
+    # floors and a whole-file write then truncated the table to those few,
+    # while predictions.tsv kept every floor because it is replaced by key.
+    # The two tables disagreed, and the floor arms went on describing
+    # structures no row in null_floors.tsv accounted for.
+    L.replace_rows(results_dir / "null_floors.tsv", FLOOR_COLUMNS,
+                   ("target_id", "arm"), rows)
     if pred_rows:
         # Replaced rather than appended. This stage can be rebuilt, and a
         # rebuild that appends leaves two rows for every floor, which the

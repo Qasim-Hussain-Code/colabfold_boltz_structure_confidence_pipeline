@@ -298,6 +298,11 @@ def pocket_residues(reference: Path, ligand_sdf: Path, radius: float):
     return near, len(lig)
 
 
+# A pocket is defined by the residues that contact the ligand, so a handful is
+# not a pocket. Five is the smallest number this will average over.
+MIN_POCKET_RESIDUES_SCORED = 5
+
+
 def pocket_scores(local_lddt: dict, bb_local_lddt: dict, positions: dict):
     """Average the per-residue scores over the pocket.
 
@@ -318,6 +323,14 @@ def pocket_scores(local_lddt: dict, bb_local_lddt: dict, positions: dict):
 
     all_atom, n_all = mean_over(local_lddt)
     ca_only, n_ca = mean_over(bb_local_lddt)
+    # A mean over one residue is not a pocket score. The unrelated-chain arm
+    # produced exactly that: on one target a single residue of the pocket
+    # could be scored at all, it happened to score 1.0, and the table then
+    # reported a perfect pocket for a chain whose global score was 0.042.
+    # Below this floor the score is withheld and the count is still recorded,
+    # so the row says how little there was rather than averaging it anyway.
+    if max(n_all, n_ca) < MIN_POCKET_RESIDUES_SCORED:
+        return None, None, max(n_all, n_ca)
     return ca_only, all_atom, max(n_all, n_ca)
 
 
@@ -334,7 +347,7 @@ def pocket_rmsd(model: Path, reference: Path, positions: dict):
     import gemmi
     import numpy as np
 
-    def heavy_atoms(path):
+    def heavy_atoms(path, names):
         st = gemmi.read_structure(str(path))
         st.setup_entities()
         st.remove_ligands_and_waters()
@@ -357,6 +370,7 @@ def pocket_rmsd(model: Path, reference: Path, positions: dict):
                 key = int(res.label_seq) if has_label else index
                 if key not in positions:
                     continue
+                names[key] = res.name
                 for atom in res:
                     if atom.element == gemmi.Element("H"):
                         continue
@@ -365,10 +379,26 @@ def pocket_rmsd(model: Path, reference: Path, positions: dict):
                 break
         return out
 
-    a, b = heavy_atoms(model), heavy_atoms(reference)
+    model_names: dict[int, str] = {}
+    ref_names: dict[int, str] = {}
+    a = heavy_atoms(model, model_names)
+    b = heavy_atoms(reference, ref_names)
     shared = sorted(set(a) & set(b))
     if len(shared) < 8:
         return None, len(shared)
+    # Both sides are keyed by the residue's place in its own chain, which is
+    # the same residue only when the two chains are the same sequence in the
+    # same order. For the unrelated-chain arm they are not, and pairing by
+    # position there fits one protein's pocket onto another's and reports the
+    # deviation as if it meant something. Requiring the paired residues to be
+    # the same amino acid catches that without needing the alignment: an
+    # unrelated chain agrees at chance, around one position in twenty.
+    paired = [k for k in {k for k, _n in shared}
+              if k in model_names and k in ref_names]
+    if paired:
+        agree = sum(1 for k in paired if model_names[k] == ref_names[k])
+        if agree / len(paired) < 0.8:
+            return None, 0
     m = np.array([a[k] for k in shared])
     r = np.array([b[k] for k in shared])
     cm, cr = m.mean(axis=0), r.mean(axis=0)

@@ -366,10 +366,28 @@ for target in "${TARGET_LIST[@]}"; do
         out_dir="${WORK}/${tag}"
         done_marker="${RESULTS_DIR}/confidence/${target}__${ARM}.json.gz"
         (( SEED_VAR == 1 )) && done_marker="${RESULTS_DIR}/confidence/${tag}__${ARM}.json.gz"
-        if [[ -f "$done_marker" && $FORCE -eq 0 ]]; then
+        # Both halves of a prediction, not just the confidence file. The
+        # confidence files live under results/ and are tracked; the
+        # coordinates live under DATA_DIR and are not. On a fresh clone the
+        # first is therefore always present and the second never is, so a
+        # marker of the confidence file alone reports every target in every
+        # arm as already predicted. The run then fetches the parameters,
+        # predicts nothing, stamps the arm finished, and every later stage
+        # finds its own tracked table complete and does nothing either, so
+        # the whole pipeline exits successfully having reproduced none of it.
+        structure_marker=""
+        for ext in pdb cif; do
+            cand="${DATA_DIR}/predictions/${ARM}/${tag}.${ext}.gz"
+            [[ -f "$cand" ]] && { structure_marker="$cand"; break; }
+        done
+        if [[ -f "$done_marker" && -n "$structure_marker" && $FORCE -eq 0 ]]; then
             echo "  ${tag}: already predicted; skipping"
             N_SKIP=$(( N_SKIP + 1 ))
             continue
+        fi
+        if [[ -f "$done_marker" && -z "$structure_marker" && $FORCE -eq 0 ]]; then
+            echo "  ${tag}: a confidence file is present but its coordinates are not;"
+            echo "          predicting again rather than counting it as done"
         fi
         mkdir -p "$out_dir"
         msa_file="${DATA_DIR}/msa/${target}.a3m"
