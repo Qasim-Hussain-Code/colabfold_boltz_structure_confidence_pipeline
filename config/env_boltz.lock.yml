@@ -44,7 +44,19 @@ dependencies:
       - antlr4-python3-runtime==4.9.3
       - attrs==26.1.0
       - biopython==1.84
-      - boltz==2.2.1
+      # The commit, not the release. This environment was built from
+      # b1ebfc46 of the development branch, which reports itself as
+      # 2.2.1, and the 2.2.1 on PyPI is a different tree: it runs the
+      # diffusion module in reduced precision on CPU. pip freeze wrote
+      # the version string, so this file said install the release and
+      # the record in results/environment/versions.tsv said the commit.
+      #
+      # The pin does not carry everything. Two source edits were made
+      # after install, both recorded in that same file: autocast is
+      # disabled for the active device in boltz2.py, and the merged
+      # precision fix is present. This file rebuilds the packages, not
+      # those edits.
+      - boltz @ git+https://github.com/jwohlwend/boltz@b1ebfc46ecf57f5414e0d1a6f9027bbb122c53bc
       - certifi==2026.7.22
       - charset-normalizer==3.5.1
       - chembl-structure-pipeline==1.2.2

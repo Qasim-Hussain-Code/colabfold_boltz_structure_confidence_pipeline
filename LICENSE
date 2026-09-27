@@ -19,3 +19,39 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+-------------------------------------------------------------------------------
+Third-party notices
+
+The licence above covers the code in this repository. It does not cover the
+software this pipeline installs, the data it downloads, or the model
+parameters it loads, each of which carries its own terms. The full list, with
+the identifier every source is pinned to, is config/sources.tsv, and the
+versions and licences resolved at install time are recorded in
+results/environment/tool_licences.tsv and results/environment/versions.tsv.
+The notices that require repeating are repeated here.
+
+Ramachandran reference distributions, in data/reference_data/rotarama, are the
+rotarama_data set from the Richardson laboratory and its contributors,
+distributed under CC-BY-4.0. They are downloaded rather than copied into this
+repository, and the licence file served alongside them is downloaded with
+them. Attribution to the Richardson laboratory and contributors is required by
+that licence and is given here.
+
+US-align is redistributed under a permissive custom notice rather than a
+standard licence. The notice is in the file the binary ships with and is not
+reproduced or altered here.
+
+AlphaFold2 parameters are not covered by the MIT licence of the ColabFold code
+that loads them. Their terms are attribution-only as stated by the model's
+repository, and the licence file served with the archive is recorded at fetch
+time in results/environment/alphafold_params_LICENSE.txt.
+
+OpenStructure is LGPL-3.0-or-later and ColabFold's prebuilt search binaries are
+GPL-3.0-or-later. Both are installed into separate conda environments and
+called as programs. No code from either is copied into this repository and
+nothing here is a derivative work of them.
+
+Structure and ligand data come from the RCSB Protein Data Bank under CC0-1.0.
+The alignment server at api.colabfold.com is used under its own terms of
+service, which the README describes.

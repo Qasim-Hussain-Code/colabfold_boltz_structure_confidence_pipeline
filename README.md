@@ -25,12 +25,17 @@ The five questions, and the short answers:
    270 deposited structures in this set span, against 103 of 120 for the
    deposited structures themselves. The failures are almost all bond angles.
 3. How much of the apparent accuracy comes from information the model should
-   not have had? A great deal. Of 150 targets held out by both deposition and
-   release date, 56 have a relative deposited before the cutoff with exactly
-   the same sequence. Copying that relative scores 0.9575 median lDDT-CA for
-   the 54 of them the comparison could be made on, where AlphaFold2 with an
-   alignment scores 0.925 over its 30. Over all 117 targets whose copied
-   template could be compared, copying scores 0.885.
+   not have had? A great deal, though the model is still ahead. Of 150 targets
+   held out by both deposition and release date, 56 have a relative deposited
+   before the cutoff with exactly the same sequence, and copying that relative
+   scores 0.9575 median lDDT-CA on the 54 where the comparison could be made.
+   Over all 117 targets whose copied template could be compared it scores
+   0.885. Those figures cover different targets from the model's, so they
+   cannot be subtracted from it. On the 19 targets both arms cover, AlphaFold2
+   is ahead of the copy by 0.109 lDDT-CA on the median target, interval 0.032
+   to 0.185. The finding is that a held-out set filtered by date is not held
+   out by information, so most of what looks like prediction here could have
+   been looked up, and not that looking it up does better.
 4. What does docking into a predicted receptor cost? On the same 13 targets
    with the same protocol, success falls from 4 of 11 to 1 of 11 with one
    scoring function, and from 5 of 9 to 1 of 9 with the other.
@@ -322,6 +327,16 @@ The effect is large and the intervals are wide, because 9 to 11 targets is a
 small number. The honest statement is that docking into a predicted receptor
 lost most of the success rate on this set, and that with these counts the
 difference is strong but not decisive.
+
+The control answers what it was put there to answer, and the answer differs
+between the two arms. Dropping a conformer into the box at a random
+orientation succeeds 0 times in 12. Searching in the experimental receptor
+succeeds 4 of 11 and 5 of 9, so the search is doing work there. Searching in
+the predicted receptor succeeds 1 of 11 and 1 of 9, whose intervals, 1.6 to
+37.7 and 2.0 to 43.5 per cent, overlap the control's 0.0 to 24.3. On this set
+and at these counts, docking into the predicted receptor cannot be shown to
+beat not searching at all. That is a statement about how little the counts
+can settle as much as about the receptors.
 
 The published figure for the same scoring function and the same docking arm in
 the previous stage is 53.5 per cent, on 299 targets. That is not the

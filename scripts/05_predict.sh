@@ -126,9 +126,17 @@ mkdir -p "$(dirname "$WEIGHTS_TSV")"
 [[ -s "$WEIGHTS_TSV" ]] || printf 'model\tfile\tbytes\tsha256\tsource\tnote\trecorded\n' > "$WEIGHTS_TSV"
 
 record_weight_file() {  # record_weight_file <model> <path> <note>
+    # One row per file, replaced rather than appended. The parameters are
+    # fetched and deleted once per arm, so appending wrote the same six rows
+    # once for every arm that ran and the table said the run had used twelve
+    # parameter files where it used six.
     local model="$1" f="$2" note="$3"
     [[ -f "$f" ]] || return 0
-    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$model" "$(basename "$f")" \
+    local base; base="$(basename "$f")"
+    local tmp; tmp="$(mktemp)"
+    awk -F'\t' -v m="$model" -v b="$base" \
+        'NR==1 || !($1==m && $2==b)' "$WEIGHTS_TSV" > "$tmp" && mv "$tmp" "$WEIGHTS_TSV"
+    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$model" "$base" \
         "$(stat -c %s "$f")" "$(sha256sum "$f" | awk '{print $1}')" \
         "fetched by 05_predict.sh" "$note" "$(date -Iseconds)" >> "$WEIGHTS_TSV"
 }
