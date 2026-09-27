@@ -124,6 +124,77 @@ def spread(candidates, k):
     return picked
 
 
+SELECTION_COST_COLUMNS = ["arm", "n_targets", "shortest_first_n_targets",
+                          "ratio", "length_min", "length_max",
+                          "shortest_first_length_max", "projected_hours",
+                          "seconds_per_kilo_residue_squared", "n_runs_fitted",
+                          "recorded"]
+
+
+def record_selection_cost(conf: dict, rows: list[dict]) -> None:
+    """What taking the shortest targets first would have bought instead.
+
+    The README says the arms span the length range rather than taking the
+    cheapest targets, and that spanning it costs targets. How many it costs is
+    a number, and a number in the README has to come from a file. This writes
+    that file rather than leaving the claim to be estimated: it fits the cost
+    model on the runs that finished, then spends the same total on the
+    shortest targets in the set and reports how many that buys.
+    """
+    paths = L.repo_paths(conf)
+    results, config_dir = paths["RESULTS_DIR"], paths["CONFIG_DIR"]
+    targets = {r["target_id"]: r
+               for r in L.read_tsv(config_dir / "targets.tsv")
+               if r.get("sequence_length")}
+    preds = L.read_tsv(results / "predictions.tsv")         if (results / "predictions.tsv").is_file() else []
+    out_rows = []
+    for arm in sorted({r["arm"] for r in rows}):
+        runs = [(int(p["sequence_length"]), float(p["elapsed_s"])) for p in preds
+                if p.get("arm") == arm and p.get("status") == "ok"
+                and p.get("elapsed_s") and p.get("sequence_length")]
+        chosen = sorted(int(targets[r["target_id"]]["sequence_length"])
+                        for r in rows
+                        if r["arm"] == arm and r["target_id"] in targets)
+        if len(runs) < 3 or not chosen:
+            continue
+        denom = sum((length / 1000.0) ** 2 for length, _s in runs)
+        if denom <= 0:
+            continue
+        per_kres2 = sum(s for _l, s in runs) / denom
+
+        def cost(length: int) -> float:
+            return per_kres2 * (length / 1000.0) ** 2
+
+        spent = sum(cost(x) for x in chosen)
+        taken: list[int] = []
+        spend = 0.0
+        for length in sorted(int(r["sequence_length"])
+                             for r in targets.values()):
+            if spend + cost(length) > spent:
+                break
+            spend += cost(length)
+            taken.append(length)
+        if not taken:
+            continue
+        out_rows.append({
+            "arm": arm, "n_targets": len(chosen),
+            "shortest_first_n_targets": len(taken),
+            "ratio": L.fmt(len(taken) / len(chosen), 2),
+            "length_min": chosen[0], "length_max": chosen[-1],
+            "shortest_first_length_max": taken[-1],
+            "projected_hours": L.fmt(spent / 3600.0, 2),
+            "seconds_per_kilo_residue_squared": L.fmt(per_kres2, 0),
+            "n_runs_fitted": len(runs),
+            "recorded": L.now_iso(),
+        })
+        print(f"[02a] {arm}: {len(chosen)} targets spanning {chosen[0]} to "
+              f"{chosen[-1]} residues; the shortest first on the same spend "
+              f"would be {len(taken)} targets up to {taken[-1]} residues")
+    if out_rows:
+        L.write_tsv(results / "arm_selection_cost.tsv",
+                    SELECTION_COST_COLUMNS, out_rows)
+
+
 def main(argv=None) -> int:
     args = parse_args(argv)
     conf = L.load_conf(args.config)
@@ -171,6 +242,7 @@ def main(argv=None) -> int:
         out = config_dir / "arm_subsets.tsv"
         L.write_tsv(out, SUBSET_COLUMNS, rows)
         print(f"[02a] wrote {out}")
+        record_selection_cost(conf, rows)
         return 0
 
     budgets: dict[str, float] = {}

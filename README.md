@@ -544,8 +544,11 @@ length, and the cost grows with the square of the length. One alignment arm
 over all 150 targets would have been 76 hours on this machine. Each arm was
 given a stated budget and `scripts/02a_select_arm_subsets.py` spent it, keeping
 every docking target and choosing the rest to span the length range rather than
-taking the shortest, which would have bought three times as many targets and
-confined every statement to small single-domain proteins.
+taking the shortest. What that choice cost is recorded in
+`results/arm_selection_cost.tsv`: on the same spend, taking the shortest first
+would have bought 43 targets instead of 30 in the alignment arm and 26 instead
+of 14 in the templates arm, 1.43 and 1.86 times as many, with nothing longer
+than 118 and 98 residues against the 179 the arms actually reach.
 
 ## What this does not show
 

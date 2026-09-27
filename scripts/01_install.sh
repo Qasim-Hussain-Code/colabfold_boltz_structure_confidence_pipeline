@@ -380,6 +380,13 @@ rec glibc  "$(ldd --version 2>/dev/null | head -1 | awk '{print $NF}')" "host" "
 rec cpu_flags "$(grep -o -m1 -E 'avx512f|avx2' /proc/cpuinfo | sort -u | tr '\n' ',' | sed 's/,$//')" \
     "host" "the prebuilt template search binaries require avx2"
 rec gpu "${GPU_DETECTED:-none}" "00_configure.sh" "every timing in this repository is a CPU timing"
+# The settings every timing in this repository was produced under. They live
+# in project.conf, which is not tracked and is regenerated per machine, so
+# without this the README quotes a thread count and a memory ceiling that no
+# file in results/ carries.
+rec threads "${THREADS:-unknown}" "00_configure.sh" "measured on this machine; every prediction was given this many"
+rec memory_budget_gb "${RAM_GB:-unknown}" "00_configure.sh" "the ceiling 05_predict.sh refuses a target against"
+rec jobs "${JOBS:-unknown}" "00_configure.sh" "predictions run at a time"
 
 # Licences, read from each environment's own package metadata. This is what the
 # run used, which is the claim the LICENSE file has to support.

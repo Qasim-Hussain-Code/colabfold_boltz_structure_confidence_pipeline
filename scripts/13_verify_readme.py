@@ -313,6 +313,53 @@ for quoted, actual, what in pedv_claims:
         bad += 1
         print(f"  ABSENT {what}: the README does not say {quoted!r}")
 
+# What spanning the length range cost, which the README used to state as
+# "three times as many targets" with nothing behind it. It is 1.43.
+sel_path = REPO / "results/arm_selection_cost.tsv"
+sel_claims = []
+if sel_path.is_file():
+    sel = {r["arm"]: r for r in L.read_tsv(sel_path)}
+    for arm, label in (("af2_msa_notmpl", "alignment arm"),
+                       ("af2_msa_tmpl", "templates arm")):
+        r = sel.get(arm)
+        if not r:
+            continue
+        sel_claims += [
+            (r["shortest_first_n_targets"], r["shortest_first_n_targets"],
+             f"targets the shortest first would buy, {label}"),
+            (r["ratio"], r["ratio"], f"the ratio, {label}"),
+            (r["shortest_first_length_max"], r["shortest_first_length_max"],
+             f"the longest target the shortest first reaches, {label}"),
+        ]
+for quoted, actual, what in sel_claims:
+    if actual != quoted:
+        bad += 1
+        print(f"  MISMATCH {what}: README {quoted}, table {actual}")
+    elif quoted not in readme:
+        bad += 1
+        print(f"  ABSENT {what}: the README does not say {quoted!r}")
+
+# The machine settings the cost section quotes, which used to come only from
+# project.conf and so from no file in results/ or logs/.
+ver_path = REPO / "results/environment/versions.tsv"
+env_claims = []
+if ver_path.is_file():
+    ver = {r["tool"]: r["version"] for r in L.read_tsv(ver_path)}
+    env_claims = [
+        (f"{ver.get('threads', '?')} threads", f"{ver.get('threads', '?')} threads",
+         "the thread count"),
+        (f"{ver.get('memory_budget_gb', '?')} GB memory budget",
+         f"{ver.get('memory_budget_gb', '?')} GB memory budget",
+         "the memory budget"),
+    ]
+for quoted, actual, what in env_claims:
+    if actual != quoted:
+        bad += 1
+        print(f"  MISMATCH {what}: README {quoted}, table {actual}")
+    elif quoted not in readme:
+        bad += 1
+        print(f"  ABSENT {what}: the README does not say {quoted!r}")
+
 # the paired comparisons
 for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
                      (("af2_msa_notmpl", "af2_nomsa"), "-0.476"),
@@ -324,7 +371,7 @@ for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
               f"{row['median_paired_difference'] if row else 'absent'}")
 
 n_checks = (len(claims) + len(geometry_claims) + len(align_claims)
-            + len(direction_claims) + len(quiet_claims) + len(pedv_claims)
+            + len(direction_claims) + len(quiet_claims) + len(pedv_claims) + len(sel_claims) + len(env_claims)
             + 12 + 6 + 4 + 3)   # timing cells, sweep bands, docking rows, pairs
 print(f"{n_checks} checks, {bad} mismatch(es)")
 sys.exit(1 if bad else 0)

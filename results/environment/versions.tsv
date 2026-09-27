@@ -41,3 +41,6 @@ kernel	6.18.33.2-microsoft-standard-WSL2	host	Linux x86_64	2026-09-25T19:39:10+0
 glibc	2.43	host	wheel compatibility floor	2026-09-25T19:39:10+08:00
 cpu_flags	avx2	host	the prebuilt template search binaries require avx2	2026-09-25T19:39:10+08:00
 gpu	none	00_configure.sh	every timing in this repository is a CPU timing	2026-09-25T19:39:10+08:00
+threads	16	00_configure.sh	recorded from project.conf, the settings this run used	2026-09-28T06:56:39+08:00
+memory_budget_gb	5	00_configure.sh	recorded from project.conf, the settings this run used	2026-09-28T06:56:39+08:00
+jobs	1	00_configure.sh	recorded from project.conf, the settings this run used	2026-09-28T06:56:39+08:00

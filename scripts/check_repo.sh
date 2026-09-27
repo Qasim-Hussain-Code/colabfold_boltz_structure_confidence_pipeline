@@ -215,7 +215,10 @@ PATTERNS = [
     ("application data path", re.compile(r"AppData", re.I)),  # check-repo-pattern
     ("machine identifier", re.compile(r"\{?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}?", re.I)),  # check-repo-pattern
     ("electronic address", re.compile(r"[A-Za-z0-9._%+-]{1,64}@(?!users\.noreply\.github\.com)[A-Za-z0-9.-]{1,255}\.[A-Za-z]{2,}")),  # check-repo-pattern
-    ("private network address", re.compile(r"(?<![\d.])(10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3})(?![\d.])")),  # check-repo-pattern
+    # 172.16 to 172.31 is the range this project's own virtual machine sits in,
+    # and it was the one range this pattern did not cover while the local
+    # commit guard did. The two now agree.
+    ("private network address", re.compile(r"(?<![\d.])(10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3})(?![\d.])")),  # check-repo-pattern
 ]
 if host:
     PATTERNS.append(("host name", re.compile(re.escape(host), re.I)))  # check-repo-pattern
@@ -267,6 +270,31 @@ if git log --format='%an%n%ae%n%b' 2>/dev/null | grep -qiE 'co-authored-by|gener
     fail "a commit carries a tool as author, contributor or trailer"
 else
     pass "no commit credits a tool"
+fi
+
+# Who the commits are attributed to. The noreply address is set in a local git
+# config that is not part of this repository, so nothing here would notice if
+# it changed and a personal address started appearing in the public history.
+N_COMMITS="$(git log --oneline 2>/dev/null | wc -l | tr -d ' ')"
+N_NOREPLY="$(git log --format='%ae%n%ce' 2>/dev/null | grep -c 'users\.noreply\.github\.com')"
+if (( N_COMMITS > 0 )) && (( N_NOREPLY == N_COMMITS * 2 )); then
+    pass "every commit is authored and committed under a noreply address"
+else
+    fail "$(( N_COMMITS * 2 - N_NOREPLY )) of $(( N_COMMITS * 2 )) author and committer fields are not a noreply address"
+fi
+
+# The shape of the subject lines. The rule is two or three lower case words
+# joined with underscores. This reports rather than fails: the commits that
+# break it are already in a public history, and rewriting them would mean a
+# force push. A local commit-msg hook refuses new ones.
+BAD_SUBJECTS="$(git log --format='%s' 2>/dev/null | awk '{ n = split($0, a, "_"); if (n < 2 || n > 3 || $0 ~ /[^a-z0-9_]/) c++ } END { print c+0 }')"
+if [[ "$BAD_SUBJECTS" == "0" ]]; then
+    pass "every commit subject is two or three lower case words"
+else
+    say "  ${BAD_SUBJECTS} of ${N_COMMITS} commit subjects are longer than the"
+    say "  two or three lower case words the brief asks for. They predate the"
+    say "  local commit-msg hook that now refuses them, and changing them means"
+    say "  rewriting a public history."
 fi
 
 # The rendered report is not tracked, so the scans above never see it, and it
