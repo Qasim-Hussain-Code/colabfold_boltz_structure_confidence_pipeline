@@ -6,6 +6,13 @@ predicted receptor costs compared with docking into the experimental one. It
 runs on one laptop without a GPU. Every number below was read from a file in
 `results/` after the pipeline ran. None was estimated or remembered.
 
+The model measured here is AlphaFold2 through ColabFold. Boltz-2 is the second
+model this was built for: its arm is implemented, its environment installs and
+its commit is pinned, and its training cutoff of 1 June 2023 is the one the
+held-out set was selected against, because the set has to be out of training
+for every model compared. It was not run, for want of disk on this machine.
+What that costs is set out under what this does not show.
+
 The five questions, and the short answers:
 
 1. How well does the confidence score predict the accuracy it claims to
