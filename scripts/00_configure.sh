@@ -688,7 +688,7 @@ SEED_VARIANCE_N_TARGETS=1
 # difference between them is a result rather than a quietly chosen default.
 AF2_NUM_MODELS=1
 AF2_NUM_MODELS_SUBSET=5
-AF2_SUBSET_N_TARGETS=20
+AF2_SUBSET_N_TARGETS=0
 AF2_MODEL_TYPE=alphafold2_ptm
 # Recycles left at the model's own default of 3 for alphafold2_ptm. Raising it
 # improves accuracy and costs linear time; leaving it is what the published

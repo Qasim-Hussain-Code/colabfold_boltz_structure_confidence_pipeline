@@ -715,7 +715,12 @@ def compare(conf: dict, entries: list[str]) -> int:
                         "recorded": L.now_iso(),
                     })
 
-    L.append_tsv(results_dir / "prediction_pairs.tsv", PAIR_COLUMNS, rows)
+    # Replaced by key rather than appended. Every other table here is written
+    # whole; this one was appended, so a second run over the same predictions
+    # stacked a duplicate of every pair and the report counted each comparison
+    # twice.
+    L.replace_rows(results_dir / "prediction_pairs.tsv", PAIR_COLUMNS,
+                   ("structure_a", "chain_a", "structure_b", "chain_b"), rows)
     L.write_tsv(results_dir / "prediction_confidence.tsv", CONFIDENCE_COLUMNS, conf_rows)
     for r in rows:
         print(f"  {r['structure_a']} against {r['structure_b']}: "

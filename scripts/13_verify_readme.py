@@ -173,6 +173,32 @@ for key, rate, n in [(("crystal/A2_genconf_refbox", "vina"), "0.3636", "4"),
         print(f"  MISMATCH docking {key}: README {n} at {rate}, table "
               f"{row['n_success'] + ' at ' + row['rate_success'] if row else 'absent'}")
 
+# The receptor superposition, which is the quantity that joins the docking arm
+# to the accuracy arms and so is quoted rather than left in the table.
+align = [r for r in L.read_tsv(REPO / "results/docking_alignment.tsv")
+         if r["arm"] == "predicted" and r["status"] == "ok"
+         and r.get("superposition_rmsd_ca") not in ("", None)]
+av = sorted(float(r["superposition_rmsd_ca"]) for r in align)
+aq = L.quantiles(av)
+align_claims = [
+    ("13", str(len(av)), "predicted receptors prepared"),
+    ("1.57", f"{aq[1]:.2f}", "median receptor superposition"),
+    ("1.02", f"{aq[0]:.2f}", "first quartile receptor superposition"),
+    ("2.39", f"{aq[2]:.2f}", "third quartile receptor superposition"),
+    ("0.61", f"{min(av):.2f}", "closest receptor superposition"),
+    ("15.65", f"{max(av):.2f}", "furthest receptor superposition"),
+    ("Four of the 13", "Four of the 13" if sum(1 for x in av if x > 2.0) == 4
+     else f"{sum(1 for x in av if x > 2.0)} of the {len(av)}",
+     "receptors above 2 Angstroms"),
+]
+for quoted, actual, what in align_claims:
+    if actual != quoted:
+        bad += 1
+        print(f"  MISMATCH {what}: README {quoted}, table {actual}")
+    elif quoted not in readme:
+        bad += 1
+        print(f"  ABSENT {what}: the README no longer says {quoted}")
+
 # the paired comparisons
 for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
                      (("af2_msa_notmpl", "af2_nomsa"), "-0.476"),
@@ -183,5 +209,7 @@ for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
         print(f"  MISMATCH pair {a} against {b}: README {diff}, table "
               f"{row['median_paired_difference'] if row else 'absent'}")
 
-print(f"{len(claims) + len(geometry_claims) + 22} checks, {bad} mismatch(es)")
+n_checks = (len(claims) + len(geometry_claims) + len(align_claims)
+            + 9 + 6 + 4 + 3)   # timing cells, sweep bands, docking rows, pairs
+print(f"{n_checks} checks, {bad} mismatch(es)")
 sys.exit(1 if bad else 0)

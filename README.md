@@ -284,6 +284,15 @@ ligand instance sits in, with the other chains, the cofactors and the metals
 removed, so that the two arms differ in the coordinates of that chain and in
 nothing else.
 
+How well the predicted receptor reaches the experimental frame is the quantity
+that connects this arm to the accuracy numbers above, so it is recorded rather
+than assumed. Over the 13 predicted receptors the superposition onto the
+experimental chain deviates by a median of 1.57 Angstroms, quartiles 1.02 and
+2.39, and the full range runs from 0.61 to 15.65. Four of the 13 are above 2
+Angstroms. The docking therefore starts from a receptor that is in roughly the
+right place for most targets and badly placed for a few, which is the condition
+a user of a predicted structure is actually in.
+
 A third arm is the negative control. It runs no search: the generated
 conformer is dropped into the same box at a random orientation about the box
 centre. It is the floor every success rate should be read against, and without

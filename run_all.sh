@@ -204,13 +204,19 @@ if should_run 05_predict; then
             echo "[run_all] arm ${arm} failed; continuing with the rest"
     done
     # The five-model protocol on a subset, so that what model selection is
-    # worth is measured rather than assumed.
+    # worth is measured rather than assumed. Off by default, and the reason is
+    # the flags this used to pass: --force into the arm that carries the
+    # headline numbers overwrites its single-model predictions for the first N
+    # targets, so a run with this enabled reports a different median for
+    # af2_msa_notmpl than the README quotes and gives no sign that it did.
+    # Measuring model selection needs an arm of its own, which this stage does
+    # not yet have.
     if [[ -z "$ARM" && "${AF2_SUBSET_N_TARGETS:-0}" != "0" ]]; then
         banner "05_predict, five models on a subset"
-        bash "${SCRIPTS}/05_predict.sh" --arm af2_msa_notmpl \
-            --num-models "${AF2_NUM_MODELS_SUBSET}" \
-            --limit "${AF2_SUBSET_N_TARGETS}" --force || \
-            echo "[run_all] the five-model subset failed; continuing"
+        echo "[run_all] AF2_SUBSET_N_TARGETS is ${AF2_SUBSET_N_TARGETS}, but the"
+        echo "          five-model subset as written overwrites af2_msa_notmpl,"
+        echo "          the arm every headline number comes from. Refusing."
+        echo "          Give the experiment its own arm before enabling it."
     fi
     # Repeat seeds on one target, because run-to-run spread is part of the
     # measurement and is almost never reported.

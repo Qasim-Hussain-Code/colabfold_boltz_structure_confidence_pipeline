@@ -189,4 +189,13 @@ fi
 
 csc_stage_end "ok=${N_OK} skipped=${N_SKIP} failed=${N_FAIL}"
 echo "[${STAGE}] ${N_OK} fetched, ${N_SKIP} already present, ${N_FAIL} failed"
-csc_mark_done "$STAGE"
+# A run that covered only part of the set must not mark the stage finished.
+# The stamp is what every later stage reads to decide the inputs are all
+# present, so a stamp written after a short test run makes the next stage skip
+# work it never did.
+if (( LIMIT > 0 )) || [[ -n "$TARGETS" ]]; then
+    echo "[${STAGE}] this run covered part of the set, so the stage is not marked"
+    echo "           as finished. Re-run it over the whole set to complete it."
+else
+    csc_mark_done "$STAGE"
+fi
