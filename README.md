@@ -447,6 +447,27 @@ also stacked rows across reruns, which once left two rows for every floor and
 doubled a denominator. `scripts/05a_reconcile_predictions.py` compares the
 prediction table against the files on disk and refuses when they disagree.
 
+Two further faults were in the reporting rather than the measurement, and
+neither announced itself either.
+
+`results/excluded.tsv` records every target dropped and the reason. The
+reasons are tool messages, and one of them contained a double quote. A
+tab-separated file written under the default quoting rules is not separated by
+tabs alone: a quote opens a region that runs to the next one and everything
+between is swallowed. 269 of the 440 rows vanished from every reader,
+including the count this file gives. The table now reads and writes with
+quoting disabled, and any cell carrying a newline, a tab or a quote is
+flattened before it is written.
+
+The figure stage spaced the labels at the ends of its lines with a loop that
+pushed each label clear of the one below it. Written as a loop rather than as a
+maximum it cannot terminate: once the label has been moved, the subtraction
+that tests the gap returns a value a fraction under it in binary floating
+point, so the test stays true and the label stops changing. The stage spun for
+five hours of processor time and wrote nothing. No number changed, which is why
+it belongs here. A stage that has failed completely and a stage that is working
+look the same from outside.
+
 ## Cost
 
 The run is 197 predictions and 21.7 hours of inference on 16 threads with no
