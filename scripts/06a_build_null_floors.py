@@ -117,11 +117,23 @@ def chain_ca(path: Path, entity_id: str | None = None,
     if not found:
         return None, [], "", None
     if match_seq and len(found) > 1:
+        # Identity relative to the target, not to whichever of the two
+        # sequences is shorter. gemmi's default normalises by the shorter one,
+        # so a 90-residue target that happens to align inside a 3423-residue
+        # chain of a large assembly scores 100 per cent and can outrank the
+        # chain that actually is the target's relative. Asking instead what
+        # fraction of the target the candidate covers cannot be inflated by
+        # the candidate being large.
         def identity_to(seq: str) -> float:
             res = gemmi.align_string_sequences(list(match_seq), list(seq), [],
                                                gemmi.AlignmentScoring())
-            return res.calculate_identity()
-        found.sort(key=lambda f: identity_to(f[2]), reverse=True)
+            return res.calculate_identity(1)
+        # Ties go to the chain closest in length to the target. Two chains can
+        # both cover the target completely while one of them carries several
+        # thousand residues the target does not have, and a floor built from
+        # that chain is a different object from the one being scored.
+        found.sort(key=lambda f: (-identity_to(f[2]),
+                                  abs(len(f[2]) - len(match_seq))))
     name, coords, letters = found[0]
     return name, coords, letters, st
 
@@ -140,6 +152,10 @@ def aligned_pairs(seq_a: str, coords_a: list, seq_b: str, coords_b: list):
     result = gemmi.align_string_sequences(list(seq_a), list(seq_b), [],
                                           gemmi.AlignmentScoring())
     pairs = []
+    # The identity returned below is relative to seq_b, the target, for the
+    # same reason the chain is chosen that way: normalised by the shorter
+    # sequence it reports what a fragment of a large chain matched rather than
+    # how much of the target was covered.
     i = j = 0
     for token in _cigar_tokens(result.cigar_str()):
         n, op = token
@@ -153,7 +169,7 @@ def aligned_pairs(seq_a: str, coords_a: list, seq_b: str, coords_b: list):
             i += n
         elif op == "D":
             j += n
-    return pairs, result.calculate_identity()
+    return pairs, result.calculate_identity(2)
 
 
 def _cigar_tokens(cigar: str):

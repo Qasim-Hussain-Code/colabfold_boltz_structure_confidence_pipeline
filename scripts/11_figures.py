@@ -227,8 +227,15 @@ def fig_calibration_curve(results: Path, figures: Path) -> str | None:
     min_gap = 0.055
     placed: list[float] = []
     for y, x, text in ends:
-        while placed and y - placed[-1] < min_gap:
-            y = placed[-1] + min_gap
+        # A maximum rather than a loop. Written as a loop this does not
+        # terminate: after y is set to placed[-1] + min_gap the subtraction
+        # that tests it can come back a hair under min_gap in binary floating
+        # point, the condition stays true, and y stops changing. On this set
+        # placed[-1] was 0.9021 and the difference came back 0.05499999999999994
+        # against a gap of 0.055, which spun for five hours of processor time
+        # and wrote nothing.
+        if placed:
+            y = max(y, placed[-1] + min_gap)
         placed.append(y)
         ax.annotate(text, (x, y), xytext=(8, 0), textcoords="offset points",
                     fontsize=7.5, color=INK_2, va="center",
