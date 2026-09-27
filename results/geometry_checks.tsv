@@ -459,3 +459,6 @@ target_id	arm	model	status	reason	n_residues	tolerance_used	bad_bonds	bad_angles
 8JN0_1	af2_msa_tmpl	alphafold2_ptm	ok		89	12.0	0	0	5	4	0	0	0	1	0	0	1	86	87	0.0	1		1		2026-09-26T18:24:59+08:00
 36IQ_1	af2_msa_tmpl	alphafold2_ptm	ok		98	12.0	0	0	14	4	0	0	0	0	0	0	1	95	96	0.0	1		1		2026-09-26T18:25:00+08:00
 10XE_1	af2_msa_tmpl	alphafold2_ptm	ok		91	12.0	0	0	3	2	0	0	0	0	0	0	0	89	89	0.0	1		1		2026-09-26T18:25:01+08:00
+8QX5_1	af2_msa_tmpl	alphafold2_ptm	ok		177	12.0	1	5	18	27	4	0	0	0	6	10	9	156	175	0.0571	0	bond lengths: 1; bond angles: 5; non-bonded clashes: 4; twisted peptide bonds: 6; Ramachandran outliers: 10	0	bad_angles; clashes; twisted_peptides; rama_outliers	2026-09-26T23:17:22+08:00
+27AH_1	af2_msa_tmpl	alphafold2_ptm	ok		82	12.0	0	0	2	4	0	0	0	0	0	1	1	78	80	0.0125	0	Ramachandran outliers: 1	1		2026-09-26T23:17:26+08:00
+8R5N_1	af2_msa_tmpl	alphafold2_ptm	ok		165	12.0	0	1	13	6	2	0	0	0	0	1	2	160	163	0.0061	0	bond angles: 1; non-bonded clashes: 2; Ramachandran outliers: 1	0	bad_angles; clashes	2026-09-26T23:17:29+08:00

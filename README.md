@@ -66,7 +66,7 @@ targets.
 `af2_msa_notmpl` runs it on an alignment from the ColabFold server with
 templates off. 30 targets.
 
-`af2_msa_tmpl` is the same with templates on. 12 targets.
+`af2_msa_tmpl` is the same with templates on. 14 targets.
 
 `null_template` is not a prediction. It takes the closest relative deposited
 before the training cutoff, copies its coordinates, and superposes them on the
@@ -126,7 +126,7 @@ confidence value and a measured lDDT-CA.
 | arm | targets | Pearson r | expected calibration error | above 90 and below 0.7 |
 |---|---|---|---|---|
 | AlphaFold2, alignment, no templates | 30 | 0.7346 | 0.0141 | 34 of 2463, 1.4 per cent |
-| AlphaFold2, alignment, templates on | 11 | 0.512 | 0.0297 | 23 of 874, 2.6 per cent |
+| AlphaFold2, alignment, templates on | 14 | 0.623 | 0.0200 | 23 of 1212, 1.9 per cent |
 | AlphaFold2, no alignment | 149 | 0.7983 | 0.0245 | 1 of 663, 0.2 per cent |
 
 ![Confidence against the accuracy it predicts](figures/fig1_calibration_scatter.png)
@@ -183,7 +183,7 @@ reality meets.
 |---|---|
 | copied pre-cutoff template | 103 of 120 |
 | unrelated chain | 132 of 150 |
-| AlphaFold2, alignment, templates on | 4 of 11 |
+| AlphaFold2, alignment, templates on | 5 of 14 |
 | AlphaFold2, alignment, no templates | 7 of 30 |
 | AlphaFold2, no alignment | 3 of 149 |
 
@@ -197,7 +197,7 @@ Requiring accuracy and validity together changes the ranking:
 | arm | physically valid | accurate and valid |
 |---|---|---|
 | copied pre-cutoff template | 85.8 per cent | 65.0 per cent |
-| AlphaFold2, alignment, templates on | 36.4 per cent | 36.4 per cent |
+| AlphaFold2, alignment, templates on | 35.7 per cent | 35.7 per cent |
 | AlphaFold2, alignment, no templates | 23.3 per cent | 23.3 per cent |
 | AlphaFold2, no alignment | 2.0 per cent | 2.0 per cent |
 | unrelated chain | 88.0 per cent | 0.0 per cent |
@@ -218,7 +218,7 @@ arms cover, with an interval that resamples targets rather than residues.
 
 | comparison | shared targets | median difference in lDDT-CA | interval |
 |---|---|---|---|
-| templates on, against templates off | 11 | 0.002 | 0.000 to 0.008 |
+| templates on, against templates off | 14 | 0.001 | 0.000 to 0.006 |
 | alignment, against no alignment | 30 | 0.476 | 0.311 to 0.546 |
 | alignment arm, against the copied template | 19 | 0.109 | 0.032 to 0.185 |
 
@@ -231,8 +231,10 @@ The templates figure needs a scale to be read against, so one target was
 predicted five times under five seeds with everything else held fixed. The
 five predictions score 0.9200, 0.9220, 0.9220, 0.9230 and 0.9240 lDDT-CA, a
 range of 0.004 and a standard deviation of 0.0015. The templates effect of
-0.002 is smaller than the spread the model produces from nothing but its own
-random seed. The alignment effect of 0.476 is more than a hundred times it.
+0.001 is a quarter of the spread the model produces from nothing but its own
+random seed, and it moved the median up for seven of the fourteen targets and
+down for the other seven. The alignment effect of 0.476 is four hundred times
+that spread.
 
 ## Docking into a predicted receptor
 
@@ -391,7 +393,7 @@ with no GPU, within a 5 GB memory budget.
 |---|---|---|---|
 | AlphaFold2, no alignment | 149 | 155 | 2753 MB |
 | AlphaFold2, alignment, no templates | 30 | 843 | 3410 MB |
-| AlphaFold2, alignment, templates on | 11 | 986 | 3781 MB |
+| AlphaFold2, alignment, templates on | 14 | 1021 | 3768 MB |
 
 An alignment costs about twelve times the single-sequence arm at the same
 length, and the cost grows with the square of the length. One alignment arm

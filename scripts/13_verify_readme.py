@@ -46,7 +46,7 @@ claims = [
     ("0.016", head["lddt_ca_median__null_unrelated"], "median lDDT, unrelated floor"),
     ("0.0141", cal["af2_msa_notmpl"]["expected_calibration_error"], "calibration error"),
     ("0.7346", cal["af2_msa_notmpl"]["pearson_r"], "pearson r"),
-    ("0.0297", cal["af2_msa_tmpl"]["expected_calibration_error"], "calibration error, templates"),
+    ("0.0200", cal["af2_msa_tmpl"]["expected_calibration_error"], "calibration error, templates"),
     ("0.0245", cal["af2_nomsa"]["expected_calibration_error"], "calibration error, no alignment"),
     ("2463", cal["af2_msa_notmpl"]["n_residues_above_high_band"], "residues above the band"),
     ("34", cal["af2_msa_notmpl"]["n_of_those_below_trust"], "of those below trust"),
@@ -96,7 +96,7 @@ for key, rate, n in [(("crystal/A2_genconf_refbox", "vina"), "0.3636", "4"),
               f"{row['n_success'] + ' at ' + row['rate_success'] if row else 'absent'}")
 
 # the paired comparisons
-for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.002"),
+for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
                      (("af2_msa_notmpl", "af2_nomsa"), "-0.476"),
                      (("af2_msa_notmpl", "null_template"), "-0.109")]:
     row = pairs.get((a, b))
