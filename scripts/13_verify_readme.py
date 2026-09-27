@@ -113,15 +113,16 @@ if unquoted:
 # The cost table, which drifted unchecked when the templates arm was extended
 # and the seed repeats were added.
 tim = {r["arm"]: r for r in L.read_tsv(REPO / "results/timing.tsv")}
-for arm, n, secs, mem in [("af2_nomsa", "149", "155", "2753"),
-                          ("af2_msa_notmpl", "34", "843", "3398"),
-                          ("af2_msa_tmpl", "14", "1021", "3768")]:
+for arm, n, dist, secs, mem in [("af2_nomsa", "149", "149", "155", "2753"),
+                                ("af2_msa_notmpl", "34", "30", "843", "3398"),
+                                ("af2_msa_tmpl", "14", "14", "1021", "3768")]:
     row = tim.get(arm)
     if row is None:
         bad += 1
         print(f"  MISSING timing row for {arm}")
         continue
     for label, quoted, actual in [("count", n, row["n"]),
+                                  ("distinct targets", dist, row["n_distinct_targets"]),
                                   ("median seconds", secs, row["seconds_median"]),
                                   ("median peak MB", mem, row["peak_rss_mb_median"])]:
         if round(float(actual)) != round(float(quoted)):
@@ -210,6 +211,6 @@ for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
               f"{row['median_paired_difference'] if row else 'absent'}")
 
 n_checks = (len(claims) + len(geometry_claims) + len(align_claims)
-            + 9 + 6 + 4 + 3)   # timing cells, sweep bands, docking rows, pairs
+            + 12 + 6 + 4 + 3)   # timing cells, sweep bands, docking rows, pairs
 print(f"{n_checks} checks, {bad} mismatch(es)")
 sys.exit(1 if bad else 0)

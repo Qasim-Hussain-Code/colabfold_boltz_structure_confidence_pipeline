@@ -170,6 +170,15 @@ def main(argv=None) -> int:
             f.unlink()
             removed += 1
     if removed:
+        # Clearing the fetching stage's stamp is the part that makes the advice
+        # below work. That stage skips itself when its stamp is present, so
+        # without this the rerun prints that it is already complete and fetches
+        # nothing, and the docking arm then runs against whichever instances
+        # happened to survive.
+        stamp = paths["LOG_DIR"] / "03_fetch_references.done"
+        if stamp.is_file():
+            stamp.unlink()
+            print(f"[03a] cleared {stamp.name} so the fetching stage runs again")
         print(f"[03a] removed {removed} ligand file(s) whose instance changed; "
               f"rerun 03_fetch_references.sh to fetch the right copies")
 

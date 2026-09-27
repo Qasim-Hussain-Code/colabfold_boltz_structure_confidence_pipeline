@@ -445,15 +445,15 @@ The run is 197 predictions and 21.7 hours of inference on 16 threads with no
 GPU, within a 5 GB memory budget. Four of those are repeats of one target
 under different seeds; without them it is 193 predictions and 20.5 hours.
 
-| arm | predictions | median seconds | median peak memory |
-|---|---|---|---|
-| AlphaFold2, no alignment | 149 | 155 | 2753 MB |
-| AlphaFold2, alignment, no templates | 34 | 843 | 3398 MB |
-| AlphaFold2, alignment, templates on | 14 | 1021 | 3768 MB |
+| arm | runs | distinct targets | median seconds | median peak memory |
+|---|---|---|---|---|
+| AlphaFold2, no alignment | 149 | 149 | 155 | 2753 MB |
+| AlphaFold2, alignment, no templates | 34 | 30 | 843 | 3398 MB |
+| AlphaFold2, alignment, templates on | 14 | 14 | 1021 | 3768 MB |
 
-The counts and the medians in that table are over every run of each arm, so
-the alignment arm's 34 includes the four seed repeats. Its 30 distinct targets
-are what every accuracy figure above is computed over.
+The medians are over every run, which is what the arm cost. The distinct-target
+column is the set every accuracy figure above is computed over, and the two
+differ for the alignment arm by the four seed repeats.
 
 An alignment costs about twelve times the single-sequence arm at the same
 length, and the cost grows with the square of the length. One alignment arm

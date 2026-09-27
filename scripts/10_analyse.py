@@ -406,7 +406,13 @@ def main() -> int:
         qs = L.quantiles(secs, (0.5, 0.9, 1.0)) if secs else [float("nan")] * 3
         qm = L.quantiles(mems, (0.5, 0.9, 1.0)) if mems else [float("nan")] * 3
         timing_rows.append({
+            # Two counts, because they differ and a reader should not have to
+            # find out which one a median is over. n is every run of the arm,
+            # which is what it cost; n_distinct_targets is the set the accuracy
+            # figures are computed on. The alignment arm carries four seed
+            # repeats of one target, so its n is 34 against 30 targets.
             "arm": arm, "n": len(rows),
+            "n_distinct_targets": len({r["target_id"] for r in rows}),
             "seconds_median": L.fmt(qs[0], 1), "seconds_p90": L.fmt(qs[1], 1),
             "seconds_max": L.fmt(qs[2], 1),
             "peak_rss_mb_median": L.fmt(qm[0], 1), "peak_rss_mb_p90": L.fmt(qm[1], 1),
@@ -416,7 +422,8 @@ def main() -> int:
             "recorded": L.now_iso(),
         })
     L.write_tsv(results_dir / "timing.tsv",
-                ["arm", "n", "seconds_median", "seconds_p90", "seconds_max",
+                ["arm", "n", "n_distinct_targets",
+                 "seconds_median", "seconds_p90", "seconds_max",
                  "peak_rss_mb_median", "peak_rss_mb_p90", "peak_rss_mb_max",
                  "residues_median", "total_hours", "recorded"], timing_rows)
 
