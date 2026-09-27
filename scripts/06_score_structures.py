@@ -175,6 +175,23 @@ def compare_structures(ost_bin: str, model: Path, reference: Path, out_json: Pat
         data = json.loads(out_json.read_text())
     except json.JSONDecodeError as exc:
         return False, {}, f"output was not readable: {exc}"
+    # A comparison that mapped no chain is not a comparison. OpenStructure
+    # reports SUCCESS with an empty chain_mapping when its chemical mapping
+    # finds no pairing, and then returns every score as 0.0. Recorded as a
+    # score that is a measurement of nothing, indistinguishable in the table
+    # from a model that was aligned and found completely wrong. Fifty-seven
+    # rows here were that, 54 of them the unrelated-chain floor, and they
+    # dragged its median from 0.0415 to 0.0160.
+    #
+    # Being unmappable is the honest answer for an unrelated chain, but it is
+    # a different answer from zero and belongs in a different column.
+    if data.get("status") == "SUCCESS":
+        mapped = data.get("chem_mapping") or data.get("chain_mapping") or {}
+        local = data.get("bb_local_lddt") or data.get("local_lddt") or {}
+        scored = sum(1 for v in local.values() if v is not None)
+        if not mapped or scored == 0:
+            return False, data, ("no chain could be mapped between the model "
+                                 "and the reference, so nothing was compared")
     if data.get("status") != "SUCCESS":
         why = (data.get("exception") or data.get("traceback") or "")[:200]
         return False, data, f"comparison reported failure: {why}"
@@ -328,13 +345,22 @@ def pocket_rmsd(model: Path, reference: Path, positions: dict):
             poly = chain.get_polymer()
             if len(poly) == 0:
                 continue
-            for res in poly:
-                if res.label_seq is None or int(res.label_seq) not in positions:
+            # A prediction written as PDB carries no label_seq, so keying on
+            # it returned an empty set and this measurement was never made for
+            # any prediction: every n_atoms_compared in the prediction arms
+            # was zero. Where the field is absent the position along the chain
+            # is used, which is the same quantity for a model folded from the
+            # deposited sequence in order.
+            residues = list(poly)
+            has_label = all(r.label_seq is not None for r in residues)
+            for index, res in enumerate(residues, start=1):
+                key = int(res.label_seq) if has_label else index
+                if key not in positions:
                     continue
                 for atom in res:
                     if atom.element == gemmi.Element("H"):
                         continue
-                    out[(int(res.label_seq), atom.name)] = (atom.pos.x, atom.pos.y, atom.pos.z)
+                    out[(key, atom.name)] = (atom.pos.x, atom.pos.y, atom.pos.z)
             if out:
                 break
         return out
