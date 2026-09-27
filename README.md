@@ -17,9 +17,9 @@ The five questions, and the short answers:
 
 1. How well does the confidence score predict the accuracy it claims to
    predict? Well on average and badly in the tail. Over 30 targets, 34 of the
-   2463 residues AlphaFold2 scored above 90 came back below 0.7 lDDT-CA, which
-   is 1.4 per cent. The expected calibration error is 0.0141. There is no
-   threshold at which the risk disappears.
+   2463 residues AlphaFold2 scored at or above 90 came back below 0.7
+   lDDT-CA, which is 1.4 per cent. The expected calibration error is 0.0141.
+   There is no threshold at which the risk disappears.
 2. Is a confident structure physically valid? Often not, by the standard
    deposited structures meet. Seven of 30 predictions fall inside the range the
    270 deposited structures in this set span, against 103 of 120 for the
@@ -137,7 +137,7 @@ number computed on a set built this way, including the ones below.
 Over the 30 targets of the alignment arm, 3213 residues carry both a
 confidence value and a measured lDDT-CA.
 
-| arm | targets | Pearson r | expected calibration error | above 90 and below 0.7 |
+| arm | targets | Pearson r | expected calibration error | at or above 90 and below 0.7 |
 |---|---|---|---|---|
 | AlphaFold2, alignment, no templates | 30 | 0.7346 | 0.0141 | 34 of 2463, 1.4 per cent |
 | AlphaFold2, alignment, templates on | 14 | 0.623 | 0.0200 | 23 of 1212, 1.9 per cent |
@@ -225,8 +225,10 @@ The reason is mostly one check. Of the 23 alignment-arm structures outside
 the range, 20 are outside on bond angles, 6 on clashes, 5 on twisted peptides
 and 3 on Ramachandran outliers; a structure can be outside on more than one.
 Deposited structures essentially never carry an angle twelve standard
-deviations from ideal. Chirality and cis peptides outside proline are always
-within the experimental range, and no arm fails on either.
+deviations from ideal. Chirality and cis peptides outside proline flag no
+prediction at all. The ten structures they do flag are all deposited, two on
+chirality and eight on cis peptides, which is what a threshold set at the 95th
+percentile of those same structures is expected to do.
 
 Requiring accuracy and validity together changes the ranking. This table is
 restricted to the structures that have both an accuracy score and a geometry
@@ -271,10 +273,10 @@ The templates figure needs a scale to be read against, so one target was
 predicted five times under five seeds with everything else held fixed. The
 five predictions score 0.9200, 0.9220, 0.9220, 0.9230 and 0.9240 lDDT-CA, a
 range of 0.004 and a standard deviation of 0.0015. The templates effect of
-0.001 is a quarter of the spread the model produces from nothing but its own
-random seed, and it moved the median up for seven of the fourteen targets and
-down for the other seven. The alignment effect of 0.476 is four hundred times
-that spread.
+0.001 is a quarter of the range the model produces from nothing but its own
+random seed, and across the fourteen shared targets it moved the score up for
+seven, down for three, and not at all for the remaining four. The alignment
+effect of 0.476 is 119 times that range.
 
 ![Five seeds on one target](figures/fig8_seed_variance.png)
 

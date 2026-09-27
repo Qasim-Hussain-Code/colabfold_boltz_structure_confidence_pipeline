@@ -234,7 +234,14 @@ def main(argv=None) -> int:
                        f"as {reason_dir.name}",
                 confidence_file=f.name if f.parent.name == "confidence" else "",
                 structure_file="" if f.parent.name == "confidence" else f.name,
-                action=f"held at {f.relative_to(data)}", recorded=""))
+                # The file's own modification time, not now. These rows
+                # describe a move an earlier run made, and stamping them with
+                # the time of the scan would claim the quarantine happened
+                # whenever the table was last rebuilt. An empty field was worse
+                # still: it made every row of this table fail the check that
+                # every recorded row carries a timestamp.
+                action=f"held at {f.relative_to(data)}",
+                recorded=L.iso_from_mtime(f)))
 
     out = results / "reconciliation.tsv"
     L.write_tsv(out, PROBLEM_COLUMNS, problems + history)

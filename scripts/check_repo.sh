@@ -271,6 +271,16 @@ if git ls-files | grep -qE '\.(ckpt|npz|pt|tar)$'; then
     fail "model weights are tracked"
 else pass "no model weights tracked"; fi
 
+# ---- 8. the shape of the results tables -------------------------------------
+say "the shape of the results tables"
+if [[ -z "$PY" ]]; then
+    say "  [skip] this check needs python"
+elif "$PY" "${ROOT}/scripts/14_check_table_shape.py" 2>&1 | sed 's/^/  /'; then
+    pass "every row of every results table has its header's fields and a timestamp"
+else
+    fail "a results table has a row that lost its shape"
+fi
+
 # ---- 6, 7. figures and results ----------------------------------------------
 # ---- 9. the README against the tables ---------------------------------------
 say "the README against the tables it quotes"

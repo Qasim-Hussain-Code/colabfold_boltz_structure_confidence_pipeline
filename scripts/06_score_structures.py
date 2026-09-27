@@ -472,6 +472,26 @@ def main() -> int:
     if not args.force:
         already = {key_of(r) for r in prior_scores}
 
+    def rewrite_own_exclusions(kept_rows):
+        """Clear this stage's exclusion rows and write them again from scratch.
+
+        The file is append-only, so a resume that only added rows listed the
+        same target as dropped once per pass. Clearing alone is worse: the
+        rows this run carries forward without rescoring would lose their
+        record, and a target absent from the results with nothing saying why
+        is the silent exclusion this repository exists to refuse. So the two
+        happen together, and never one without the other.
+        """
+        L.clear_exclusions(results_dir, "06_score_structures")
+        n = 0
+        for r in kept_rows:
+            if r.get("status") != "ok" and r.get("reason"):
+                L.record_exclusion(results_dir, r.get("target_id"),
+                                   "06_score_structures", r["reason"],
+                                   arm=r.get("arm", ""))
+                n += 1
+        return n
+
     preds = L.read_tsv(results_dir / "predictions.tsv") if (results_dir / "predictions.tsv").is_file() else []
     preds = [p for p in preds if p.get("status") == "ok"]
     if args.arm:
@@ -487,7 +507,9 @@ def main() -> int:
     if n_skipped:
         print(f"[06_score_structures] {n_skipped} already scored, {len(preds)} to do")
     if not preds:
-        print("[06_score_structures] everything is already scored; nothing to do")
+        n = rewrite_own_exclusions(prior_scores)
+        print(f"[06_score_structures] everything is already scored; "
+              f"{n} exclusion row(s) rewritten from the existing table")
         return 0
 
     targets = {t["target_id"]: t for t in L.read_tsv(config_dir / "targets.tsv")}
@@ -677,6 +699,16 @@ def main() -> int:
                  if (r.get("target_id"), r.get("arm")) not in redone_pairs]
     if keep:
         print(f"[06_score_structures] carrying forward {len(keep)} rows scored earlier")
+
+    # Every exclusion this stage owns, rewritten in one place from the rows
+    # that are about to be written: the ones carried forward and the ones this
+    # pass produced. The loop above also records each failure as it happens,
+    # which is what a long run needs to watch, and this call makes the table
+    # agree with the results file rather than with the order of events.
+    n_excl = rewrite_own_exclusions(keep + rows)
+    if n_excl:
+        print(f"[06_score_structures] {n_excl} exclusion row(s) rewritten to "
+              f"match the comparisons that failed")
 
     L.write_tsv(out_scores, SCORE_COLUMNS, keep + rows)
     L.write_tsv(out_residues, RESIDUE_COLUMNS, keep_res + residue_rows)

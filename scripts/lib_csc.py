@@ -70,6 +70,18 @@ def eprint(*a, **k) -> None:
     print(*a, file=sys.stderr, **k)
 
 
+def iso_from_mtime(path: str | Path) -> str:
+    """The time a file was last written, in the same form as now_iso.
+
+    A row that describes something an earlier run did carries that run's time,
+    not the time the table was rebuilt. Stamping it with the present would
+    claim the event happened whenever the table was last regenerated.
+    """
+    from datetime import datetime
+    ts = Path(path).stat().st_mtime
+    return datetime.fromtimestamp(ts).astimezone().isoformat(timespec="seconds")
+
+
 def now_iso() -> str:
     return datetime.datetime.now().astimezone().isoformat(timespec="seconds")
 

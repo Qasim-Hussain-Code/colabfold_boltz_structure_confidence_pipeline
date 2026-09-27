@@ -200,6 +200,77 @@ for quoted, actual, what in align_claims:
         bad += 1
         print(f"  ABSENT {what}: the README no longer says {quoted}")
 
+# The per-target direction of the templates effect, and the multiple of the
+# seed range. Both were stated from memory once and both were wrong: the
+# README said seven targets up and seven down where three went down and four
+# did not move, and called the alignment effect four hundred times the spread
+# where it is 119 times the range.
+sc = {}
+for r in L.read_tsv(REPO / "results/structure_scores.tsv"):
+    if r.get("status") == "ok" and r.get("lddt_ca"):
+        sc.setdefault((r["target_id"], r["arm"]), []).append(
+            (r.get("seed", ""), float(r["lddt_ca"])))
+
+
+def primary(target, arm):
+    vals = sc.get((target, arm)) or []
+    pick = [v for s, v in vals if s == "20260925"] or [v for _s, v in vals]
+    return pick[0] if pick else None
+
+
+shared = sorted({t for (t, a) in sc if a == "af2_msa_tmpl"}
+                & {t for (t, a) in sc if a == "af2_msa_notmpl"})
+diffs = [primary(t, "af2_msa_tmpl") - primary(t, "af2_msa_notmpl") for t in shared]
+seedrow = L.read_tsv(REPO / "results/seed_variance.tsv")[0]
+seed_range = float(seedrow["range"])
+direction_claims = [
+    ("fourteen shared targets", str(len(shared)), "14", "targets both arms cover"),
+    ("it moved the score up for", str(sum(1 for d in diffs if d > 0)), "7",
+     "targets templates raised"),
+    ("down for three", str(sum(1 for d in diffs if d < 0)), "3", "targets templates lowered"),
+    ("remaining four", str(sum(1 for d in diffs if d == 0)), "4", "targets templates did not move"),
+    ("119 times that range", f"{0.476 / seed_range:.0f}", "119",
+     "the alignment effect as a multiple of the seed range"),
+    ("a quarter of the range", f"{0.001 / seed_range:.2f}", "0.25",
+     "the templates effect as a fraction of the seed range"),
+]
+for phrase, actual, expected, what in direction_claims:
+    if actual != expected:
+        bad += 1
+        print(f"  MISMATCH {what}: README implies {expected}, table says {actual}")
+    elif phrase not in readme:
+        bad += 1
+        print(f"  ABSENT {what}: the README no longer says {phrase!r}")
+
+# The two checks the README says flag no prediction. Stated as never failing
+# at all once, which ten deposited structures contradict.
+over = {"ca_chirality_errors": [], "cis_nonpro": []}
+thr = {r["check"]: r for r in L.read_tsv(REPO / "results/geometry_thresholds.tsv")}
+for r in L.read_tsv(REPO / "results/geometry_checks.tsv"):
+    for c in over:
+        lim, got = thr.get(c, {}).get("threshold"), r.get(c)
+        if lim not in (None, "") and got not in (None, "") and float(got) > float(lim):
+            over[c].append(r)
+pred_flagged = sum(1 for c in over for r in over[c] if r["arm"].startswith("af2_"))
+quiet_claims = [
+    ("prediction at all.", str(pred_flagged), "0",
+     "predictions flagged on chirality or cis"),
+    ("The ten structures they do flag are all deposited",
+     str(sum(len(v) for v in over.values())), "10",
+     "structures flagged in total"),
+    ("are all deposited, two on", str(len(over["ca_chirality_errors"])), "2",
+     "structures over the chirality threshold"),
+    ("eight on cis peptides", str(len(over["cis_nonpro"])), "8",
+     "structures over the cis threshold"),
+]
+for phrase, actual, expected, what in quiet_claims:
+    if actual != expected:
+        bad += 1
+        print(f"  MISMATCH {what}: README implies {expected}, table says {actual}")
+    elif phrase not in readme:
+        bad += 1
+        print(f"  ABSENT {what}: the README no longer says {phrase!r}")
+
 # the paired comparisons
 for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
                      (("af2_msa_notmpl", "af2_nomsa"), "-0.476"),
@@ -211,6 +282,6 @@ for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
               f"{row['median_paired_difference'] if row else 'absent'}")
 
 n_checks = (len(claims) + len(geometry_claims) + len(align_claims)
-            + 12 + 6 + 4 + 3)   # timing cells, sweep bands, docking rows, pairs
+            + len(direction_claims) + len(quiet_claims) + 12 + 6 + 4 + 3)   # timing cells, sweep bands, docking rows, pairs
 print(f"{n_checks} checks, {bad} mismatch(es)")
 sys.exit(1 if bad else 0)
