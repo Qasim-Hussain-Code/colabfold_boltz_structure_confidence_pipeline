@@ -748,6 +748,26 @@ LDDT_TRUST=0.7
 # Calibration binning, named because expected calibration error depends on it.
 CALIBRATION_BINS=10
 
+# ---- how a model chain is matched to a reference chain ----------------------
+# OpenStructure refuses to map a model chain onto a reference chain below this
+# sequence identity, and its own default is 70 per cent. That default is right
+# when the two are meant to be the same protein and wrong for the copied
+# template floor, which is deliberately not: at 70, every template below that
+# identity was left unmapped and scored zero, and a floor that reads zero
+# because nothing was compared is a missing measurement dressed as one.
+#
+# It lives here rather than as a default inside the scoring stage because it
+# changes what the numbers mean, and a parameter that changes what the numbers
+# mean should show up in a diff.
+CHEM_MAP_SEQID_THRESH=20.0
+
+# ---- which arm the docking handoff reads ------------------------------------
+# The receptor it docks into comes from this arm, and the arm subset stage
+# keeps every docking target in it for that reason. Both stages read the same
+# value so they cannot disagree about which arm that is.
+DOCKING_RECEPTOR_ARM=af2_msa_notmpl
+DOCK_SOURCE_ARM=af2_msa_notmpl
+
 # ---- what each arm may spend ------------------------------------------------
 # An alignment arm costs about twelve times the single-sequence arm and grows
 # with the square of the sequence length. Measured on this machine that is 76
