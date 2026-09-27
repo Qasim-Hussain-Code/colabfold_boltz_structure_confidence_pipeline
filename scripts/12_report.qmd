@@ -223,6 +223,19 @@ show(load("docking_handoff.tsv"), "The docking handoff has not run yet.")
 show(load("docking_alignment.tsv"), "No receptors have been prepared yet.")
 ```
 
+```{python}
+#| label: pocket-figure
+#| code-fold: true
+p = FIGURES / "fig10_pocket_vs_global.png"
+if p.is_file():
+    display(Image(filename=str(p)))
+```
+
+```{python}
+#| label: pocket
+show(load("pocket_scores.tsv"), "No pocket scores yet.")
+```
+
 The predicted and experimental receptors were docked with the same code, the
 same protocol and the same ligands, and the previous stage of this work ran
 that docking unmodified. The published figure from that stage is quoted in the
@@ -236,6 +249,14 @@ different set.
 show(load("seed_variance.tsv"), "The seed experiment has not run yet.")
 ```
 
+```{python}
+#| label: seed-figure
+#| code-fold: true
+p = FIGURES / "fig8_seed_variance.png"
+if p.is_file():
+    display(Image(filename=str(p)))
+```
+
 ## Cost
 
 ```{python}
@@ -246,6 +267,15 @@ show(load("timing.tsv"), "No timing table yet.")
 ```{python}
 #| label: stage-resources
 show(load("summary.tsv", root=LOGS), "No per-stage resource table yet.")
+```
+
+```{python}
+#| label: cost-figures
+#| code-fold: true
+for name in ("fig7_timing.png", "fig9_memory_curve.png"):
+    p = FIGURES / name
+    if p.is_file():
+        display(Image(filename=str(p)))
 ```
 
 ## The application arm

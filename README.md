@@ -149,6 +149,12 @@ Each point is one residue. The dashed line is where a perfectly calibrated
 score would put it. The shaded box is the region the last column of the table
 counts: confident and wrong.
 
+![Calibration, binned](figures/fig2_calibration_curve.png)
+
+Binned, the same data is a line per arm against the diagonal. The calibration
+error in the table is the average distance from that diagonal, weighted by how
+many residues fall in each bin.
+
 The correlation is the least useful of these. What a reader wants to know is
 what happens when the model is confident, and that is the last column.
 
@@ -269,6 +275,8 @@ range of 0.004 and a standard deviation of 0.0015. The templates effect of
 random seed, and it moved the median up for seven of the fourteen targets and
 down for the other seven. The alignment effect of 0.476 is four hundred times
 that spread.
+
+![Five seeds on one target](figures/fig8_seed_variance.png)
 
 ## Docking into a predicted receptor
 
