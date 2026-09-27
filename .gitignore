@@ -90,9 +90,10 @@ scripts/.gitignore
 # with quarto rather than tracking it.
 results/report/
 
-# Quarto and Jupyter build artefacts. The rendered report is kept.
+# Quarto and Jupyter build artefacts. The rendered report is not kept; it is
+# regenerated from the tables by the last stage of run_all.sh, and the rule
+# above ignores the directory it lands in.
 *.html
-!results/report/*.html
 *_files/
 .quarto/
 .ipynb_checkpoints/

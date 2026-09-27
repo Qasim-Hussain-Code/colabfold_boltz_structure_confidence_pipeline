@@ -258,8 +258,15 @@ between arms and only the receptor changes. Its repository is
 
 Two arms dock the same 13 ligands with the same settings. One uses the
 experimental receptor, the other the predicted one superposed into the
-experimental frame. A third arm places the search box without reference to the
-ligand and is the negative control.
+experimental frame. Both receptors are cut to the single chain the chosen
+ligand instance sits in, with the other chains, the cofactors and the metals
+removed, so that the two arms differ in the coordinates of that chain and in
+nothing else.
+
+A third arm is the negative control. It runs no search: the generated
+conformer is dropped into the same box at a random orientation about the box
+centre. It is the floor every success rate should be read against, and without
+it a reader cannot tell whether the search did anything.
 
 | receptor | scoring function | success | rate | 95 per cent interval | median top-1 RMSD |
 |---|---|---|---|---|---|
@@ -267,7 +274,7 @@ ligand and is the negative control.
 | experimental | vinardo | 5 of 9 | 55.6 per cent | 26.7 to 81.1 | 1.91 Angstroms |
 | predicted | vina | 1 of 11 | 9.1 per cent | 1.6 to 37.7 | 7.90 Angstroms |
 | predicted | vinardo | 1 of 9 | 11.1 per cent | 2.0 to 43.5 | 7.71 Angstroms |
-| control, box not on the ligand | vina | 0 of 12 | 0.0 per cent | 0.0 to 24.3 | 6.75 Angstroms |
+| control, no search | vina | 0 of 12 | 0.0 per cent | 0.0 to 24.3 | 6.75 Angstroms |
 
 Success requires the pose within 2 Angstroms and every physical check passed.
 

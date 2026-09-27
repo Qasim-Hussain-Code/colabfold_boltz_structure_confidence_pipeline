@@ -218,14 +218,24 @@ if host:
 files = subprocess.run(["git", "ls-files"], capture_output=True, text=True).stdout.split()
 files = [f for f in files if not f.endswith("check_repo.sh")]
 hits = 0
+scanned = 0
 for rel in files:
     p = Path(rel)
-    if p.suffix in (".png", ".gz", ".zip") or not p.is_file():
+    if p.suffix in (".png", ".zip") or not p.is_file():
         continue
+    # Compressed members are read, not skipped. 348 of the 467 tracked files
+    # here are gzipped, and skipping them while printing the tracked count
+    # said 467 files had been checked when 119 had.
     try:
-        text = p.read_text(encoding="utf-8", errors="replace")
-    except OSError:
+        if p.suffix == ".gz":
+            import gzip
+            with gzip.open(p, "rt", encoding="utf-8", errors="replace") as fh:
+                text = fh.read()
+        else:
+            text = p.read_text(encoding="utf-8", errors="replace")
+    except (OSError, EOFError, UnicodeError):
         continue
+    scanned += 1
     for i, line in enumerate(text.splitlines(), 1):
         for name, rx in PATTERNS:
             # A line with no at-sign cannot hold an address, and the
@@ -237,7 +247,7 @@ for rel in files:
             if rx.search(line):
                 hits += 1
                 print(f"    {name} {rel}:{i}")
-print(f"  machine-identifying strings in tracked files: {hits}")
+print(f"  {scanned} files read, machine-identifying strings found: {hits}")
 sys.exit(1 if hits else 0)
 PY
 then pass "nothing tracked identifies the machine or the account"

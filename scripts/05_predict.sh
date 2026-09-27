@@ -265,6 +265,21 @@ csc_stage_start "$STAGE"
 # through one long target.
 pick_targets() {
     if [[ -n "$TARGETS" ]]; then csc_split "$TARGETS"; return; fi
+    # The subset this arm can afford, when one has been chosen. An alignment
+    # arm costs about twelve times the single-sequence arm and grows with the
+    # square of the length, so 02a_select_arm_subsets.py spends a stated
+    # budget per arm and writes what it bought. That file was written and
+    # never read: the arms were driven by hand with --targets, and a run of
+    # run_all.sh would have taken the whole manifest and needed 76 hours per
+    # arm instead of the 10 and 5 the budget allows.
+    local subset="${CONFIG_DIR}/arm_subsets.tsv"
+    if [[ -s "$subset" ]] && awk -F'	' -v a="$ARM" 'NR>1 && $2==a {found=1} END {exit !found}' "$subset"; then
+        echo "[${STAGE}] taking the ${ARM} subset from $(basename "$subset")" >&2
+        awk -F'	' -v a="$ARM" '
+            NR==1 { for (i = 1; i <= NF; i++) { if ($i == "sequence_length") len = i; if ($i == "target_id") id = i; if ($i == "arm") arm = i } next }
+            arm && $arm == a && len && id { print $len "	" $id }' "$subset" | sort -n | cut -f2
+        return
+    fi
     # Column 5 is the sequence length and column 1 the identifier. The columns
     # are found by name rather than by position, because a manifest that gains
     # a column would otherwise silently sort by something else: the first

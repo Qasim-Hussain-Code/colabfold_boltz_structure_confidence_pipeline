@@ -68,6 +68,10 @@ def parse_args(argv=None):
     p.add_argument("--hours", required=True,
                    help="arm=hours pairs, comma separated")
     p.add_argument("--dry-run", action="store_true")
+    p.add_argument("--from-results", action="store_true",
+                   help="record the set each arm actually covers, rather than "
+                        "the set a budget buys. A fresh run then reproduces "
+                        "the arms this repository reports on.")
     return p.parse_args(argv)
 
 
@@ -125,6 +129,49 @@ def main(argv=None) -> int:
     conf = L.load_conf(args.config)
     paths = L.repo_paths(conf)
     config_dir, results = paths["CONFIG_DIR"], paths["RESULTS_DIR"]
+
+    if args.from_results:
+        # What the arms cover, read back from the predictions themselves.
+        #
+        # The budget mode answers "what can this arm afford", and the answer
+        # changes as the cost fit improves: with 41 alignment predictions to
+        # fit against rather than 14, the same budget buys 51 targets where it
+        # bought 30. That is the right answer to that question and the wrong
+        # file for a fresh clone to read, because the arms this repository
+        # reports on are the ones it ran. This mode records those, so
+        # 05_predict.sh reproduces them.
+        preds = L.read_tsv(results / "predictions.tsv")
+        targets = {t["target_id"]: t for t in L.read_tsv(config_dir / "targets.tsv")}
+        depth = {r["target_id"]: r.get("depth", "")
+                 for r in L.read_tsv(results / "msa_depth.tsv")}
+        seen: dict[tuple, dict] = {}
+        for r in preds:
+            arm = r.get("arm", "")
+            tid = r.get("target_id", "")
+            if not arm.startswith("af2_msa") or r.get("status") != "ok":
+                continue
+            if tid not in targets or (tid, arm) in seen:
+                continue
+            seen[(tid, arm)] = {
+                "target_id": tid, "arm": arm,
+                "why": "predicted in the run this repository reports on",
+                "sequence_length": targets[tid].get("sequence_length", ""),
+                "msa_depth": depth.get(tid, ""),
+                "projected_s": r.get("elapsed_s", ""),
+            }
+        rows = [seen[k] for k in sorted(seen, key=lambda k: (k[1], int(seen[k]["sequence_length"] or 0)))]
+        by_arm: dict[str, int] = {}
+        for r in rows:
+            by_arm[r["arm"]] = by_arm.get(r["arm"], 0) + 1
+        for arm, n in sorted(by_arm.items()):
+            print(f"[02a] {arm}: {n} targets, read back from the predictions")
+        if args.dry_run:
+            print("[02a] dry run; nothing written")
+            return 0
+        out = config_dir / "arm_subsets.tsv"
+        L.write_tsv(out, SUBSET_COLUMNS, rows)
+        print(f"[02a] wrote {out}")
+        return 0
 
     budgets: dict[str, float] = {}
     for part in args.hours.split(","):
