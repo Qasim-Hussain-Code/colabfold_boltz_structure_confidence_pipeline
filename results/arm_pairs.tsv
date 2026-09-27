@@ -1,11 +1,11 @@
 arm_a	arm_b	n_shared_targets	median_lddt_ca_a	median_lddt_ca_b	median_paired_difference	ci_low	ci_high	n_targets_b_higher	note	recorded
-af2_msa_notmpl	af2_msa_tmpl	14	0.9105	0.912	0.001	0.0	0.0055	7	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T04:29:08+08:00
-af2_msa_notmpl	af2_nomsa	30	0.925	0.4425	-0.476	-0.546	-0.3105	0	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T04:29:08+08:00
-af2_msa_notmpl	null_template	19	0.922	0.793	-0.109	-0.185	-0.032	2	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T04:29:08+08:00
-af2_msa_notmpl	null_unrelated	17	0.94	0.087	-0.84	-0.902	-0.788	0	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T04:29:08+08:00
-af2_msa_tmpl	af2_nomsa	14	0.912	0.4335	-0.484	-0.5723	-0.16	1	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T04:29:08+08:00
-af2_msa_tmpl	null_template	9	0.908	0.779	-0.135	-0.579	-0.045	0	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T04:29:08+08:00
-af2_msa_tmpl	null_unrelated	7	0.906	0.05	-0.851	-0.894	-0.791	0	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T04:29:08+08:00
-af2_nomsa	null_template	116	0.3615	0.8845	0.4495	0.403	0.5255	98	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T04:29:08+08:00
-af2_nomsa	null_unrelated	96	0.386	0.0415	-0.313	-0.364	-0.285	1	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T04:29:08+08:00
-null_template	null_unrelated	74	0.8905	0.0445	-0.78	-0.8292	-0.736	1	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T04:29:08+08:00
+af2_msa_notmpl	af2_msa_tmpl	14	0.9105	0.912	0.001	0.0	0.0055	7	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T06:25:20+08:00
+af2_msa_notmpl	af2_nomsa	30	0.925	0.4425	-0.476	-0.546	-0.3105	0	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T06:25:20+08:00
+af2_msa_notmpl	null_template	19	0.922	0.793	-0.109	-0.185	-0.032	2	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T06:25:20+08:00
+af2_msa_notmpl	null_unrelated	17	0.94	0.087	-0.84	-0.902	-0.788	0	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T06:25:20+08:00
+af2_msa_tmpl	af2_nomsa	14	0.912	0.4335	-0.484	-0.5723	-0.16	1	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T06:25:20+08:00
+af2_msa_tmpl	null_template	9	0.908	0.779	-0.135	-0.579	-0.045	0	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T06:25:20+08:00
+af2_msa_tmpl	null_unrelated	7	0.906	0.05	-0.851	-0.894	-0.791	0	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T06:25:20+08:00
+af2_nomsa	null_template	116	0.3615	0.8845	0.4495	0.403	0.5255	98	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T06:25:20+08:00
+af2_nomsa	null_unrelated	96	0.386	0.0415	-0.313	-0.364	-0.285	1	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T06:25:20+08:00
+null_template	null_unrelated	74	0.8905	0.0445	-0.78	-0.8292	-0.736	1	b minus a, per target, over the targets both arms have; the interval resamples targets	2026-09-28T06:25:20+08:00

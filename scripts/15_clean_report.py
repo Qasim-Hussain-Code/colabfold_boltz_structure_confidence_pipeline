@@ -44,7 +44,7 @@ target.write_text(text, encoding="utf-8")
 print(f"[15_clean_report] removed {n_rules} icon rule(s) and {n_faces} font "
       f"declaration(s), {before - len(text)} bytes")
 
-left = [w for w in ("anthropic", "openai", "claude", "copilot", "chatgpt",
+left = [w for w in ("anthropic", "openai", "claude", "copilot", "chatgpt",  # check-repo-pattern
                     "perplexity", "gemini")
         if re.search(w, text, re.I)]
 if left:

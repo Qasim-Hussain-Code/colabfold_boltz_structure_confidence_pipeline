@@ -15,7 +15,7 @@
 #     5. no tracked file over 50 MB, and the data directory is ignored
 #     6. every figure the README shows exists and is produced by a script here
 #     7. every results file the README names exists
-#     8. no docking score is called a binding energy, and no confidence value
+#     8. no docking score is called a binding energy, and no confidence value  # check-repo-pattern
 #        is called an accuracy or a probability
 #     9. no machine-identifying path, address or account name is tracked
 #    10. no tool is credited as an author or contributor
@@ -66,7 +66,7 @@ for f in run_all.sh scripts/*.sh; do
     [[ -f "$f" ]] || continue
     bash -n "$f" 2>/dev/null || { fail "$f does not parse"; SH_BAD=1; }
 done
-(( SH_BAD == 0 )) && pass "all shell scripts parse"
+(( SH_BAD == 0 )) && pass "all shell scripts parse"  # check-repo-pattern
 if command -v shellcheck >/dev/null 2>&1; then
     if shellcheck -x run_all.sh scripts/*.sh >/dev/null 2>&1; then
         pass "shellcheck reports no findings"
@@ -108,23 +108,26 @@ import sys
 import unicodedata
 from pathlib import Path
 
-BANNED = ["it is worth noting", "it's worth noting", "it is important to note",
-          "in today's rapidly evolving", "plays a crucial role",
-          "serves as a testament", "paving the way", "in conclusion",
-          "delve", "seamless", "underscores", "showcases", "a testament to",
-          "not only", "leverage", "leveraging", "leverages", "robust",
-          "comprehensive", "highlights the", "overall,"]
+BANNED = ["it is worth noting", "it's worth noting", "it is important to note",  # check-repo-pattern
+          "in today's rapidly evolving", "plays a crucial role",  # check-repo-pattern
+          "serves as a testament", "paving the way", "in conclusion",  # check-repo-pattern
+          "delve", "seamless", "underscores", "showcases", "a testament to",  # check-repo-pattern
+          "not only", "leverage", "leveraging", "leverages", "robust",  # check-repo-pattern
+          "comprehensive", "highlights the", "overall,"]  # check-repo-pattern
 # Names of assistants and code-generation tools. A repository with a single
 # author should not credit one anywhere, including in a commit trailer.
 SEQUENCE_LETTERS = set("ACDEFGHIKLMNPQRSTVWYXBZUO")
-SYMBOL_RANGE = re.compile("[\u2100-\U0010FFFF]")
-TOOLS = ["co-authored-by", "generated with", "copilot", "chatgpt", "gpt-4",
-         "claude", "anthropic", "openai", "cursor.ai", "codeium"]
+SYMBOL_RANGE = re.compile("[\u2100-\U0010FFFF]")  # check-repo-pattern
+TOOLS = ["co-authored-by", "generated with", "copilot", "chatgpt", "gpt-4",  # check-repo-pattern
+         "claude", "anthropic", "openai", "cursor.ai", "codeium"]  # check-repo-pattern
 
 files = subprocess.run(["git", "ls-files"], capture_output=True, text=True).stdout.split()
-# This file carries the lists it searches for, so scanning it reports every
-# pattern as a violation of itself.
-files = [f for f in files if not f.endswith("check_repo.sh")]
+# This file carries the lists it searches for, so the lines that define them
+# would report every pattern as a violation of itself. Skipping the whole file
+# was worse: anything written into it afterwards was never checked at all, and
+# it is one of the longer files here. Only the lines carrying the marker are
+# skipped now, and the rest of the file is scanned like any other.
+SELF = "check-repo-pattern"
 em = en = emoji = banned = energy = accuracy = tools = 0
 for rel in files:
     p = Path(rel)
@@ -135,15 +138,17 @@ for rel in files:
     except OSError:
         continue
     for i, line in enumerate(text.splitlines(), 1):
+        if SELF in line:
+            continue
         # A protein sequence is a string of letters and some of those strings
-        # spell English words. One target sequence here contains DELVE, which
+        # spell English words. One target sequence here contains DELVE, which  # check-repo-pattern
         # is an ordinary peptide and not a writing habit. Sequence fields are
         # taken out of the line before any prose rule is applied to it, rather
         # than the whole file being exempted, so the prose around them is still
         # checked.
         if p.suffix == ".tsv":
             line = "	".join(
-                "" if (len(f) >= 20 and set(f) <= SEQUENCE_LETTERS) else f
+                "" if (len(f) >= 20 and set(f) <= SEQUENCE_LETTERS) else f  # check-repo-pattern
                 for f in line.split("	"))
         # Built from their code points so this file does not itself contain
         # the characters it is looking for.
@@ -182,7 +187,7 @@ for rel in files:
         if re.search(r"(plddt|confidence)\s+(is|as)\s+(an?\s+)?(accuracy|probability)",
                      line, re.I) and not denial:
             accuracy += 1
-            print(f"    CONFIDENCE AS ACCURACY {rel}:{i}")
+            print(f"    CONFIDENCE AS ACCURACY {rel}:{i}")  # check-repo-pattern
 print(f"  em dashes {em}, en dashes {en}, emojis {emoji}, banned phrases {banned}, "
       f"score-as-energy {energy}, confidence-as-accuracy {accuracy}, tool names {tools}")
 sys.exit(1 if (em or en or emoji or banned or energy or accuracy or tools) else 0)
@@ -204,19 +209,21 @@ host = socket.gethostname().strip()
 # Built at run time from this machine's own identity, so the patterns are not
 # themselves written into a tracked file.
 PATTERNS = [
-    ("home directory path", re.compile(r"/home/[A-Za-z0-9_.-]+")),
-    ("windows user path", re.compile(r"(/mnt/[a-z]/Users/|[A-Za-z]:[\\/]{1,2}Users[\\/])", re.I)),
-    ("macos user path", re.compile(r"/Users/[A-Za-z0-9_.-]+/")),
-    ("application data path", re.compile(r"AppData", re.I)),
-    ("machine identifier", re.compile(r"\{?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}?", re.I)),
-    ("electronic address", re.compile(r"[A-Za-z0-9._%+-]{1,64}@(?!users\.noreply\.github\.com)[A-Za-z0-9.-]{1,255}\.[A-Za-z]{2,}")),
-    ("private network address", re.compile(r"(?<![\d.])(10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3})(?![\d.])")),
+    ("home directory path", re.compile(r"/home/[A-Za-z0-9_.-]+")),  # check-repo-pattern
+    ("windows user path", re.compile(r"(/mnt/[a-z]/Users/|[A-Za-z]:[\\/]{1,2}Users[\\/])", re.I)),  # check-repo-pattern
+    ("macos user path", re.compile(r"/Users/[A-Za-z0-9_.-]+/")),  # check-repo-pattern
+    ("application data path", re.compile(r"AppData", re.I)),  # check-repo-pattern
+    ("machine identifier", re.compile(r"\{?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}?", re.I)),  # check-repo-pattern
+    ("electronic address", re.compile(r"[A-Za-z0-9._%+-]{1,64}@(?!users\.noreply\.github\.com)[A-Za-z0-9.-]{1,255}\.[A-Za-z]{2,}")),  # check-repo-pattern
+    ("private network address", re.compile(r"(?<![\d.])(10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3})(?![\d.])")),  # check-repo-pattern
 ]
 if host:
-    PATTERNS.append(("host name", re.compile(re.escape(host), re.I)))
+    PATTERNS.append(("host name", re.compile(re.escape(host), re.I)))  # check-repo-pattern
 
 files = subprocess.run(["git", "ls-files"], capture_output=True, text=True).stdout.split()
-files = [f for f in files if not f.endswith("check_repo.sh")]
+# As above: the pattern-defining lines are skipped by their marker, not the
+# file by its name.
+SELF = "check-repo-pattern"
 hits = 0
 scanned = 0
 for rel in files:
@@ -237,6 +244,8 @@ for rel in files:
         continue
     scanned += 1
     for i, line in enumerate(text.splitlines(), 1):
+        if SELF in line:
+            continue
         for name, rx in PATTERNS:
             # A line with no at-sign cannot hold an address, and the
             # address pattern is the one that backtracks on the long
@@ -254,7 +263,7 @@ then pass "nothing tracked identifies the machine or the account"
 else fail "a tracked file carries a machine-identifying string"; fi
 
 # Commit metadata is separate from file contents and is checked separately.
-if git log --format='%an%n%ae%n%b' 2>/dev/null | grep -qiE 'co-authored-by|generated with|noreply@anthropic|copilot'; then
+if git log --format='%an%n%ae%n%b' 2>/dev/null | grep -qiE 'co-authored-by|generated with|noreply@anthropic|copilot'; then  # check-repo-pattern
     fail "a commit carries a tool as author, contributor or trailer"
 else
     pass "no commit credits a tool"
@@ -265,8 +274,8 @@ fi
 # It is checked here when it exists.
 REPORT="${ROOT}/results/report/12_report.html"
 if [[ -f "$REPORT" ]]; then
-    HITS="$(grep -o -i -E 'anthropic|openai|claude|copilot|chatgpt|perplexity' \
-        "$REPORT" 2>/dev/null | sort -u | tr '\n' ' ')"
+    # check-repo-pattern
+    HITS="$(grep -o -i -E 'anthropic|openai|claude|copilot|chatgpt|perplexity' "$REPORT" 2>/dev/null | sort -u | tr '\n' ' ')"  # check-repo-pattern
     if [[ -n "$HITS" ]]; then
         fail "the rendered report names: ${HITS}(run scripts/15_clean_report.py)"
     else

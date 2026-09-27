@@ -158,9 +158,9 @@ def compare_structures(ost_bin: str, model: Path, reference: Path, out_json: Pat
     sensible when the two are meant to be the same protein. The copied-template
     floor is deliberately not the same protein: at the default, every template
     below 70 per cent identity was left unmapped and scored zero. A floor that
-    reads zero because nothing was compared is not a floor, it is a missing
-    measurement dressed as one. With the threshold lowered, every arm is scored
-    by one rule and the unrelated floor is measured rather than refused.
+    reads zero because nothing was compared is a missing measurement dressed as
+    a result. With the threshold lowered, every arm is scored by one rule and
+    the unrelated floor is measured rather than refused.
     """
     cmd = [ost_bin, "compare-structures",
            "-m", str(model), "-r", str(reference), "-o", str(out_json),

@@ -242,7 +242,16 @@ def main() -> int:
     for s in scores:
         if s.get("status") == "ok":
             by_arm_scores[s["arm"]].append(s)
-    geom_by = {(g["target_id"], g["arm"]): g for g in geometry}
+    # One geometry row per target and arm. The table carries a row per seed as
+    # well, so an arm that repeated one target under five seeds would count
+    # that target five times in its validity fraction. The row kept is the one
+    # from the seed every accuracy figure is computed from; where a pair has no
+    # row at that seed the first is kept, which is the only row there is.
+    geom_by: dict[tuple, dict] = {}
+    for g in sorted(geometry,
+                    key=lambda r: (r.get("seed", "") != canonical,
+                                   r.get("seed", ""))):
+        geom_by.setdefault((g["target_id"], g["arm"]), g)
     for arm, rows in sorted(by_arm_scores.items()):
         lddt = [num(r.get("lddt_ca")) for r in rows]
         lddt = [v for v in lddt if v is not None]
@@ -264,7 +273,8 @@ def main() -> int:
         for r in rows:
             g = geom_by.get((r["target_id"], arm), {})
             v = num(r.get("lddt_ca"))
-            if v is not None and v >= lddt_trust and                     g.get("within_deposited_range") in ("1", 1):
+            if (v is not None and v >= lddt_trust
+                    and g.get("within_deposited_range") in ("1", 1)):
                 both += 1
         q = L.quantiles(lddt) if lddt else [float("nan")] * 3
         arm_rows.append({

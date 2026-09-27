@@ -64,7 +64,8 @@ import lib_csc as L  # noqa: E402
 DEPOSITED_ARMS = ("null_template", "null_unrelated")
 
 GEOMETRY_COLUMNS = [
-    "target_id", "arm", "model", "status", "reason", "n_residues", "tolerance_used",
+    "target_id", "arm", "seed", "model", "status", "reason", "n_residues",
+    "tolerance_used",
     "bad_bonds", "bad_angles", "bad_bonds_strict", "bad_angles_strict", "clashes",
     "ca_chirality_errors", "cis_nonpro", "cis_pro", "twisted_peptides",
     "rama_outliers", "rama_allowed", "rama_favoured", "rama_scored",
@@ -334,7 +335,12 @@ def main() -> int:
     # is physically valid is one of the questions this repository asks, and it
     # was being answered from four structures.
     prior = L.read_tsv(out_path) if out_path.is_file() else []
-    already = set() if args.force else {(r.get("target_id"), r.get("arm")) for r in prior}
+    # The seed belongs in the key. Without it the five seed repeats of one
+    # target collapse to a single entry, four of the five structures are never
+    # checked, and the stage reports every prediction as covered: 463 rows for
+    # 467 predictions, with nothing saying which four were missing.
+    already = set() if args.force else {
+        (r.get("target_id"), r.get("arm"), r.get("seed", "")) for r in prior}
 
     grids = load_rama_grids(data_dir / "reference_data" / "rotarama")
     if not grids:
@@ -351,7 +357,8 @@ def main() -> int:
         L.eprint("[error] no successful predictions to check; run 05_predict.sh first")
         return 1
     n_all = len(preds)
-    preds = [p for p in preds if (p["target_id"], p["arm"]) not in already]
+    preds = [p for p in preds
+             if (p["target_id"], p["arm"], p.get("seed", "")) not in already]
     if n_all - len(preds):
         print(f"[07_validate_geometry] {n_all - len(preds)} already checked, "
               f"{len(preds)} to do")
@@ -362,7 +369,8 @@ def main() -> int:
     rows = []
     for i, pred in enumerate(preds, 1):
         tid, arm = pred["target_id"], pred["arm"]
-        row = {"target_id": tid, "arm": arm, "model": pred.get("model", ""),
+        row = {"target_id": tid, "arm": arm, "seed": pred.get("seed", ""),
+               "model": pred.get("model", ""),
                "status": "ok", "reason": "", "recorded": L.now_iso()}
         model_gz = data_dir / pred.get("structure_file", "")
         if not pred.get("structure_file") or not model_gz.is_file():
