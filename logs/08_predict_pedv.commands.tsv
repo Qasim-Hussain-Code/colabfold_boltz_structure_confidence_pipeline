@@ -26,3 +26,5 @@ stage	label	elapsed_s	peak_rss_kb	exit_status	recorded
 08_predict_pedv	predict_pedv_af2_msa_notmpl	1728.81	3803552	0	2026-09-26T19:15:32+08:00
 08_predict_pedv	predict_pedv_af2_nomsa	609.37	3123680	0	2026-09-26T19:25:41+08:00
 08_predict_pedv	compare_prediction	0.17	24540	0	2026-09-26T19:25:42+08:00
+08_predict_pedv	measure_deposited	2.46	153076	0	2026-09-28T07:12:27+08:00
+08_predict_pedv	measure_deposited	2.26	153064	0	2026-09-28T07:12:44+08:00

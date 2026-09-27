@@ -19,6 +19,7 @@
      python scripts/15_clean_report.py [path/to/report.html]
 =============================================================================
 """
+import os
 import re
 import sys
 from pathlib import Path
@@ -40,7 +41,14 @@ text, n_rules = RULE.subn("", text)
 FONTFACE = re.compile(r'@font-face\s*\{[^}]*bootstrap-icons[^}]*\}\s*', re.I)
 text, n_faces = FONTFACE.subn("", text)
 
-target.write_text(text, encoding="utf-8")
+# Written and flushed to the device before this process exits. The report
+# lives on a filesystem shared with the host, and a check run immediately
+# after this one in the same command chain twice read the file as it was
+# before the rewrite and reported names this had already removed.
+with open(target, "w", encoding="utf-8") as fh:
+    fh.write(text)
+    fh.flush()
+    os.fsync(fh.fileno())
 print(f"[15_clean_report] removed {n_rules} icon rule(s) and {n_faces} font "
       f"declaration(s), {before - len(text)} bytes")
 

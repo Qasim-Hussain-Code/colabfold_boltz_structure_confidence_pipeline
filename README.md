@@ -454,7 +454,7 @@ pack against each other, and this arm does not claim otherwise.
 
 ## What went wrong, and how it was caught
 
-Four measurement faults were found and fixed while this ran. Three were the
+Six measurement faults were found and fixed while this ran. Three were the
 same mistake, and it is the mistake this repository exists to warn about.
 
 Each time, the code took whichever chain came first instead of the chain the
@@ -501,6 +501,31 @@ success. Both now resume rather than skip. The tables that stages append to
 also stacked rows across reruns, which once left two rows for every floor and
 doubled a denominator. `scripts/05a_reconcile_predictions.py` compares the
 prediction table against the files on disk and refuses when they disagree.
+
+The fifth and sixth were caught by an adversarial audit of the finished
+repository rather than by a number looking wrong, which is the only reason
+they are here to describe.
+
+A pocket score is the average of the per-residue scores over the residues that
+contact the ligand. Where the model and the reference could barely be mapped
+onto each other, almost none of those residues had a score, and the average was
+taken over what was left. On one target the unrelated-chain arm averaged a
+single residue, that residue scored 1.0, and the table reported a perfect
+pocket for a chain whose score over the whole structure was 0.042. The score is
+now withheld below five scored residues and the count is recorded either way.
+The same arm's pocket deviation was measured by pairing residues at the same
+position in two chains that are not the same protein; the paired residues must
+now agree in identity or the measurement is refused.
+
+The application arm found the domain boundary separately in each of the six
+deposited entries, which gave six different boundaries, and then compared each
+pair of entries using whichever of the two sorted first alphabetically. Every
+displacement in that table was therefore measured against a different
+definition of the domain, chosen by accession code. One boundary is now derived
+across all six and carried onto each entry through the alignment, and every
+number in that table moved. The largest displacement between deposited entries
+went from 54.5 to 55.4 Angstroms, and the pair that had read 17.3 now reads
+35.2.
 
 Two further faults were in the reporting rather than the measurement, and
 neither announced itself either.

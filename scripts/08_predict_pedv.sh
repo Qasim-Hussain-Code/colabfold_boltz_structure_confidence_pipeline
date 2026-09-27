@@ -119,21 +119,46 @@ done
 # of sequences. This one returned 89. Measured, a 201-residue construct
 # peaked at 3478 MB where that fit predicted about 4900, and the difference
 # cost the construct the body it needs to answer anything.
-PEDV_MEASURED=""
+# An array, not a string. As a string it had to be left unquoted so the flag
+# and its value would split into two arguments, which is the one thing in
+# these scripts shellcheck objected to and is worth writing properly rather
+# than silencing.
+PEDV_MEASURED=()
 PREV_LEN="$(awk -F'\t' 'NR==2{print $5}' "${RESULTS_DIR}/pedv/construct.tsv" 2>/dev/null)"
 PREV_KB="$(awk -F'\t' '$2=="predict_pedv_af2_msa_notmpl"{p=$4} END{print p}' "${LOG_DIR}/08_predict_pedv.commands.tsv" 2>/dev/null)"
 if [[ "$PREV_LEN" =~ ^[0-9]+$ && "$PREV_KB" =~ ^[0-9]+$ ]]; then
-    PEDV_MEASURED="--measured ${PREV_LEN}:$(( PREV_KB / 1024 ))"
+    PEDV_MEASURED=(--measured "${PREV_LEN}:$(( PREV_KB / 1024 ))")
     echo "[${STAGE}] the last run of this construct: ${PREV_LEN} residues at $(( PREV_KB / 1024 )) MB"
 fi
 
-FITS_IN_MEMORY="$("$PY_ANALYSIS" "${SCRIPT_DIR}/lib_memory.py" --config "${REPO_DIR}/project.conf" --arms af2_msa --budget-mb "$(( RAM_GB * 1024 ))" ${PEDV_MEASURED} --quiet 2>/dev/null || echo 0)"
+FITS_IN_MEMORY="$("$PY_ANALYSIS" "${SCRIPT_DIR}/lib_memory.py" \
+    --config "${REPO_DIR}/project.conf" --arms af2_msa \
+    --budget-mb "$(( RAM_GB * 1024 ))" \
+    ${PEDV_MEASURED[@]+"${PEDV_MEASURED[@]}"} --quiet 2>/dev/null || echo 0)"
 [[ "$FITS_IN_MEMORY" =~ ^[0-9]+$ ]] || FITS_IN_MEMORY=0
 if (( FITS_IN_MEMORY > 0 )); then
     echo "[${STAGE}] the measured memory curve allows ${FITS_IN_MEMORY} residues"
 else
     echo "[${STAGE}] not enough finished predictions to fit a memory curve;"
     echo "           only the cap in project.conf applies"
+fi
+
+# The construct grows as the memory measurement improves, and the measurement
+# improves every time this construct is predicted. That is intended, and it has
+# a trap in it: re-running this stage after a successful prediction writes a
+# longer construct while the predictions on disk are still of the shorter one,
+# and nothing downstream compares the two. Re-running the measurement on its
+# own is how the record came to disagree with what ran, once already. So the
+# length that produced the existing predictions is held unless they are being
+# redone.
+if (( FORCE == 0 )) && [[ "$PREV_LEN" =~ ^[0-9]+$ ]] \
+        && [[ -d "${PEDV_DIR}/af2_msa_notmpl" ]] \
+        && (( FITS_IN_MEMORY != PREV_LEN )); then
+    echo "[${STAGE}] the curve now allows ${FITS_IN_MEMORY} residues, but the"
+    echo "           predictions on disk are of a ${PREV_LEN}-residue construct."
+    echo "           Holding at ${PREV_LEN} so the record matches them."
+    echo "           --force rebuilds the construct and predicts it again."
+    FITS_IN_MEMORY="$PREV_LEN"
 fi
 
 csc_run "measure_deposited" "$PY_ANALYSIS" "${SCRIPT_DIR}/08a_pedv_analysis.py" \

@@ -1,2 +1,2 @@
 stage	elapsed_s	peak_rss_mb	data_dir_growth_mb	data_dir_total_mb	cache_dir_total_mb	peak_disk_mb	host_free_start_mb	host_free_min_mb	jobs	note
-08_predict_pedv	2467	3714	1	353	1775	2129	2665	2660	1	construct=299 residues
+08_predict_pedv	2	149	0	353	0	353	5337	5337	1	measured only
