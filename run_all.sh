@@ -184,7 +184,12 @@ if should_run 05_predict; then
     # span the length range. It needs at least three finished predictions to
     # fit against, so a first run has nothing to fit and the arms take the
     # whole set, which is correct on a machine where that is affordable.
-    if [[ -n "${ARM_BUDGET_HOURS:-}" ]]; then
+    # config/arm_subsets.tsv is tracked and records the set each arm covers in
+    # the run this repository reports on, so a fresh clone reproduces those
+    # arms rather than whatever a budget happens to buy today. Recomputing it
+    # from a budget is a deliberate act, not part of a reproduction: pass
+    # RECHOOSE_ARM_SUBSETS=1 to do it.
+    if [[ -n "${RECHOOSE_ARM_SUBSETS:-}" && -n "${ARM_BUDGET_HOURS:-}" ]]; then
         banner "02a_select_arm_subsets"
         "$PY" "${SCRIPTS}/02a_select_arm_subsets.py" --config "${ROOT}/project.conf"             --hours "$ARM_BUDGET_HOURS" ||             echo "[run_all] the arm subsets could not be chosen; the arms take the whole set"
     fi

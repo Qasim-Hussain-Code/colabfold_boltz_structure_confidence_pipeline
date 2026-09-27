@@ -12,9 +12,12 @@
  while the README is not gets caught rather than assumed. Adding a number to
  the README means adding a line here, which is the cost of the guarantee.
 
- A number this file lists but the README does not quote is reported rather
- than failed: a figure may carry it instead, and the list stays honest about
- what was actually checked.
+ A number this file lists but the README does not quote is a failure. The
+ earlier version reported it and carried on, which meant that editing a number
+ in the README silently retired its own check: the string no longer matched, so
+ the check was skipped rather than run. A number genuinely carried by a figure
+ and not by the prose goes in FIGURE_ONLY below, named, so the exemption is
+ visible.
 
  Usage:
      python scripts/13_verify_readme.py
@@ -38,15 +41,20 @@ dock = {(r["arm"], r["method"]): r for r in L.read_tsv(REPO / "results/docking_h
 seed = L.read_tsv(REPO / "results/seed_variance.tsv")
 sweep = {(r["arm"], r["band"]): r for r in L.read_tsv(REPO / "results/threshold_sweep.tsv")}
 
+def pct(x: str) -> str:
+    """A fraction as the README writes it: one decimal place, per cent."""
+    return f"{100 * float(x):.1f}"
+
+
 claims = [
     ("0.925", head["lddt_ca_median__af2_msa_notmpl"], "median lDDT, alignment arm"),
-    ("0.908", head["lddt_ca_median__af2_msa_tmpl"], "median lDDT, templates arm"),
+    ("0.912", head["lddt_ca_median__af2_msa_tmpl"], "median lDDT, templates arm"),
     ("0.378", head["lddt_ca_median__af2_nomsa"], "median lDDT, no alignment"),
-    ("0.8825", head["lddt_ca_median__null_template"], "median lDDT, template floor"),
-    ("0.016", head["lddt_ca_median__null_unrelated"], "median lDDT, unrelated floor"),
+    ("0.885", head["lddt_ca_median__null_template"], "median lDDT, template floor"),
+    ("0.0415", head["lddt_ca_median__null_unrelated"], "median lDDT, unrelated floor"),
     ("0.0141", cal["af2_msa_notmpl"]["expected_calibration_error"], "calibration error"),
     ("0.7346", cal["af2_msa_notmpl"]["pearson_r"], "pearson r"),
-    ("0.0200", cal["af2_msa_tmpl"]["expected_calibration_error"], "calibration error, templates"),
+    ("0.02", cal["af2_msa_tmpl"]["expected_calibration_error"], "calibration error, templates"),
     ("0.0245", cal["af2_nomsa"]["expected_calibration_error"], "calibration error, no alignment"),
     ("2463", cal["af2_msa_notmpl"]["n_residues_above_high_band"], "residues above the band"),
     ("34", cal["af2_msa_notmpl"]["n_of_those_below_trust"], "of those below trust"),
@@ -57,23 +65,50 @@ claims = [
     ("150", summary["targets_final"], "targets in the set"),
     ("0.004", seed[0]["range"], "seed range"),
     ("0.0015", seed[0]["standard_deviation"], "seed standard deviation"),
+    ("117", arms["null_template"]["n_targets"], "template floor targets compared"),
+    ("96", arms["null_unrelated"]["n_targets"], "unrelated floor targets compared"),
+    ("86.3", pct(arms["null_template"]["fraction_passing_geometry"]), "template floor valid"),
+    ("66.7", pct(arms["null_template"]["fraction_accurate_and_valid"]), "template floor accurate and valid"),
+    ("86.5", pct(arms["null_unrelated"]["fraction_passing_geometry"]), "unrelated floor valid"),
+    ("35.7", pct(arms["af2_msa_tmpl"]["fraction_passing_geometry"]), "templates arm valid"),
+    ("23.3", pct(arms["af2_msa_notmpl"]["fraction_passing_geometry"]), "alignment arm valid"),
+    ("2.0", pct(arms["af2_nomsa"]["fraction_passing_geometry"]), "no-alignment arm valid"),
 ]
+
+# The per-arm accuracy table quotes a quartile pair and a TM-score for every
+# arm, so every cell of it is checked rather than the median alone.
+for _arm, _label in [("af2_msa_notmpl", "alignment arm"),
+                     ("af2_msa_tmpl", "templates arm"),
+                     ("af2_nomsa", "no-alignment arm"),
+                     ("null_template", "template floor"),
+                     ("null_unrelated", "unrelated floor")]:
+    for _col, _what in [("lddt_ca_q1", "first quartile"),
+                        ("lddt_ca_q3", "third quartile"),
+                        ("tm_score_median", "median TM-score")]:
+        # The expected string is taken from the table, so the comparison is
+        # trivially equal and the check that does the work is the one that
+        # requires the string to appear in the README.
+        claims.append((arms[_arm][_col], arms[_arm][_col], f"{_what}, {_label}"))
+
+# The numbers that live only in a figure, named so the exemption is visible
+# rather than implied by a string that happens not to match.
+FIGURE_ONLY = set()
 
 bad = 0
 unquoted = []
 for quoted, actual, what in claims:
     same = str(actual).rstrip("0").rstrip(".") == quoted.rstrip("0").rstrip(".")
     if quoted not in readme:
-        # The README does not make this claim. That is allowed; a figure may
-        # carry it instead. It is reported so the list stays honest about what
-        # was actually checked.
         unquoted.append(f"{what} ({quoted})")
+        if what not in FIGURE_ONLY:
+            bad += 1
         continue
     if not same:
         bad += 1
         print(f"  MISMATCH {what}: README says {quoted}, table says {actual}")
 if unquoted:
-    print("  not quoted in the README, so not checked: " + "; ".join(unquoted))
+    print("  not found in the README, so the check could not run: "
+          + "; ".join(unquoted))
 
 # The cost table, which drifted unchecked when the templates arm was extended
 # and the seed repeats were added.
@@ -97,11 +132,26 @@ for arm, n, secs, mem in [("af2_nomsa", "149", "155", "2753"),
 geo = L.read_tsv(REPO / "results/geometry_checks.tsv")
 dep = [r for r in geo if r["arm"].startswith("null_") and r["status"] == "ok"]
 strict = sum(1 for r in dep if r.get("passes_all") == "1")
-for quoted, actual, what in [("118", strict, "deposited meeting the zero-fault standard"),
-                             ("270", len(dep), "deposited structures checked")]:
-    if str(actual) != quoted or quoted not in readme:
+within = sum(1 for r in dep if r.get("within_deposited_range") == "1")
+per_arm = {}
+for arm in ("null_template", "null_unrelated"):
+    sub = [r for r in dep if r["arm"] == arm]
+    per_arm[arm] = (sum(1 for r in sub if r.get("within_deposited_range") == "1"),
+                    len(sub))
+geometry_claims = [
+    ("118", str(strict), "deposited meeting the zero-fault standard"),
+    ("270", str(len(dep)), "deposited structures checked"),
+    ("235 of 270", f"{within} of {len(dep)}", "deposited inside the range"),
+    ("103 of 120", "%d of %d" % per_arm["null_template"], "template floor inside the range"),
+    ("132 of 150", "%d of %d" % per_arm["null_unrelated"], "unrelated floor inside the range"),
+]
+for quoted, actual, what in geometry_claims:
+    if actual != quoted:
         bad += 1
         print(f"  MISMATCH {what}: README {quoted}, table {actual}")
+    elif quoted not in readme:
+        bad += 1
+        print(f"  ABSENT {what}: the README no longer says {quoted}")
 
 # the sweep rows the README tabulates
 for band, frac in [("50", "0.0672"), ("60", "0.0446"), ("70", "0.0329"),
@@ -133,5 +183,5 @@ for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
         print(f"  MISMATCH pair {a} against {b}: README {diff}, table "
               f"{row['median_paired_difference'] if row else 'absent'}")
 
-print(f"{len(claims) + 13} checks, {bad} mismatch(es)")
+print(f"{len(claims) + len(geometry_claims) + 22} checks, {bad} mismatch(es)")
 sys.exit(1 if bad else 0)

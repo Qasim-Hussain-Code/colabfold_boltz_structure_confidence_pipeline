@@ -27,10 +27,10 @@ The five questions, and the short answers:
 3. How much of the apparent accuracy comes from information the model should
    not have had? A great deal. Of 150 targets held out by both deposition and
    release date, 56 have a relative deposited before the cutoff with exactly
-   the same sequence. Copying that relative scores 0.9555 median lDDT-CA for
-   those 56, where AlphaFold2 with an alignment scores 0.925 over its 30. Over
-   all 120 targets that have any usable pre-cutoff relative, copying scores
-   0.8825.
+   the same sequence. Copying that relative scores 0.9575 median lDDT-CA for
+   the 54 of them the comparison could be made on, where AlphaFold2 with an
+   alignment scores 0.925 over its 30. Over all 117 targets whose copied
+   template could be compared, copying scores 0.885.
 4. What does docking into a predicted receptor cost? On the same 13 targets
    with the same protocol, success falls from 4 of 11 to 1 of 11 with one
    scoring function, and from 5 of 9 to 1 of 9 with the other.
@@ -79,19 +79,22 @@ templates off. 30 targets.
 
 `null_template` is not a prediction. It takes the closest relative deposited
 before the training cutoff, copies its coordinates, and superposes them on the
-target. It is what you would get by looking the answer up. 120 targets.
+target. It is what you would get by looking the answer up. 120 built, 117 of
+which could be compared.
 
 `null_unrelated` is also not a prediction. It takes a chain of comparable
 length with no detectable relationship to the target. It is what the scale
-looks like when there is no information at all. 150 targets.
+looks like when there is no information at all. 150 built, 96 of which could
+be compared: for the other 54 no chain could be paired at all, which is the
+honest answer for an unrelated chain and a different answer from zero.
 
 The two floors are what make the other numbers readable. A benchmark without
 them reports that a model scored 0.9 and leaves you to guess whether that is
 impressive. Here you can see that copying a pre-cutoff relative also scores
-0.8825, and that having nothing scores 0.016.
+0.885, and that having nothing scores 0.0415.
 
 The floors also show why the choice of measure matters. An unrelated chain
-scores 0.016 by lDDT-CA and 0.303 by TM-score. TM-score has a floor for any
+scores 0.0415 by lDDT-CA and 0.309 by TM-score. TM-score has a floor for any
 pair of structures of similar size, so a metric that cannot reach zero cannot
 tell you when you have nothing. Every headline here uses lDDT-CA.
 
@@ -171,6 +174,20 @@ There is no knee. The risk falls smoothly and never reaches zero. Anyone who
 quotes a single cutoff above which a prediction can be trusted is choosing a
 point on this curve, and the curve is the answer rather than the point.
 
+Accuracy per arm, one number per target, median with the interquartile range:
+
+| arm | targets | median lDDT-CA | interquartile range | median TM-score |
+|---|---|---|---|---|
+| AlphaFold2, alignment, no templates | 30 | 0.925 | 0.8955 to 0.957 | 0.9305 |
+| AlphaFold2, alignment, templates on | 14 | 0.912 | 0.9015 to 0.9537 | 0.938 |
+| AlphaFold2, no alignment | 149 | 0.378 | 0.31 to 0.5 | 0.402 |
+| copied pre-cutoff template | 117 | 0.885 | 0.712 to 0.965 | 0.915 |
+| unrelated chain | 96 | 0.0415 | 0.017 to 0.1268 | 0.309 |
+
+The arms cover different targets, so a column read downwards compares sets as
+well as methods. The paired comparisons below are the ones that compare methods
+on the same targets.
+
 ![Accuracy per arm](figures/fig4_arm_accuracy.png)
 
 ## Physical validity
@@ -187,7 +204,7 @@ measures perfection rather than validity. So the thresholds are taken from the 2
 deposited structures here, at the 95th percentile of each check: at most 4 bad
 bonds, 0 bad angles, 0 clashes, 0 chirality errors, 1 cis peptide outside
 proline, 2 twisted peptides, 9 Ramachandran outliers. The deposited arms then
-pass 86 and 88 per cent of the time, which is what shows the standard is one
+pass 235 of 270 times, 87 per cent, which is what shows the standard is one
 reality meets.
 
 | arm | inside the range deposited structures span |
@@ -205,20 +222,24 @@ Deposited structures essentially never carry an angle twelve standard
 deviations from ideal. Chirality and cis peptides outside proline are always
 within the experimental range, and no arm fails on either.
 
-Requiring accuracy and validity together changes the ranking:
+Requiring accuracy and validity together changes the ranking. This table is
+restricted to the structures that have both an accuracy score and a geometry
+check, so the deposited arms are counted over the 117 and 96 targets whose
+copied coordinates could be compared to the target rather than over all 120 and
+150 built:
 
 | arm | physically valid | accurate and valid |
 |---|---|---|
-| copied pre-cutoff template | 85.8 per cent | 65.0 per cent |
+| copied pre-cutoff template | 86.3 per cent | 66.7 per cent |
 | AlphaFold2, alignment, templates on | 35.7 per cent | 35.7 per cent |
 | AlphaFold2, alignment, no templates | 23.3 per cent | 23.3 per cent |
 | AlphaFold2, no alignment | 2.0 per cent | 2.0 per cent |
-| unrelated chain | 88.0 per cent | 0.0 per cent |
+| unrelated chain | 86.5 per cent | 0.0 per cent |
 
 ![Accurate, physically valid, and both](figures/fig6_accuracy_and_validity.png)
 
 AlphaFold2 is more accurate than the copied template and loses to it on this
-combined measure. The unrelated chain is 88 per cent valid and 0 per cent
+combined measure. The unrelated chain is 86 per cent valid and 0 per cent
 accurate, which is the control that shows the two axes are independent.
 
 ## What the alignment and the templates are worth

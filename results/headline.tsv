@@ -5,5 +5,5 @@ fraction_above_90_below_0.7__af2_nomsa	0.0015	1 of 663 residues above confidence
 lddt_ca_median__af2_msa_notmpl	0.925	over 30 targets
 lddt_ca_median__af2_msa_tmpl	0.912	over 14 targets
 lddt_ca_median__af2_nomsa	0.378	over 149 targets
-lddt_ca_median__null_template	0.8825	over 120 targets
-lddt_ca_median__null_unrelated	0.016	over 150 targets
+lddt_ca_median__null_template	0.885	over 117 targets
+lddt_ca_median__null_unrelated	0.0415	over 96 targets
