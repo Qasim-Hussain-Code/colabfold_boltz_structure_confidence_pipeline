@@ -83,12 +83,37 @@ def today() -> str:
 # ---------------------------------------------------------------------------
 
 
+def _flatten(row: dict) -> dict:
+    """A cell that cannot break the format it is written in.
+
+    Tool messages arrive with newlines, tabs and quotes in them. Written
+    straight into a tab-separated file they end the row early or, under the
+    default quoting, open a quoted region that swallows everything up to the
+    next quote. One OpenStructure message did exactly that and hid 269 rows of
+    results/excluded.tsv from every reader, including the report that counts
+    them.
+
+    Whitespace is collapsed and the quote character removed. Nothing else
+    changes, so the message stays readable.
+    """
+    out = {}
+    for k, v in row.items():
+        if isinstance(v, str):
+            v = " ".join(v.replace('"', "").split())
+        out[k] = v
+    return out
+
+
 def read_tsv(path: str | Path) -> list[dict]:
     """Rows of a TSV as dicts. Lines whose first field starts with # are skipped,
     so the config tables can carry their reasoning as comments."""
     with open(path, newline="") as fh:
         lines = [ln for ln in fh if not ln.startswith("#")]
-    return list(csv.DictReader(lines, delimiter="\t"))
+    # A tab-separated file is separated by tabs and nothing else. Under the
+    # default quoting one double quote inside a field opens a region that
+    # runs to the next one and everything between is swallowed.
+    return list(csv.DictReader(lines, delimiter="\t",
+                               quoting=csv.QUOTE_NONE))
 
 
 def write_tsv(path: str | Path, columns: list[str], rows) -> None:
@@ -102,10 +127,11 @@ def write_tsv(path: str | Path, columns: list[str], rows) -> None:
     tmp = path.with_suffix(path.suffix + ".tmp")
     with tmp.open("w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=columns, delimiter="\t",
-                           lineterminator="\n", extrasaction="ignore")
+                           lineterminator="\n", extrasaction="ignore",
+                           quoting=csv.QUOTE_NONE)
         w.writeheader()
         for r in rows:
-            w.writerow(r)
+            w.writerow(_flatten(r))
     shutil.move(str(tmp), str(path))
 
 
@@ -115,11 +141,12 @@ def append_tsv(path: str | Path, columns: list[str], rows) -> None:
     exists = path.is_file() and path.stat().st_size > 0
     with path.open("a", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=columns, delimiter="\t",
-                           lineterminator="\n", extrasaction="ignore")
+                           lineterminator="\n", extrasaction="ignore",
+                           quoting=csv.QUOTE_NONE)
         if not exists:
             w.writeheader()
         for r in rows:
-            w.writerow(r)
+            w.writerow(_flatten(r))
 
 
 def fmt(x, nd: int = 4):

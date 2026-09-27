@@ -539,6 +539,11 @@ def main() -> int:
                                                map_seqid_thresh)
             ost_version = data.get("ost_version", ost_version)
             if not ok:
+                # A tool message arrives with newlines and quotes in it. It is
+                # collapsed before it becomes a cell: one such message broke
+                # results/excluded.tsv so that 269 of its 440 rows could not be
+                # read at all.
+                why = " ".join(str(why).replace('"', "").split())
                 row.update({"status": "failed", "reason": why})
                 rows.append(row)
                 L.record_exclusion(results_dir, tid, "06_score_structures", why, arm=arm)
