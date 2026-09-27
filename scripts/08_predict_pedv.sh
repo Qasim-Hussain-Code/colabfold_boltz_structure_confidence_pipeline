@@ -137,7 +137,8 @@ else
 fi
 
 csc_run "measure_deposited" "$PY_ANALYSIS" "${SCRIPT_DIR}/08a_pedv_analysis.py" \
-    --config "${REPO_DIR}/project.conf" --entries "$ENTRIES" --measure     --max-construct "$FITS_IN_MEMORY"
+    --config "${REPO_DIR}/project.conf" --entries "$ENTRIES" --measure \
+    --max-construct "$FITS_IN_MEMORY"
 
 if (( NO_PREDICT == 1 )); then
     csc_stage_end "measured only"

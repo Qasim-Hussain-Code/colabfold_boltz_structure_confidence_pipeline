@@ -49,8 +49,10 @@ displays, and that is worth knowing either way.
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -60,6 +62,11 @@ DOMAIN_COLUMNS = ["entry", "chain", "n_residues", "domain_first", "domain_last",
                   "domain_length", "internal_contacts", "external_contacts",
                   "normalised_cut", "method", "recorded"]
 
+PROTOMER_COLUMNS = ["entry", "chain_a", "chain_b", "sequence_identity",
+                    "n_body_aligned", "body_rmsd", "n_domain_compared",
+                    "domain_displacement", "domain_centroid_shift", "note",
+                    "recorded"]
+
 PAIR_COLUMNS = ["structure_a", "chain_a", "structure_b", "chain_b",
                 "sequence_identity", "n_body_aligned", "body_rmsd",
                 "n_domain_compared", "domain_displacement",
@@ -67,6 +74,25 @@ PAIR_COLUMNS = ["structure_a", "chain_a", "structure_b", "chain_b",
 
 CONFIDENCE_COLUMNS = ["arm", "region", "n_residues", "mean_confidence",
                       "min_confidence", "max_confidence", "note", "recorded"]
+
+
+def polymer_chain_names(path: Path) -> list[str]:
+    """Every polymer chain in the file, longest first.
+
+    A spike entry deposits three copies of the same chain and they are not
+    always the same length: one of these holds 1124, 1098 and 1224 residues
+    under three chain names.
+    """
+    import gemmi
+
+    st = gemmi.read_structure(str(path))
+    st.setup_entities()
+    if not len(st):
+        return []
+    named = [(c.name, len(c.get_polymer())) for c in st[0]
+             if len(c.get_polymer()) >= 30]
+    named.sort(key=lambda x: -x[1])
+    return [n for n, _ in named]
 
 
 def load_chain(path: Path, chain_name: str | None = None):
@@ -263,7 +289,21 @@ def rigid_core_fit(mob: dict, ref: dict, positions: list[int],
         dev = np.sqrt((((rot @ (a - cm).T).T + cr - b) ** 2).sum(axis=1))
         nxt = [p for p, d in zip(shared, dev) if d <= keep_within]
         if len(nxt) < 20 or nxt == use:
+            # Converged, or the core has shrunk below what a fit can be made
+            # on. In the second case the previous set is kept, and on the two
+            # entries whose domain moves furthest that previous set is every
+            # shared position: the fit reported as a rigid-core fit is then a
+            # whole-chain fit. It is still the best available answer, so it is
+            # returned rather than refused, but the caller is told how many
+            # positions it rests on and whether the trimming converged, and
+            # the boundary that depends on it is derived from the whole set of
+            # entries rather than from any single fit.
+            converged = nxt == use
             use = nxt if len(nxt) >= 20 else use
+            if not converged:
+                print(f"    [pedv] the rigid core fell below 20 residues, so "
+                      f"this fit rests on all {len(use)} shared positions "
+                      f"rather than on a core")
             break
         use = nxt
     fit = superpose_on(mob, ref, use)
@@ -383,13 +423,13 @@ def measure(conf: dict, entries: list[str], max_construct: int = 0) -> int:
     results_dir.mkdir(parents=True, exist_ok=True)
 
     loaded, domain_rows, coverage = {}, [], {}
+    entry_paths: dict[str, Path] = {}
     for entry in entries:
         path = data_dir / f"{entry}.cif.gz"
         if not path.is_file():
             print(f"  {entry}: not on disk, skipped")
             continue
-        import gzip
-        import tempfile
+        entry_paths[entry] = path
         with tempfile.NamedTemporaryFile("wb", suffix=".cif", delete=False) as fh:
             with gzip.open(path, "rb") as gz:
                 fh.write(gz.read())
@@ -426,38 +466,7 @@ def measure(conf: dict, entries: list[str], max_construct: int = 0) -> int:
         return 1
     L.write_tsv(results_dir / "domain_definition.tsv", DOMAIN_COLUMNS, domain_rows)
 
-    # Every pair, superposed on the body, domain displacement measured after.
-    pair_rows = []
     names = sorted(loaded)
-    for i, a in enumerate(names):
-        for b in names[i + 1:]:
-            ch_a, ca_a, dom_a, seq_a, keys_a = loaded[a]
-            ch_b, ca_b, dom_b, seq_b, keys_b = loaded[b]
-            # These entries number their chains two different ways, so which
-            # residue of b answers to a residue of a is decided by aligning the
-            # two sequences, never by the numbers themselves.
-            amap, identity = position_map(seq_a, keys_a, seq_b, keys_b)
-            ca_b_in_a = {k: ca_b[v] for k, v in amap.items() if v in ca_b}
-            body = [k for k in dom_a["keys"][dom_a["cut_index"]:] if k in ca_b_in_a]
-            dom_positions = [k for k in dom_a["keys"][:dom_a["cut_index"]]
-                             if k in ca_b_in_a]
-            fit = superpose_on(ca_a, ca_b_in_a, body)
-            if fit is None:
-                continue
-            rms, centroid, n_dom = displacement(ca_a, ca_b_in_a, fit, dom_positions)
-            pair_rows.append({
-                "structure_a": a, "chain_a": ch_a, "structure_b": b, "chain_b": ch_b,
-                "sequence_identity": L.fmt(identity, 1),
-                "n_body_aligned": fit[4], "body_rmsd": L.fmt(fit[3], 3),
-                "n_domain_compared": n_dom,
-                "domain_displacement": L.fmt(rms, 3),
-                "domain_centroid_shift": L.fmt(centroid, 3),
-                "note": "superposed on the body only; the domain was not fitted",
-                "recorded": L.now_iso(),
-            })
-            print(f"  {a} against {b}: body fit {fit[3]:.2f} over {fit[4]} residues, "
-                  f"domain displaced {rms:.2f}, centroid moved {centroid:.2f}")
-    L.write_tsv(results_dir / "deposited_pairs.tsv", PAIR_COLUMNS, pair_rows)
 
     # One definition of the domain, not six.
     #
@@ -504,6 +513,135 @@ def measure(conf: dict, entries: list[str], max_construct: int = 0) -> int:
                   "counts_as_moving": "yes" if worst[k] > move_threshold else "no"}
                  for k in sorted(worst)])
 
+    # Every pair of entries, superposed on the body, domain displacement
+    # measured after.
+    #
+    # This runs here, below the consensus, and not above it. Run above it each
+    # pair was measured against whichever of its two entries sorted first,
+    # using that entry's own contact boundary. The boundary differs from entry
+    # to entry, by 201 residues against 347 in the extreme, so the table held
+    # six definitions of the domain and which one a row used was decided by the
+    # alphabetical order of two accession codes. The consensus boundary is one
+    # definition, and it is carried onto each entry through the same alignment
+    # every other comparison here goes through.
+    def domain_and_body(entry):
+        """The consensus domain and body, in the numbering of this entry."""
+        _c, _ca, _dom, seq_e, keys_e = loaded[entry]
+        if entry == ref:
+            onto = {k: k for k in keys_ref}
+        else:
+            onto, _ident = position_map(seq_ref, keys_ref, seq_e, keys_e)
+        dom_keys = [onto[k] for k in keys[:cut_index] if k in onto]
+        body_keys = [onto[k] for k in keys[cut_index:] if k in onto]
+        return dom_keys, body_keys
+
+    def compare(ca_a, keys_a_dom, keys_a_body, ca_b_in_a):
+        fit_local = superpose_on(ca_a, ca_b_in_a, keys_a_body)
+        if fit_local is None:
+            return None
+        rms, centroid, n_dom = displacement(ca_a, ca_b_in_a, fit_local,
+                                            keys_a_dom)
+        return fit_local, rms, centroid, n_dom
+
+    pair_rows = []
+    for i, a in enumerate(names):
+        dom_a_keys, body_a_keys = domain_and_body(a)
+        for b in names[i + 1:]:
+            ch_a, ca_a, _da, seq_a, keys_a = loaded[a]
+            ch_b, ca_b, _db, seq_b, keys_b = loaded[b]
+            # These entries number their chains two different ways, so which
+            # residue of b answers to a residue of a is decided by aligning the
+            # two sequences, never by the numbers themselves.
+            amap, identity = position_map(seq_a, keys_a, seq_b, keys_b)
+            ca_b_in_a = {k: ca_b[v] for k, v in amap.items() if v in ca_b}
+            got = compare(ca_a, [k for k in dom_a_keys if k in ca_b_in_a],
+                          [k for k in body_a_keys if k in ca_b_in_a], ca_b_in_a)
+            if got is None:
+                continue
+            fit_local, rms, centroid, n_dom = got
+            pair_rows.append({
+                "structure_a": a, "chain_a": ch_a,
+                "structure_b": b, "chain_b": ch_b,
+                "sequence_identity": L.fmt(identity, 1),
+                "n_body_aligned": fit_local[4],
+                "body_rmsd": L.fmt(fit_local[3], 3),
+                "n_domain_compared": n_dom,
+                "domain_displacement": L.fmt(rms, 3),
+                "domain_centroid_shift": L.fmt(centroid, 3),
+                "note": "superposed on the body only; the domain was not "
+                        "fitted; consensus domain boundary",
+                "recorded": L.now_iso(),
+            })
+            print(f"  {a} against {b}: body fit {fit_local[3]:.2f} over "
+                  f"{fit_local[4]} residues, domain displaced {rms:.2f}, "
+                  f"centroid moved {centroid:.2f}")
+    L.write_tsv(results_dir / "deposited_pairs.tsv", PAIR_COLUMNS, pair_rows)
+
+    # The protomers inside one entry, measured the same way.
+    #
+    # A spike is a trimer and the archive deposits all three copies. Reading
+    # one chain per entry answers how six structures differ; it cannot see an
+    # entry that holds two arrangements of the domain at once, and two of these
+    # six do. Leaving that out would understate the variety in the record,
+    # which is the quantity this arm exists to report.
+    protomer_rows = []
+    for entry in names:
+        path = entry_paths.get(entry)
+        if not path:
+            continue
+        with tempfile.NamedTemporaryFile("wb", suffix=".cif",
+                                         delete=False) as fh:
+            with gzip.open(path, "rb") as gz:
+                fh.write(gz.read())
+            tmp_e = Path(fh.name)
+        try:
+            chain_names = polymer_chain_names(tmp_e)
+            if len(chain_names) < 2:
+                continue
+            dom_e_keys, body_e_keys = domain_and_body(entry)
+            per_chain = {}
+            for nm in chain_names:
+                _c, ca_n, seq_n, keys_n = load_chain(tmp_e, nm)
+                if ca_n:
+                    per_chain[nm] = (ca_n, seq_n, keys_n)
+            first = loaded[entry][0]
+            if first not in per_chain:
+                continue
+            ca_first, seq_first, keys_first = per_chain[first]
+            for nm, (ca_n, seq_n, keys_n) in sorted(per_chain.items()):
+                if nm == first:
+                    continue
+                nmap, ident_n = position_map(seq_first, keys_first,
+                                             seq_n, keys_n)
+                ca_n_in_first = {k: ca_n[v] for k, v in nmap.items()
+                                 if v in ca_n}
+                got = compare(ca_first,
+                              [k for k in dom_e_keys if k in ca_n_in_first],
+                              [k for k in body_e_keys if k in ca_n_in_first],
+                              ca_n_in_first)
+                if got is None:
+                    continue
+                fit_local, rms, centroid, n_dom = got
+                protomer_rows.append({
+                    "entry": entry, "chain_a": first, "chain_b": nm,
+                    "sequence_identity": L.fmt(ident_n, 1),
+                    "n_body_aligned": fit_local[4],
+                    "body_rmsd": L.fmt(fit_local[3], 3),
+                    "n_domain_compared": n_dom,
+                    "domain_displacement": L.fmt(rms, 3),
+                    "domain_centroid_shift": L.fmt(centroid, 3),
+                    "note": "two copies of the same chain in one deposited "
+                            "entry, superposed on the body",
+                    "recorded": L.now_iso(),
+                })
+                print(f"  {entry} chain {first} against {nm}: body fit "
+                      f"{fit_local[3]:.2f} over {fit_local[4]} residues, "
+                      f"domain displaced {rms:.2f}")
+        finally:
+            tmp_e.unlink(missing_ok=True)
+    L.write_tsv(results_dir / "protomer_pairs.tsv", PROTOMER_COLUMNS,
+                protomer_rows)
+
     # The construct: the domain plus enough of the body to define where it sits.
     # A domain on its own cannot answer the question this arm asks.
     #
@@ -534,8 +672,6 @@ def measure(conf: dict, entries: list[str], max_construct: int = 0) -> int:
               f"to do about that; this records it.")
     seq_path = Path(conf["DATA_DIR"]) / "pedv" / "construct.fasta"
     import gemmi
-    import gzip
-    import tempfile
     with tempfile.NamedTemporaryFile("wb", suffix=".cif", delete=False) as fh:
         with gzip.open(data_dir / f"{ref}.cif.gz", "rb") as gz:
             fh.write(gz.read())
@@ -591,8 +727,6 @@ def compare(conf: dict, entries: list[str]) -> int:
         return 1
     cut_len = int(construct[0]["domain_last"]) - int(construct[0]["domain_first"]) + 1
 
-    import gzip
-    import tempfile
 
     rows, conf_rows = [], []
     for arm_dir in sorted(p for p in data_dir.iterdir() if p.is_dir()):

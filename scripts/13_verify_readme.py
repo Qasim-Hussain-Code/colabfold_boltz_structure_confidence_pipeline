@@ -271,6 +271,48 @@ for phrase, actual, expected, what in quiet_claims:
         bad += 1
         print(f"  ABSENT {what}: the README no longer says {phrase!r}")
 
+# The application arm, which had no check at all while this file's own
+# docstring said every number the README quotes is checked against its table.
+pedv_dir = REPO / "results" / "pedv"
+pedv_claims = []
+if (pedv_dir / "deposited_pairs.tsv").is_file():
+    dep = [float(r["domain_displacement"])
+           for r in L.read_tsv(pedv_dir / "deposited_pairs.tsv")
+           if r.get("domain_displacement")]
+    pro = L.read_tsv(pedv_dir / "protomer_pairs.tsv")         if (pedv_dir / "protomer_pairs.tsv").is_file() else []
+    pred = {r["structure_b"]: r["domain_displacement"]
+            for r in L.read_tsv(pedv_dir / "prediction_pairs.tsv")
+            if r.get("structure_a") == "prediction/af2_msa_notmpl"}
+    con = L.read_tsv(pedv_dir / "construct.tsv")[0]
+    by_entry = {}
+    for r in pro:
+        by_entry.setdefault(r["entry"], []).append(r["domain_displacement"])
+    pedv_claims = [
+        ("55.4 Angstroms", f"{max(dep):.1f} Angstroms" if dep else "none",
+         "the largest displacement between deposited entries"),
+        ("plus 98 residues", f"plus {con['body_residues']} residues",
+         "the body carried by the construct"),
+        ("299 positions", f"{con['construct_length']} positions",
+         "the length of the construct"),
+        ("reference entry is 7W6M", f"reference entry is {con['source_entry']}",
+         "the entry the construct was cut from"),
+    ]
+    for entry, vals in sorted(by_entry.items()):
+        shown = " and ".join(f"{float(v):g}" for v in vals) + " Angstroms"
+        pedv_claims.append((f"| {entry} | {shown} |", f"| {entry} | {shown} |",
+                            f"the protomer displacements in {entry}"))
+    for entry, val in sorted(pred.items()):
+        pedv_claims.append((f"| {entry} | {float(val):.1f} Angstroms |",
+                            f"| {entry} | {float(val):.1f} Angstroms |",
+                            f"the prediction against {entry}"))
+for quoted, actual, what in pedv_claims:
+    if actual != quoted:
+        bad += 1
+        print(f"  MISMATCH {what}: README {quoted}, table {actual}")
+    elif quoted not in readme:
+        bad += 1
+        print(f"  ABSENT {what}: the README does not say {quoted!r}")
+
 # the paired comparisons
 for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
                      (("af2_msa_notmpl", "af2_nomsa"), "-0.476"),
@@ -282,6 +324,7 @@ for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
               f"{row['median_paired_difference'] if row else 'absent'}")
 
 n_checks = (len(claims) + len(geometry_claims) + len(align_claims)
-            + len(direction_claims) + len(quiet_claims) + 12 + 6 + 4 + 3)   # timing cells, sweep bands, docking rows, pairs
+            + len(direction_claims) + len(quiet_claims) + len(pedv_claims)
+            + 12 + 6 + 4 + 3)   # timing cells, sweep bands, docking rows, pairs
 print(f"{n_checks} checks, {bad} mismatch(es)")
 sys.exit(1 if bad else 0)

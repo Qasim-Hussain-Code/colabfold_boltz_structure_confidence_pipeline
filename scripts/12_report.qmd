@@ -283,19 +283,28 @@ for name in ("fig7_timing.png", "fig9_memory_curve.png"):
 ```{python}
 #| label: pedv
 for name in ("domain_definition.tsv", "deposited_pairs.tsv",
-             "prediction_pairs.tsv", "prediction_confidence.tsv"):
+             "protomer_pairs.tsv", "prediction_pairs.tsv",
+             "prediction_confidence.tsv"):
     df = load(Path("pedv") / name)
     if df is not None:
         print(name)
         display(df)
 ```
 
-The domain boundary above was derived from the deposited coordinates by
-contact density, not taken from a published range. The displacement columns
-report where a prediction places that domain against each deposited
-arrangement, after fitting on the body alone. Resemblance to one arrangement is
-not evidence that the others are wrong, and nothing here adjudicates between
-the experiments.
+The domain boundary above was derived from the deposited coordinates rather
+than taken from a published range. Two methods were run. Contact density,
+applied to each entry on its own, returns two boundaries and cannot choose
+between them. The boundary every table here uses came from the second method:
+each entry is fitted onto the reference on its rigid part, and the boundary is
+where the run of residues that moves stops. The same boundary is used for
+every pair, carried onto each entry through a sequence alignment.
+
+The displacement columns report where a prediction places that domain against
+each deposited arrangement, after fitting on the body alone. `protomer_pairs`
+reports the same measure between the copies of the chain inside one entry,
+because a spike is a trimer and two of these entries hold the domain in two
+places at once. Resemblance to one arrangement is not evidence that the others
+are wrong, and nothing here adjudicates between the experiments.
 
 ## Everything that was excluded
 

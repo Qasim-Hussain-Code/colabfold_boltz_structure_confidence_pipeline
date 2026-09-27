@@ -1,0 +1,13 @@
+entry	chain_a	chain_b	sequence_identity	n_body_aligned	body_rmsd	n_domain_compared	domain_displacement	domain_centroid_shift	note	recorded
+6U7K	A	B	100.0	994	0.319	70	0.367	0.064	two copies of the same chain in one deposited entry, superposed on the body	2026-09-28T06:46:23+08:00
+6U7K	A	C	100.0	994	0.343	70	0.393	0.058	two copies of the same chain in one deposited entry, superposed on the body	2026-09-28T06:46:23+08:00
+6VV5	A	B	100.0	962	0.0	135	0.001	0.0	two copies of the same chain in one deposited entry, superposed on the body	2026-09-28T06:46:23+08:00
+6VV5	A	C	100.0	962	0.0	135	0.0	0.0	two copies of the same chain in one deposited entry, superposed on the body	2026-09-28T06:46:23+08:00
+7W6M	A	B	100.0	1023	0.039	201	0.06	0.018	two copies of the same chain in one deposited entry, superposed on the body	2026-09-28T06:46:23+08:00
+7W6M	A	C	100.0	1023	0.054	201	0.021	0.014	two copies of the same chain in one deposited entry, superposed on the body	2026-09-28T06:46:23+08:00
+7W73	A	B	100.0	1023	1.315	201	55.338	45.915	two copies of the same chain in one deposited entry, superposed on the body	2026-09-28T06:46:24+08:00
+7W73	A	C	100.0	1023	1.364	201	55.343	45.905	two copies of the same chain in one deposited entry, superposed on the body	2026-09-28T06:46:24+08:00
+7Y6S	A	B	100.0	847	0.429	157	1.009	0.858	two copies of the same chain in one deposited entry, superposed on the body	2026-09-28T06:46:24+08:00
+7Y6S	A	C	100.0	847	0.572	157	1.232	1.066	two copies of the same chain in one deposited entry, superposed on the body	2026-09-28T06:46:24+08:00
+7Y6T	A	B	100.0	923	4.076	201	47.89	38.24	two copies of the same chain in one deposited entry, superposed on the body	2026-09-28T06:46:24+08:00
+7Y6T	A	C	100.0	897	2.787	201	48.227	38.608	two copies of the same chain in one deposited entry, superposed on the body	2026-09-28T06:46:24+08:00

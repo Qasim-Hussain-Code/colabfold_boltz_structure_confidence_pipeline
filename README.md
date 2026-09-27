@@ -362,9 +362,28 @@ three, both of which are real boundaries between compact blocks. Contacts
 alone cannot choose between them. The question is about the domain the record
 places differently, so the second method is motion: every entry is fitted onto
 the reference on its rigid part and the run of residues that moves ends at
-231, which is where the first of the two contact clusters sits. The construct is that domain plus 98
-residues of the body, 299 in total, which is what the measured memory curve
-allows on this machine.
+231, which is where the first of the two contact clusters sits. That boundary,
+the one from motion, is the one every comparison below uses.
+
+The rigid part is found by fitting and refitting on the residues that agree.
+On two of the six entries that search shrinks the core below the twenty
+residues a fit needs and falls back to the whole chain, which the stage now
+says out loud. The boundary does not rest on either of those fits alone: it is
+taken across all six entries, and the threshold that decides what counts as
+moving, 18.5 Angstroms, is taken from the background of the same set.
+
+The reference entry is 7W6M, chosen because it resolves more of its deposited
+sequence than any of the other five rather than because it sorts first, and
+the predicted construct is cut from its sequence. The construct is the domain
+plus 98 residues of the body, 299 positions in total, which is what the
+measured memory curve allows on this machine.
+
+One boundary is used for all fifteen pairs of entries, carried onto each
+entry through the same alignment every other comparison here goes through.
+Measuring each pair against whichever of its two entries happened to sort
+first, using that entry's own contact boundary, would put six definitions of
+the domain in one table and let the alphabetical order of two accession codes
+decide which a row used.
 
 Fitted on the body, the alignment prediction places the domain:
 
@@ -377,9 +396,28 @@ Fitted on the body, the alignment prediction places the domain:
 | 7Y6S | 47.5 Angstroms |
 | 7W73 | 52.8 Angstroms |
 
-The deposited entries differ from each other by up to 54.5 Angstroms in the
+The deposited entries differ from each other by up to 55.4 Angstroms in the
 same measure. The prediction resembles the arrangement shared by 6VV5 and
 7Y6T and does not resemble the one in 7W73 and 7Y6S.
+
+The record holds more arrangements than six, because a spike is a trimer and
+the archive deposits all three copies. Comparing the copies inside each entry,
+by the same measure and the same boundary:
+
+| entry | domain displacement between copies |
+|---|---|
+| 6VV5 | 0.001 and 0 Angstroms |
+| 7W6M | 0.06 and 0.021 Angstroms |
+| 6U7K | 0.367 and 0.393 Angstroms |
+| 7Y6S | 1.009 and 1.232 Angstroms |
+| 7Y6T | 47.89 and 48.227 Angstroms |
+| 7W73 | 55.338 and 55.343 Angstroms |
+
+Four entries hold three copies of one arrangement. Two hold two arrangements
+at once, with the domain of one copy sitting 48 and 55 Angstroms from the
+other two. Reading one chain per entry, which is what an arm measuring six
+structures does, would have counted those two entries as one arrangement each
+and understated the variety the record actually shows.
 
 What the model said about it is the more useful half:
 
