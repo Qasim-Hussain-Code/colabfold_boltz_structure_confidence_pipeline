@@ -27,8 +27,10 @@ The five questions, and the short answers:
 3. How much of the apparent accuracy comes from information the model should
    not have had? A great deal. Of 150 targets held out by both deposition and
    release date, 56 have a relative deposited before the cutoff with exactly
-   the same sequence. Copying that relative scores 0.8825 median lDDT-CA where
-   AlphaFold2 with an alignment scores 0.925.
+   the same sequence. Copying that relative scores 0.9555 median lDDT-CA for
+   those 56, where AlphaFold2 with an alignment scores 0.925 over its 30. Over
+   all 120 targets that have any usable pre-cutoff relative, copying scores
+   0.8825.
 4. What does docking into a predicted receptor cost? On the same 13 targets
    with the same protocol, success falls from 4 of 11 to 1 of 11 with one
    scoring function, and from 5 of 9 to 1 of 9 with the other.
@@ -113,12 +115,14 @@ archive was searched for the closest relative deposited before the cutoff:
 
 | closest pre-cutoff relative | targets |
 |---|---|
-| exactly 100 per cent identical | 56 |
-| 95 to 100 per cent | 67 |
+| 95 per cent identical or better | 67 |
+| of those, exactly 100 per cent | 56 |
 | 70 to 95 per cent | 12 |
 | 30 to 70 per cent | 38 |
 | below 30 per cent | 3 |
 | nothing found | 30 |
+
+The bands other than the nested one are exclusive and sum to 150.
 
 More than a third of a strictly date-filtered held-out set is the same
 sequence as something already in the archive before the model was trained.
@@ -177,9 +181,9 @@ non-bonded clashes and backbone dihedral angles are checked for every
 structure.
 
 Choosing a standard needed care. The obvious one, that a structure should have
-none of any of these faults, is met by under a third of the deposited
-structures in this set. A standard most crystal structures fail measures
-perfection rather than validity. So the thresholds are taken from the 270
+none of any of these faults, is met by 118 of the 270 deposited structures in
+this set, 44 per cent. A standard more than half of deposited structures fail
+measures perfection rather than validity. So the thresholds are taken from the 270
 deposited structures here, at the 95th percentile of each check: at most 4 bad
 bonds, 0 bad angles, 0 clashes, 0 chirality errors, 1 cis peptide outside
 proline, 2 twisted peptides, 9 Ramachandran outliers. The deposited arms then
@@ -194,10 +198,12 @@ reality meets.
 | AlphaFold2, alignment, no templates | 7 of 30 |
 | AlphaFold2, no alignment | 3 of 149 |
 
-The reason is specific. Of the alignment-arm structures outside the range,
-every one is outside on bond angles, and deposited structures essentially
-never carry an angle twelve standard deviations from ideal. Chirality, cis
-peptides and clashes are within the experimental range.
+The reason is mostly one check. Of the 23 alignment-arm structures outside
+the range, 20 are outside on bond angles, 6 on clashes, 5 on twisted peptides
+and 3 on Ramachandran outliers; a structure can be outside on more than one.
+Deposited structures essentially never carry an angle twelve standard
+deviations from ideal. Chirality and cis peptides outside proline are always
+within the experimental range, and no arm fails on either.
 
 Requiring accuracy and validity together changes the ranking:
 
@@ -301,10 +307,15 @@ six deposited entries place in two distinct arrangements.
 Nothing here decides which arrangement is correct. The arm reports what the
 prediction resembles and stops.
 
-The domain boundary is derived from the coordinates rather than quoted. Two
-independent methods agree on it: the contact-density search puts it at residue
-231 in three of the six entries, and the displacement profile between entries,
-fitted on the rigid part, ends at 231. The construct is that domain plus 98
+The domain boundary is derived from the coordinates rather than quoted, by two
+methods that agree. The contact-density search is run on each entry separately
+and gives two answers: carried onto the reference entry's numbering it ends at
+231, 237 and 238 in three of the six, and at 447, 465 and 479 in the other
+three, both of which are real boundaries between compact blocks. Contacts
+alone cannot choose between them. The question is about the domain the record
+places differently, so the second method is motion: every entry is fitted onto
+the reference on its rigid part and the run of residues that moves ends at
+231, which is where the first of the two contact clusters sits. The construct is that domain plus 98
 residues of the body, 299 in total, which is what the measured memory curve
 allows on this machine.
 
@@ -393,14 +404,19 @@ prediction table against the files on disk and refuses when they disagree.
 
 ## Cost
 
-The run is 190 predictions and about 16.5 hours of inference on 16 threads
-with no GPU, within a 5 GB memory budget.
+The run is 197 predictions and 21.7 hours of inference on 16 threads with no
+GPU, within a 5 GB memory budget. Four of those are repeats of one target
+under different seeds; without them it is 193 predictions and 20.5 hours.
 
 | arm | predictions | median seconds | median peak memory |
 |---|---|---|---|
 | AlphaFold2, no alignment | 149 | 155 | 2753 MB |
-| AlphaFold2, alignment, no templates | 30 | 843 | 3410 MB |
+| AlphaFold2, alignment, no templates | 34 | 843 | 3398 MB |
 | AlphaFold2, alignment, templates on | 14 | 1021 | 3768 MB |
+
+The counts and the medians in that table are over every run of each arm, so
+the alignment arm's 34 includes the four seed repeats. Its 30 distinct targets
+are what every accuracy figure above is computed over.
 
 An alignment costs about twelve times the single-sequence arm at the same
 length, and the cost grows with the square of the length. One alignment arm
@@ -412,7 +428,7 @@ confined every statement to small single-domain proteins.
 
 ## What this does not show
 
-The alignment arms cover 30 and 12 targets. Intervals are given for every
+The alignment arms cover 30 and 14 targets. Intervals are given for every
 comparison and they are wide. Nothing here should be read as a precise
 estimate.
 

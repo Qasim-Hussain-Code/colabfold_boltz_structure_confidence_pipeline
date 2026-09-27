@@ -301,7 +301,7 @@ def main() -> int:
     # So every pair of arms is also compared on the targets both of them
     # predicted, as a difference per target. The interval resamples targets,
     # which is the unit of replication, and the count of shared targets is
-    # reported beside it because with twelve of them it is the number that
+    # reported beside it because with fourteen of them it is the number that
     # decides what the comparison can support.
     lddt_by = {}
     for s in scores:

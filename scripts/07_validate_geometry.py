@@ -457,10 +457,11 @@ def main() -> int:
     #
     # passes_all demands none of anything. Run against the two floor arms,
     # which are deposited coordinates and not predictions at all, it passes
-    # under a third of them. A standard that most crystal structures fail is
-    # not a standard for physical validity; it is a standard for perfection,
-    # and comparing a prediction against it says nothing about whether the
-    # prediction is the kind of object a structure is.
+    # 118 of the 270 of them, 44 per cent. A standard that more than half of
+    # deposited structures fail is not a standard for physical validity; it is
+    # a standard for perfection, and comparing a prediction against it says
+    # nothing about whether the prediction is the kind of object a structure
+    # is.
     #
     # So the thresholds come from the deposited structures in this same set:
     # for each check, the 95th percentile of what they show. A prediction

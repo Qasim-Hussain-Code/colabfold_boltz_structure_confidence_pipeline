@@ -75,6 +75,34 @@ for quoted, actual, what in claims:
 if unquoted:
     print("  not quoted in the README, so not checked: " + "; ".join(unquoted))
 
+# The cost table, which drifted unchecked when the templates arm was extended
+# and the seed repeats were added.
+tim = {r["arm"]: r for r in L.read_tsv(REPO / "results/timing.tsv")}
+for arm, n, secs, mem in [("af2_nomsa", "149", "155", "2753"),
+                          ("af2_msa_notmpl", "34", "843", "3398"),
+                          ("af2_msa_tmpl", "14", "1021", "3768")]:
+    row = tim.get(arm)
+    if row is None:
+        bad += 1
+        print(f"  MISSING timing row for {arm}")
+        continue
+    for label, quoted, actual in [("count", n, row["n"]),
+                                  ("median seconds", secs, row["seconds_median"]),
+                                  ("median peak MB", mem, row["peak_rss_mb_median"])]:
+        if round(float(actual)) != round(float(quoted)):
+            bad += 1
+            print(f"  MISMATCH {arm} {label}: README {quoted}, table {actual}")
+
+# The geometry claims, which are counted from the per-structure table.
+geo = L.read_tsv(REPO / "results/geometry_checks.tsv")
+dep = [r for r in geo if r["arm"].startswith("null_") and r["status"] == "ok"]
+strict = sum(1 for r in dep if r.get("passes_all") == "1")
+for quoted, actual, what in [("118", strict, "deposited meeting the zero-fault standard"),
+                             ("270", len(dep), "deposited structures checked")]:
+    if str(actual) != quoted or quoted not in readme:
+        bad += 1
+        print(f"  MISMATCH {what}: README {quoted}, table {actual}")
+
 # the sweep rows the README tabulates
 for band, frac in [("50", "0.0672"), ("60", "0.0446"), ("70", "0.0329"),
                    ("80", "0.0257"), ("90", "0.0138"), ("95", "0.009")]:
