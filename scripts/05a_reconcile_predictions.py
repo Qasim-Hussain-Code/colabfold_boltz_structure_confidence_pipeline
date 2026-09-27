@@ -74,12 +74,17 @@ def parse_args(argv=None):
     return p.parse_args(argv)
 
 
-def confidence_key(path: Path) -> tuple[str, str] | None:
-    """Split TARGET__ARM.json.gz back into its two parts.
+def confidence_key(path: Path) -> tuple[str, str, str] | None:
+    """Split a confidence filename into target, arm and the tag between them.
 
-    The seed-variance runs name themselves TARGET__seedN__ARM, and those are
-    deliberately outside the main table, so they are recognised and left
-    alone rather than reported as orphans.
+    A seed-variance run names itself TARGET__seedN__ARM and an ordinary run
+    names itself TARGET__ARM, so the tag is TARGET__seedN or TARGET. Keying on
+    target and arm alone collapses the two, and a target predicted once and
+    then predicted again under several seeds leaves the first pair of files
+    behind with nothing pointing at them. That is what happened to 27WO_1 in
+    the alignment arm: five seeded predictions replaced one unseeded one, the
+    unseeded confidence file and structure stayed on disk and in the
+    repository, and this stage reported that the table and the files agreed.
     """
     stem = path.name
     for suffix in (".json.gz", ".json"):
@@ -89,7 +94,7 @@ def confidence_key(path: Path) -> tuple[str, str] | None:
     parts = stem.split("__")
     if len(parts) < 2:
         return None
-    return parts[0], parts[-1]
+    return parts[0], parts[-1], "__".join(parts[:-1])
 
 
 def main(argv=None) -> int:
@@ -113,14 +118,32 @@ def main(argv=None) -> int:
     def is_inference(arm: str) -> bool:
         return arm.startswith("af2_") or arm.startswith("boltz")
 
-    recorded: dict[tuple[str, str], dict] = {}
+    # Keyed on the artefact each row names, not on the target and arm. The
+    # table records the filenames it wrote, so the tag is taken from those
+    # rather than rebuilt from the seed column, and a row and a file match only
+    # when they are the same artefact.
+    recorded: dict[tuple[str, str, str], dict] = {}
     for r in rows:
         if not is_inference(r.get("arm", "")):
             continue
-        recorded[(r["target_id"], r["arm"])] = r
+        named = Path(r.get("confidence_file") or "").name
+        tag = ""
+        if named:
+            stem = named
+            for suffix in (".json.gz", ".json"):
+                if stem.endswith(suffix):
+                    stem = stem[: -len(suffix)]
+                    break
+            parts = stem.split("__")
+            tag = "__".join(parts[:-1]) if len(parts) >= 2 else ""
+        if not tag:
+            seed = r.get("seed", "")
+            tag = f"{r['target_id']}__seed{seed}" if seed and r.get(
+                "is_seed_repeat") else r["target_id"]
+        recorded[(r["target_id"], r["arm"], tag)] = r
 
     conf_dir = results / "confidence"
-    seen_files: dict[tuple[str, str], Path] = {}
+    seen_files: dict[tuple[str, str, str], Path] = {}
     seed_variance = 0
     for f in sorted(conf_dir.glob("*.json.gz")) if conf_dir.is_dir() else []:
         key = confidence_key(f)
@@ -128,12 +151,11 @@ def main(argv=None) -> int:
             continue
         if "__seed" in f.name:
             seed_variance += 1
-            continue
         seen_files[key] = f
 
-    def structure_for(target: str, arm: str) -> Path | None:
+    def structure_for(tag: str, arm: str) -> Path | None:
         for ext in (".pdb.gz", ".cif.gz"):
-            p = data / "predictions" / arm / f"{target}{ext}"
+            p = data / "predictions" / arm / f"{tag}{ext}"
             if p.is_file():
                 return p
         return None
@@ -155,10 +177,10 @@ def main(argv=None) -> int:
         shutil.move(str(p), str(dest))
         return f"moved to {dest.relative_to(data)}"
 
-    for target, arm in sorted(keys):
-        cfile = seen_files.get((target, arm))
-        sfile = structure_for(target, arm)
-        row = recorded.get((target, arm))
+    for target, arm, tag in sorted(keys):
+        cfile = seen_files.get((target, arm, tag))
+        sfile = structure_for(tag, arm)
+        row = recorded.get((target, arm, tag))
 
         if target not in in_set:
             action = []
@@ -225,7 +247,7 @@ def main(argv=None) -> int:
         for f in sorted(reason_dir.rglob("*.gz")):
             key = confidence_key(f) if f.parent.name == "confidence" else None
             if key is not None:
-                target, arm = key
+                target, arm, _tag = key
             else:
                 target, arm = f.name.split(".")[0], f.parent.name
             history.append(dict(
