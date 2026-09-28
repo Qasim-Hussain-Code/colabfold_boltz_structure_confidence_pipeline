@@ -23,8 +23,16 @@
      python scripts/13_verify_readme.py
 =============================================================================
 """
+import argparse
 import sys
 from pathlib import Path
+
+_ap = argparse.ArgumentParser(
+    description="Check every number the README quotes against its table.",
+    epilog="Takes no options. --config is accepted and ignored: this reads "
+           "the tables beside it rather than a configuration.")
+_ap.add_argument("--config", help=argparse.SUPPRESS)
+_ap.parse_args()
 
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "scripts"))

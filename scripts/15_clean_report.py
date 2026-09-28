@@ -19,14 +19,23 @@
      python scripts/15_clean_report.py [path/to/report.html]
 =============================================================================
 """
+import argparse
 import os
 import re
 import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-target = Path(sys.argv[1]) if len(sys.argv) > 1 else \
-    REPO / "results" / "report" / "12_report.html"
+_default = REPO / "results" / "report" / "12_report.html"
+_ap = argparse.ArgumentParser(
+    description="Strip the unused icon stylesheet from the rendered report.",
+    epilog="Without a path it cleans the report the last render wrote. Taking "
+           "the path positionally and nothing else meant --help was read as a "
+           "filename, so the script reported that --help was not there and "
+           "exited successfully having done nothing.")
+_ap.add_argument("report", nargs="?", default=str(_default),
+                 help=f"the rendered HTML to clean (default: {_default})")
+target = Path(_ap.parse_args().report)
 
 if not target.is_file():
     print(f"[15_clean_report] {target} is not there; nothing to clean")

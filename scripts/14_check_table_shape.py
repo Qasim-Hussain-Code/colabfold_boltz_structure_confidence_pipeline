@@ -21,9 +21,16 @@
      python scripts/14_check_table_shape.py
 =============================================================================
 """
+import argparse
 import re
 import sys
 from pathlib import Path
+
+_ap = argparse.ArgumentParser(
+    description="Check that every results table still has the shape it claims.",
+    epilog="Takes no options. --config is accepted and ignored.")
+_ap.add_argument("--config", help=argparse.SUPPRESS)
+_ap.parse_args()
 
 REPO = Path(__file__).resolve().parent.parent
 STAMP = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}")
