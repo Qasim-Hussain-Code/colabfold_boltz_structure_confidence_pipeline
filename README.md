@@ -620,7 +620,9 @@ which of three things to change.
 
 The stages in order are in `run_all.sh`. `results/` holds every table the
 report and this file quote. `scripts/12_report.qmd` renders the full analysis
-from those tables and reads nothing else. The rendered report is not tracked,
+from those tables and the figures beside them, reads nothing else, and derives
+no measurement of its own, so a number in the report and the same number here
+came from one file rather than from two calculations that happen to agree. The rendered report is not tracked,
 because it embeds its fonts, its stylesheets and every figure as base64 and is
 several megabytes of third-party content. The last stage of `run_all.sh`
 regenerates it into `results/report/`.

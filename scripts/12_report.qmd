@@ -27,8 +27,11 @@ from pathlib import Path
 
 import pandas as pd
 
-# This report reads only files in results/ and figures/. It recomputes nothing,
-# so a number here and the same number in the README come from one file.
+# This report reads only files in results/ and figures/, and derives no
+# measurement of its own, so a number here and the same number in the README
+# come from one file. The one thing it computes is a count: the exclusion table
+# is shown grouped by stage and reason, which counts rows of a table it is
+# already displaying rather than re-deriving anything measured.
 #
 # project.conf is located by walking up from the working directory rather than
 # taken as a parameter, because the renderer works from the document's own
