@@ -625,6 +625,21 @@ because it embeds its fonts, its stylesheets and every figure as base64 and is
 several megabytes of third-party content. The last stage of `run_all.sh`
 regenerates it into `results/report/`.
 
+The four conda environments are built by `scripts/01_install.sh`. It creates
+each from `config/env_*.lock.yml`, which pin every package to a version, and
+falls back to `config/env_*.yml`, which state only what is needed and let the
+solver choose, when a lock file is absent. The Boltz-2 lock pins a git commit
+rather than the released version of the same number, because the environment
+was built from the development branch; two source edits made after that
+install are not carried by any pin and are recorded in
+`results/environment/versions.tsv` instead.
+
+`results/environment/explicit_*_x86_64.txt` record the exact package build of
+everything that was installed, by URL. Nothing in the pipeline reads them; they
+exist so that the environments can be rebuilt as they were, with
+`conda create --name <env> --file <that file>`. They name the build and not a
+checksum, so they pin what was installed without verifying it.
+
 `scripts/check_repo.sh` checks that the scripts parse, that no tracked file
 identifies the machine or the account, that no file over 50 MB or any model
 weight is tracked, that the figures this file refers to exist, and that the
