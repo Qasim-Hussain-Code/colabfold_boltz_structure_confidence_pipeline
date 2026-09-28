@@ -609,6 +609,15 @@ projects the disk and wall clock the run needs, and refuses rather than
 starting something that cannot finish. Every stage can be run alone and every
 stage records what it did in `logs/`.
 
+What it projects for the five arms and 150 targets reported here is written to
+`results/environment/projection.tsv` before any refusal, so the numbers are
+there whether or not the run proceeds: 4151 MB of disk, which is the peak while
+the parameters extract rather than the 3526 MB the results themselves occupy,
+and 55 hours over the three arms that run inference. The stage also holds back
+space for the host and will refuse on a machine that has the 4151 MB free but
+nothing spare behind it, which is a refusal rather than a failure and says
+which of three things to change.
+
 The stages in order are in `run_all.sh`. `results/` holds every table the
 report and this file quote. `scripts/12_report.qmd` renders the full analysis
 from those tables and reads nothing else. The rendered report is not tracked,

@@ -360,6 +360,29 @@ for quoted, actual, what in env_claims:
         bad += 1
         print(f"  ABSENT {what}: the README does not say {quoted!r}")
 
+# What the configure stage projects, which the reproduction section quotes.
+proj_path = REPO / "results/environment/projection.tsv"
+proj_claims = []
+if proj_path.is_file():
+    proj = {r["key"]: r["value"] for r in L.read_tsv(proj_path)}
+    proj_claims = [
+        (f"{proj.get('disk_total', '?')} MB of disk",
+         f"{proj.get('disk_total', '?')} MB of disk", "the projected disk"),
+        (f"{proj.get('disk_peak_results', '?')} MB the results",
+         f"{proj.get('disk_peak_results', '?')} MB the results",
+         "the disk the results occupy"),
+        (f"{proj.get('wall_clock', '?')} hours over the three arms",
+         f"{proj.get('wall_clock', '?')} hours over the three arms",
+         "the projected wall clock"),
+    ]
+for quoted, actual, what in proj_claims:
+    if actual != quoted:
+        bad += 1
+        print(f"  MISMATCH {what}: README {quoted}, table {actual}")
+    elif quoted not in readme:
+        bad += 1
+        print(f"  ABSENT {what}: the README does not say {quoted!r}")
+
 # the paired comparisons
 for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
                      (("af2_msa_notmpl", "af2_nomsa"), "-0.476"),
@@ -371,7 +394,7 @@ for (a, b), diff in [(("af2_msa_notmpl", "af2_msa_tmpl"), "0.001"),
               f"{row['median_paired_difference'] if row else 'absent'}")
 
 n_checks = (len(claims) + len(geometry_claims) + len(align_claims)
-            + len(direction_claims) + len(quiet_claims) + len(pedv_claims) + len(sel_claims) + len(env_claims)
+            + len(direction_claims) + len(quiet_claims) + len(pedv_claims) + len(sel_claims) + len(env_claims) + len(proj_claims)
             + 12 + 6 + 4 + 3)   # timing cells, sweep bands, docking rows, pairs
 print(f"{n_checks} checks, {bad} mismatch(es)")
 sys.exit(1 if bad else 0)

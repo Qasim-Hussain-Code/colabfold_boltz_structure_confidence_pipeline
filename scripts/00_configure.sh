@@ -568,6 +568,39 @@ echo "  already on disk          : ${MB_PRESENT} MB, so ${PROJ_DISK_GB} GB more 
 echo "  projected wall clock     : ${PROJ_HOURS} h at ${SEC_ONE} s per prediction of a ${MEDIAN_LEN}-residue target, over ${N_PREDICT_ARMS} arms that run inference"
 echo
 
+# The projection, written down. It is what decides whether this stage refuses,
+# and what a reader needs in order to tell whether their machine can run this
+# at all, so it belongs in a file rather than only in the output of a command
+# they have not run yet. Written before the refusal below, so a machine that
+# cannot run the pipeline still records why.
+PROJ_TSV="${REPO_DIR}/results/environment/projection.tsv"
+mkdir -p "$(dirname "$PROJ_TSV")"
+{
+    printf 'key	value	unit	note	recorded
+'
+    NOW_ISO="$(date -Iseconds)"
+    printf 'arms	%s	count	%s	%s
+'            "$N_ARMS" "$ARMS" "$NOW_ISO"
+    printf 'models	%s	count	%s	%s
+'          "$N_MODELS" "$MODELS" "$NOW_ISO"
+    printf 'targets	%s	count	assumed for the projection	%s
+' "$N_TARGETS" "$NOW_ISO"
+    printf 'disk_total	%s	MB	the larger of the two peaks below	%s
+' "$PROJ_TOTAL_MB" "$NOW_ISO"
+    printf 'disk_peak_extracting	%s	MB	while the weights extract; zero once cached	%s
+' "$PEAK_A" "$NOW_ISO"
+    printf 'disk_peak_results	%s	MB	when every result is written	%s
+' "$PEAK_B" "$NOW_ISO"
+    printf 'disk_already_present	%s	MB	on this machine at configure time	%s
+' "$MB_PRESENT" "$NOW_ISO"
+    printf 'wall_clock	%s	hours	over the arms that run inference	%s
+' "$PROJ_HOURS" "$NOW_ISO"
+    printf 'seconds_per_prediction	%s	s	at the median target length of %s residues	%s
+' "$SEC_ONE" "$MEDIAN_LEN" "$NOW_ISO"
+} > "$PROJ_TSV"
+echo "  projection recorded in   : ${PROJ_TSV#"${REPO_DIR}/"}"
+echo
+
 # The comparisons are in megabytes. Rounding each side to whole gigabytes first
 # loses up to a gigabyte on a budget of ten, which on this machine is the
 # difference between a run that fits and a refusal.

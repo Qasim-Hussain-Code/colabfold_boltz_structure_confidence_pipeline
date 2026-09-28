@@ -1,0 +1,10 @@
+key	value	unit	note	recorded
+arms	5	count	af2_msa_notmpl,af2_msa_tmpl,af2_nomsa,null_template,null_unrelated	2026-09-28T08:11:51+08:00
+models	1	count	alphafold2_ptm	2026-09-28T08:11:51+08:00
+targets	150	count	assumed for the projection	2026-09-28T08:11:51+08:00
+disk_total	4151	MB	the larger of the two peaks below	2026-09-28T08:11:51+08:00
+disk_peak_extracting	4151	MB	while the weights extract; zero once cached	2026-09-28T08:11:51+08:00
+disk_peak_results	3526	MB	when every result is written	2026-09-28T08:11:51+08:00
+disk_already_present	1	MB	on this machine at configure time	2026-09-28T08:11:51+08:00
+wall_clock	55	hours	over the arms that run inference	2026-09-28T08:11:51+08:00
+seconds_per_prediction	444	s	at the median target length of 190 residues	2026-09-28T08:11:51+08:00
