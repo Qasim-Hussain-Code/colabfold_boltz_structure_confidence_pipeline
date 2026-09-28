@@ -7,3 +7,4 @@ step	action	c_drive_free_gb_after	vhdx_gb_after	wsl_root_used_gb_after	measured_
 5	fstrim -av (944.5 GiB trimmed), wsl --shutdown, diskpart attach readonly / compact vdisk / detach (elevated)	8.38	63.92	61	diskpart log; Get-Item ext4.vhdx	2026-09-25
 6	removed stage 1 GNINA binary (sha256 3340c1f4... matched stage 1 versions.tsv) and its CUDA-only env vgb_gnina; conda clean removed 3.86 GB	8.38	63.92	56	df -h / inside WSL; conda clean output	2026-09-25
 7	second fstrim (950.4 GiB trimmed) and diskpart compact vdisk	13.62	58.16	56	diskpart log; Get-PSDrive C	2026-09-25
+8	deleted the same WSLg remote-desktop trace logs again (Temp\DiagOutputDir\RdClientAutoTrace\*.etl, 136 files, 989 MB); they regrow at roughly a gigabyte per six hours and are the whole of the C: drift seen between health checks	5.85	62.56	31	Get-PSDrive C; Get-Item ext4.vhdx; df -h / inside WSL	2026-09-28T10:11:44+08:00
